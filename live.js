@@ -1,11 +1,12 @@
 (() => {
-  const API_BASE = 'https://xkor-three.vercel.app/api/cars';
+  const API_BASE = './inventory.json';
+  let demoMode = false;
   const PAGE_SIZE = 100;
   let liveLoading = false;
   let liveLoadedAt = null;
 
   Object.assign(TXT.en, {
-    sample_note: 'Live Encar inventory. Results are loaded from the Korean market and refreshed when you search.',
+    sample_note: 'Selected Encar listings, synced every six hours. Filters search this selection.',
     live_inventory: 'LIVE ENCAR INVENTORY',
     live_now: 'Live',
     loading_live: 'Loading live Encar vehicles…',
@@ -17,7 +18,7 @@
     live_test_note: 'Live test feed · availability must still be confirmed before purchase.'
   });
   Object.assign(TXT.fr, {
-    sample_note: 'Inventaire Encar en direct. Les résultats proviennent du marché coréen et sont actualisés lors de chaque recherche.',
+    sample_note: 'Sélection Encar synchronisée toutes les six heures. Les filtres recherchent dans cette sélection.',
     live_inventory: 'INVENTAIRE ENCAR EN DIRECT',
     live_now: 'En direct',
     loading_live: 'Chargement des véhicules Encar en direct…',
@@ -71,7 +72,7 @@
   }
   function normalizePrice(raw) {
     let p = num(raw);
-    if (p > 0 && p < 1000000) p *= 10000;
+    if (p > 0 && p < 1000000) p *= 1;
     return Math.round(p);
   }
   function titleFuel(v) {
@@ -103,13 +104,13 @@
       mileage:num(pick(x,['mileage','Mileage','mileageKm','mileage_km'],0)),
       fuel:titleFuel(pick(x,['fuel','fuelType','fuel_type','FuelType'],'—')),
       drive:String(pick(x,['drivetrain','drive','driveType','drive_type'],'—')),
-      transmission:String(pick(x,['transmission','transmissionType','transmission_type'],'Automatic')),
+      transmission:String(pick(x,['transmission','transmissionType','transmission_type'],'—')),
       engine:String(pick(x,['engine','engineSize','engine_size','displacement','engineCc','engine_cc'],'—')),
       color:String(pick(x,['color','Color','exteriorColor','exterior_color'],'—')),
       location:String(pick(x,['region','location','city','dealer.region','officeCity'],'Korea')),
       price,
       photos,
-      listingUrl:String(pick(x,['url','listingUrl','listing_url','detailUrl','detail_url'],''))
+      listingUrl:String(pick(x,['encar_url','url','listingUrl','listing_url','detailUrl','detail_url'],''))
     };
   }
   function extractCars(json) {
@@ -127,17 +128,20 @@
       : `<div class="photo-fallback">${t('photos_unavailable')}</div>`;
   }
 
+  function displayCar(c){return Object.fromEntries(Object.entries(c).map(([k,v])=>[k,typeof v==='string'?escapeHTML(v):k==='photos'?v.map(u=>/^https:\/\//.test(u)?escapeHTML(u):'').filter(Boolean):v]));}
   carCard = function(c) {
-    return `<article class="card"><div class="car-photo"><span class="source-pill">Encar</span><span class="avail-pill">${t('currently_listed')}</span>${imageMarkup(c)}</div><div class="card-body"><h3>${c.year || ''} ${c.make} ${c.model}</h3><div class="trim">${c.trim || '&nbsp;'}</div><div class="spec-row"><span class="spec">${(c.mileage||0).toLocaleString()} km</span><span class="spec">${tr(c.fuel)}</span><span class="spec">${c.drive}</span><span class="spec">${c.location}</span></div><div class="price-label">${t('vehicle_price')}</div><div class="price">${krw(c.price)}</div><div class="estimate"><span>${t('estimated_total')}</span><strong>${krw(total(c))}</strong></div><button class="btn btn-primary" data-car="${c.id}">${t('view_vehicle')}</button></div></article>`;
+    c=displayCar(c);
+    return `<article class="card"><div class="car-photo"><span class="source-pill">${demoMode?'Demo':'Encar'}</span><span class="avail-pill">${demoMode ? (lang==='fr'?'Démonstration':'Demo') : (lang==='fr'?'Annonce lors de la synchronisation':'Listed at last sync')}</span>${imageMarkup(c)}</div><div class="card-body"><h3>${c.year || ''} ${c.make} ${c.model}</h3><div class="trim">${c.trim || '&nbsp;'}</div><div class="spec-row"><span class="spec">${(c.mileage||0).toLocaleString()} km</span><span class="spec">${tr(c.fuel)}</span><span class="spec">${c.drive}</span><span class="spec">${c.location}</span></div><div class="price-label">${t('vehicle_price')}</div><div class="price">${krw(c.price)}</div><div class="estimate"><span>${t('estimated_total')}</span><strong>${krw(total(c))}</strong></div><button class="btn btn-primary" data-car="${c.id}">${t('view_vehicle')}</button></div></article>`;
   };
 
   openVehicle = function(id) {
-    const c=inventory.find(x=>x.id===id); if(!c)return;
+    let c=inventory.find(x=>x.id===id); if(!c)return; c=displayCar(c);
     const img = c.photos && c.photos[0]
       ? `<img src="${c.photos[0]}" alt="${c.year} ${c.make} ${c.model}" onerror="this.style.display='none'">`
       : `<div class="photo-fallback">${t('photos_unavailable')}</div>`;
-    $('#detailContent').innerHTML=`<div class="detail-grid"><div class="gallery">${img}<div class="gallery-count">Encar · ${c.photos.length || 0} photo(s)</div></div><div class="detail-side"><div class="eyebrow">DIRECT PURCHASE · ${c.id}</div><h2>${c.year || ''} ${c.make} ${c.model}</h2><div class="detail-trim">${c.trim || ''}</div><div class="source-row"><span>${t('source')}:</span><b>Encar</b><span>·</span><span>${t('currently_listed')}</span></div><div class="detail-specs"><div class="detail-spec"><span>${t('mileage')}</span><b>${(c.mileage||0).toLocaleString()} km</b></div><div class="detail-spec"><span>${t('fuel')}</span><b>${tr(c.fuel)}</b></div><div class="detail-spec"><span>${t('transmission')}</span><b>${tr(c.transmission)}</b></div><div class="detail-spec"><span>${t('drivetrain')}</span><b>${c.drive}</b></div><div class="detail-spec"><span>${t('engine')}</span><b>${c.engine}</b></div><div class="detail-spec"><span>${t('color')}</span><b>${c.color}</b></div><div class="detail-spec"><span>${t('location')}</span><b>${c.location}</b></div><div class="detail-spec"><span>${t('status')}</span><b>${t('currently_listed')}</b></div></div><div class="cost-box"><b>${t('purchase_cost')}</b><div class="cost-row"><span>${t('vehicle_price')}</span><b>${krw(c.price)}</b></div><div class="cost-row"><span>${t('transport')}</span><b>${krw(fees.transport)}</b></div><div class="cost-row"><span>${t('documents')}</span><b>${krw(fees.documents)}</b></div><div class="cost-row"><span>${t('handling')}</span><b>${krw(fees.handling)}</b></div><div class="cost-total"><span>${t('estimated_total')}</span><b>${krw(total(c))}</b></div><div class="detail-note">${t('estimate_note')}</div></div><form class="request-form" id="requestForm"><h3>${t('request_title')}</h3><div class="form-grid"><input required placeholder="${t('name')}" id="reqName"><input required placeholder="${t('country')}" id="reqCountry"><input required placeholder="${t('whatsapp')}" id="reqWhatsapp"><textarea placeholder="${t('notes')}" id="reqNotes"></textarea></div><button class="btn btn-primary" style="width:100%;margin-top:10px" type="submit">${t('send_request')}</button><div class="request-success" id="requestSuccess">${t('request_success')}</div></form></div></div>`;
+    $('#detailContent').innerHTML=`<div class="detail-grid"><div class="gallery">${img}<div class="gallery-count">Encar · ${c.photos.length || 0} photo(s)</div></div><div class="detail-side"><div class="eyebrow">DIRECT PURCHASE · ${c.id}</div><h2>${c.year || ''} ${c.make} ${c.model}</h2><div class="detail-trim">${c.trim || ''}</div><div class="source-row"><span>${t('source')}:</span><b>Encar</b><span>·</span><span>${demoMode ? (lang==='fr'?'Démonstration':'Demo') : (lang==='fr'?'Annonce lors de la synchronisation':'Listed at last sync')}</span></div><div class="detail-specs"><div class="detail-spec"><span>${t('mileage')}</span><b>${(c.mileage||0).toLocaleString()} km</b></div><div class="detail-spec"><span>${t('fuel')}</span><b>${tr(c.fuel)}</b></div><div class="detail-spec"><span>${t('transmission')}</span><b>${tr(c.transmission)}</b></div><div class="detail-spec"><span>${t('drivetrain')}</span><b>${c.drive}</b></div><div class="detail-spec"><span>${t('engine')}</span><b>${c.engine}</b></div><div class="detail-spec"><span>${t('color')}</span><b>${c.color}</b></div><div class="detail-spec"><span>${t('location')}</span><b>${c.location}</b></div><div class="detail-spec"><span>${t('status')}</span><b>${demoMode ? (lang==='fr'?'Démonstration':'Demo') : (lang==='fr'?'Annonce lors de la synchronisation':'Listed at last sync')}</b></div></div><div class="cost-box"><b>${t('purchase_cost')}</b><div class="cost-row"><span>${t('vehicle_price')}</span><b>${krw(c.price)}</b></div><div class="cost-row"><span>${t('transport')}</span><b>${krw(fees.transport)}</b></div><div class="cost-row"><span>${t('documents')}</span><b>${krw(fees.documents)}</b></div><div class="cost-row"><span>${t('handling')}</span><b>${krw(fees.handling)}</b></div><div class="cost-total"><span>${t('estimated_total')}</span><b>${krw(total(c))}</b></div><div class="detail-note">${t('estimate_note')}</div></div><form class="request-form" id="requestForm"><h3>${t('request_title')}</h3><div class="form-grid"><input required placeholder="${t('name')}" id="reqName"><input required placeholder="${t('country')}" id="reqCountry"><input required placeholder="${t('whatsapp')}" id="reqWhatsapp"><textarea placeholder="${t('notes')}" id="reqNotes"></textarea></div><button class="btn btn-primary" style="width:100%;margin-top:10px" type="submit">${t('send_request')}</button><div class="request-success" id="requestSuccess">${t('request_success')}</div></form></div></div>`;
     $('#vehicleModal').classList.add('open'); $('#vehicleModal').setAttribute('aria-hidden','false');
+    if(demoMode){$('#requestForm').innerHTML=lang==='fr'?'Véhicule de démonstration — achat indisponible.':'Demo vehicle — purchase unavailable.';return;}
     $('#requestForm').onsubmit=e=>{e.preventDefault();$('#requestSuccess').classList.add('show');safeStore.set('bcsLastRequest',JSON.stringify({vehicleId:c.id,sourceId:c.sourceId,source:'Encar',vehicle:`${c.year} ${c.make} ${c.model}`,price:c.price,estimatedTotal:total(c),name:$('#reqName').value,country:$('#reqCountry').value,whatsapp:$('#reqWhatsapp').value,notes:$('#reqNotes').value}))};
   };
 
@@ -162,8 +166,8 @@
     const r=document.getElementById('liveRetry'); if(r) r.onclick=()=>loadLiveInventory(true);
   }
   function updateMeta() {
-    const tm = liveLoadedAt ? liveLoadedAt.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}) : '';
-    metaNode().innerHTML=`<span class="live-chip">${t('live_now')}</span><span>${inventory.length} Encar · ${t('last_updated')} ${tm}</span><span>${t('live_test_note')}</span>`;
+    const tm = liveLoadedAt ? liveLoadedAt.toLocaleString(lang==='fr'?'fr-FR':'en-GB', {timeZone:'Asia/Seoul'})+' KST' : '';
+    metaNode().textContent=demoMode ? (lang==='fr'?'DÉMONSTRATION — annonces fictives, non disponibles à l’achat. Synchronisation en attente ou indisponible.':'DEMO — sample vehicles, not available to purchase. Sync pending or unavailable.') : `${inventory.length} Encar · ${t('last_updated')} ${tm} · ${t('live_test_note')}`;
   }
   function queryUrl() {
     const p=new URLSearchParams();
@@ -176,7 +180,7 @@
     if(yf) p.set('yearFrom',yf);
     if(yt) p.set('yearTo',yt);
     p.set('page','0'); p.set('count',String(PAGE_SIZE));
-    return API_BASE+'?'+p.toString();
+    return API_BASE;
   }
   async function loadLiveInventory(fromSearch=false) {
     if(liveLoading) return;
@@ -189,7 +193,9 @@
       const mapped=rows.map(normalizeCar).filter(c=>c.sourceId && c.price>0 && c.make && c.model);
       if(!mapped.length) throw new Error('No valid vehicle records returned by the live feed.');
       inventory=mapped;
-      liveLoadedAt=new Date();
+      liveLoadedAt=new Date(json.updated_at);
+      if (!Number.isFinite(liveLoadedAt.getTime()) || Date.now()-liveLoadedAt.getTime()>48*3600000) throw new Error('Stale inventory');
+      demoMode=false;
       const selectedMake=$('#makeFilter').value;
       const selectedFuel=$('#fuelFilter').value;
       populate();
@@ -198,7 +204,9 @@
       if(selectedFuel && [...$('#fuelFilter').options].some(o=>o.value===selectedFuel)) $('#fuelFilter').value=selectedFuel;
       refreshLabels(); renderCars(); updateMeta();
     } catch(e) {
-      inventory=[]; showError(e);
+      demoMode=true; liveLoadedAt=null;
+      inventory=MOCK_CARS.map(c=>({...c,photos:[],source:'Demo'}));
+      populate(); refreshLabels(); renderCars(); updateMeta();
       console.error('BEST CAR STAR live Encar feed error',e);
     } finally { liveLoading=false; }
   }
@@ -206,10 +214,10 @@
   const originalSetI18n=setI18n;
   setI18n=function(){originalSetI18n(); updateMeta();};
 
-  $('#searchBtn').onclick=()=>loadLiveInventory(true);
+  $('#searchBtn').onclick=renderCars;
   $('#resetBtn').onclick=()=>{
     ['#makeFilter','#modelFilter','#yearFrom','#yearTo','#maxPrice','#maxMileage','#fuelFilter','#driveFilter'].forEach(s=>$(s).value='');
-    loadLiveInventory(true);
+    updateModels(); renderCars();
   };
   $('#makeFilter').onchange=()=>{ updateModels(); renderCars(); };
 
