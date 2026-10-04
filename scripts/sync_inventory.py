@@ -1,4 +1,4 @@
-import json, os, sys, urllib.request, urllib.error
+import json, os, sys, re, urllib.request, urllib.error
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -12,7 +12,17 @@ def main():
         with urllib.request.urlopen(req, timeout=60) as response:
             data = json.load(response)
     except urllib.error.HTTPError as exc:
-        raise ValueError("XAPI request failed: HTTP " + str(exc.code)) from None
+        reason = "Provider returned a non-JSON error"
+        try:
+            payload = json.loads(exc.read(8192).decode("utf-8", errors="replace"))
+            message = payload.get("detail", payload.get("message", payload.get("error", "")))
+            if isinstance(message, str):
+                reason = message.replace(key, "[REDACTED]")
+                reason = re.sub(r"(?:enc_|pk_)[A-Za-z0-9_-]+", "[REDACTED]", reason)
+                reason = " ".join(reason.split())[:400]
+        except (ValueError, AttributeError):
+            pass
+        raise ValueError("XAPI request failed: HTTP " + str(exc.code) + " — " + reason) from None
     if not isinstance(data, dict) or not isinstance(data.get("results"), list):
         raise ValueError("Unexpected XAPI response structure")
     fields = ("id", "manufacturer", "model", "badge", "year", "mileage_km", "price_krw",
@@ -42,6 +52,6 @@ if __name__ == "__main__":
     try:
         main()
     except Exception as exc:
-        # Never log response bodies, request headers or credentials.
+        # Only log sanitized provider error text; never request headers or credentials.
         print(str(exc) if isinstance(exc, ValueError) else "Inventory sync failed; previous file retained", file=sys.stderr)
         sys.exit(1)
