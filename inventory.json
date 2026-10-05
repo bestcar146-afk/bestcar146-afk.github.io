@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-05T06:39:42.017213+00:00",
+  "updated_at": "2026-10-05T06:41:58.137751+00:00",
   "provider": "EnCarAPI",
   "scope": "Latest combined selection, not the full market",
   "source_counts": {
@@ -79,7 +79,7 @@
       "badge": "Gasoline 2.5T 2WD 프레스티지",
       "year": 2023,
       "mileage_km": 19415,
-      "price_krw": 34300000,
+      "price_krw": 33900000,
       "fuel_type": "gasoline",
       "transmission": "—",
       "color": "—",
@@ -100,7 +100,7 @@
       "badge": "Gasoline 2.5T 2WD 프레스티지",
       "year": 2023,
       "mileage_km": 19415,
-      "price_krw": 34300000,
+      "price_krw": 33900000,
       "fuel_type": "gasoline",
       "transmission": "—",
       "color": "—",
