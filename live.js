@@ -36,7 +36,15 @@
   Object.assign(TXT.en,regions);Object.assign(TXT.fr,regions,{'서울':'Séoul'});
   const style = document.createElement('style');
   style.textContent = `
-    .car-photo img{width:100%;height:100%;object-fit:cover;display:block}
+    .car-photo{aspect-ratio:4/3;flex:none}
+    .car-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block}
+    .car-photo .source-pill{z-index:2;pointer-events:none}
+    .photo-open{position:absolute;inset:0;width:100%;height:100%;border:0;background:transparent;border-radius:0}
+    .photo-open:focus-visible{outline:3px solid #6ba8c9;outline-offset:-4px}
+    .card h3{font-size:19px;margin-bottom:12px}
+    .card .spec-row{margin-bottom:12px}
+    .card .price{margin-bottom:0}
+
     .photo-fallback{width:100%;height:100%;display:grid;place-items:center;background:linear-gradient(135deg,#dfeaf1,#f7fafc);color:#778492;font-weight:800}
     .live-meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:9px;font-size:12px;color:#697787}
     .live-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 9px;border-radius:999px;background:#e8f7f1;color:#137951;font-weight:900}
@@ -95,6 +103,11 @@
     let photos = arr(rawPhotos).map(cleanImage).filter(Boolean);
     const single = cleanImage(pick(x,['thumbnail','thumbnailUrl','thumbnail_url','image','imageUrl','image_url','photo','photoUrl','photo_url'],''));
     if (single && !photos.includes(single)) photos.unshift(single);
+    // Encar's 001 preview may be a collage; lead with a supplied individual photo.
+    if (String(pick(x,['source'],'Encar')) === 'Encar') {
+      const main = photos.find(u => /_003\.[a-z]+(?:\?|$)/i.test(u)) || photos.find(u => !/_001\.[a-z]+(?:\?|$)/i.test(u));
+      if (main) photos = [main, ...photos.filter(u => u !== main)];
+    }
     const yearRaw = pick(x,['year','modelYear','model_year','Year','formYear','registrationYear'],'');
     const year = num(String(yearRaw).slice(0,4)) || num(yearRaw);
     const price = normalizePrice(pick(x,['priceWon','price_won','priceKRW','price_krw','price','Price','advertisement.price'],''));
@@ -136,7 +149,8 @@
   function displayCar(c){return Object.fromEntries(Object.entries(c).map(([k,v])=>[k,typeof v==='string'?escapeHTML(v):k==='photos'?v.map(u=>/^https:\/\//.test(u)?escapeHTML(u):'').filter(Boolean):v]));}
   carCard = function(c) {
     c=displayCar(c);
-    return `<article class="card"><div class="car-photo"><span class="source-pill">${demoMode?'Demo':c.source}</span><span class="avail-pill">${demoMode ? (lang==='fr'?'Démonstration':'Demo') : (lang==='fr'?'Annonce lors de la synchronisation':'Listed at last sync')}</span>${imageMarkup(c)}</div><div class="card-body"><h3>${c.year || ''} ${c.make} ${c.model}</h3><div class="trim">${c.trim || '&nbsp;'}</div><div class="spec-row"><span class="spec">${c.mileage == null ? '—' : c.mileage.toLocaleString()+' km'}</span><span class="spec">${tr(c.fuel)}</span><span class="spec">${c.drive}</span><span class="spec">${escapeHTML(tr(c.location))}</span></div><div class="price-label">${t('vehicle_price')}</div><div class="price">${krw(c.price)}</div><div class="estimate"><span>${t('estimated_total')}</span><strong>${krw(total(c))}</strong></div><button class="btn btn-primary" data-car="${c.id}">${t('view_vehicle')}</button></div></article>`;
+    return `<article class="card"><div class="car-photo"><span class="source-pill">${demoMode?'Demo':c.source}</span>${imageMarkup(c)}<button type="button" class="photo-open" data-car="${c.id}" aria-label="${t('view_vehicle')} — ${c.make} ${c.model}"></button></div><div class="card-body"><h3>${c.year || ''} ${c.make} ${c.model}</h3><div class="spec-row"><span class="spec">${c.mileage == null ? '—' : c.mileage.toLocaleString()+' km'}</span><span class="spec">${tr(c.fuel)}</span></div><div class="price-label">${t('vehicle_price')}</div><div class="price">${krw(c.price)}</div><button class="btn btn-primary" data-car="${c.id}">${t('view_vehicle')}</button></div></article>`;
+
   };
 
   openVehicle = function(id) {
