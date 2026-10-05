@@ -1,0 +1,56 @@
+name: Update Google USD-KRW rate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '15 0 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  update-fx:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch Google Finance USD-KRW
+        run: |
+          python - <<'PY'
+          import json, re, urllib.request
+          from datetime import datetime, timezone
+
+          url = "https://www.google.com/finance/quote/USD-KRW"
+          req = urllib.request.Request(url, headers={"User-Agent":"Mozilla/5.0"})
+          html = urllib.request.urlopen(req, timeout=30).read().decode("utf-8", "ignore")
+          m = re.search(r'class="YMlKec fxKbKc">([^<]+)<', html)
+          if not m:
+              raise SystemExit("Could not find Google Finance quote")
+          raw = m.group(1).replace(",", "").replace("\u00a0", "").strip()
+          rate = float(re.sub(r"[^0-9.]", "", raw))
+          if not (500 < rate < 3000):
+              raise SystemExit(f"Unexpected USD/KRW rate: {rate}")
+          out = {
+              "pair": "USD/KRW",
+              "krw_per_usd": rate,
+              "source": "Google Finance",
+              "source_url": url,
+              "as_of": datetime.now(timezone.utc).isoformat()
+          }
+          with open("fx.json","w",encoding="utf-8") as f:
+              json.dump(out,f,ensure_ascii=False,indent=2)
+              f.write("\n")
+          print(out)
+          PY
+
+      - name: Commit rate if changed
+        run: |
+          if git diff --quiet -- fx.json; then
+            echo "No FX change"
+            exit 0
+          fi
+          git config user.name "bestcarstar-fx-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add fx.json
+          git commit -m "Update Google USD-KRW rate"
+          git push
