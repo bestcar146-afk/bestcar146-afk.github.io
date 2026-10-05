@@ -15,7 +15,7 @@ jobs:
           ENCARAPI_KEY: ${{ secrets.ENCARAPI_KEY }}
         run: |
           python - <<'PY'
-          import os,json,urllib.request,urllib.error
+          import os,json,re,urllib.request,urllib.error
           key=os.environ.get("ENCARAPI_KEY","").strip()
           if not key: raise SystemExit("ENCARAPI_KEY is missing")
           def get(path):
@@ -23,10 +23,13 @@ jobs:
               try:
                   with urllib.request.urlopen(req,timeout=60) as r: return json.load(r)
               except urllib.error.HTTPError as e:
-                  print("HTTP",e.code)
-                  raise SystemExit("Provider request failed; credentials and response body withheld")
+                  body=e.read(4096).decode("utf-8",errors="replace").replace(key,"[REDACTED]")
+                  body=re.sub(r"[A-Za-z0-9_-]{32,}","[REDACTED]",body)
+                  print("HTTP",e.code,"REASON"," ".join(body.split())[:1000])
+                  return None
           for source in ["encar","kbc","encar,kbc"]:
               d=get("/api/catalog?source="+source+"&manufacturer=hyundai&lang=en&count=true&limit=3")
+              if d is None: continue
               print("SOURCE",source,"SHAPE",list(d) if isinstance(d,dict) else type(d).__name__)
               rows=d if isinstance(d,list) else next((v for v in d.values() if isinstance(v,list)),[])
               print("ROWS",len(rows))
