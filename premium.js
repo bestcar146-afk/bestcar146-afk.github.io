@@ -1,5 +1,5 @@
 (() => {
-  const LOGO = '/assets/best-car-star-logo.webp?v=1';
+  const LOGO = '/assets/best-car-star-logo.webp?v=2';
   const WHATSAPP='821068738852';
 
   const style=document.createElement('style');
