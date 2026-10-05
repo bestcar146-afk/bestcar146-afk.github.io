@@ -1,5 +1,5 @@
 (() => {
-  const DEALER_FEE_KRW = 500000;
+  const DEALER_FEE_KRW = 450000;
   const HANDLING_USD = 250;
   const BUSINESS_WHATSAPP = '821068738852';
   let FX_KRW_PER_USD = 1343.36;
@@ -8,7 +8,7 @@
 
   const T3 = {
     en: {
-      listed_price:'Korean listed price', vehicle_cost:'Vehicle cost', dealer_fee:'Encar dealer fee',
+      listed_price:'Korean listed price', vehicle_cost:'Vehicle cost', dealer_fee:'Dealer fee',
       transport_est:'Estimated transport', documents_free:'Documents', handling_fee:'Handling',
       total_est:'Estimated total', request:'BOOK THIS CAR', details:'Vehicle details',
       inspection:'Inspection report', insurance:'Insurance history', condition:'Vehicle condition',
@@ -26,7 +26,7 @@
       data_caution:'Provider records. Missing information does not mean accident-free. Availability and condition must be confirmed before purchase.'
     },
     fr: {
-      listed_price:'Prix affiché en Corée', vehicle_cost:'Coût du véhicule', dealer_fee:'Frais concessionnaire Encar',
+      listed_price:'Prix affiché en Corée', vehicle_cost:'Coût du véhicule', dealer_fee:'Frais concessionnaire',
       transport_est:'Transport estimé', documents_free:'Documents', handling_fee:'Frais de service',
       total_est:'Total estimé', request:"RÉSERVER CE VÉHICULE", details:'Détails du véhicule',
       inspection:"Rapport d’inspection", insurance:"Historique d’assurance", condition:'État du véhicule',
