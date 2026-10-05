@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-05T06:39:06.872421+00:00",
+  "updated_at": "2026-10-05T06:39:42.017213+00:00",
   "provider": "EnCarAPI",
   "scope": "Latest combined selection, not the full market",
   "source_counts": {
@@ -817,7 +817,7 @@
       "badge": "Long Range 프레스티지",
       "year": 2022,
       "mileage_km": 78688,
-      "price_krw": 27200000,
+      "price_krw": 27600000,
       "fuel_type": "electric",
       "transmission": "—",
       "color": "—",
