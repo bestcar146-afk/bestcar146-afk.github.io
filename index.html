@@ -102,8 +102,8 @@ function populate(){
   $('#driveFilter').innerHTML=`<option value="">${t('all_transmissions')}</option><option value="Automatic">${t('Automatic')}</option><option value="Manual">${t('Manual')}</option>`;
   $('#yearFrom').innerHTML=`<option value="">${t('any')}</option>`+years.map(y=>`<option>${y}</option>`).join('');
   $('#yearTo').innerHTML=`<option value="">${t('any')}</option>`+years.map(y=>`<option>${y}</option>`).join('');
-  $('#maxPrice').innerHTML=`<option value="">${t('any')}</option>`+Array.from({length:100},(_,i)=>(i+1)*1000).map(v=>`<option value="${v}">$${v.toLocaleString('en-US')}</option>`).join('');
-  $('#maxMileage').innerHTML=`<option value="">${t('any')}</option>`+Array.from({length:200},(_,i)=>(i+1)*1000).map(v=>`<option value="${v}">${v.toLocaleString('en-US')} km</option>`).join('');
+  $('#maxPrice').innerHTML=`<option value="">${t('any')}</option>`+[...Array.from({length:20},(_,i)=>(i+1)*1000),...Array.from({length:8},(_,i)=>(i+3)*10000)].map(v=>`<option value="${v}">${v.toLocaleString('en-US')}</option>`).join('');
+  $('#maxMileage').innerHTML=`<option value="">${t('any')}</option>`+[1000,...Array.from({length:40},(_,i)=>(i+1)*5000)].map(v=>`<option value="${v}">${v.toLocaleString('en-US')} km</option>`).join('');
   if(currentMake&&[...$('#makeFilter').options].some(o=>o.value===currentMake))$('#makeFilter').value=currentMake;
   if(currentFuel&&[...$('#fuelFilter').options].some(o=>o.value===currentFuel))$('#fuelFilter').value=currentFuel;
   if(currentTrans&&[...$('#driveFilter').options].some(o=>o.value===currentTrans))$('#driveFilter').value=currentTrans;
