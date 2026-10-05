@@ -85,11 +85,11 @@
   .bcs-step-art{height:178px;border-radius:16px;background:#f5f9fc;display:grid;place-items:center;margin:-4px -4px 18px;padding:10px;overflow:hidden}
   .bcs-step-art img{display:block;width:100%;height:100%;object-fit:contain;object-position:center}
   .step-num{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:#dbeafe;color:#2563eb;font-weight:900}
-  .bcs-quick-nav{position:fixed;right:22px;bottom:22px;z-index:70;display:flex;align-items:center;gap:6px;padding:6px;background:rgba(15,23,42,.94);border:1px solid rgba(255,255,255,.12);border-radius:16px;box-shadow:0 18px 45px rgba(15,23,42,.28);backdrop-filter:blur(14px);opacity:0;transform:translateY(12px);pointer-events:none;transition:.22s}
+  .bcs-quick-nav{position:fixed;right:18px;bottom:22px;z-index:70;opacity:0;transform:translateY(10px);pointer-events:none;transition:.2s}
   .bcs-quick-nav.show{opacity:1;transform:translateY(0);pointer-events:auto}
-  .bcs-quick-nav a{display:flex;align-items:center;gap:7px;padding:10px 12px;border-radius:11px;color:#cbd5e1;text-decoration:none;font-size:12px;font-weight:850;white-space:nowrap;transition:.18s}
-  .bcs-quick-nav a:hover,.bcs-quick-nav a:focus{background:#2563eb;color:#fff;outline:none}
-  .bcs-quick-nav .bcs-qn-icon{font-size:14px;line-height:1}
+  .bcs-quick-nav a{display:flex;align-items:center;gap:6px;padding:9px 11px;border-radius:999px;background:rgba(15,23,42,.94);border:1px solid rgba(255,255,255,.14);box-shadow:0 10px 28px rgba(15,23,42,.24);backdrop-filter:blur(12px);color:#fff;text-decoration:none;font-size:11px;font-weight:850;white-space:nowrap}
+  .bcs-quick-nav a:hover,.bcs-quick-nav a:focus{background:#2563eb;outline:none}
+  .bcs-quick-nav .bcs-qn-icon{font-size:13px;line-height:1}
   footer{background:linear-gradient(180deg,#0f172a,#090d16);padding:58px 0 30px;border-top:1px solid #1e293b}
   .bcs-footer-brand{display:flex;align-items:center;gap:18px;margin-bottom:24px}.bcs-footer-logo{width:170px;height:92px;object-fit:contain;background:#fff;border-radius:18px;padding:7px}
   .footer-title{font-size:34px;letter-spacing:-.025em}.footer-copy{color:#94a3b8}.footer-bottom{border-top-color:rgba(148,163,184,.16)}
@@ -107,8 +107,9 @@
     .bcs-panel-item{padding:11px}.bcs-panel-icon{width:34px;height:34px}.main{margin-top:-48px}.search-shell{padding:17px;border-radius:19px}
     .search-top{padding-bottom:14px}.search-top h2{font-size:23px}.grid{gap:16px}.card-body{padding:16px}.how{padding:56px 0}.how h2{font-size:32px}.bcs-step-art{height:168px;margin-bottom:16px}
     footer{padding-top:44px}.bcs-footer-brand{align-items:flex-start;flex-direction:column}.bcs-footer-logo{width:145px;height:78px}
-    .bcs-quick-nav{right:14px;left:14px;bottom:calc(84px + env(safe-area-inset-bottom));justify-content:center;border-radius:15px}
-    .bcs-quick-nav a{flex:1;justify-content:center;padding:11px 10px;font-size:12px}
+    .bcs-quick-nav{right:12px;left:auto;bottom:calc(90px + env(safe-area-inset-bottom))}
+    .bcs-quick-nav a{width:42px;height:42px;padding:0;justify-content:center;border-radius:50%}
+    .bcs-quick-nav .bcs-qn-label{display:none}.bcs-quick-nav .bcs-qn-icon{font-size:16px}
   }`;
   document.head.appendChild(style);
 
@@ -172,28 +173,29 @@
 
   const quickNav=document.createElement('nav');
   quickNav.className='bcs-quick-nav';
-  quickNav.setAttribute('aria-label','Quick page navigation');
-  quickNav.innerHTML=`
-    <a href="#cars" class="bcs-qn-cars"><span class="bcs-qn-icon">🚘</span><span class="bcs-qn-label">Cars</span></a>
-    <a href="#how" class="bcs-qn-how"><span class="bcs-qn-icon">↕</span><span class="bcs-qn-label">How it works</span></a>`;
+  quickNav.setAttribute('aria-label','Back to vehicle inventory');
+  quickNav.innerHTML=`<a href="#cars" class="bcs-qn-cars" title="Back to vehicles"><span class="bcs-qn-icon">↑</span><span class="bcs-qn-label">Vehicles</span></a>`;
   document.body.appendChild(quickNav);
 
-  const updateQuickNavLabels=()=>{
+  const updateQuickNavLabel=()=>{
     const fr=document.documentElement.lang==='fr' || (typeof lang!=='undefined' && lang==='fr');
-    const cars=quickNav.querySelector('.bcs-qn-cars .bcs-qn-label');
-    const how=quickNav.querySelector('.bcs-qn-how .bcs-qn-label');
-    if(cars) cars.textContent=fr?'Voitures':'Cars';
-    if(how) how.textContent=fr?'Étapes':'How it works';
+    const label=quickNav.querySelector('.bcs-qn-label');
+    const link=quickNav.querySelector('a');
+    if(label) label.textContent=fr?'Véhicules':'Vehicles';
+    if(link) link.title=fr?'Retour aux véhicules':'Back to vehicles';
   };
-  updateQuickNavLabels();
+  updateQuickNavLabel();
   const langSelect=document.querySelector('#languageSelect');
-  if(langSelect) langSelect.addEventListener('change',()=>setTimeout(updateQuickNavLabels,0));
+  if(langSelect) langSelect.addEventListener('change',()=>setTimeout(updateQuickNavLabel,0));
 
+  const howSection=document.querySelector('#how');
   const toggleQuickNav=()=>{
-    const threshold=Math.max(420,window.innerHeight*.65);
-    quickNav.classList.toggle('show',window.scrollY>threshold);
+    if(!howSection) return;
+    const showAt=howSection.offsetTop-Math.min(180,window.innerHeight*.2);
+    quickNav.classList.toggle('show',window.scrollY>=showAt);
   };
   window.addEventListener('scroll',toggleQuickNav,{passive:true});
+  window.addEventListener('resize',toggleQuickNav,{passive:true});
   toggleQuickNav();
 
   const footer=document.querySelector('footer .container');
