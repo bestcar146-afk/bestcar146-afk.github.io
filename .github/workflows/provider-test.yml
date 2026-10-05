@@ -1,0 +1,42 @@
+name: Test EnCarAPI
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/provider-test.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test marketplace catalogs and details
+        env:
+          ENCARAPI_KEY: ${{ secrets.ENCARAPI_KEY }}
+        run: |
+          python - <<'PY'
+          import os,json,urllib.request,urllib.error
+          key=os.environ.get("ENCARAPI_KEY","").strip()
+          if not key: raise SystemExit("ENCARAPI_KEY is missing")
+          def get(path):
+              req=urllib.request.Request("https://api.encarapi.com"+path,headers={"x-api-key":key,"Accept":"application/json"})
+              try:
+                  with urllib.request.urlopen(req,timeout=60) as r: return json.load(r)
+              except urllib.error.HTTPError as e:
+                  print("HTTP",e.code)
+                  raise SystemExit("Provider request failed; credentials and response body withheld")
+          for source in ["encar","kbc","encar,kbc"]:
+              d=get("/api/catalog?source="+source+"&manufacturer=hyundai&lang=en&count=true&limit=3")
+              print("SOURCE",source,"SHAPE",list(d) if isinstance(d,dict) else type(d).__name__)
+              rows=d if isinstance(d,list) else next((v for v in d.values() if isinstance(v,list)),[])
+              print("ROWS",len(rows))
+              if not rows: raise SystemExit("No rows returned")
+              r=rows[0]
+              print("FIELDS",list(r))
+              fields=["Id","id","Source","Manufacturer","Model","Badge","Year","Mileage","Price","Photos","Thumbnail","FuelType"]
+              print("SAMPLE",json.dumps({k:r[k] for k in fields if k in r},ensure_ascii=False)[:5000])
+              ident=r.get("Id",r.get("id"))
+              if ident:
+                  detail=get("/api/vehicle/"+str(ident)+"?lang=en")
+                  print("DETAIL FIELDS",list(detail) if isinstance(detail,dict) else type(detail).__name__)
+          PY
