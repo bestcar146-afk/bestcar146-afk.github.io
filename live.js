@@ -126,7 +126,7 @@
       mileage:pick(x,['mileage_km','mileage'],null) === null ? null : num(pick(x,['mileage_km','mileage'],0)),
       fuel:titleFuel(pick(x,['fuel','fuelType','fuel_type','FuelType'],'—')),
       drive:String(pick(x,['drivetrain','drive','driveType','drive_type'],'—')),
-      transmission:String(pick(x,['transmission','transmissionType','transmission_type'],'—')),
+      transmission:String(pick(x,['details.spec.transmission','transmission','transmissionType','transmission_type'],'—')),
       engine:String(pick(x,['engine','engineSize','engine_size','displacement','engineCc','engine_cc'],'—')),
       color:String(pick(x,['color','Color','exteriorColor','exterior_color'],'—')),
       location:String(pick(x,['region','location','city','dealer.region','officeCity'],'Korea')),
