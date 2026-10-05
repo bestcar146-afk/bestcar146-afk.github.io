@@ -46,7 +46,8 @@
   const tt = k => (T3[lang] && T3[lang][k]) || T3.en[k] || k;
   const esc = s => String(s ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
   const usd = n => '$' + Math.round(Number(n)||0).toLocaleString('en-US');
-  const usd2 = n => '
+  const usd2 = n => '$' + (Number(n)||0).toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:0});
+  function roundUp5(n){ return Math.ceil((Number(n)||0)/5)*5; }
 
   const style = document.createElement('style');
   style.textContent = `
