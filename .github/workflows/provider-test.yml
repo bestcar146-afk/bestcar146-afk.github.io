@@ -1,5 +1,8 @@
-name: Test EnCarAPI
+name: Inspect vehicle detail fields
 on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/provider-test.yml]
   workflow_dispatch:
 permissions:
   contents: read
@@ -7,40 +10,28 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Test marketplace catalogs and details
+      - name: Inspect public vehicle specification fields
         env:
           ENCARAPI_KEY: ${{ secrets.ENCARAPI_KEY }}
         run: |
-          python - <<'PY'
-          import os,json,re,urllib.request,urllib.error
-          key=os.environ.get("ENCARAPI_KEY","").strip()
-          if not key: raise SystemExit("ENCARAPI_KEY is missing")
-          def get(path):
-              req=urllib.request.Request("https://api.encarapi.com"+path,headers={"x-api-key":key,"Accept":"application/json"})
+          python -u - <<'PY'
+          import os,json,urllib.request,urllib.error
+          key=os.environ['ENCARAPI_KEY']
+          for path in ['/api/vehicle/42799351?lang=en','/api/inspection/42799351','/api/record/42799351']:
               try:
-                  with urllib.request.urlopen(req,timeout=60) as r: return json.load(r)
-              except urllib.error.HTTPError as e:
-                  body=e.read(4096).decode("utf-8",errors="replace").replace(key,"[REDACTED]")
-                  body=re.sub(r"[A-Za-z0-9_-]{32,}","[REDACTED]",body)
-                  print("HTTP",e.code,"REASON"," ".join(body.split())[:1000])
-                  return None
-          failed=False
-          for source in ["encar","kbc","encar,kbc"]:
-              d=get("/api/catalog?source="+source+"&manufacturer=hyundai&lang=en&count=true&limit=3")
-              if d is None:
-                  failed=True
-                  continue
-              print("SOURCE",source,"SHAPE",list(d) if isinstance(d,dict) else type(d).__name__)
-              rows=d if isinstance(d,list) else next((v for v in d.values() if isinstance(v,list)),[])
-              print("ROWS",len(rows))
-              if not rows: raise SystemExit("No rows returned")
-              r=rows[0]
-              print("FIELDS",list(r))
-              fields=["Id","id","Source","Manufacturer","Model","Badge","Year","Mileage","Price","Photos","Thumbnail","FuelType"]
-              print("SAMPLE",json.dumps({k:r[k] for k in fields if k in r},ensure_ascii=False)[:5000])
-              ident=r.get("Id",r.get("id"))
-              if ident:
-                  detail=get("/api/vehicle/"+str(ident)+"?lang=en")
-                  print("DETAIL FIELDS",list(detail) if isinstance(detail,dict) else type(detail).__name__)
-          if failed: raise SystemExit("Provider access blocked; contact provider before rerunning")
+                  req=urllib.request.Request('https://api.encarapi.com'+path,headers={'x-api-key':key})
+                  with urllib.request.urlopen(req,timeout=120) as r: d=json.load(r)
+                  print('PATH',path,'FIELDS',list(d),flush=True)
+                  if '/vehicle/' in path:
+                      print('SPEC',json.dumps(d.get('spec'),ensure_ascii=False))
+                      print('CATEGORY',json.dumps(d.get('category'),ensure_ascii=False))
+                      print('CONDITION',json.dumps(d.get('condition'),ensure_ascii=False))
+                      print('PHOTO',json.dumps((d.get('photos') or [])[:1],ensure_ascii=False))
+                  elif '/inspection/' in path:
+                      m=d.get('master') or {}
+                      print('MASTER',json.dumps({k:v for k,v in m.items() if k!='detail'},ensure_ascii=False))
+                      print('DETAIL_KEYS',list((m.get('detail') or {})))
+                  else:
+                      print('RECORD',json.dumps({k:v for k,v in d.items() if k.endswith('Cnt') or k.endswith('Cost')},ensure_ascii=False))
+              except urllib.error.HTTPError as e: print('HTTP',e.code)
           PY
