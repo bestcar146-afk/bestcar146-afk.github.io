@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-05T15:33:29.515909+00:00",
+  "updated_at": "2026-10-05T16:36:48.647979+00:00",
   "provider": "EnCarAPI",
   "scope": "Latest combined selection, not the full market",
   "source_counts": {
@@ -1150,7 +1150,7 @@
       "badge": "4.4 SDV8 AB DIESEL",
       "year": 2018,
       "mileage_km": 61605,
-      "price_krw": 60500000,
+      "price_krw": 59990000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
