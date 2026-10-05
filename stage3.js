@@ -1,6 +1,7 @@
 (() => {
   const DEALER_FEE_KRW = 500000;
   const HANDLING_USD = 250;
+  const BUSINESS_WHATSAPP = '821068738852';
   let FX_KRW_PER_USD = 1343.36;
   let FX_AS_OF = '2026-10-05T12:45:19Z';
   let FX_SOURCE = 'Google Finance';
@@ -9,7 +10,7 @@
     en: {
       listed_price:'Korean listed price', vehicle_cost:'Vehicle cost', dealer_fee:'Encar dealer fee',
       transport_est:'Estimated transport', documents_free:'Documents', handling_fee:'Handling',
-      total_est:'Estimated total', request:'REQUEST PURCHASE', details:'Vehicle details',
+      total_est:'Estimated total', request:'BOOK THIS CAR', details:'Vehicle details',
       inspection:'Inspection report', insurance:'Insurance history', condition:'Vehicle condition',
       listed_sync:'Listed at last sync', fx_note:'Google Finance reference rate',
       transport_basis:'Transport estimated from seller region using the upper end of the reference range.',
@@ -19,15 +20,15 @@
       other_claims:'Claims involving other vehicles', other_payout:'Payouts for damage to others',
       owner_changes:'Ownership changes', total_loss:'Total-loss records', flood_total:'Flood total-loss records',
       flood_partial:'Partial flood-loss records', theft:'Theft records', seats:'Seats', power:'Power',
-      registration:'Registration month', source:'Source', close_request:'Close request form',
+      registration:'Registration month', source:'Source', close_request:'Close booking form',
       name:'Name / Company', country:'Country', whatsapp:'WhatsApp number', notes:'Notes (optional)',
-      save_draft:'Save request draft', saved:'Draft saved on this device only — not yet sent to BEST CAR STAR.',
+      save_draft:'Send booking via WhatsApp', saved:'WhatsApp is opening with your booking request. Tap Send to notify BEST CAR STAR.',
       data_caution:'Provider records. Missing information does not mean accident-free. Availability and condition must be confirmed before purchase.'
     },
     fr: {
       listed_price:'Prix affiché en Corée', vehicle_cost:'Coût du véhicule', dealer_fee:'Frais concessionnaire Encar',
       transport_est:'Transport estimé', documents_free:'Documents', handling_fee:'Frais de service',
-      total_est:'Total estimé', request:"DEMANDER L’ACHAT", details:'Détails du véhicule',
+      total_est:'Total estimé', request:"RÉSERVER CE VÉHICULE", details:'Détails du véhicule',
       inspection:"Rapport d’inspection", insurance:"Historique d’assurance", condition:'État du véhicule',
       listed_sync:'Annonce lors de la dernière synchronisation', fx_note:'Taux de référence Google Finance',
       transport_basis:'Transport estimé selon la région du vendeur en utilisant la limite haute de la fourchette de référence.',
@@ -37,9 +38,9 @@
       other_claims:'Sinistres causés à autrui', other_payout:'Indemnités pour dommages à autrui',
       owner_changes:'Changements de propriétaire', total_loss:'Cas de perte totale', flood_total:'Pertes totales par inondation',
       flood_partial:'Dommages partiels par inondation', theft:'Cas de vol', seats:'Places', power:'Puissance',
-      registration:'Mois de mise en circulation', source:'Source', close_request:'Fermer le formulaire',
+      registration:'Mois de mise en circulation', source:'Source', close_request:'Fermer le formulaire de réservation',
       name:'Nom / Société', country:'Pays', whatsapp:'Numéro WhatsApp', notes:'Notes (facultatif)',
-      save_draft:'Enregistrer le brouillon', saved:"Brouillon enregistré sur cet appareil uniquement — pas encore envoyé à BEST CAR STAR.",
+      save_draft:'Envoyer la réservation sur WhatsApp', saved:"WhatsApp va s’ouvrir avec votre demande. Appuyez sur Envoyer pour prévenir BEST CAR STAR.",
       data_caution:"Données du fournisseur. Une information non fournie ne signifie pas absence d’accident. La disponibilité et l’état doivent être confirmés avant achat."
     }
   };
@@ -247,7 +248,62 @@
     document.querySelectorAll('.s3-thumb').forEach(b=>b.onclick=()=>showPhoto(Number(b.dataset.photo)));
     const rb=document.getElementById('s3RequestBtn'),rw=document.getElementById('s3RequestWrap');
     rb.onclick=()=>{rw.classList.toggle('open');rb.textContent=rw.classList.contains('open')?tt('close_request'):tt('request');if(rw.classList.contains('open'))rw.scrollIntoView({behavior:'smooth',block:'nearest'});};
-    document.getElementById('s3SaveDraft').onclick=()=>{const n=$('#reqName').value.trim(),co=$('#reqCountry').value.trim(),wa=$('#reqWhatsapp').value.trim();if(!n||!co||!wa){document.getElementById('requestSuccess').textContent=lang==='fr'?'Veuillez remplir le nom, le pays et WhatsApp.':'Please complete name, country and WhatsApp.';document.getElementById('requestSuccess').classList.add('show');return;}safeStore.set('bcsLastRequest',JSON.stringify({vehicleId:c.id,sourceId:c.sourceId,source:c.source,vehicle:(c.year||'')+' '+c.make+' '+c.model,listedPriceKrw:c.price,dealerFeeKrw:DEALER_FEE_KRW,fxKrwPerUsd:FX_KRW_PER_USD,transportKrw:cb.transportKrw,handlingUsd:cb.handlingUsd,estimatedTotalUsd:cb.totalUsd,name:n,country:co,whatsapp:wa,notes:$('#reqNotes').value}));document.getElementById('requestSuccess').textContent=tt('saved');document.getElementById('requestSuccess').classList.add('show');};
+    document.getElementById('s3SaveDraft').onclick=()=>{
+      const n=$('#reqName').value.trim(),co=$('#reqCountry').value.trim(),wa=$('#reqWhatsapp').value.trim(),notes=$('#reqNotes').value.trim();
+      const success=document.getElementById('requestSuccess');
+      if(!n||!co||!wa){
+        success.textContent=lang==='fr'?'Veuillez remplir le nom, le pays et WhatsApp.':'Please complete name, country and WhatsApp.';
+        success.classList.add('show');
+        return;
+      }
+      const booking={
+        vehicleId:c.id,sourceId:c.sourceId,source:c.source,
+        vehicle:(c.year||'')+' '+c.make+' '+c.model,
+        trim:c.trim||'',listedPriceKrw:c.price,dealerFeeKrw:DEALER_FEE_KRW,
+        fxKrwPerUsd:FX_KRW_PER_USD,transportUsd:cb.transportUsd,
+        handlingUsd:cb.handlingUsd,estimatedTotalUsd:cb.totalUsd,
+        name:n,country:co,whatsapp:wa,notes:notes
+      };
+      safeStore.set('bcsLastRequest',JSON.stringify(booking));
+      const msg=lang==='fr'
+        ? [
+            '🚗 DEMANDE DE RÉSERVATION — BEST CAR STAR',
+            '',
+            'Véhicule: '+booking.vehicle,
+            booking.trim?'Version: '+booking.trim:'',
+            'ID: '+booking.vehicleId,
+            'Source: '+booking.source,
+            'Total estimé: '+usd(booking.estimatedTotalUsd),
+            '',
+            'Client: '+booking.name,
+            'Pays: '+booking.country,
+            'WhatsApp: '+booking.whatsapp,
+            booking.notes?'Note: '+booking.notes:'',
+            '',
+            'Je souhaite réserver ce véhicule. Merci de confirmer sa disponibilité et le prix final.'
+          ].filter(Boolean).join('\n')
+        : [
+            '🚗 BOOKING REQUEST — BEST CAR STAR',
+            '',
+            'Vehicle: '+booking.vehicle,
+            booking.trim?'Trim: '+booking.trim:'',
+            'ID: '+booking.vehicleId,
+            'Source: '+booking.source,
+            'Estimated total: '+usd(booking.estimatedTotalUsd),
+            '',
+            'Buyer: '+booking.name,
+            'Country: '+booking.country,
+            'WhatsApp: '+booking.whatsapp,
+            booking.notes?'Note: '+booking.notes:'',
+            '',
+            'I would like to book this vehicle. Please confirm availability and final price.'
+          ].filter(Boolean).join('\n');
+      success.textContent=tt('saved');
+      success.classList.add('show');
+      const bookingUrl='https://wa.me/'+BUSINESS_WHATSAPP+'?text='+encodeURIComponent(msg);
+      const w=window.open(bookingUrl,'_blank','noopener');
+      if(!w) window.location.href=bookingUrl;
+    };
   };
 
   fetch('./fx.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(x=>{
