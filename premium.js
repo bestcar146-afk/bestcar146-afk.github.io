@@ -1,6 +1,10 @@
 (() => {
-  const LOGO = '/assets/best-car-star-logo.webp?v=2';
+  const LOGO = '/assets/best-car-star-logo.webp?v=4';
   const WHATSAPP='821068738852';
+  const STEP_SEARCH='/assets/step-search.webp?v=1';
+  const STEP_ESTIMATE='/assets/step-estimate.webp?v=1';
+  const STEP_REQUEST='/assets/step-request.webp?v=1';
+  const STEP_CONFIRM='/assets/step-confirm.webp?v=1';
 
   const style=document.createElement('style');
   style.id='bcs-premium-theme';
@@ -78,6 +82,8 @@
   .card .btn-primary{background:#0f172a;border-radius:11px}.card .btn-primary:hover{background:#2563eb}
   .how{padding:80px 0;background:#fff;border-top:1px solid #eef2f7}.how h2{font-size:40px;letter-spacing:-.03em}
   .step{border:1px solid #e2e8f0;border-radius:18px;padding:24px;background:#fff;box-shadow:0 10px 28px rgba(15,23,42,.04);transition:.2s}.step:hover{transform:translateY(-2px);box-shadow:0 18px 32px rgba(15,23,42,.08)}
+  .bcs-step-art{height:178px;border-radius:16px;background:#f5f9fc;display:grid;place-items:center;margin:-4px -4px 18px;padding:10px;overflow:hidden}
+  .bcs-step-art img{display:block;width:100%;height:100%;object-fit:contain;object-position:center}
   .step-num{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:#dbeafe;color:#2563eb;font-weight:900}
   footer{background:linear-gradient(180deg,#0f172a,#090d16);padding:58px 0 30px;border-top:1px solid #1e293b}
   .bcs-footer-brand{display:flex;align-items:center;gap:18px;margin-bottom:24px}.bcs-footer-logo{width:170px;height:92px;object-fit:contain;background:#fff;border-radius:18px;padding:7px}
@@ -94,7 +100,7 @@
     .header-inner{min-height:76px}.brand{min-width:0}.bcs-brand-logo{width:130px;height:58px}.lang select{font-size:13px;padding:10px 30px 10px 10px}
     .hero{padding:42px 0 96px}.hero h1{font-size:43px}.hero p{font-size:16px}.bcs-hero-grid{gap:26px}.bcs-hero-panel{padding:16px;border-radius:18px}
     .bcs-panel-item{padding:11px}.bcs-panel-icon{width:34px;height:34px}.main{margin-top:-48px}.search-shell{padding:17px;border-radius:19px}
-    .search-top{padding-bottom:14px}.search-top h2{font-size:23px}.grid{gap:16px}.card-body{padding:16px}.how{padding:56px 0}.how h2{font-size:32px}
+    .search-top{padding-bottom:14px}.search-top h2{font-size:23px}.grid{gap:16px}.card-body{padding:16px}.how{padding:56px 0}.how h2{font-size:32px}.bcs-step-art{height:168px;margin-bottom:16px}
     footer{padding-top:44px}.bcs-footer-brand{align-items:flex-start;flex-direction:column}.bcs-footer-logo{width:145px;height:78px}
   }`;
   document.head.appendChild(style);
@@ -137,6 +143,25 @@
       </div>`;
     grid.append(copy,panel);hc.appendChild(grid);
   }
+
+  const stepImages=[
+    {src:STEP_SEARCH,alt:'Search vehicles'},
+    {src:STEP_ESTIMATE,alt:'Estimate vehicle purchase cost'},
+    {src:STEP_REQUEST,alt:'Request a vehicle'},
+    {src:STEP_CONFIRM,alt:'Confirm and purchase'}
+  ];
+  document.querySelectorAll('#how .step').forEach((step,i)=>{
+    if(stepImages[i] && !step.querySelector('.bcs-step-art')){
+      const art=document.createElement('div');
+      art.className='bcs-step-art';
+      const img=document.createElement('img');
+      img.src=stepImages[i].src;
+      img.alt=stepImages[i].alt;
+      img.loading='lazy';
+      art.appendChild(img);
+      step.insertBefore(art,step.firstChild);
+    }
+  });
 
   const footer=document.querySelector('footer .container');
   if(footer && !footer.querySelector('.bcs-footer-brand')){
