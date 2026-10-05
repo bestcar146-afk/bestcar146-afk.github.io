@@ -34,6 +34,8 @@
   Object.assign(TXT.fr,{Gasoline:'Essence',Hybrid:'Hybride',Electric:'Électrique',LPG:'GPL',automatic:'Automatique',manual:'Manuelle',white:'Blanc',black:'Noir',gray:'Gris',silver:'Argent'});
   const regions={'서울':'Seoul','부산':'Busan','대구':'Daegu','인천':'Incheon','대전':'Daejeon','경기':'Gyeonggi','경남':'Gyeongnam','경북':'Gyeongbuk','충남':'Chungnam','충북':'Chungbuk','전북':'Jeonbuk','전남광주':'Jeonnam / Gwangju','강원':'Gangwon','제주':'Jeju','울산':'Ulsan','세종':'Sejong'};
   Object.assign(TXT.en,regions);Object.assign(TXT.fr,regions,{'서울':'Séoul'});
+  Object.assign(TXT.en,{'수동':'Manual','자동':'Automatic','오토':'Automatic','갈대색':'Reed beige','흰색':'White','검정색':'Black','은색':'Silver','회색':'Gray','진주색':'Pearl white','청색':'Blue','쥐색':'Dark gray','검정투톤':'Black two-tone','은회색':'Silver gray'});
+  Object.assign(TXT.fr,{'수동':'Manuelle','자동':'Automatique','오토':'Automatique','갈대색':'Beige roseau','흰색':'Blanc','검정색':'Noir','은색':'Argent','회색':'Gris','진주색':'Blanc nacré','청색':'Bleu','쥐색':'Gris foncé','검정투톤':'Noir bicolore','은회색':'Gris argent','drivetrain':'Roues motrices'});
   const style = document.createElement('style');
   style.textContent = `
     .car-photo{aspect-ratio:4/3;flex:none}
@@ -52,6 +54,7 @@
     .loading-box{grid-column:1/-1;background:#fff;border:1px solid #e2e8ee;border-radius:18px;padding:42px;text-align:center;color:#657483}
     .spinner{width:28px;height:28px;border:3px solid #dce6ed;border-top-color:#10243b;border-radius:50%;margin:0 auto 14px;animation:bcsSpin .8s linear infinite}
     @keyframes bcsSpin{to{transform:rotate(360deg)}}
+    .history-box{border-top:1px solid #e2e8ee;margin-top:20px;padding-top:6px}.history-box h3{font-size:18px;margin:18px 0 8px}.history-box .cost-row{font-size:13px}.history-box b{text-align:right}.detail-grid{clear:both}.close{position:absolute;right:8px;top:8px;float:none}.detail-spec b{overflow-wrap:anywhere}
     .gallery{background:#eef4f8;min-height:420px;position:relative;display:grid;place-items:center;overflow:hidden}
     .gallery img{width:100%;height:100%;max-height:560px;object-fit:contain;background:#eef4f8}
     .gallery-controls{position:absolute;bottom:55px;display:flex;align-items:center;gap:14px;background:white;padding:8px;border-radius:12px}.gallery-controls button{border:1px solid #ccd6de;background:white;padding:10px 18px;border-radius:8px}
@@ -114,6 +117,7 @@
     return {
       id: 'BCS-' + sourceId,
       sourceId,
+      details:x.details || null,
       source:String(pick(x,['source'],'Encar')),
       make:String(pick(x,['manufacturer','Manufacturer','make','Make','brand','maker'],'Encar')),
       model:String(pick(x,['model','Model','modelName','model_name'],'Vehicle')),
@@ -154,7 +158,13 @@
   };
 
   openVehicle = function(id) {
-    let c=inventory.find(x=>x.id===id); if(!c)return; c=displayCar(c);
+    let c=inventory.find(x=>x.id===id); if(!c)return;
+    const d=c.details, sp=d?.spec || {};
+    c={...c, transmission:sp.transmission || c.transmission,engine:sp.engine_cc ? Number(sp.engine_cc).toLocaleString()+' cc' : c.engine,color:sp.color || c.color,drive:sp.drive || c.drive,
+       photos:[...new Set([...(c.photos || []),...(d?.photos || [])])]};
+    c=displayCar(c);
+    const missing=lang==='fr'?'Non fourni':'Not provided';
+    for(const k of ['transmission','engine','color','drive'])if(!c[k]||c[k]==='—')c[k]=missing;
     const img = c.photos && c.photos[0]
       ? `<img src="${c.photos[0]}" alt="${c.year} ${c.make} ${c.model}" onerror="this.style.display='none'">`
       : `<div class="photo-fallback">${t('photos_unavailable')}</div>`;
@@ -170,7 +180,38 @@
     }
     if(!demoMode){
       const note=document.createElement('p');note.className='detail-note';
-      note.textContent=lang==='fr'?'Historique et inspection non chargés. À vérifier avant achat.':'History and inspection have not been loaded. Verify before purchase.';
+      note.textContent=d ? (lang==='fr'?'Détails vérifiés le ':'Details checked ')+new Date(d.checked_at).toLocaleString(lang==='fr'?'fr-FR':'en-GB',{timeZone:'Asia/Seoul'})+' KST' : (lang==='fr'?'Détails temporairement indisponibles auprès du fournisseur.':'Provider details temporarily unavailable.');
+      function addSpec(en,fr,value){const el=document.createElement('div');el.className='detail-spec';const label=document.createElement('span');label.textContent=lang==='fr'?fr:en;const b=document.createElement('b');b.textContent=value==null?missing:String(value);el.append(label,b);document.querySelector('.detail-specs').append(el);}
+      addSpec('Seats','Places',sp.seats);addSpec('Power','Puissance',sp.power_ps ? sp.power_ps+' PS':null);
+      if(sp.registration)addSpec('Registration month','Mois de mise en circulation',String(sp.registration).slice(0,4)+'-'+String(sp.registration).slice(4,6));
+      const panel=document.createElement('section');panel.className='history-box';
+      function heading(en,fr){const h=document.createElement('h3');h.textContent=lang==='fr'?fr:en;panel.append(h);}
+      function row(en,fr,value,type='number'){
+        const div=document.createElement('div');div.className='cost-row';const label=document.createElement('span');label.textContent=lang==='fr'?fr:en;
+        const b=document.createElement('b');
+        b.textContent=value==null?missing:type==='bool'?(value===true?(lang==='fr'?'Oui':'Yes'):value===false?(lang==='fr'?'Non':'No'):missing):type==='money'?krw(value):String(value);
+        div.append(label,b);panel.append(div);
+      }
+      heading('Inspection report','Rapport d’inspection');
+      const ins=d?.inspection;
+      if(ins){row('Accident flagged by inspection','Accident signalé par l’inspection',ins.accdient,'bool');row('Simple repairs reported','Réparations simples signalées',ins.simpleRepair,'bool');}
+      else row('Report','Rapport',null);
+      heading('Insurance history','Historique d’assurance');const rec=d?.insurance;
+      if(rec){
+        row('Recorded claims / accidents','Sinistres / accidents enregistrés',rec.accidentCnt);
+        row('Claims involving this car','Sinistres sur ce véhicule',rec.myAccidentCnt);
+        row('Payouts for this car','Indemnités pour ce véhicule',rec.myAccidentCost,'money');
+        row('Claims involving other vehicles','Sinistres causés à autrui',rec.otherAccidentCnt);
+        row('Payouts for damage to others','Indemnités pour dommages à autrui',rec.otherAccidentCost,'money');
+        row('Ownership changes','Changements de propriétaire',rec.ownerChangeCnt);
+        row('Total-loss records','Cas de perte totale',rec.totalLossCnt);
+        row('Flood total-loss records','Pertes totales par inondation',rec.floodTotalLossCnt);
+        row('Partial flood-loss records','Dommages partiels par inondation',rec.floodPartLossCnt);
+        row('Theft records','Cas de vol',rec.robberCnt);
+      } else row('Insurance record','Relevé d’assurance',null);
+      if(d?.kb_history){heading('KB public history','Historique public KB');for(const [key,en,fr] of [['totalLoss','Total loss','Perte totale'],['floodDamage','Flood damage','Inondation'],['commercialUse','Commercial use','Usage commercial']])row(en,fr,d.kb_history[key],'bool');row('Ownership changes','Changements de propriétaire',d.kb_history.ownershipChanges);}
+      const caution=document.createElement('p');caution.className='detail-note';caution.textContent=lang==='fr'?'Données du fournisseur. Un champ non fourni ne signifie pas absence d’accident. La disponibilité et l’état doivent être confirmés avant achat.':'Provider records. Missing information does not mean accident-free. Availability and condition must be confirmed before purchase.';panel.append(caution);
+      document.querySelector('.cost-box').before(panel);
       document.querySelector('.detail-specs').after(note);
       if(/^https:\/\//.test(c.listingUrl)){
         const a=document.createElement('a');a.href=c.listingUrl.replace(/&amp;/g,'&');a.target='_blank';a.rel='noopener noreferrer';
@@ -180,7 +221,7 @@
       $('#requestForm button').textContent=lang==='fr'?'Enregistrer le brouillon':'Save request draft';
     }
     if(demoMode){$('#requestForm').innerHTML=lang==='fr'?'Véhicule de démonstration — achat indisponible.':'Demo vehicle — purchase unavailable.';return;}
-    $('#requestForm').onsubmit=e=>{e.preventDefault();$('#requestSuccess').classList.add('show');safeStore.set('bcsLastRequest',JSON.stringify({vehicleId:c.id,sourceId:c.sourceId,source:String(pick(x,['source'],'Encar')),vehicle:`${c.year} ${c.make} ${c.model}`,price:c.price,estimatedTotal:total(c),name:$('#reqName').value,country:$('#reqCountry').value,whatsapp:$('#reqWhatsapp').value,notes:$('#reqNotes').value}))};
+    $('#requestForm').onsubmit=e=>{e.preventDefault();$('#requestSuccess').classList.add('show');safeStore.set('bcsLastRequest',JSON.stringify({vehicleId:c.id,sourceId:c.sourceId,source:c.source,vehicle:`${c.year} ${c.make} ${c.model}`,price:c.price,estimatedTotal:total(c),name:$('#reqName').value,country:$('#reqCountry').value,whatsapp:$('#reqWhatsapp').value,notes:$('#reqNotes').value}))};
   };
 
   function metaNode() {
@@ -272,3 +313,4 @@
   showLoading();
   loadLiveInventory(false);
 })();
+

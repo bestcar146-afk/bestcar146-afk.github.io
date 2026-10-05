@@ -100,6 +100,6 @@ function closeModal(){$('#vehicleModal').classList.remove('open');$('#vehicleMod
 $('#languageSelect').onchange=e=>{lang=e.target.value;safeStore.set('bcsLang',lang);setI18n()};$('#makeFilter').onchange=()=>{updateModels();renderCars()};['#modelFilter','#yearFrom','#yearTo','#maxPrice','#maxMileage','#fuelFilter','#driveFilter','#sortFilter'].forEach(s=>$(s).onchange=renderCars);$('#searchBtn').onclick=renderCars;$('#resetBtn').onclick=()=>{['#makeFilter','#modelFilter','#yearFrom','#yearTo','#maxPrice','#maxMileage','#fuelFilter','#driveFilter'].forEach(s=>$(s).value='');updateModels();renderCars()};$('#moreFilters').onclick=()=>{const shell=$('#searchShell');shell.classList.toggle('expanded');$('#moreFilters').textContent=shell.classList.contains('expanded')?t('less_filters'):t('more_filters')};$$('[data-close]').forEach(x=>x.onclick=closeModal);document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();}});
 (function init(){populate();refreshLabels();setI18n();})();
 </script>
-<script src="live.js?v=single-photo-2"></script>
+<script src="live.js?v=vehicle-details-3"></script>
 </body>
 </html>

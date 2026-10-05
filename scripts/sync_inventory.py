@@ -33,6 +33,74 @@ def normalize(row):
             'color':row.get('Color') or '—','location':row.get('OfficeCityState') or '—',
             'photos':photos,'listing_url':url}
 
+def scalar(v):
+    return v if isinstance(v,(str,int,float,bool)) else None
+
+def select_fields(obj, fields):
+    if not isinstance(obj,dict): return None
+    return {k:scalar(obj.get(k)) for k in fields}
+
+def enrich(cars,key):
+    now=datetime.now(timezone.utc)
+    try: old={x['id']:x for x in json.loads(Path('inventory.json').read_text())['results']}
+    except (OSError,ValueError,KeyError): old={}
+    needed=[]
+    for car in cars:
+        prior=old.get(car['id'],{})
+        try: fresh=(now-datetime.fromisoformat(prior['details']['checked_at'])).total_seconds()<86400
+        except (KeyError,ValueError,TypeError): fresh=False
+        if fresh:
+            car['details']=prior['details']
+        else: needed.append(car)
+    def bulk(kind,ids):
+        if not ids:return {}
+        req=urllib.request.Request('https://api.encarapi.com/api/'+kind+'/bulk?lang=en',
+            data=json.dumps({'ids':ids}).encode(),headers={'x-api-key':key,'Content-Type':'application/json','Accept':'application/json'})
+        try:
+            with urllib.request.urlopen(req,timeout=180) as r: data=json.load(r)
+            results=data.get('results')
+            if not isinstance(results,dict): raise ValueError('Unexpected bulk response')
+            print(kind,'details received',len(results),flush=True)
+            return results
+        except (urllib.error.URLError,TimeoutError,ValueError):
+            print(kind,'details unavailable; fields remain explicitly unknown',flush=True)
+            return {}
+    ids=[c['id'] for c in needed]
+    vehicles=bulk('vehicle',ids)
+    eids=[c['id'] for c in needed if c['source']=='Encar']
+    inspections=bulk('inspection',eids)
+    records=bulk('record',eids)
+    for car in needed:
+        ident=car['id'];v=vehicles.get(ident)
+        if not isinstance(v,dict):continue
+        spec=v.get('spec') or {}; cat=v.get('category') or {}; hist=v.get('History') or {}
+        d={'checked_at':now.isoformat(),'spec':{},'photos':[]}
+        mapping={'transmission':spec.get('transmissionName') or v.get('Transmission'),
+                 'engine_cc':spec.get('displacement') or hist.get('displacementCc'),
+                 'color':spec.get('colorName') or v.get('Color'),
+                 'seats':spec.get('seatCount') or v.get('SeatCount'),
+                 'power_ps':spec.get('powerPs'),'body':spec.get('bodyName'),
+                 'drive':spec.get('drivetrain') or spec.get('driveType'),
+                 'registration':cat.get('yearMonth')}
+        d['spec']={k:scalar(val) for k,val in mapping.items()}
+        # Drivetrain may be stated explicitly in the translated badge, never inferred from model.
+        if not d['spec']['drive']:
+            match=re.search(r'\b(2WD|4WD|AWD|FWD|RWD)\b',car.get('badge',''),re.I)
+            if match:d['spec']['drive']=match.group().upper();d['drive_basis']='listing badge'
+        for p in v.get('photos',v.get('Photos',[])) or []:
+            u=p.get('path',p.get('location','')) if isinstance(p,dict) else p
+            u=photo_url(u,'encar' if car['source']=='Encar' else 'kbc')
+            if u and u not in d['photos']:d['photos'].append(u)
+        d['inspection']=None
+        ins=inspections.get(ident)
+        if isinstance(ins,dict) and isinstance(ins.get('master'),dict):
+            master=ins['master']
+            d['inspection']=select_fields(master,['accdient','simpleRepair','registrationDate'])
+        d['insurance']=select_fields(records.get(ident),['accidentCnt','myAccidentCnt','otherAccidentCnt','myAccidentCost','otherAccidentCost','ownerChangeCnt','totalLossCnt','floodTotalLossCnt','floodPartLossCnt','robberCnt','regDate'])
+        d['kb_history']=select_fields(hist,['totalLoss','floodDamage','commercialUse','ownershipChanges']) if hist else None
+        car['details']=d
+    print('Vehicles with cached detail:',sum('details' in c for c in cars),flush=True)
+
 def main():
     key=os.environ.get('ENCARAPI_KEY','').strip()
     if not key: raise ValueError('ENCARAPI_KEY repository secret is missing')
@@ -52,6 +120,7 @@ def main():
         if c and c['id'] not in seen:
             seen.add(c['id']); cars.append(c)
     if not cars: raise ValueError('No valid listings; previous snapshot retained')
+    enrich(cars,key)
     counts={s:sum(c['source']==s for c in cars) for s in ('Encar','KB ChaChaCha')}
     output={'updated_at':datetime.now(timezone.utc).isoformat(),'provider':'EnCarAPI',
             'scope':'Latest combined selection, not the full market','source_counts':counts,'results':cars}
@@ -63,3 +132,4 @@ if __name__=='__main__':
     except Exception as exc:
         print(str(exc) if isinstance(exc,ValueError) else 'Sync failed; previous snapshot retained',file=sys.stderr)
         sys.exit(1)
+
