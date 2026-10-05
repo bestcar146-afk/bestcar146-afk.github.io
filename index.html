@@ -36,7 +36,7 @@ footer{background:var(--navy2);color:#dfe8f0;padding:46px 0 28px}.footer-title{c
 
 <main class="main" id="cars"><div class="container">
   <section class="search-shell" id="searchShell">
-    <div class="search-top"><div><div class="eyebrow" data-i18n="inventory_eyebrow">KOREAN MARKET INVENTORY</div><h2 data-i18n="direct_purchase">Direct purchase vehicles</h2><p data-i18n="sample_note">Live Encar inventory. Results are loaded from the Korean market and refreshed when you search.</p></div></div>
+    <div class="search-top"><div><div class="eyebrow" data-i18n="inventory_eyebrow">KOREAN MARKET INVENTORY</div><h2 data-i18n="direct_purchase">Direct purchase vehicles</h2><p data-i18n="sample_note">Selected Encar and KB ChaChaCha listings, refreshed every six hours.</p></div></div>
     <div class="filters">
       <div class="field"><label data-i18n="make">Make</label><select id="makeFilter"><option value=""></option></select></div>
       <div class="field"><label data-i18n="model">Model</label><select id="modelFilter"><option value=""></option></select></div>
@@ -100,5 +100,6 @@ function closeModal(){$('#vehicleModal').classList.remove('open');$('#vehicleMod
 $('#languageSelect').onchange=e=>{lang=e.target.value;safeStore.set('bcsLang',lang);setI18n()};$('#makeFilter').onchange=()=>{updateModels();renderCars()};['#modelFilter','#yearFrom','#yearTo','#maxPrice','#maxMileage','#fuelFilter','#driveFilter','#sortFilter'].forEach(s=>$(s).onchange=renderCars);$('#searchBtn').onclick=renderCars;$('#resetBtn').onclick=()=>{['#makeFilter','#modelFilter','#yearFrom','#yearTo','#maxPrice','#maxMileage','#fuelFilter','#driveFilter'].forEach(s=>$(s).value='');updateModels();renderCars()};$('#moreFilters').onclick=()=>{const shell=$('#searchShell');shell.classList.toggle('expanded');$('#moreFilters').textContent=shell.classList.contains('expanded')?t('less_filters'):t('more_filters')};$$('[data-close]').forEach(x=>x.onclick=closeModal);document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();}});
 (function init(){populate();refreshLabels();setI18n();})();
 </script>
-<script src="live.js?v=secure-sync-1"></script>\n</body>
+<script src="live.js?v=encar-kb-1"></script>
+</body>
 </html>

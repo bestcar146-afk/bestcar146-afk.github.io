@@ -6,10 +6,10 @@
   let liveLoadedAt = null;
 
   Object.assign(TXT.en, {
-    sample_note: 'Selected Encar listings, synced every six hours. Filters search this selection.',
+    sample_note: 'Selected Encar and KB ChaChaCha listings, refreshed every six hours. Filters search this selection, not the full market.',
     live_inventory: 'LIVE ENCAR INVENTORY',
     live_now: 'Live',
-    loading_live: 'Loading live Encar vehicles…',
+    loading_live: 'Loading marketplace listings…',
     live_error: 'Live inventory is temporarily unavailable.',
     retry: 'Retry',
     last_updated: 'Last updated',
@@ -18,10 +18,10 @@
     live_test_note: 'Live test feed · availability must still be confirmed before purchase.'
   });
   Object.assign(TXT.fr, {
-    sample_note: 'Sélection Encar synchronisée toutes les six heures. Les filtres recherchent dans cette sélection.',
+    sample_note: 'Sélection Encar et KB ChaChaCha actualisée toutes les six heures. Les filtres recherchent dans cette sélection, pas sur tout le marché.',
     live_inventory: 'INVENTAIRE ENCAR EN DIRECT',
     live_now: 'En direct',
-    loading_live: 'Chargement des véhicules Encar en direct…',
+    loading_live: 'Chargement des annonces automobiles…',
     live_error: 'L’inventaire en direct est temporairement indisponible.',
     retry: 'Réessayer',
     last_updated: 'Dernière mise à jour',
@@ -42,6 +42,7 @@
     @keyframes bcsSpin{to{transform:rotate(360deg)}}
     .gallery{background:#eef4f8;min-height:420px;position:relative;display:grid;place-items:center;overflow:hidden}
     .gallery img{width:100%;height:100%;max-height:560px;object-fit:contain;background:#eef4f8}
+    .gallery-controls{position:absolute;bottom:55px;display:flex;align-items:center;gap:14px;background:white;padding:8px;border-radius:12px}.gallery-controls button{border:1px solid #ccd6de;background:white;padding:10px 18px;border-radius:8px}
     .gallery-count{position:absolute;left:14px;bottom:14px;background:rgba(16,36,59,.88);color:#fff;border-radius:999px;padding:7px 10px;font-size:11px;font-weight:800}
     .source-row{display:flex;gap:8px;align-items:center;margin:8px 0 16px;color:#657483;font-size:12px}
     .source-row b{color:#10243b}
@@ -94,14 +95,14 @@
     const year = num(String(yearRaw).slice(0,4)) || num(yearRaw);
     const price = normalizePrice(pick(x,['priceWon','price_won','priceKRW','price_krw','price','Price','advertisement.price'],''));
     return {
-      id: 'BCS-E-' + (sourceId || Math.random().toString(36).slice(2,10)),
+      id: 'BCS-' + sourceId,
       sourceId,
-      source:'Encar',
+      source:String(pick(x,['source'],'Encar')),
       make:String(pick(x,['manufacturer','Manufacturer','make','Make','brand','maker'],'Encar')),
       model:String(pick(x,['model','Model','modelName','model_name'],'Vehicle')),
       trim:String(pick(x,['trim','badge','badgeDetail','badge_detail','grade','title','name'],'')).trim(),
       year,
-      mileage:num(pick(x,['mileage','Mileage','mileageKm','mileage_km'],0)),
+      mileage:pick(x,['mileage_km','mileage'],null) === null ? null : num(pick(x,['mileage_km','mileage'],0)),
       fuel:titleFuel(pick(x,['fuel','fuelType','fuel_type','FuelType'],'—')),
       drive:String(pick(x,['drivetrain','drive','driveType','drive_type'],'—')),
       transmission:String(pick(x,['transmission','transmissionType','transmission_type'],'—')),
@@ -131,7 +132,7 @@
   function displayCar(c){return Object.fromEntries(Object.entries(c).map(([k,v])=>[k,typeof v==='string'?escapeHTML(v):k==='photos'?v.map(u=>/^https:\/\//.test(u)?escapeHTML(u):'').filter(Boolean):v]));}
   carCard = function(c) {
     c=displayCar(c);
-    return `<article class="card"><div class="car-photo"><span class="source-pill">${demoMode?'Demo':'Encar'}</span><span class="avail-pill">${demoMode ? (lang==='fr'?'Démonstration':'Demo') : (lang==='fr'?'Annonce lors de la synchronisation':'Listed at last sync')}</span>${imageMarkup(c)}</div><div class="card-body"><h3>${c.year || ''} ${c.make} ${c.model}</h3><div class="trim">${c.trim || '&nbsp;'}</div><div class="spec-row"><span class="spec">${(c.mileage||0).toLocaleString()} km</span><span class="spec">${tr(c.fuel)}</span><span class="spec">${c.drive}</span><span class="spec">${c.location}</span></div><div class="price-label">${t('vehicle_price')}</div><div class="price">${krw(c.price)}</div><div class="estimate"><span>${t('estimated_total')}</span><strong>${krw(total(c))}</strong></div><button class="btn btn-primary" data-car="${c.id}">${t('view_vehicle')}</button></div></article>`;
+    return `<article class="card"><div class="car-photo"><span class="source-pill">${demoMode?'Demo':c.source}</span><span class="avail-pill">${demoMode ? (lang==='fr'?'Démonstration':'Demo') : (lang==='fr'?'Annonce lors de la synchronisation':'Listed at last sync')}</span>${imageMarkup(c)}</div><div class="card-body"><h3>${c.year || ''} ${c.make} ${c.model}</h3><div class="trim">${c.trim || '&nbsp;'}</div><div class="spec-row"><span class="spec">${c.mileage == null ? '—' : c.mileage.toLocaleString()+' km'}</span><span class="spec">${tr(c.fuel)}</span><span class="spec">${c.drive}</span><span class="spec">${c.location}</span></div><div class="price-label">${t('vehicle_price')}</div><div class="price">${krw(c.price)}</div><div class="estimate"><span>${t('estimated_total')}</span><strong>${krw(total(c))}</strong></div><button class="btn btn-primary" data-car="${c.id}">${t('view_vehicle')}</button></div></article>`;
   };
 
   openVehicle = function(id) {
@@ -139,10 +140,29 @@
     const img = c.photos && c.photos[0]
       ? `<img src="${c.photos[0]}" alt="${c.year} ${c.make} ${c.model}" onerror="this.style.display='none'">`
       : `<div class="photo-fallback">${t('photos_unavailable')}</div>`;
-    $('#detailContent').innerHTML=`<div class="detail-grid"><div class="gallery">${img}<div class="gallery-count">Encar · ${c.photos.length || 0} photo(s)</div></div><div class="detail-side"><div class="eyebrow">DIRECT PURCHASE · ${c.id}</div><h2>${c.year || ''} ${c.make} ${c.model}</h2><div class="detail-trim">${c.trim || ''}</div><div class="source-row"><span>${t('source')}:</span><b>Encar</b><span>·</span><span>${demoMode ? (lang==='fr'?'Démonstration':'Demo') : (lang==='fr'?'Annonce lors de la synchronisation':'Listed at last sync')}</span></div><div class="detail-specs"><div class="detail-spec"><span>${t('mileage')}</span><b>${(c.mileage||0).toLocaleString()} km</b></div><div class="detail-spec"><span>${t('fuel')}</span><b>${tr(c.fuel)}</b></div><div class="detail-spec"><span>${t('transmission')}</span><b>${tr(c.transmission)}</b></div><div class="detail-spec"><span>${t('drivetrain')}</span><b>${c.drive}</b></div><div class="detail-spec"><span>${t('engine')}</span><b>${c.engine}</b></div><div class="detail-spec"><span>${t('color')}</span><b>${c.color}</b></div><div class="detail-spec"><span>${t('location')}</span><b>${c.location}</b></div><div class="detail-spec"><span>${t('status')}</span><b>${demoMode ? (lang==='fr'?'Démonstration':'Demo') : (lang==='fr'?'Annonce lors de la synchronisation':'Listed at last sync')}</b></div></div><div class="cost-box"><b>${t('purchase_cost')}</b><div class="cost-row"><span>${t('vehicle_price')}</span><b>${krw(c.price)}</b></div><div class="cost-row"><span>${t('transport')}</span><b>${krw(fees.transport)}</b></div><div class="cost-row"><span>${t('documents')}</span><b>${krw(fees.documents)}</b></div><div class="cost-row"><span>${t('handling')}</span><b>${krw(fees.handling)}</b></div><div class="cost-total"><span>${t('estimated_total')}</span><b>${krw(total(c))}</b></div><div class="detail-note">${t('estimate_note')}</div></div><form class="request-form" id="requestForm"><h3>${t('request_title')}</h3><div class="form-grid"><input required placeholder="${t('name')}" id="reqName"><input required placeholder="${t('country')}" id="reqCountry"><input required placeholder="${t('whatsapp')}" id="reqWhatsapp"><textarea placeholder="${t('notes')}" id="reqNotes"></textarea></div><button class="btn btn-primary" style="width:100%;margin-top:10px" type="submit">${t('send_request')}</button><div class="request-success" id="requestSuccess">${t('request_success')}</div></form></div></div>`;
+    $('#detailContent').innerHTML=`<div class="detail-grid"><div class="gallery">${img}<div class="gallery-count">${c.source} · ${c.photos.length || 0} photo(s)</div></div><div class="detail-side"><div class="eyebrow">DIRECT PURCHASE · ${c.id}</div><h2>${c.year || ''} ${c.make} ${c.model}</h2><div class="detail-trim">${c.trim || ''}</div><div class="source-row"><span>${t('source')}:</span><b>${c.source}</b><span>·</span><span>${demoMode ? (lang==='fr'?'Démonstration':'Demo') : (lang==='fr'?'Annonce lors de la synchronisation':'Listed at last sync')}</span></div><div class="detail-specs"><div class="detail-spec"><span>${t('mileage')}</span><b>${c.mileage == null ? '—' : c.mileage.toLocaleString()+' km'}</b></div><div class="detail-spec"><span>${t('fuel')}</span><b>${tr(c.fuel)}</b></div><div class="detail-spec"><span>${t('transmission')}</span><b>${tr(c.transmission)}</b></div><div class="detail-spec"><span>${t('drivetrain')}</span><b>${c.drive}</b></div><div class="detail-spec"><span>${t('engine')}</span><b>${c.engine}</b></div><div class="detail-spec"><span>${t('color')}</span><b>${c.color}</b></div><div class="detail-spec"><span>${t('location')}</span><b>${c.location}</b></div><div class="detail-spec"><span>${t('status')}</span><b>${demoMode ? (lang==='fr'?'Démonstration':'Demo') : (lang==='fr'?'Annonce lors de la synchronisation':'Listed at last sync')}</b></div></div><div class="cost-box"><b>${t('purchase_cost')}</b><div class="cost-row"><span>${t('vehicle_price')}</span><b>${krw(c.price)}</b></div><div class="cost-row"><span>${t('transport')}</span><b>${krw(fees.transport)}</b></div><div class="cost-row"><span>${t('documents')}</span><b>${krw(fees.documents)}</b></div><div class="cost-row"><span>${t('handling')}</span><b>${krw(fees.handling)}</b></div><div class="cost-total"><span>${t('estimated_total')}</span><b>${krw(total(c))}</b></div><div class="detail-note">${t('estimate_note')}</div></div><form class="request-form" id="requestForm"><h3>${t('request_title')}</h3><div class="form-grid"><input required placeholder="${t('name')}" id="reqName"><input required placeholder="${t('country')}" id="reqCountry"><input required placeholder="${t('whatsapp')}" id="reqWhatsapp"><textarea placeholder="${t('notes')}" id="reqNotes"></textarea></div><button class="btn btn-primary" style="width:100%;margin-top:10px" type="submit">${t('send_request')}</button><div class="request-success" id="requestSuccess">${t('request_success')}</div></form></div></div>`;
     $('#vehicleModal').classList.add('open'); $('#vehicleModal').setAttribute('aria-hidden','false');
+    if(c.photos.length>1){
+      let photoIndex=0;
+      const controls=document.createElement('div');controls.className='gallery-controls';
+      controls.innerHTML='<button type="button" aria-label="Previous photo">←</button><span></span><button type="button" aria-label="Next photo">→</button>';
+      document.querySelector('.gallery').appendChild(controls);
+      function showPhoto(){const im=document.querySelector('.gallery img');im.src=c.photos[photoIndex].replace(/&amp;/g,'&');im.style.display='block';controls.querySelector('span').textContent=(photoIndex+1)+' / '+c.photos.length;}
+      controls.querySelectorAll('button').forEach((b,i)=>b.onclick=()=>{photoIndex=(photoIndex+(i?1:-1)+c.photos.length)%c.photos.length;showPhoto();});showPhoto();
+    }
+    if(!demoMode){
+      const note=document.createElement('p');note.className='detail-note';
+      note.textContent=lang==='fr'?'Historique et inspection non chargés. À vérifier avant achat.':'History and inspection have not been loaded. Verify before purchase.';
+      document.querySelector('.detail-specs').after(note);
+      if(/^https:\/\//.test(c.listingUrl)){
+        const a=document.createElement('a');a.href=c.listingUrl.replace(/&amp;/g,'&');a.target='_blank';a.rel='noopener noreferrer';
+        a.textContent=lang==='fr'?"Voir l’annonce d’origine":"View original listing";note.after(a);
+      }
+      $('#requestSuccess').textContent=lang==='fr'?'Brouillon enregistré sur cet appareil uniquement — non envoyé à BEST CAR STAR.':'Draft saved on this device only — not sent to BEST CAR STAR.';
+      $('#requestForm button').textContent=lang==='fr'?'Enregistrer le brouillon':'Save request draft';
+    }
     if(demoMode){$('#requestForm').innerHTML=lang==='fr'?'Véhicule de démonstration — achat indisponible.':'Demo vehicle — purchase unavailable.';return;}
-    $('#requestForm').onsubmit=e=>{e.preventDefault();$('#requestSuccess').classList.add('show');safeStore.set('bcsLastRequest',JSON.stringify({vehicleId:c.id,sourceId:c.sourceId,source:'Encar',vehicle:`${c.year} ${c.make} ${c.model}`,price:c.price,estimatedTotal:total(c),name:$('#reqName').value,country:$('#reqCountry').value,whatsapp:$('#reqWhatsapp').value,notes:$('#reqNotes').value}))};
+    $('#requestForm').onsubmit=e=>{e.preventDefault();$('#requestSuccess').classList.add('show');safeStore.set('bcsLastRequest',JSON.stringify({vehicleId:c.id,sourceId:c.sourceId,source:String(pick(x,['source'],'Encar')),vehicle:`${c.year} ${c.make} ${c.model}`,price:c.price,estimatedTotal:total(c),name:$('#reqName').value,country:$('#reqCountry').value,whatsapp:$('#reqWhatsapp').value,notes:$('#reqNotes').value}))};
   };
 
   function metaNode() {
@@ -167,7 +187,7 @@
   }
   function updateMeta() {
     const tm = liveLoadedAt ? liveLoadedAt.toLocaleString(lang==='fr'?'fr-FR':'en-GB', {timeZone:'Asia/Seoul'})+' KST' : '';
-    metaNode().textContent=demoMode ? (lang==='fr'?'DÉMONSTRATION — annonces fictives, non disponibles à l’achat. Synchronisation en attente ou indisponible.':'DEMO — sample vehicles, not available to purchase. Sync pending or unavailable.') : `${inventory.length} Encar · ${t('last_updated')} ${tm} · ${t('live_test_note')}`;
+    metaNode().textContent=demoMode ? (lang==='fr'?'DÉMONSTRATION — annonces fictives, non disponibles à l’achat. Synchronisation en attente ou indisponible.':'DEMO — sample vehicles, not available to purchase. Sync pending or unavailable.') : `${inventory.filter(c=>c.source==='Encar').length} Encar + ${inventory.filter(c=>c.source==='KB ChaChaCha').length} KB ChaChaCha · ${t('last_updated')} ${tm} · ${t('live_test_note')}`;
   }
   function queryUrl() {
     const p=new URLSearchParams();
@@ -211,12 +231,20 @@
     } finally { liveLoading=false; }
   }
 
+  const field=document.createElement('div');field.className='field';
+  field.innerHTML='<label id="sourceLabel"></label><select id="sourceFilter"><option value=""></option><option>Encar</option><option>KB ChaChaCha</option></select>';
+  document.querySelector('.filters').appendChild(field);
+  const baseFiltered=filtered;
+  filtered=function(){return baseFiltered().filter(c=>!$('#sourceFilter').value||c.source===$('#sourceFilter').value);};
+  $('#sourceFilter').onchange=renderCars;
+  function sourceLabels(){$('#sourceLabel').textContent=lang==='fr'?'Plateforme':'Marketplace';$('#sourceFilter').options[0].textContent=lang==='fr'?'Toutes les plateformes':'All marketplaces';}
+  sourceLabels();
   const originalSetI18n=setI18n;
-  setI18n=function(){originalSetI18n(); updateMeta();};
+  setI18n=function(){originalSetI18n(); sourceLabels(); updateMeta();};
 
   $('#searchBtn').onclick=renderCars;
   $('#resetBtn').onclick=()=>{
-    ['#makeFilter','#modelFilter','#yearFrom','#yearTo','#maxPrice','#maxMileage','#fuelFilter','#driveFilter'].forEach(s=>$(s).value='');
+    ['#makeFilter','#modelFilter','#yearFrom','#yearTo','#maxPrice','#maxMileage','#fuelFilter','#driveFilter','#sourceFilter'].forEach(s=>$(s).value='');
     updateModels(); renderCars();
   };
   $('#makeFilter').onchange=()=>{ updateModels(); renderCars(); };

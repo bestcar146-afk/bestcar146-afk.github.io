@@ -1,4 +1,4 @@
-name: Sync Encar inventory
+name: Sync marketplace inventory
 on:
   push:
     branches: [main]
@@ -27,7 +27,7 @@ jobs:
         id: fetch
         continue-on-error: true
         env:
-          XAPI_KEY: ${{ secrets.XAPI_KEY }}
+          ENCARAPI_KEY: ${{ secrets.ENCARAPI_KEY }}
         run: python scripts/sync_inventory.py
       - name: Save successful snapshot
         if: steps.fetch.outcome == 'success'
@@ -36,7 +36,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add inventory.json
           if ! git diff --cached --quiet; then
-            git commit -m "Refresh Encar inventory"
+            git commit -m "Refresh Encar and KB inventory"
             git push
           fi
       - name: Prepare public website only
@@ -53,3 +53,4 @@ jobs:
         run: |
           echo "Inventory refresh failed. Previous snapshot or clearly labelled demo remains available."
           exit 1
+
