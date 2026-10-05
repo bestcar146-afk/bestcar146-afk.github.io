@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-05T06:25:31.567991+00:00",
+  "updated_at": "2026-10-05T06:39:06.872421+00:00",
   "provider": "EnCarAPI",
   "scope": "Latest combined selection, not the full market",
   "source_counts": {
@@ -1212,7 +1212,7 @@
       "badge": "Diesel 2.2 2WD 노블레스 스페셜",
       "year": 2015,
       "mileage_km": 213996,
-      "price_krw": 6700000,
+      "price_krw": 6490000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
