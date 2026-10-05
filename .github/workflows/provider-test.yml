@@ -1,8 +1,5 @@
 name: Test EnCarAPI
 on:
-  push:
-    branches: [main]
-    paths: [.github/workflows/provider-test.yml]
   workflow_dispatch:
 permissions:
   contents: read
@@ -27,9 +24,12 @@ jobs:
                   body=re.sub(r"[A-Za-z0-9_-]{32,}","[REDACTED]",body)
                   print("HTTP",e.code,"REASON"," ".join(body.split())[:1000])
                   return None
+          failed=False
           for source in ["encar","kbc","encar,kbc"]:
               d=get("/api/catalog?source="+source+"&manufacturer=hyundai&lang=en&count=true&limit=3")
-              if d is None: continue
+              if d is None:
+                  failed=True
+                  continue
               print("SOURCE",source,"SHAPE",list(d) if isinstance(d,dict) else type(d).__name__)
               rows=d if isinstance(d,list) else next((v for v in d.values() if isinstance(v,list)),[])
               print("ROWS",len(rows))
@@ -42,4 +42,5 @@ jobs:
               if ident:
                   detail=get("/api/vehicle/"+str(ident)+"?lang=en")
                   print("DETAIL FIELDS",list(detail) if isinstance(detail,dict) else type(detail).__name__)
+          if failed: raise SystemExit("Provider access blocked; contact provider before rerunning")
           PY
