@@ -35,7 +35,8 @@ def normalize(row):
 
 
 PUBLIC_TARGET=150
-CANDIDATE_LIMIT=400
+CANDIDATE_LIMIT=100
+CANDIDATE_PAGES=2
 
 # Historical demand profile derived from BEST CAR STAR sold/shipped data (2024-Sep 2026).
 # Slots total 150: 120 core demand-matched listings + 30 rotation/discovery listings.
@@ -238,22 +239,27 @@ def enrich(cars,key):
 def main():
     key=os.environ.get('ENCARAPI_KEY','').strip()
     if not key: raise ValueError('ENCARAPI_KEY repository secret is missing')
-    params={'source':'encar,kbc','lang':'en','limit':CANDIDATE_LIMIT,'sort':'newest',
-            'model_search':MODEL_SEARCH,
-            'exclude_duplicates':'true','exclude_prices':'1111,9999'}
-    req=urllib.request.Request('https://api.encarapi.com/api/catalog?'+urlencode(params),
-                              headers={'x-api-key':key,'Accept':'application/json'})
-    try:
-        with urllib.request.urlopen(req,timeout=120) as response: data=json.load(response)
-    except urllib.error.HTTPError as e:
-        raise ValueError('EnCarAPI returned HTTP '+str(e.code)+'; previous snapshot retained') from None
-    if not isinstance(data,dict) or not isinstance(data.get('SearchResults'),list):
-        raise ValueError('Unexpected catalog response; previous snapshot retained')
+    base_params={'source':'encar,kbc','lang':'en','limit':CANDIDATE_LIMIT,'sort':'newest',
+                 'model_search':MODEL_SEARCH,
+                 'exclude_duplicates':'true','exclude_prices':'1111,9999'}
     candidates=[]; seen=set()
-    for row in data['SearchResults']:
-        c=normalize(row)
-        if c and c['id'] not in seen:
-            seen.add(c['id']); candidates.append(c)
+    for page in range(1,CANDIDATE_PAGES+1):
+        params=dict(base_params); params['page']=page
+        req=urllib.request.Request('https://api.encarapi.com/api/catalog?'+urlencode(params),
+                                  headers={'x-api-key':key,'Accept':'application/json'})
+        try:
+            with urllib.request.urlopen(req,timeout=120) as response: data=json.load(response)
+        except urllib.error.HTTPError as e:
+            raise ValueError('EnCarAPI returned HTTP '+str(e.code)+'; previous snapshot retained') from None
+        if not isinstance(data,dict) or not isinstance(data.get('SearchResults'),list):
+            raise ValueError('Unexpected catalog response; previous snapshot retained')
+        for row in data['SearchResults']:
+            car=normalize(row)
+            if car and car['id'] not in seen:
+                seen.add(car['id']); candidates.append(car)
+        if len(data['SearchResults'])<CANDIDATE_LIMIT:
+            break
+    print('Candidate listings collected:',len(candidates),flush=True)
     if not candidates: raise ValueError('No valid listings; previous snapshot retained')
     cars=select_public(candidates)
     if len(cars)<PUBLIC_TARGET:
