@@ -81,6 +81,16 @@ DEMAND_PROFILE = {
     'Ssangyong Rexton W': (1, 2440000, 2702500),
 }
 
+RISING_PRICE_MODELS={'Audi Q5','Audi Q7','Chevrolet Cruze','Kia Sportage','Hyundai Starex'}
+STABLE_PRICE_MODELS={'Hyundai Mighty','Kia Pride'}
+LIMITED_HISTORY_MODELS={'Renault Samsung QM3','Chevrolet Orlando','Hyundai Accent','Hyundai All New Tucson',
+                        'Jeep Wrangler Rubicon','Kia All New Carnival','Kia Mohave','Kia Soul'}
+
+def price_stretch_multiplier(key):
+    if key in RISING_PRICE_MODELS: return 1.30
+    if key in STABLE_PRICE_MODELS or key in LIMITED_HISTORY_MODELS: return 1.25
+    return 1.20
+
 YEAR_BANDS = {
     'Kia All New Sorento': (2015, 2017),
     'Kia New Sorento R': (2013, 2014),
@@ -187,8 +197,9 @@ def select_public(cars):
         profile=DEMAND_PROFILE.get(key)
         price=car.get('price_krw') or 0
         if key in grouped and band and profile and band[0] <= year <= band[1]:
-            ceiling=profile[2]
-            if price <= ceiling:
+            reference_upper=profile[2]
+            hard_ceiling=reference_upper*price_stretch_multiplier(key)
+            if price <= hard_ceiling:
                 grouped[key].append(car)
             else:
                 rejected_expensive += 1
@@ -196,16 +207,18 @@ def select_public(cars):
             discovery.append(car)
 
     selected=[]; used=set(); selected_per_key={key:0 for key in DEMAND_PROFILE}
-    for key,(slots,priority,ceiling) in DEMAND_PROFILE.items():
+    for key,(slots,priority,reference_upper) in DEMAND_PROFILE.items():
         group=grouped[key]
         def rank(car):
             price=car.get('price_krw') or 0
             mileage=car.get('mileage_km')
             mileage=mileage if isinstance(mileage,(int,float)) else 9999999
-            # The historical sold file already represents price-filtered bargain purchases:
-            # prioritize the cheapest live cars within the accepted price corridor.
-            preferred=0 if price <= priority else 1
-            return (preferred,price,-int(car.get('year') or 0),mileage)
+            # The sold spreadsheet is already biased toward the cheapest acceptable car on each date.
+            # Treat historical P75 as a reference band, not a hard market ceiling.
+            if price <= priority: price_bucket=0
+            elif price <= reference_upper: price_bucket=1
+            else: price_bucket=2
+            return (price_bucket,price,-int(car.get('year') or 0),mileage)
         group.sort(key=rank)
         for car in group[:slots]:
             selected.append(car); used.add(car['id']); selected_per_key[key]+=1
@@ -240,7 +253,7 @@ def select_public(cars):
         if raw_counts.get(signature,0)>=1: continue
         selected.append(car); used.add(car['id']); raw_counts[signature]=1; discovery_added+=1
 
-    print('Price guardrails rejected',rejected_expensive,'target-generation candidates',flush=True)
+    print('Price stretch limits rejected',rejected_expensive,'target-generation candidates',flush=True)
     print('Discovery listings added:',discovery_added,flush=True)
     for car in selected: car.pop('_demand_key',None)
     return selected[:PUBLIC_TARGET]
