@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-06T05:36:26.653629+00:00",
+  "updated_at": "2026-10-06T06:40:23.962933+00:00",
   "provider": "EnCarAPI",
   "scope": "Sales-driven public selection based on BEST CAR STAR historical demand",
   "source_counts": {
@@ -1365,6 +1365,81 @@
       }
     },
     {
+      "id": "42841918",
+      "source": "Encar",
+      "manufacturer": "Renault-KoreaSamsung",
+      "model": "Captur",
+      "badge": "RE Signature",
+      "year": 2015,
+      "mileage_km": 190371,
+      "price_krw": 3790000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture04/pic4284/42841918_001.jpg",
+        "https://ci.encar.com/carpicture04/pic4284/42841918_003.jpg",
+        "https://ci.encar.com/carpicture04/pic4284/42841918_004.jpg",
+        "https://ci.encar.com/carpicture04/pic4284/42841918_007.jpg"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42841918",
+      "details": {
+        "checked_at": "2026-10-06T06:40:23.458338+00:00",
+        "spec": {
+          "transmission": "오토",
+          "engine_cc": 1461,
+          "color": "빨간색",
+          "seats": 5,
+          "power_ps": 90,
+          "body": "SUV",
+          "drive": null,
+          "registration": "201511"
+        },
+        "photos": [
+          "https://ci.encar.com/carpicture04/pic4284/42841918_003.jpg",
+          "https://ci.encar.com/carpicture04/pic4284/42841918_008.jpg",
+          "https://ci.encar.com/carpicture04/pic4284/42841918_007.jpg",
+          "https://ci.encar.com/carpicture04/pic4284/42841918_001.jpg",
+          "https://ci.encar.com/carpicture04/pic4284/42841918_009.jpg",
+          "https://ci.encar.com/carpicture04/pic4284/42841918_002.jpg",
+          "https://ci.encar.com/carpicture04/pic4284/42841918_023.jpg",
+          "https://ci.encar.com/carpicture04/pic4284/42841918_020.jpg",
+          "https://ci.encar.com/carpicture04/pic4284/42841918_019.jpg",
+          "https://ci.encar.com/carpicture04/pic4284/42841918_024.jpg",
+          "https://ci.encar.com/carpicture04/pic4284/42841918_017.jpg",
+          "https://ci.encar.com/carpicture04/pic4284/42841918_021.jpg",
+          "https://ci.encar.com/carpicture04/pic4284/42841918_018.jpg",
+          "https://ci.encar.com/carpicture04/pic4284/42841918_015.jpg",
+          "https://ci.encar.com/carpicture04/pic4284/42841918_016.jpg",
+          "https://ci.encar.com/carpicture04/pic4284/42841918_022.jpg",
+          "https://ci.encar.com/carpicture04/pic4284/42841918_010.jpg",
+          "https://ci.encar.com/carpicture04/pic4284/42841918_004.jpg",
+          "https://ci.encar.com/carpicture04/pic4284/42841918_006.jpg",
+          "https://ci.encar.com/carpicture04/pic4284/42841918_005.jpg"
+        ],
+        "inspection": {
+          "accdient": false,
+          "simpleRepair": true,
+          "registrationDate": "2026-10-06T09:52:06"
+        },
+        "insurance": {
+          "accidentCnt": 3,
+          "myAccidentCnt": 2,
+          "otherAccidentCnt": 1,
+          "myAccidentCost": 2314449,
+          "otherAccidentCost": 5876000,
+          "ownerChangeCnt": 6,
+          "totalLossCnt": 0,
+          "floodTotalLossCnt": 0,
+          "floodPartLossCnt": null,
+          "robberCnt": 0,
+          "regDate": "2026-10-06T09:14:07.118871"
+        },
+        "kb_history": null
+      }
+    },
+    {
       "id": "42499232",
       "source": "Encar",
       "manufacturer": "Hyundai",
@@ -1566,69 +1641,6 @@
           "robberCnt": 0,
           "regDate": "2026-10-01T14:17:15.327613"
         },
-        "kb_history": null
-      }
-    },
-    {
-      "id": "42840549",
-      "source": "Encar",
-      "manufacturer": "Renault-KoreaSamsung",
-      "model": "Captur",
-      "badge": "RE",
-      "year": 2014,
-      "mileage_km": 138470,
-      "price_krw": 3990000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경북",
-      "photos": [
-        "https://ci.encar.com/carpicture04/pic4284/42840549_001.jpg",
-        "https://ci.encar.com/carpicture04/pic4284/42840549_003.jpg",
-        "https://ci.encar.com/carpicture04/pic4284/42840549_004.jpg",
-        "https://ci.encar.com/carpicture04/pic4284/42840549_007.jpg"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42840549",
-      "details": {
-        "checked_at": "2026-10-06T05:31:17.838710+00:00",
-        "spec": {
-          "transmission": "오토",
-          "engine_cc": 1461,
-          "color": "진주색",
-          "seats": 5,
-          "power_ps": 90,
-          "body": "SUV",
-          "drive": null,
-          "registration": "201403"
-        },
-        "photos": [
-          "https://ci.encar.com/carpicture04/pic4284/42840549_001.jpg",
-          "https://ci.encar.com/carpicture04/pic4284/42840549_017.jpg",
-          "https://ci.encar.com/carpicture04/pic4284/42840549_016.jpg",
-          "https://ci.encar.com/carpicture04/pic4284/42840549_006.jpg",
-          "https://ci.encar.com/carpicture04/pic4284/42840549_020.jpg",
-          "https://ci.encar.com/carpicture04/pic4284/42840549_015.jpg",
-          "https://ci.encar.com/carpicture04/pic4284/42840549_002.jpg",
-          "https://ci.encar.com/carpicture04/pic4284/42840549_009.jpg",
-          "https://ci.encar.com/carpicture04/pic4284/42840549_023.jpg",
-          "https://ci.encar.com/carpicture04/pic4284/42840549_007.jpg",
-          "https://ci.encar.com/carpicture04/pic4284/42840549_021.jpg",
-          "https://ci.encar.com/carpicture04/pic4284/42840549_018.jpg",
-          "https://ci.encar.com/carpicture04/pic4284/42840549_022.jpg",
-          "https://ci.encar.com/carpicture04/pic4284/42840549_004.jpg",
-          "https://ci.encar.com/carpicture04/pic4284/42840549_008.jpg",
-          "https://ci.encar.com/carpicture04/pic4284/42840549_003.jpg",
-          "https://ci.encar.com/carpicture04/pic4284/42840549_024.jpg",
-          "https://ci.encar.com/carpicture04/pic4284/42840549_005.jpg",
-          "https://ci.encar.com/carpicture04/pic4284/42840549_010.jpg",
-          "https://ci.encar.com/carpicture04/pic4284/42840549_019.jpg"
-        ],
-        "inspection": {
-          "accdient": false,
-          "simpleRepair": false,
-          "registrationDate": "2026-10-05T17:48:43"
-        },
-        "insurance": null,
         "kb_history": null
       }
     },
@@ -2116,7 +2128,7 @@
       "source": "Encar",
       "manufacturer": "Hyundai",
       "model": "Santafe DM",
-      "badge": "Diesel(e-VGT) 2.0 4WD Exclusive (세부등급 없음)",
+      "badge": "Diesel(e-VGT) 2.0 4WD Smart",
       "year": 2012,
       "mileage_km": 139417,
       "price_krw": 5900000,
