@@ -1,12 +1,12 @@
 (() => {
   const API_BASE = './inventory.json';
   let demoMode = false;
-  const PAGE_SIZE = 100;
+  const PAGE_SIZE = 150;
   let liveLoading = false;
   let liveLoadedAt = null;
 
   Object.assign(TXT.en, {
-    sample_note: 'Selected Encar and KB ChaChaCha listings, refreshed every six hours. Filters search this selection, not the full market.',
+    sample_note: '150 sales-driven Encar and KB ChaChaCha listings, refreshed every six hours. The selection prioritizes models that BEST CAR STAR customers actually buy.',
     live_inventory: 'LIVE ENCAR INVENTORY',
     live_now: 'Live',
     loading_live: 'Loading marketplace listings…',
@@ -18,7 +18,7 @@
     live_test_note: 'Live test feed · availability must still be confirmed before purchase.'
   });
   Object.assign(TXT.fr, {
-    sample_note: 'Sélection Encar et KB ChaChaCha actualisée toutes les six heures. Les filtres recherchent dans cette sélection, pas sur tout le marché.',
+    sample_note: '150 annonces Encar et KB ChaChaCha sélectionnées selon les achats réels des clients BEST CAR STAR et actualisées toutes les six heures.',
     live_inventory: 'INVENTAIRE ENCAR EN DIRECT',
     live_now: 'En direct',
     loading_live: 'Chargement des annonces automobiles…',
