@@ -6,7 +6,7 @@
   let liveLoadedAt = null;
 
   Object.assign(TXT.en, {
-    sample_note: '150 sales-driven Encar and KB ChaChaCha listings, refreshed every six hours. The selection prioritizes models that BEST CAR STAR customers actually buy.',
+    sample_note: 'Sales-driven Encar and KB ChaChaCha listings, refreshed every six hours. The selection prioritizes models and model years that BEST CAR STAR customers actually buy.',
     live_inventory: 'LIVE ENCAR INVENTORY',
     live_now: 'Live',
     loading_live: 'Loading marketplace listings…',
@@ -18,7 +18,7 @@
     live_test_note: 'Live test feed · availability must still be confirmed before purchase.'
   });
   Object.assign(TXT.fr, {
-    sample_note: '150 annonces Encar et KB ChaChaCha sélectionnées selon les achats réels des clients BEST CAR STAR et actualisées toutes les six heures.',
+    sample_note: 'Annonces Encar et KB ChaChaCha sélectionnées selon les modèles et années réellement achetés par les clients BEST CAR STAR, puis actualisées toutes les six heures.',
     live_inventory: 'INVENTAIRE ENCAR EN DIRECT',
     live_now: 'En direct',
     loading_live: 'Chargement des annonces automobiles…',
