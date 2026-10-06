@@ -78,6 +78,44 @@ DEMAND_PROFILE = {
     'Ssangyong Rexton W': (2, 2440000, 2702500),
 }
 
+YEAR_BANDS = {
+    'Kia All New Sorento': (2015, 2017),
+    'Kia New Sorento R': (2013, 2014),
+    'Kia Sorento R': (2010, 2012),
+    'Hyundai Santa Fe DM': (2013, 2015),
+    'Kia Sportage R': (2011, 2014),
+    'Hyundai Grand Starex': (2010, 2015),
+    'Renault Samsung QM3': (2014, 2015),
+    'Audi Q5': (2011, 2015),
+    'Hyundai Maxcruz': (2014, 2015),
+    'Hyundai Mighty': (2007, 2014),
+    'Hyundai Santa Fe': (2013, 2016),
+    'VW Tiguan': (2012, 2015),
+    'Audi Q7': (2010, 2015),
+    'Chevrolet Captiva': (2012, 2015),
+    'Chevrolet Malibu': (2014, 2015),
+    'Hyundai i30': (2012, 2014),
+    'Kia Sportage': (2012, 2016),
+    'BMW X3': (2011, 2014),
+    'BMW X5': (2010, 2012),
+    'Chevrolet Cruze': (2011, 2014),
+    'Chevrolet Orlando': (2013, 2014),
+    'Hyundai Accent': (2011, 2015),
+    'Hyundai All New Tucson': (2016, 2018),
+    'Hyundai Starex': (2006, 2012),
+    'Hyundai Tucson': (2010, 2016),
+    'Jeep Wrangler Rubicon': (2011, 2013),
+    'Kia All New Carnival': (2015, 2018),
+    'Kia Bongo': (2010, 2016),
+    'Kia Mohave': (2012, 2014),
+    'Kia Morning': (2009, 2012),
+    'Kia Pride': (2006, 2010),
+    'Kia Soul': (2010, 2013),
+    'Mini Countryman': (2012, 2013),
+    'Mini Countryman All4': (2015, 2016),
+    'Ssangyong Rexton W': (2013, 2017),
+}
+
 MODEL_SEARCH = ';'.join([
     'all new sorento','new sorento r','sorento r','santa fe dm','sportage r',
     'grand starex','qm3','q5','maxcruz','mighty','santa fe','tiguan','q7',
@@ -117,6 +155,7 @@ def demand_key(car):
         ('Kia Bongo', ('bongo',)),
         ('Kia Mohave', ('mohave',)),
         ('Kia Morning', ('morning',)),
+        ('Kia Morning', ('picanto',)),
         ('Kia Pride', ('pride',)),
         ('Kia Soul', ('kia','soul')),
         ('Mini Countryman All4', ('countryman','all4')),
@@ -126,6 +165,7 @@ def demand_key(car):
         ('Hyundai Tucson', ('tucson',)),
         ('Kia Sportage', ('sportage',)),
         ('Hyundai Santa Fe', ('santa fe',)),
+        ('Hyundai Santa Fe', ('santafe',)),
     ]
     for key,tokens in rules:
         if all(token in text for token in tokens):
@@ -134,37 +174,60 @@ def demand_key(car):
 
 def select_public(cars):
     grouped={key:[] for key in DEMAND_PROFILE}
-    leftovers=[]
+    discovery=[]
     for car in cars:
         key=demand_key(car)
         car['_demand_key']=key
-        if key in grouped: grouped[key].append(car)
-        else: leftovers.append(car)
-    selected=[]; used=set()
+        year=int(car.get('year') or 0)
+        band=YEAR_BANDS.get(key)
+        if key in grouped and band and band[0] <= year <= band[1]:
+            grouped[key].append(car)
+        else:
+            discovery.append(car)
+
+    selected=[]; used=set(); selected_per_key={key:0 for key in DEMAND_PROFILE}
     for key,(slots,median,p75) in DEMAND_PROFILE.items():
         group=grouped[key]
         def rank(car):
             price=car.get('price_krw') or 0
             mileage=car.get('mileage_km')
             mileage=mileage if isinstance(mileage,(int,float)) else 9999999
-            # Historical price bands are a soft ranking signal, never a hard exclusion.
             above=1 if price>p75 else 0
             distance=abs(price-median)/median if median else 0
             return (above,distance,-int(car.get('year') or 0),mileage)
         group.sort(key=rank)
         for car in group[:slots]:
-            selected.append(car); used.add(car['id'])
-    # Fill any unfilled quota from still-relevant demand models before generic fallback.
-    remaining=[c for c in cars if c['id'] not in used]
-    remaining.sort(key=lambda car: (
-        0 if car.get('_demand_key') in DEMAND_PROFILE else 1,
-        list(DEMAND_PROFILE).index(car['_demand_key']) if car.get('_demand_key') in DEMAND_PROFILE else 999,
+            selected.append(car); used.add(car['id']); selected_per_key[key]+=1
+
+    # If a target generation has extra good choices, use at most two more.
+    extras=[]
+    for key,group in grouped.items():
+        slots=DEMAND_PROFILE[key][0]
+        for car in group:
+            if car['id'] not in used:
+                extras.append(car)
+    extras.sort(key=lambda car: (
+        list(DEMAND_PROFILE).index(car['_demand_key']),
         -int(car.get('year') or 0),
         car.get('mileage_km') if isinstance(car.get('mileage_km'),(int,float)) else 9999999
     ))
-    for car in remaining:
+    for car in extras:
         if len(selected)>=PUBLIC_TARGET: break
-        selected.append(car); used.add(car['id'])
+        key=car['_demand_key']
+        if selected_per_key[key] >= DEMAND_PROFILE[key][0] + 2: continue
+        selected.append(car); used.add(car['id']); selected_per_key[key]+=1
+
+    # Keep a small discovery layer for newer adjacent generations, but never let
+    # one raw model dominate the public page.
+    raw_counts={}
+    discovery.sort(key=lambda car: (-int(car.get('year') or 0),
+                                    car.get('mileage_km') if isinstance(car.get('mileage_km'),(int,float)) else 9999999))
+    for car in discovery:
+        if len(selected)>=PUBLIC_TARGET: break
+        signature=(str(car.get('manufacturer') or ''),str(car.get('model') or ''))
+        if raw_counts.get(signature,0)>=1: continue
+        selected.append(car); used.add(car['id']); raw_counts[signature]=1
+
     for car in selected: car.pop('_demand_key',None)
     return selected[:PUBLIC_TARGET]
 
