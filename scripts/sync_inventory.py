@@ -36,46 +36,49 @@ def normalize(row):
 
 PUBLIC_TARGET=150
 CANDIDATE_LIMIT=100
-CANDIDATE_PAGES=2
+CANDIDATE_PAGES=4
+DISCOVERY_MAX=30
 
-# Historical demand profile derived from BEST CAR STAR sold/shipped data (2024-Sep 2026).
-# Slots total 150: 120 core demand-matched listings + 30 rotation/discovery listings.
+# Historical demand + price profile derived from BEST CAR STAR sold/shipped data (2024-Sep 2026).
+# The sold file is itself price-filtered, so these price levels represent accepted bargain/acquisition levels,
+# not the Korean market average. Slots total 150 as a target capacity; actual public count may be lower.
 DEMAND_PROFILE = {
-    'Kia All New Sorento': (21, 7021035, 7942730),
-    'Kia New Sorento R': (15, 5315000, 6065000),
-    'Kia Sorento R': (10, 2965000, 3612500),
-    'Hyundai Santa Fe DM': (9, 5265000, 5890000),
-    'Kia Sportage R': (9, 3965000, 4465000),
-    'Hyundai Grand Starex': (6, 3890000, 4665000),
-    'Renault Samsung QM3': (6, 1890000, 2152500),
-    'Audi Q5': (5, 8608570, 9199487),
-    'Hyundai Maxcruz': (5, 6998620, 8275750),
+    # slots, priority source-price, maximum source-price
+    'Kia All New Sorento': (23, 6365000, 7129650),
+    'Kia New Sorento R': (17, 4265000, 5015000),
+    'Kia Sorento R': (8, 2665000, 2890000),
+    'Hyundai Santa Fe DM': (11, 4065000, 4165000),
+    'Kia Sportage R': (8, 3765000, 4140000),
+    'Hyundai Grand Starex': (7, 3600000, 4690000),
+    'Renault Samsung QM3': (7, 1890000, 2152500),
+    'Audi Q5': (4, 9166325, 9680236),
+    'Hyundai Maxcruz': (6, 6716510, 7115430),
     'Hyundai Mighty': (5, 6000000, 6550000),
-    'Hyundai Santa Fe': (4, 4515000, 5315000),
-    'VW Tiguan': (4, 5265000, 5565000),
-    'Audi Q7': (3, 4982500, 5273750),
-    'Chevrolet Captiva': (3, 2252500, 2602500),
-    'Chevrolet Malibu': (3, 1932500, 2152500),
-    'Hyundai i30': (3, 3315000, 3590000),
-    'Kia Sportage': (3, 5715000, 6115000),
+    'Hyundai Santa Fe': (4, 4465000, 4565000),
+    'VW Tiguan': (4, 4665000, 5565000),
+    'Audi Q7': (3, 4957500, 6367221),
+    'Chevrolet Captiva': (2, 2715000, 2990000),
+    'Chevrolet Malibu': (4, 2000000, 2082500),
+    'Hyundai i30': (3, 3165000, 3315000),
+    'Kia Sportage': (3, 5715000, 6298450),
     'BMW X3': (2, 2865000, 3390000),
     'BMW X5': (2, 3415000, 4290000),
-    'Chevrolet Cruze': (2, 2000000, 2130000),
+    'Chevrolet Cruze': (1, 2000000, 2193900),
     'Chevrolet Orlando': (2, 1415000, 1540000),
-    'Hyundai Accent': (2, 1790000, 1902500),
-    'Hyundai All New Tucson': (2, 6665000, 7180950),
-    'Hyundai Starex': (2, 3335000, 4000000),
-    'Hyundai Tucson': (2, 4700000, 7770810),
-    'Jeep Wrangler Rubicon': (2, 14240000, 14340000),
+    'Hyundai Accent': (2, 1715000, 1902500),
+    'Hyundai All New Tucson': (3, 6665000, 7180950),
+    'Hyundai Starex': (1, 3335000, 4120000),
+    'Hyundai Tucson': (1, 4700000, 7770810),
+    'Jeep Wrangler Rubicon': (2, 14340000, 14340000),
     'Kia All New Carnival': (2, 4665000, 5765000),
     'Kia Bongo': (2, 3765000, 4100000),
     'Kia Mohave': (2, 3365000, 3690000),
     'Kia Morning': (2, 1737400, 2115000),
-    'Kia Pride': (2, 1945000, 2185000),
+    'Kia Pride': (1, 1990000, 2185000),
     'Kia Soul': (2, 1565000, 2815000),
-    'Mini Countryman': (2, 2065000, 2490000),
+    'Mini Countryman': (1, 2065000, 2490000),
     'Mini Countryman All4': (2, 3665000, 4365000),
-    'Ssangyong Rexton W': (2, 2440000, 2702500),
+    'Ssangyong Rexton W': (1, 2440000, 2702500),
 }
 
 YEAR_BANDS = {
@@ -175,59 +178,70 @@ def demand_key(car):
 def select_public(cars):
     grouped={key:[] for key in DEMAND_PROFILE}
     discovery=[]
+    rejected_expensive=0
     for car in cars:
         key=demand_key(car)
         car['_demand_key']=key
         year=int(car.get('year') or 0)
         band=YEAR_BANDS.get(key)
-        if key in grouped and band and band[0] <= year <= band[1]:
-            grouped[key].append(car)
+        profile=DEMAND_PROFILE.get(key)
+        price=car.get('price_krw') or 0
+        if key in grouped and band and profile and band[0] <= year <= band[1]:
+            ceiling=profile[2]
+            if price <= ceiling:
+                grouped[key].append(car)
+            else:
+                rejected_expensive += 1
         else:
             discovery.append(car)
 
     selected=[]; used=set(); selected_per_key={key:0 for key in DEMAND_PROFILE}
-    for key,(slots,median,p75) in DEMAND_PROFILE.items():
+    for key,(slots,priority,ceiling) in DEMAND_PROFILE.items():
         group=grouped[key]
         def rank(car):
             price=car.get('price_krw') or 0
             mileage=car.get('mileage_km')
             mileage=mileage if isinstance(mileage,(int,float)) else 9999999
-            above=1 if price>p75 else 0
-            distance=abs(price-median)/median if median else 0
-            return (above,distance,-int(car.get('year') or 0),mileage)
+            # The historical sold file already represents price-filtered bargain purchases:
+            # prioritize the cheapest live cars within the accepted price corridor.
+            preferred=0 if price <= priority else 1
+            return (preferred,price,-int(car.get('year') or 0),mileage)
         group.sort(key=rank)
         for car in group[:slots]:
             selected.append(car); used.add(car['id']); selected_per_key[key]+=1
 
-    # If a target generation has extra good choices, use at most two more.
+    # Redistribute shortages only to other proven generations that also pass their price ceiling.
     extras=[]
     for key,group in grouped.items():
-        slots=DEMAND_PROFILE[key][0]
         for car in group:
             if car['id'] not in used:
                 extras.append(car)
     extras.sort(key=lambda car: (
         list(DEMAND_PROFILE).index(car['_demand_key']),
+        car.get('price_krw') or 999999999,
         -int(car.get('year') or 0),
         car.get('mileage_km') if isinstance(car.get('mileage_km'),(int,float)) else 9999999
     ))
     for car in extras:
         if len(selected)>=PUBLIC_TARGET: break
         key=car['_demand_key']
+        # Do not let one model flood the page just because other models are temporarily scarce.
         if selected_per_key[key] >= DEMAND_PROFILE[key][0] + 2: continue
         selected.append(car); used.add(car['id']); selected_per_key[key]+=1
 
-    # Keep a small discovery layer for newer adjacent generations, but never let
-    # one raw model dominate the public page.
-    raw_counts={}
-    discovery.sort(key=lambda car: (-int(car.get('year') or 0),
+    # Discovery is intentionally capped. It tests newer/adjacent generations without padding
+    # the catalog to 150 with unrelated or expensive cars.
+    raw_counts={}; discovery_added=0
+    discovery.sort(key=lambda car: (car.get('price_krw') or 999999999,-int(car.get('year') or 0),
                                     car.get('mileage_km') if isinstance(car.get('mileage_km'),(int,float)) else 9999999))
     for car in discovery:
-        if len(selected)>=PUBLIC_TARGET: break
+        if len(selected)>=PUBLIC_TARGET or discovery_added>=DISCOVERY_MAX: break
         signature=(str(car.get('manufacturer') or ''),str(car.get('model') or ''))
         if raw_counts.get(signature,0)>=1: continue
-        selected.append(car); used.add(car['id']); raw_counts[signature]=1
+        selected.append(car); used.add(car['id']); raw_counts[signature]=1; discovery_added+=1
 
+    print('Price guardrails rejected',rejected_expensive,'target-generation candidates',flush=True)
+    print('Discovery listings added:',discovery_added,flush=True)
     for car in selected: car.pop('_demand_key',None)
     return selected[:PUBLIC_TARGET]
 
