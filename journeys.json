@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "vehicles": [
+    {
+      "id": "207361",
+      "name": "Kia Sorento",
+      "reference": "207361",
+      "color": "Gris",
+      "photos": {
+        "purchase": "assets/journeys/207361-purchase.jpeg",
+        "before": "assets/journeys/207361-before.jpeg",
+        "loaded": "assets/journeys/207361-loaded.jpeg",
+        "arrival": "assets/journeys/207361-arrival.jpeg"
+      },
+      "quote": "",
+      "customer": ""
+    },
+    {
+      "id": "247090",
+      "name": "Kia Sorento R",
+      "reference": "247090",
+      "color": "Blanc",
+      "photos": {
+        "purchase": "assets/journeys/247090-purchase.jpeg",
+        "before": "assets/journeys/247090-before.jpeg",
+        "loaded": "assets/journeys/247090-loaded.jpeg",
+        "arrival": "assets/journeys/247090-arrival.jpeg"
+      },
+      "quote": "",
+      "customer": ""
+    }
+  ]
+}
