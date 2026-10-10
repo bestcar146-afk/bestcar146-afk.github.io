@@ -108,7 +108,7 @@
              pick(x,['trim','badge','badgeDetail','badge_detail','grade','title','name'],'')]
              .join(' ').toLowerCase().replace(/\s+/g,' ');
     const rules=[
-      [49,['new sorento r']],[48,['all new sorento']],[31,['sorento r']],
+      [48,['all new sorento']],[49,['new sorento r']],[31,['sorento r']],
       [27,['santa fe dm']],[27,['santafe dm']],[23,['sportage r']],
       [18,['grand starex']],[17,['all new carnival']],[14,['audi','q5']],
       [13,['all new tucson']],[12,['maxcruz']],[11,['mighty']],
@@ -124,15 +124,64 @@
     return 0;
   }
 
+  function normalizeMakeName(v){
+    let s=String(v||'').trim();
+    s=s.replace(/[_-]+/g,' ');
+    s=s.replace(/([a-z])([A-Z])/g,'$1 $2');
+    s=s.replace(/([A-Z]{2,})([A-Z][a-z])/g,'$1 $2');
+    s=s.replace(/\s+/g,' ').trim();
+    s=s.replace(/^Chevrolet\s*GM\s*Daewoo$/i,'Chevrolet GM Daewoo');
+    s=s.replace(/^Chevrolet\s*DM\s*Daewoo$/i,'Chevrolet DM Daewoo');
+    s=s.replace(/^Renault\s*Korea\s*Samsung$/i,'Renault Korea Samsung');
+    s=s.replace(/^KG\s*Mobility\s*Ssangyong$/i,'KG Mobility Ssangyong');
+    s=s.replace(/^Mercedes\s*Benz$/i,'Mercedes Benz');
+    return s;
+  }
+  function simpleModelName(v){
+    const raw=String(v||'').trim();
+    const s=raw.toLowerCase().replace(/[_-]+/g,' ').replace(/\s+/g,' ');
+    if(s.includes('sorento')) return 'Sorento';
+    if(s.includes('sportage')) return 'Sportage';
+    if(s.includes('santa fe')||s.includes('santafe')) return 'Santa Fe';
+    if(s.includes('tucson')) return 'Tucson';
+    if(s.includes('carnival')) return 'Carnival';
+    if(s.includes('malibu')) return 'Malibu';
+    if(s.includes('cruze')) return 'Cruze';
+    if(s.includes('orlando')) return 'Orlando';
+    if(s.includes('captiva')) return 'Captiva';
+    if(s.includes('morning')||s.includes('picanto')) return 'Morning';
+    if(s.includes('pride')) return 'Pride';
+    if(s.includes('bongo')) return 'Bongo';
+    if(s.includes('mohave')) return 'Mohave';
+    if(s.includes('rexton')) return 'Rexton';
+    if(s.includes('countryman')) return 'Countryman';
+    if(s.includes('grand starex')) return 'Grand Starex';
+    if(/^starex\b/i.test(raw)) return 'Starex';
+    return raw
+      .replace(/\([^)]*\)/g,'')
+      .replace(/\b(?:All New|The New|New)\b/gi,'')
+      .replace(/\b\d+\s*Gen(?:eration)?\b/gi,'')
+      .replace(/\s+/g,' ')
+      .trim() || raw;
+  }
+  function isVehicleImageUrl(u){
+    const s=String(u||'').trim().toLowerCase();
+    if(!/^https:\/\//.test(s)) return false;
+    if(/img\.kbchachacha\.com\//.test(s)) return true;
+    if(/(?:ci|fem|carpicture)[^/]*\.encar\.com\//.test(s)) return true;
+    if(/encar\.com\/.*\.(?:jpe?g|png|webp)(?:\?|$)/.test(s)) return true;
+    return /\.(?:jpe?g|png|webp)(?:\?|$)/.test(s) && !/\/car\/detail\./.test(s);
+  }
+
   function normalizeCar(x) {
     const sourceId = String(pick(x,['id','Id','carId','car_id','vehicleId','vehicle_id','carid'],''));
     const rawPhotos = pick(x,['photos','images','photoUrls','imageUrls'],[]);
-    let photos = arr(rawPhotos).map(cleanImage).filter(Boolean);
+    let photos = arr(rawPhotos).map(cleanImage).filter(isVehicleImageUrl);
     if(!photos.length){
-      photos = arr(pick(x,['details.photos'],[])).map(cleanImage).filter(Boolean);
+      photos = arr(pick(x,['details.photos'],[])).map(cleanImage).filter(isVehicleImageUrl);
     }
     const single = cleanImage(pick(x,['thumbnail','thumbnailUrl','thumbnail_url','image','imageUrl','image_url','photo','photoUrl','photo_url'],''));
-    if (single && !photos.includes(single)) photos.unshift(single);
+    if (single && isVehicleImageUrl(single) && !photos.includes(single)) photos.unshift(single);
     // Encar's 001 preview may be a collage; lead with a supplied individual photo.
     if (String(pick(x,['source'],'Encar')) === 'Encar') {
       const main = photos.find(u => /_003\.[a-z]+(?:\?|$)/i.test(u)) || photos.find(u => !/_001\.[a-z]+(?:\?|$)/i.test(u));
@@ -146,8 +195,9 @@
       sourceId,
       details:x.details || null,
       source:String(pick(x,['source'],'Encar')),
-      make:String(pick(x,['manufacturer','Manufacturer','make','Make','brand','maker'],'Encar')),
+      make:normalizeMakeName(pick(x,['manufacturer','Manufacturer','make','Make','brand','maker'],'Encar')),
       model:String(pick(x,['model','Model','modelName','model_name'],'Vehicle')),
+      simpleModel:simpleModelName(pick(x,['model','Model','modelName','model_name'],'Vehicle')),
       trim:String(pick(x,['trim','badge','badgeDetail','badge_detail','grade','title','name'],'')).trim(),
       year,
       mileage:pick(x,['mileage_km','mileage'],null) === null ? null : num(pick(x,['mileage_km','mileage'],0)),
@@ -317,6 +367,35 @@
       console.error('BEST CAR STAR live Encar feed error',e);
     } finally { liveLoading=false; }
   }
+
+  const baseUpdateModels=updateModels;
+  updateModels=function(){
+    const make=$('#makeFilter').value;
+    const model=$('#modelFilter');
+    if(!make){
+      model.innerHTML=`<option value="">${t('select_make_first')}</option>`;
+      model.disabled=true;
+      return;
+    }
+    const current=model.value;
+    const models=[...new Set(inventory.filter(c=>c.make===make).map(c=>c.simpleModel||simpleModelName(c.model)).filter(Boolean))].sort();
+    fillSelect(model,models,t('all_models'));
+    model.disabled=false;
+    if(current&&models.includes(current)) model.value=current;
+  };
+
+  const originalFiltered=filtered;
+  filtered=function(){
+    const selectedModel=$('#modelFilter').value;
+    const saved=$('#modelFilter').value;
+    if(selectedModel) $('#modelFilter').value='';
+    let cars=originalFiltered();
+    if(selectedModel) {
+      $('#modelFilter').value=saved;
+      cars=cars.filter(c=>(c.simpleModel||simpleModelName(c.model))===selectedModel);
+    }
+    return cars;
+  };
 
   const field=document.createElement('div');field.className='field';
   field.innerHTML='<label id="sourceLabel"></label><select id="sourceFilter"><option value=""></option><option>Encar</option><option>KB ChaChaCha</option></select>';
