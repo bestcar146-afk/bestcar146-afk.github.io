@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-10T15:20:50.676907+00:00",
+  "updated_at": "2026-10-10T15:39:26.894028+00:00",
   "provider": "EnCarAPI",
   "scope": "Sales-driven public selection based on BEST CAR STAR historical demand",
   "source_counts": {
@@ -28,6 +28,7 @@
         "https://ci.encar.com/carpicture07/pic4147/41476801_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/41476801",
+      "preference_2026": 18,
       "details": {
         "checked_at": "2026-10-10T12:38:15.066555+00:00",
         "spec": {
@@ -104,6 +105,7 @@
         "https://ci.encar.com/carpicture05/pic4285/42858596_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42858596",
+      "preference_2026": 18,
       "details": {
         "checked_at": "2026-10-10T06:38:50.182978+00:00",
         "spec": {
@@ -180,6 +182,7 @@
         "https://ci.encar.com/carpicture06/pic4146/41469765_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/41469765",
+      "preference_2026": 18,
       "details": {
         "checked_at": "2026-10-10T12:38:15.066555+00:00",
         "spec": {
@@ -256,6 +259,7 @@
         "https://ci.encar.com/carpicture01/pic4191/41913019_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/41913019",
+      "preference_2026": 18,
       "details": {
         "checked_at": "2026-10-10T12:38:15.066555+00:00",
         "spec": {
@@ -348,6 +352,7 @@
         "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28832802"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28832802",
+      "preference_2026": 18,
       "details": {
         "checked_at": "2026-10-10T00:45:23.928283+00:00",
         "spec": {
@@ -429,6 +434,7 @@
         "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28738948"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28738948",
+      "preference_2026": 12,
       "details": {
         "checked_at": "2026-10-10T00:45:23.928283+00:00",
         "spec": {
@@ -509,6 +515,7 @@
         "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28753385"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28753385",
+      "preference_2026": 6,
       "details": {
         "checked_at": "2026-10-10T00:45:23.928283+00:00",
         "spec": {
@@ -572,6 +579,7 @@
         "https://ci.encar.com/carpicture04/pic4274/42749902_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42749902",
+      "preference_2026": 10,
       "details": {
         "checked_at": "2026-10-10T15:20:49.069523+00:00",
         "spec": {
@@ -643,6 +651,7 @@
         "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28819675"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28819675",
+      "preference_2026": 10,
       "details": {
         "checked_at": "2026-10-10T00:45:23.928283+00:00",
         "spec": {
@@ -720,6 +729,7 @@
         "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28756174"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28756174",
+      "preference_2026": 10,
       "details": {
         "checked_at": "2026-10-10T00:45:23.928283+00:00",
         "spec": {
@@ -783,6 +793,7 @@
         "https://ci.encar.com/carpicture06/pic4286/42869981_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42869981",
+      "preference_2026": 5,
       "details": {
         "checked_at": "2026-10-10T15:20:49.069523+00:00",
         "spec": {
@@ -874,6 +885,7 @@
         "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28702447"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28702447",
+      "preference_2026": 3,
       "details": {
         "checked_at": "2026-10-10T00:45:23.928283+00:00",
         "spec": {
@@ -955,6 +967,7 @@
         "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28754061"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28754061",
+      "preference_2026": 13,
       "details": {
         "checked_at": "2026-10-10T00:45:23.928283+00:00",
         "spec": {
@@ -1037,6 +1050,7 @@
         "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28670105"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28670105",
+      "preference_2026": 13,
       "details": {
         "checked_at": "2026-10-10T00:45:23.928283+00:00",
         "spec": {
@@ -1103,6 +1117,7 @@
         "https://ci.encar.com/carpicture05/pic4285/42850125_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42864429",
+      "preference_2026": 13,
       "details": {
         "checked_at": "2026-10-10T15:20:49.069523+00:00",
         "spec": {
@@ -1190,6 +1205,7 @@
         "https://ci.encar.com/carpicture02/pic4182/41828707_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/41828707",
+      "preference_2026": 7,
       "details": {
         "checked_at": "2026-10-10T00:45:23.928283+00:00",
         "spec": {
@@ -1281,6 +1297,7 @@
         "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28698693"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28698693",
+      "preference_2026": 17,
       "details": {
         "checked_at": "2026-10-10T00:45:23.928283+00:00",
         "spec": {
@@ -1344,6 +1361,7 @@
         "https://ci.encar.com/carpicture07/pic4287/42870722_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42870722",
+      "preference_2026": 17,
       "details": {
         "checked_at": "2026-10-10T15:20:49.069523+00:00",
         "spec": {
@@ -1403,6 +1421,7 @@
         "https://ci.encar.com/carpicture04/pic4234/42341714_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42341714",
+      "preference_2026": 7,
       "details": {
         "checked_at": "2026-10-10T12:38:15.066555+00:00",
         "spec": {
@@ -1471,6 +1490,7 @@
         "https://ci.encar.com/carpicture07/pic4287/42870461_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42870461",
+      "preference_2026": 7,
       "details": {
         "checked_at": "2026-10-10T12:38:15.066555+00:00",
         "spec": {
@@ -1547,6 +1567,7 @@
         "https://ci.encar.com/carpicture07/pic4287/42870057_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42870057",
+      "preference_2026": 5,
       "details": {
         "checked_at": "2026-10-10T12:38:15.066555+00:00",
         "spec": {
@@ -1623,6 +1644,7 @@
         "https://ci.encar.com/carpicture06/pic4236/42365920_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42365920",
+      "preference_2026": 5,
       "details": {
         "checked_at": "2026-10-10T12:38:15.066555+00:00",
         "spec": {
@@ -1699,6 +1721,7 @@
         "https://ci.encar.com/carpicture05/pic4285/42850125_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42850125",
+      "preference_2026": 13,
       "details": {
         "checked_at": "2026-10-10T15:20:49.069523+00:00",
         "spec": {
@@ -1802,6 +1825,7 @@
         "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28648845"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28648845",
+      "preference_2026": 13,
       "details": {
         "checked_at": "2026-10-10T00:45:23.928283+00:00",
         "spec": {
@@ -1883,6 +1907,7 @@
         "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28832997"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28832997",
+      "preference_2026": 7,
       "details": {
         "checked_at": "2026-10-10T12:38:15.066555+00:00",
         "spec": {
@@ -1948,6 +1973,7 @@
         "https://ci.encar.com/carpicture06/pic4286/42869989_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42869989",
+      "preference_2026": 7,
       "details": {
         "checked_at": "2026-10-10T12:38:15.066555+00:00",
         "spec": {
@@ -2010,6 +2036,7 @@
         "https://ci.encar.com/carpicture07/pic4287/42870426_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42870426",
+      "preference_2026": 17,
       "details": {
         "checked_at": "2026-10-10T12:38:15.066555+00:00",
         "spec": {
@@ -2100,6 +2127,7 @@
         "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28762563"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28762563",
+      "preference_2026": 17,
       "details": {
         "checked_at": "2026-10-10T00:45:23.928283+00:00",
         "spec": {
@@ -2178,6 +2206,7 @@
         "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28820048"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28820048",
+      "preference_2026": 5,
       "details": {
         "checked_at": "2026-10-09T18:37:20.917391+00:00",
         "spec": {
@@ -2236,6 +2265,7 @@
         "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28828350"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28828350",
+      "preference_2026": 0,
       "details": {
         "checked_at": "2026-10-10T15:20:49.069523+00:00",
         "spec": {
@@ -2283,6 +2313,7 @@
         "https://ci.encar.com/carpicture01/pic4141/41415368_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/41415368",
+      "preference_2026": 0,
       "details": {
         "checked_at": "2026-10-10T12:38:15.066555+00:00",
         "spec": {
@@ -2355,6 +2386,7 @@
         "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28818651"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28818651",
+      "preference_2026": 23,
       "details": {
         "checked_at": "2026-10-10T15:20:49.069523+00:00",
         "spec": {
@@ -2398,6 +2430,7 @@
         "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28828191"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28828191",
+      "preference_2026": 18,
       "details": {
         "checked_at": "2026-10-10T15:20:49.069523+00:00",
         "spec": {
@@ -2444,6 +2477,7 @@
         "https://ci.encar.com/carpicture01/pic4281/42813967_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42814163",
+      "preference_2026": 7,
       "details": {
         "checked_at": "2026-10-10T12:38:15.066555+00:00",
         "spec": {
@@ -2530,6 +2564,7 @@
         "https://ci.encar.com/carpicture07/pic4287/42870410_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42870410",
+      "preference_2026": 4,
       "details": {
         "checked_at": "2026-10-10T12:38:15.066555+00:00",
         "spec": {
@@ -2607,6 +2642,7 @@
         "https://ci.encar.com/carpicture07/pic4287/42870444_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42870444",
+      "preference_2026": 6,
       "details": {
         "checked_at": "2026-10-10T12:38:15.066555+00:00",
         "spec": {
@@ -2696,6 +2732,7 @@
         "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28833011"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28833011",
+      "preference_2026": 0,
       "details": {
         "checked_at": "2026-10-10T00:45:23.928283+00:00",
         "spec": {
@@ -2761,6 +2798,7 @@
         "https://ci.encar.com/carpicture10/pic4180/41802194_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/41802194",
+      "preference_2026": 7,
       "details": {
         "checked_at": "2026-10-10T12:38:15.066555+00:00",
         "spec": {
@@ -2838,6 +2876,7 @@
         "https://ci.encar.com/carpicture06/pic4216/42166583_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42166583",
+      "preference_2026": 7,
       "details": {
         "checked_at": "2026-10-10T12:38:15.066555+00:00",
         "spec": {
@@ -2914,6 +2953,7 @@
         "https://ci.encar.com/carpicture05/pic4285/42856993_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42856993",
+      "preference_2026": 3,
       "details": {
         "checked_at": "2026-10-10T15:20:49.069523+00:00",
         "spec": {
@@ -2991,6 +3031,7 @@
         "https://ci.encar.com/carpicture04/pic4284/42846093_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42852213",
+      "preference_2026": 8,
       "details": {
         "checked_at": "2026-10-10T15:20:49.069523+00:00",
         "spec": {
@@ -3100,6 +3141,7 @@
         "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28794897"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28794897",
+      "preference_2026": 6,
       "details": {
         "checked_at": "2026-10-10T00:45:23.928283+00:00",
         "spec": {
@@ -3165,6 +3207,7 @@
         "https://ci.encar.com/carpicture10/pic4220/42204126_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42204126",
+      "preference_2026": 7,
       "details": {
         "checked_at": "2026-10-10T12:38:15.066555+00:00",
         "spec": {
@@ -3237,6 +3280,7 @@
         "https://ci.encar.com/carpicture06/pic4286/42869984_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42869984",
+      "preference_2026": 10,
       "details": {
         "checked_at": "2026-10-10T12:38:15.066555+00:00",
         "spec": {
@@ -3290,6 +3334,7 @@
         "https://ci.encar.com/carpicture07/pic4287/42870673_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42870673",
+      "preference_2026": 6,
       "details": {
         "checked_at": "2026-10-10T15:20:49.069523+00:00",
         "spec": {
@@ -3365,6 +3410,7 @@
         "https://ci.encar.com/carpicture06/pic4286/42860225_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42860752",
+      "preference_2026": 17,
       "details": {
         "checked_at": "2026-10-10T15:20:49.069523+00:00",
         "spec": {
@@ -3457,6 +3503,7 @@
         "https://ci.encar.com/carpicture04/pic4104/41048288_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/41049773",
+      "preference_2026": 0,
       "details": {
         "checked_at": "2026-10-10T12:38:15.066555+00:00",
         "spec": {
@@ -3534,6 +3581,7 @@
         "https://ci.encar.com/carpicture07/pic4237/42370230_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42373741",
+      "preference_2026": 4,
       "details": {
         "checked_at": "2026-10-10T12:38:15.066555+00:00",
         "spec": {
@@ -3620,6 +3668,7 @@
         "https://ci.encar.com/carpicture07/pic4217/42171585_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42171585",
+      "preference_2026": 18,
       "details": {
         "checked_at": "2026-10-10T12:38:15.066555+00:00",
         "spec": {
@@ -3700,6 +3749,7 @@
         "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28833012"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28833012",
+      "preference_2026": 9,
       "details": {
         "checked_at": "2026-10-10T00:45:23.928283+00:00",
         "spec": {
@@ -3765,6 +3815,7 @@
         "https://ci.encar.com/carpicture01/pic4211/42111766_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42111766",
+      "preference_2026": 0,
       "details": {
         "checked_at": "2026-10-10T12:38:15.066555+00:00",
         "spec": {
@@ -3823,6 +3874,7 @@
         "https://ci.encar.com/carpicture07/pic4287/42870362_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42870362",
+      "preference_2026": 8,
       "details": {
         "checked_at": "2026-10-10T12:38:15.066555+00:00",
         "spec": {
@@ -3903,6 +3955,7 @@
         "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28803565"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28803565",
+      "preference_2026": 10,
       "details": {
         "checked_at": "2026-10-10T00:45:23.928283+00:00",
         "spec": {
@@ -3983,6 +4036,7 @@
         "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28741370"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28741370",
+      "preference_2026": 4,
       "details": {
         "checked_at": "2026-10-10T00:45:23.928283+00:00",
         "spec": {
@@ -4049,6 +4103,7 @@
         "https://ci.encar.com/carpicture07/pic4287/42870397_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42870397",
+      "preference_2026": 0,
       "details": {
         "checked_at": "2026-10-10T12:38:15.066555+00:00",
         "spec": {
@@ -4125,6 +4180,7 @@
         "https://ci.encar.com/carpicture06/pic4236/42367748_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42368513",
+      "preference_2026": 13,
       "details": {
         "checked_at": "2026-10-10T12:38:15.066555+00:00",
         "spec": {
@@ -4213,6 +4269,7 @@
         "https://ci.encar.com/carpicture10/pic4260/42600400_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42600400",
+      "preference_2026": 12,
       "details": {
         "checked_at": "2026-10-10T12:38:15.066555+00:00",
         "spec": {
@@ -4290,6 +4347,7 @@
         "https://ci.encar.com/carpicture05/pic4285/42856470_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42864142",
+      "preference_2026": 7,
       "details": {
         "checked_at": "2026-10-10T12:38:15.066555+00:00",
         "spec": {
