@@ -231,13 +231,17 @@ YEAR_BANDS = {
 }
 
 TARGET_SEARCHES = [
-    ('sorento',100),('santa fe',70),('sportage',70),('starex',60),('carnival',60),
-    ('tucson',60),('q5',40),('maxcruz',40),('mighty',40),('rexton',40),
-    ('tiguan',35),('malibu',35),('bongo',35),('qm3',35),('q7',35),
-    ('i30',30),('captiva',30),('morning',30),('x3',30),('wrangler',30),
-    ('countryman',35),('cruze',30),('x6',30),('x5',30),('orlando',25),
-    ('mohave',25),('soul',25),('pride',25),('spark',25),('terracan',25),
-    ('korando turismo',25),('accent',25),('golf',20),('touareg',20),('cayenne',20)
+    ('new sorento r',100,2),('all new sorento',100,2),('sorento r',100,2),
+    ('santa fe dm',80,2),('sportage r',80,2),('grand starex',70,2),
+    ('all new carnival',70,2),('q5',60,2),('all new tucson',70,2),('maxcruz',60,2),
+    ('mighty',40,1),('rexton w',40,1),('tiguan',40,1),('malibu',40,1),
+    ('bongo',40,1),('qm3',40,1),('q7',40,1),('i30',35,1),('captiva',35,1),
+    ('morning',35,1),('x3',35,1),('countryman',40,1),('wrangler',40,1),
+    ('x6',35,1),('sportage',40,1),('cruze',35,1),('orlando',30,1),
+    ('mohave',30,1),('soul',30,1),('pride',30,1),('tucson',40,1),
+    ('starex',40,1),('spark',30,1),('terracan',30,1),('x5',35,1),
+    ('korando turismo',30,1),('accent',30,1),('golf',25,1),('touareg',25,1),
+    ('cayenne',25,1),('galloper',20,1)
 ]
 
 def demand_key(car):
@@ -454,25 +458,29 @@ def main():
     candidates=[]; seen=set()
     common={'source':'encar,kbc','lang':'en','sort':'newest',
             'exclude_duplicates':'true','exclude_prices':'1111,9999'}
-    for search_term,limit in TARGET_SEARCHES:
-        params=dict(common)
-        params['model_search']=search_term
-        params['limit']=limit
-        params['page']=1
-        req=urllib.request.Request('https://api.encarapi.com/api/catalog?'+urlencode(params),
-                                  headers={'x-api-key':key,'Accept':'application/json'})
-        try:
-            with urllib.request.urlopen(req,timeout=120) as response: data=json.load(response)
-        except urllib.error.HTTPError as e:
-            print('Catalog search skipped:',search_term,'HTTP',e.code,flush=True)
-            continue
-        if not isinstance(data,dict) or not isinstance(data.get('SearchResults'),list):
-            print('Catalog search returned unexpected data:',search_term,flush=True)
-            continue
-        for row in data['SearchResults']:
-            car=normalize(row)
-            if car and car['id'] not in seen:
-                seen.add(car['id']); candidates.append(car)
+    for search_term,limit,pages in TARGET_SEARCHES:
+        for page in range(1,pages+1):
+            params=dict(common)
+            params['model_search']=search_term
+            params['limit']=limit
+            params['page']=page
+            req=urllib.request.Request('https://api.encarapi.com/api/catalog?'+urlencode(params),
+                                      headers={'x-api-key':key,'Accept':'application/json'})
+            try:
+                with urllib.request.urlopen(req,timeout=120) as response: data=json.load(response)
+            except urllib.error.HTTPError as e:
+                print('Catalog search skipped:',search_term,'page',page,'HTTP',e.code,flush=True)
+                break
+            if not isinstance(data,dict) or not isinstance(data.get('SearchResults'),list):
+                print('Catalog search returned unexpected data:',search_term,'page',page,flush=True)
+                break
+            rows=data['SearchResults']
+            for row in rows:
+                car=normalize(row)
+                if car and car['id'] not in seen:
+                    seen.add(car['id']); candidates.append(car)
+            if len(rows)<limit:
+                break
     print('Candidate listings collected:',len(candidates),flush=True)
     if not candidates: raise ValueError('No valid listings; previous snapshot retained')
     cars=select_public(candidates)
