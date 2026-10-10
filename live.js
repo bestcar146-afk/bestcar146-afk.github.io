@@ -104,6 +104,9 @@
     const sourceId = String(pick(x,['id','Id','carId','car_id','vehicleId','vehicle_id','carid'],''));
     const rawPhotos = pick(x,['photos','images','photoUrls','imageUrls'],[]);
     let photos = arr(rawPhotos).map(cleanImage).filter(Boolean);
+    if(!photos.length){
+      photos = arr(pick(x,['details.photos'],[])).map(cleanImage).filter(Boolean);
+    }
     const single = cleanImage(pick(x,['thumbnail','thumbnailUrl','thumbnail_url','image','imageUrl','image_url','photo','photoUrl','photo_url'],''));
     if (single && !photos.includes(single)) photos.unshift(single);
     // Encar's 001 preview may be a collage; lead with a supplied individual photo.
@@ -269,7 +272,7 @@
       if(!res.ok) throw new Error('Encar feed HTTP '+res.status);
       const json=await res.json();
       const rows=extractCars(json);
-      const mapped=rows.map(normalizeCar).filter(c=>c.sourceId && c.price>0 && c.make && c.model);
+      const mapped=rows.map(normalizeCar).filter(c=>c.sourceId && c.price>0 && c.make && c.model && c.photos.length>0);
       if(!mapped.length) throw new Error('No valid vehicle records returned by the live feed.');
       inventory=mapped;
       liveLoadedAt=new Date(json.updated_at);
