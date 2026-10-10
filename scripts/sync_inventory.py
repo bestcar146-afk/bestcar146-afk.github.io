@@ -126,6 +126,44 @@ def price_stretch_multiplier(key):
     if key in STABLE_PRICE_MODELS or key in LIMITED_HISTORY_MODELS: return 1.25
     return 1.20
 
+DEMAND_2026 = {
+    'Kia New Sorento R': 49,
+    'Kia All New Sorento': 48,
+    'Kia Sorento R': 31,
+    'Hyundai Santa Fe DM': 27,
+    'Kia Sportage R': 23,
+    'Hyundai Grand Starex': 18,
+    'Kia All New Carnival': 17,
+    'Audi Q5': 14,
+    'Hyundai All New Tucson': 13,
+    'Hyundai Maxcruz': 12,
+    'Hyundai Mighty': 11,
+    'VW Tiguan': 10,
+    'Chevrolet Malibu': 10,
+    'Ssangyong Rexton W': 10,
+    'Kia Bongo': 9,
+    'Renault Samsung QM3': 8,
+    'Audi Q7': 8,
+    'Chevrolet Captiva': 8,
+    'Hyundai i30': 8,
+    'BMW X3': 7,
+    'Hyundai Tucson': 7,
+    'Kia Morning': 7,
+    'Hyundai Santa Fe': 6,
+    'Kia Pride': 6,
+    'Chevrolet Cruze': 5,
+    'Jeep Wrangler Rubicon': 5,
+    'BMW X5': 4,
+    'Hyundai Accent': 4,
+    'Hyundai Starex': 4,
+    'Kia Sportage': 4,
+    'Chevrolet Orlando': 3,
+    'Kia Mohave': 3,
+    'Kia Soul': 3,
+    'Mini Countryman': 3,
+    'Mini Countryman All4': 3,
+}
+
 YEAR_BANDS = {
     'Kia All New Sorento': (2015, 2017),
     'Kia New Sorento R': (2013, 2014),
@@ -290,7 +328,10 @@ def select_public(cars):
 
     print('Price stretch limits rejected',rejected_expensive,'target-generation candidates',flush=True)
     print('Discovery listings added:',discovery_added,flush=True)
-    for car in selected: car.pop('_demand_key',None)
+    for car in selected:
+        key=car.get('_demand_key') or demand_key(car)
+        car['preference_2026']=DEMAND_2026.get(key,0)
+        car.pop('_demand_key',None)
     return selected[:PUBLIC_TARGET]
 
 def scalar(v):
