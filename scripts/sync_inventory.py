@@ -72,50 +72,56 @@ def normalize(row):
 
 
 PUBLIC_TARGET=150
-CANDIDATE_LIMIT=100
-CANDIDATE_PAGES=6
-DISCOVERY_MAX=35
 
 # Historical demand + price profile derived directly from BEST CAR STAR sold/shipped Excel data (2024-Sep 2026).
 # The sold file is itself price-filtered, so these price levels represent accepted bargain/acquisition levels,
 # not the Korean market average. Slots total 150 as a target capacity; actual public count may be lower.
 DEMAND_PROFILE = {
-    # slots, priority source-price, maximum source-price
-    'Kia All New Sorento': (24, 6365000, 7129650),
-    'Kia New Sorento R': (25, 4265000, 5015000),
-    'Kia Sorento R': (16, 2665000, 2890000),
-    'Hyundai Santa Fe DM': (14, 4065000, 4165000),
-    'Kia Sportage R': (12, 3765000, 4140000),
-    'Hyundai Grand Starex': (10, 3600000, 4690000),
-    'Renault Samsung QM3': (7, 1890000, 2152500),
-    'Audi Q5': (8, 9166325, 9680236),
-    'Hyundai Maxcruz': (7, 6716510, 7115430),
-    'Hyundai Mighty': (5, 6000000, 6550000),
-    'Hyundai Santa Fe': (4, 4465000, 4565000),
-    'VW Tiguan': (4, 4665000, 5565000),
-    'Audi Q7': (3, 4957500, 6367221),
-    'Chevrolet Captiva': (2, 2715000, 2990000),
-    'Chevrolet Malibu': (4, 2000000, 2082500),
-    'Hyundai i30': (3, 3165000, 3315000),
-    'Kia Sportage': (3, 5715000, 6298450),
-    'BMW X3': (2, 2865000, 3390000),
-    'BMW X5': (2, 3415000, 4290000),
-    'Chevrolet Cruze': (1, 2000000, 2193900),
-    'Chevrolet Orlando': (2, 1415000, 1540000),
-    'Hyundai Accent': (2, 1715000, 1902500),
-    'Hyundai All New Tucson': (7, 6665000, 7180950),
-    'Hyundai Starex': (1, 3335000, 4120000),
-    'Hyundai Tucson': (1, 4700000, 7770810),
-    'Jeep Wrangler Rubicon': (2, 14340000, 14340000),
-    'Kia All New Carnival': (9, 4665000, 5765000),
-    'Kia Bongo': (2, 3765000, 4100000),
-    'Kia Mohave': (2, 3365000, 3690000),
-    'Kia Morning': (2, 1737400, 2115000),
-    'Kia Pride': (1, 1990000, 2185000),
-    'Kia Soul': (2, 1565000, 2815000),
-    'Mini Countryman': (1, 2065000, 2490000),
-    'Mini Countryman All4': (2, 3665000, 4365000),
-    'Ssangyong Rexton W': (1, 2440000, 2702500),
+    'Kia New Sorento R': (16, 4702500, 6165000),
+    'Kia All New Sorento': (16, 5965000, 7899040),
+    'Kia Sorento R': (10, 2565000, 3588750),
+    'Hyundai Santa Fe DM': (10, 4132500, 5715000),
+    'Kia Sportage R': (9, 3215000, 4465000),
+    'Hyundai Grand Starex': (7, 3461250, 4665000),
+    'Kia All New Carnival': (7, 4315000, 6052500),
+    'Audi Q5': (5, 6373750, 9199488),
+    'Hyundai All New Tucson': (5, 6302500, 7699285),
+    'Hyundai Maxcruz': (5, 6452500, 8275750),
+    'Hyundai Mighty': (4, 6000000, 6900000),
+    'Ssangyong Rexton W': (4, 1865000, 2677500),
+    'VW Tiguan': (4, 4616250, 5565000),
+    'Chevrolet Malibu': (4, 1777500, 2152500),
+    'Kia Bongo': (3, 2765000, 4100000),
+    'Renault Samsung QM3': (3, 1715000, 2015000),
+    'Audi Q7': (3, 4427500, 5273750),
+    'Hyundai i30': (3, 2736250, 3590000),
+    'Chevrolet Captiva': (3, 1803750, 2602500),
+    'Kia Morning': (3, 1325100, 2115000),
+    'BMW X3': (3, 2640000, 3390000),
+    'Mini Countryman All4': (3, 3390000, 5115000),
+    'Jeep Wrangler Rubicon': (3, 13438630, 14340000),
+    'BMW X6': (3, 7000000, 7591290),
+    'Kia Sportage': (3, 5715000, 6915000),
+    'Chevrolet Cruze': (2, 1500000, 2130000),
+    'Chevrolet Orlando': (2, 1290000, 1540000),
+    'Kia Mohave': (2, 3215000, 3690000),
+    'Kia Soul': (2, 1502500, 3146250),
+    'Kia Pride': (2, 1900000, 2185000),
+    'Hyundai Tucson': (2, 3015000, 3200000),
+    'Hyundai Starex': (2, 2552500, 4000000),
+    'Chevrolet Spark': (2, 1015000, 1215000),
+    'Hyundai Terracan': (2, 2925000, 4450000),
+    'Mini Countryman': (2, 1990000, 2490000),
+    'BMW X5': (2, 2740000, 4290000),
+    'KGM Korando Turismo': (2, 1615000, 2252500),
+    'Hyundai Accent': (2, 1627500, 1902500),
+    'Hyundai Santa Fe': (2, 4940000, 5690000),
+    'Jeep Wrangler': (1, 17500000, 17500000),
+    'VW Touareg': (1, 9518750, 10156250),
+    'VW Golf': (1, 3752500, 4315000),
+    'Porsche Cayenne': (1, 11275000, 13650000),
+    'Hyundai Galloper': (1, 4425000, 4700000),
+    'Ssangyong Korando': (1, 1952500, 2277500),
 }
 
 RISING_PRICE_MODELS={'Audi Q5','Audi Q7','Chevrolet Cruze','Kia Sportage','Hyundai Starex'}
@@ -140,78 +146,99 @@ DEMAND_2026 = {
     'Hyundai All New Tucson': 13,
     'Hyundai Maxcruz': 12,
     'Hyundai Mighty': 11,
+    'Ssangyong Rexton W': 10,
     'VW Tiguan': 10,
     'Chevrolet Malibu': 10,
-    'Ssangyong Rexton W': 10,
     'Kia Bongo': 9,
     'Renault Samsung QM3': 8,
     'Audi Q7': 8,
-    'Chevrolet Captiva': 8,
     'Hyundai i30': 8,
-    'BMW X3': 7,
-    'Hyundai Tucson': 7,
+    'Chevrolet Captiva': 8,
+    'Mini Countryman All4': 8,
     'Kia Morning': 7,
-    'Hyundai Santa Fe': 6,
+    'BMW X3': 7,
     'Kia Pride': 6,
-    'Chevrolet Cruze': 5,
+    'KGM Korando Turismo': 6,
     'Jeep Wrangler Rubicon': 5,
+    'Hyundai Tucson': 5,
+    'Chevrolet Cruze': 5,
+    'BMW X6': 5,
     'BMW X5': 4,
     'Hyundai Accent': 4,
     'Hyundai Starex': 4,
     'Kia Sportage': 4,
+    'Chevrolet Spark': 4,
+    'Hyundai Terracan': 4,
     'Chevrolet Orlando': 3,
     'Kia Mohave': 3,
     'Kia Soul': 3,
     'Mini Countryman': 3,
-    'Mini Countryman All4': 3,
+    'VW Golf': 3,
+    'Porsche Cayenne': 3,
+    'Ssangyong Korando': 2,
+    'VW Touareg': 2,
+    'Hyundai Santa Fe': 2,
+    'Hyundai Galloper': 2,
+    'Jeep Wrangler': 1,
 }
 
 YEAR_BANDS = {
-    'Kia All New Sorento': (2015, 2017),
     'Kia New Sorento R': (2013, 2014),
+    'Kia All New Sorento': (2015, 2017),
     'Kia Sorento R': (2010, 2012),
     'Hyundai Santa Fe DM': (2013, 2015),
     'Kia Sportage R': (2011, 2014),
-    'Hyundai Grand Starex': (2010, 2015),
-    'Renault Samsung QM3': (2014, 2015),
-    'Audi Q5': (2011, 2015),
-    'Hyundai Maxcruz': (2014, 2015),
-    'Hyundai Mighty': (2007, 2014),
-    'Hyundai Santa Fe': (2013, 2016),
-    'VW Tiguan': (2012, 2015),
-    'Audi Q7': (2010, 2015),
-    'Chevrolet Captiva': (2012, 2015),
-    'Chevrolet Malibu': (2014, 2015),
-    'Hyundai i30': (2012, 2014),
-    'Kia Sportage': (2012, 2016),
-    'BMW X3': (2011, 2014),
-    'BMW X5': (2010, 2012),
-    'Chevrolet Cruze': (2011, 2014),
-    'Chevrolet Orlando': (2013, 2014),
-    'Hyundai Accent': (2011, 2015),
-    'Hyundai All New Tucson': (2016, 2018),
-    'Hyundai Starex': (2006, 2012),
-    'Hyundai Tucson': (2010, 2016),
-    'Jeep Wrangler Rubicon': (2011, 2013),
+    'Hyundai Grand Starex': (2010, 2016),
     'Kia All New Carnival': (2015, 2018),
-    'Kia Bongo': (2010, 2016),
-    'Kia Mohave': (2012, 2014),
-    'Kia Morning': (2009, 2012),
-    'Kia Pride': (2006, 2010),
-    'Kia Soul': (2010, 2013),
-    'Mini Countryman': (2012, 2013),
-    'Mini Countryman All4': (2015, 2016),
+    'Audi Q5': (2011, 2016),
+    'Hyundai All New Tucson': (2016, 2018),
+    'Hyundai Maxcruz': (2014, 2016),
+    'Hyundai Mighty': (2005, 2015),
     'Ssangyong Rexton W': (2013, 2017),
+    'VW Tiguan': (2012, 2016),
+    'Chevrolet Malibu': (2012, 2016),
+    'Kia Bongo': (2007, 2017),
+    'Renault Samsung QM3': (2014, 2016),
+    'Audi Q7': (2008, 2016),
+    'Hyundai i30': (2011, 2015),
+    'Chevrolet Captiva': (2011, 2016),
+    'Kia Morning': (2009, 2015),
+    'BMW X3': (2010, 2015),
+    'Mini Countryman All4': (2011, 2017),
+    'Jeep Wrangler Rubicon': (2011, 2015),
+    'BMW X6': (2009, 2015),
+    'Kia Sportage': (2012, 2017),
+    'Chevrolet Cruze': (2011, 2015),
+    'Chevrolet Orlando': (2012, 2015),
+    'Kia Mohave': (2009, 2016),
+    'Kia Soul': (2010, 2015),
+    'Kia Pride': (2006, 2013),
+    'Hyundai Tucson': (2009, 2014),
+    'Hyundai Starex': (2006, 2013),
+    'Chevrolet Spark': (2011, 2016),
+    'Hyundai Terracan': (2001, 2007),
+    'Mini Countryman': (2011, 2016),
+    'BMW X5': (2008, 2014),
+    'KGM Korando Turismo': (2013, 2018),
+    'Hyundai Accent': (2011, 2016),
+    'Hyundai Santa Fe': (2010, 2017),
+    'Jeep Wrangler': (2010, 2015),
+    'VW Touareg': (2010, 2015),
+    'VW Golf': (2010, 2016),
+    'Porsche Cayenne': (2010, 2015),
+    'Hyundai Galloper': (1992, 2003),
+    'Ssangyong Korando': (2011, 2017),
 }
 
-MODEL_SEARCH = ';'.join([
-    'all new sorento','new sorento r','sorento r','santa fe dm','sportage r',
-    'grand starex','qm3','q5','maxcruz','mighty','santa fe','tiguan','q7',
-    'captiva','malibu','i30','sportage','x3','x5','cruze','orlando','accent',
-    'all new tucson','starex','tucson','wrangler rubicon','all new carnival',
-    'bongo','mohave','morning','pride','soul','countryman','countryman all4',
-    'rexton w'
-])
+TARGET_SEARCHES = [
+    ('sorento',100),('santa fe',70),('sportage',70),('starex',60),('carnival',60),
+    ('tucson',60),('q5',40),('maxcruz',40),('mighty',40),('rexton',40),
+    ('tiguan',35),('malibu',35),('bongo',35),('qm3',35),('q7',35),
+    ('i30',30),('captiva',30),('morning',30),('x3',30),('wrangler',30),
+    ('countryman',35),('cruze',30),('x6',30),('x5',30),('orlando',25),
+    ('mohave',25),('soul',25),('pride',25),('spark',25),('terracan',25),
+    ('korando turismo',25),('accent',25),('golf',20),('touareg',20),('cayenne',20)
+]
 
 def demand_key(car):
     text=(' '.join(str(car.get(k) or '') for k in ('manufacturer','model','badge'))).lower()
@@ -233,21 +260,33 @@ def demand_key(car):
         ('Chevrolet Malibu', ('malibu',)),
         ('Hyundai i30', ('i30',)),
         ('BMW X3', ('bmw','x3')),
+        ('BMW X6', ('bmw','x6')),
         ('BMW X5', ('bmw','x5')),
         ('Chevrolet Cruze', ('cruze',)),
         ('Chevrolet Orlando', ('orlando',)),
         ('Hyundai Accent', ('accent',)),
+        ('Hyundai Terracan', ('terracan',)),
         ('Hyundai All New Tucson', ('all new tucson',)),
         ('Jeep Wrangler Rubicon', ('wrangler','rubicon')),
         ('Kia All New Carnival', ('all new carnival',)),
         ('Kia Bongo', ('bongo',)),
         ('Kia Mohave', ('mohave',)),
         ('Kia Morning', ('morning',)),
+        ('Chevrolet Spark', ('spark',)),
         ('Kia Morning', ('picanto',)),
         ('Kia Pride', ('pride',)),
         ('Kia Soul', ('kia','soul')),
         ('Mini Countryman All4', ('countryman','all4')),
+        ('KGM Korando Turismo', ('korando','turismo')),
+        ('KGM Korando Turismo', ('grand','turismo')),
+        ('Porsche Cayenne', ('cayenne',)),
+        ('VW Touareg', ('touareg',)),
+        ('VW Golf', ('golf',)),
+        ('Hyundai Galloper', ('galloper',)),
+        ('Hyundai Galloper', ('galoper',)),
+        ('Jeep Wrangler', ('wrangler',)),
         ('Ssangyong Rexton W', ('rexton w',)),
+        ('Ssangyong Korando', ('korando',)),
         ('Mini Countryman', ('countryman',)),
         ('Hyundai Starex', ('starex',)),
         ('Hyundai Tucson', ('tucson',)),
@@ -262,74 +301,77 @@ def demand_key(car):
 
 def select_public(cars):
     grouped={key:[] for key in DEMAND_PROFILE}
-    discovery=[]
     rejected_expensive=0
     for car in cars:
         key=demand_key(car)
         car['_demand_key']=key
+        if key not in DEMAND_PROFILE:
+            continue
         year=int(car.get('year') or 0)
         band=YEAR_BANDS.get(key)
-        profile=DEMAND_PROFILE.get(key)
+        profile=DEMAND_PROFILE[key]
         price=car.get('price_krw') or 0
-        if key in grouped and band and profile and band[0] <= year <= band[1]:
-            reference_upper=profile[2]
-            hard_ceiling=reference_upper*price_stretch_multiplier(key)
-            if price <= hard_ceiling:
-                grouped[key].append(car)
-            else:
-                rejected_expensive += 1
+        if not band or not (band[0] <= year <= band[1]):
+            continue
+        reference_upper=profile[2]
+        hard_ceiling=reference_upper*price_stretch_multiplier(key)
+        if price <= hard_ceiling:
+            grouped[key].append(car)
         else:
-            discovery.append(car)
+            rejected_expensive += 1
+
+    def rank_for(key,car):
+        priority=DEMAND_PROFILE[key][1]
+        reference_upper=DEMAND_PROFILE[key][2]
+        price=car.get('price_krw') or 0
+        mileage=car.get('mileage_km')
+        mileage=mileage if isinstance(mileage,(int,float)) else 9999999
+        if price <= priority: price_bucket=0
+        elif price <= reference_upper: price_bucket=1
+        else: price_bucket=2
+        return (price_bucket,price,-int(car.get('year') or 0),mileage)
+
+    for key,group in grouped.items():
+        group.sort(key=lambda car: rank_for(key,car))
 
     selected=[]; used=set(); selected_per_key={key:0 for key in DEMAND_PROFILE}
-    for key,(slots,priority,reference_upper) in DEMAND_PROFILE.items():
-        group=grouped[key]
-        def rank(car):
-            price=car.get('price_krw') or 0
-            mileage=car.get('mileage_km')
-            mileage=mileage if isinstance(mileage,(int,float)) else 9999999
-            # The sold spreadsheet is already biased toward the cheapest acceptable car on each date.
-            # Treat historical P75 as a reference band, not a hard market ceiling.
-            if price <= priority: price_bucket=0
-            elif price <= reference_upper: price_bucket=1
-            else: price_bucket=2
-            return (price_bucket,price,-int(car.get('year') or 0),mileage)
-        group.sort(key=rank)
-        for car in group[:slots]:
-            selected.append(car); used.add(car['id']); selected_per_key[key]+=1
 
-    # Redistribute shortages only to other proven generations that also pass their price ceiling.
+    # First pass: guarantee variety. Every Excel-proven family with a qualifying live car gets one slot.
+    for key in DEMAND_PROFILE:
+        if grouped[key]:
+            car=grouped[key][0]
+            selected.append(car); used.add(car['id']); selected_per_key[key]=1
+            if len(selected)>=PUBLIC_TARGET: break
+
+    # Second pass: fill the remaining quota in 2026 purchase-priority order.
+    priority_keys=sorted(DEMAND_PROFILE, key=lambda k:(-DEMAND_2026.get(k,0), list(DEMAND_PROFILE).index(k)))
+    progress=True
+    while len(selected)<PUBLIC_TARGET and progress:
+        progress=False
+        for key in priority_keys:
+            target=DEMAND_PROFILE[key][0]
+            if selected_per_key[key] >= target: continue
+            next_car=next((x for x in grouped[key] if x['id'] not in used),None)
+            if next_car is None: continue
+            selected.append(next_car); used.add(next_car['id']); selected_per_key[key]+=1
+            progress=True
+            if len(selected)>=PUBLIC_TARGET: break
+
+    # Third pass: use additional qualifying cars from proven families when another family is scarce.
     extras=[]
     for key,group in grouped.items():
         for car in group:
             if car['id'] not in used:
-                extras.append(car)
-    extras.sort(key=lambda car: (
-        list(DEMAND_PROFILE).index(car['_demand_key']),
-        car.get('price_krw') or 999999999,
-        -int(car.get('year') or 0),
-        car.get('mileage_km') if isinstance(car.get('mileage_km'),(int,float)) else 9999999
-    ))
-    for car in extras:
+                extras.append((key,car))
+    extras.sort(key=lambda kc:(-DEMAND_2026.get(kc[0],0),)+rank_for(kc[0],kc[1]))
+    for key,car in extras:
         if len(selected)>=PUBLIC_TARGET: break
-        key=car['_demand_key']
-        # Do not let one model flood the page just because other models are temporarily scarce.
-        if selected_per_key[key] >= DEMAND_PROFILE[key][0] + 2: continue
+        # A high-demand family may exceed its nominal quota slightly, but cannot monopolize the page.
+        if selected_per_key[key] >= DEMAND_PROFILE[key][0] + 4: continue
         selected.append(car); used.add(car['id']); selected_per_key[key]+=1
 
-    # Discovery is intentionally capped. It tests newer/adjacent generations without padding
-    # the catalog to 150 with unrelated or expensive cars.
-    raw_counts={}; discovery_added=0
-    discovery.sort(key=lambda car: (car.get('price_krw') or 999999999,-int(car.get('year') or 0),
-                                    car.get('mileage_km') if isinstance(car.get('mileage_km'),(int,float)) else 9999999))
-    for car in discovery:
-        if len(selected)>=PUBLIC_TARGET or discovery_added>=DISCOVERY_MAX: break
-        signature=(str(car.get('manufacturer') or ''),str(car.get('model') or ''))
-        if raw_counts.get(signature,0)>=1: continue
-        selected.append(car); used.add(car['id']); raw_counts[signature]=1; discovery_added+=1
-
-    print('Price stretch limits rejected',rejected_expensive,'target-generation candidates',flush=True)
-    print('Discovery listings added:',discovery_added,flush=True)
+    print('Price stretch limits rejected',rejected_expensive,'Excel-family candidates',flush=True)
+    print('Selected model families:',sum(1 for k,v in selected_per_key.items() if v),flush=True)
     for car in selected:
         key=car.get('_demand_key') or demand_key(car)
         car['preference_2026']=DEMAND_2026.get(key,0)
@@ -409,26 +451,28 @@ def enrich(cars,key):
 def main():
     key=os.environ.get('ENCARAPI_KEY','').strip()
     if not key: raise ValueError('ENCARAPI_KEY repository secret is missing')
-    base_params={'source':'encar,kbc','lang':'en','limit':CANDIDATE_LIMIT,'sort':'newest',
-                 'model_search':MODEL_SEARCH,
-                 'exclude_duplicates':'true','exclude_prices':'1111,9999'}
     candidates=[]; seen=set()
-    for page in range(1,CANDIDATE_PAGES+1):
-        params=dict(base_params); params['page']=page
+    common={'source':'encar,kbc','lang':'en','sort':'newest',
+            'exclude_duplicates':'true','exclude_prices':'1111,9999'}
+    for search_term,limit in TARGET_SEARCHES:
+        params=dict(common)
+        params['model_search']=search_term
+        params['limit']=limit
+        params['page']=1
         req=urllib.request.Request('https://api.encarapi.com/api/catalog?'+urlencode(params),
                                   headers={'x-api-key':key,'Accept':'application/json'})
         try:
             with urllib.request.urlopen(req,timeout=120) as response: data=json.load(response)
         except urllib.error.HTTPError as e:
-            raise ValueError('EnCarAPI returned HTTP '+str(e.code)+'; previous snapshot retained') from None
+            print('Catalog search skipped:',search_term,'HTTP',e.code,flush=True)
+            continue
         if not isinstance(data,dict) or not isinstance(data.get('SearchResults'),list):
-            raise ValueError('Unexpected catalog response; previous snapshot retained')
+            print('Catalog search returned unexpected data:',search_term,flush=True)
+            continue
         for row in data['SearchResults']:
             car=normalize(row)
             if car and car['id'] not in seen:
                 seen.add(car['id']); candidates.append(car)
-        if len(data['SearchResults'])<CANDIDATE_LIMIT:
-            break
     print('Candidate listings collected:',len(candidates),flush=True)
     if not candidates: raise ValueError('No valid listings; previous snapshot retained')
     cars=select_public(candidates)
