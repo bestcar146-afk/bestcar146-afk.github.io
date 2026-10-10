@@ -20,11 +20,13 @@ def photo_url(value, source):
         elif value.startswith('IMG/'): value='https://img.kbchachacha.com/'+value
     if not value.startswith('https://'): return ''
     low=value.lower()
-    # Keep known vehicle-image CDN URLs, or ordinary image-file URLs.
-    if ('encar.com' in low or 'kbchachacha.com' in low or
-        re.search(r'\.(?:jpe?g|png|webp)(?:\?|$)',low)):
-        return value
-    return ''
+    if source == 'kbc':
+        if 'img.kbchachacha.com/' in low: return value
+        return value if re.search(r'\.(?:jpe?g|png|webp)(?:\?|$)',low) else ''
+    if source == 'encar':
+        if 'ci.encar.com/' in low or '/carpicture/' in low: return value
+        return value if re.search(r'\.(?:jpe?g|png|webp)(?:\?|$)',low) else ''
+    return value if re.search(r'\.(?:jpe?g|png|webp)(?:\?|$)',low) else ''
 
 def extract_photos(obj, source):
     found=[]
@@ -71,23 +73,23 @@ def normalize(row):
 
 PUBLIC_TARGET=150
 CANDIDATE_LIMIT=100
-CANDIDATE_PAGES=4
-DISCOVERY_MAX=30
+CANDIDATE_PAGES=6
+DISCOVERY_MAX=35
 
-# Historical demand + price profile derived from BEST CAR STAR sold/shipped data (2024-Sep 2026).
+# Historical demand + price profile derived directly from BEST CAR STAR sold/shipped Excel data (2024-Sep 2026).
 # The sold file is itself price-filtered, so these price levels represent accepted bargain/acquisition levels,
 # not the Korean market average. Slots total 150 as a target capacity; actual public count may be lower.
 DEMAND_PROFILE = {
     # slots, priority source-price, maximum source-price
-    'Kia All New Sorento': (23, 6365000, 7129650),
-    'Kia New Sorento R': (17, 4265000, 5015000),
-    'Kia Sorento R': (8, 2665000, 2890000),
-    'Hyundai Santa Fe DM': (11, 4065000, 4165000),
-    'Kia Sportage R': (8, 3765000, 4140000),
-    'Hyundai Grand Starex': (7, 3600000, 4690000),
+    'Kia All New Sorento': (24, 6365000, 7129650),
+    'Kia New Sorento R': (25, 4265000, 5015000),
+    'Kia Sorento R': (16, 2665000, 2890000),
+    'Hyundai Santa Fe DM': (14, 4065000, 4165000),
+    'Kia Sportage R': (12, 3765000, 4140000),
+    'Hyundai Grand Starex': (10, 3600000, 4690000),
     'Renault Samsung QM3': (7, 1890000, 2152500),
-    'Audi Q5': (4, 9166325, 9680236),
-    'Hyundai Maxcruz': (6, 6716510, 7115430),
+    'Audi Q5': (8, 9166325, 9680236),
+    'Hyundai Maxcruz': (7, 6716510, 7115430),
     'Hyundai Mighty': (5, 6000000, 6550000),
     'Hyundai Santa Fe': (4, 4465000, 4565000),
     'VW Tiguan': (4, 4665000, 5565000),
@@ -101,11 +103,11 @@ DEMAND_PROFILE = {
     'Chevrolet Cruze': (1, 2000000, 2193900),
     'Chevrolet Orlando': (2, 1415000, 1540000),
     'Hyundai Accent': (2, 1715000, 1902500),
-    'Hyundai All New Tucson': (3, 6665000, 7180950),
+    'Hyundai All New Tucson': (7, 6665000, 7180950),
     'Hyundai Starex': (1, 3335000, 4120000),
     'Hyundai Tucson': (1, 4700000, 7770810),
     'Jeep Wrangler Rubicon': (2, 14340000, 14340000),
-    'Kia All New Carnival': (2, 4665000, 5765000),
+    'Kia All New Carnival': (9, 4665000, 5765000),
     'Kia Bongo': (2, 3765000, 4100000),
     'Kia Mohave': (2, 3365000, 3690000),
     'Kia Morning': (2, 1737400, 2115000),
