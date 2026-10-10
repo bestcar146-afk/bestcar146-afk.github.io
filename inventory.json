@@ -3,56 +3,10 @@
   "provider": "EnCarAPI",
   "scope": "Sales-driven public selection based on BEST CAR STAR historical demand",
   "source_counts": {
-    "Encar": 37,
-    "KB ChaChaCha": 21
+    "Encar": 36,
+    "KB ChaChaCha": 18
   },
   "results": [
-    {
-      "id": "42866500",
-      "source": "Encar",
-      "manufacturer": "Kia",
-      "model": "Sorento R",
-      "badge": "Diesel 2.0 2WD TLX 최고급형",
-      "year": 2010,
-      "mileage_km": 199000,
-      "price_krw": 2400000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경기",
-      "photos": [],
-      "listing_url": "https://fem.encar.com/cars/detail/42866500",
-      "details": {
-        "checked_at": "2026-10-10T12:38:15.066555+00:00",
-        "spec": {
-          "transmission": "오토",
-          "engine_cc": 1995,
-          "color": "은색",
-          "seats": 7,
-          "power_ps": 184,
-          "body": "SUV",
-          "drive": "2WD",
-          "registration": "201012"
-        },
-        "photos": [],
-        "drive_basis": "listing badge",
-        "inspection": null,
-        "insurance": {
-          "accidentCnt": 2,
-          "myAccidentCnt": 2,
-          "otherAccidentCnt": 0,
-          "myAccidentCost": 540630,
-          "otherAccidentCost": 0,
-          "ownerChangeCnt": 4,
-          "totalLossCnt": 0,
-          "floodTotalLossCnt": 0,
-          "floodPartLossCnt": null,
-          "robberCnt": 0,
-          "regDate": "2026-10-08T16:13:56.937001"
-        },
-        "kb_history": null
-      }
-    },
     {
       "id": "41476801",
       "source": "Encar",
@@ -2199,45 +2153,6 @@
       }
     },
     {
-      "id": "kbc:28828350",
-      "source": "KB ChaChaCha",
-      "manufacturer": "Kia",
-      "model": "SorentoR",
-      "badge": "Diesel 2.0 2WD TLX High-Deluxe",
-      "year": 2011,
-      "mileage_km": 199230,
-      "price_krw": 2400000,
-      "fuel_type": "diesel",
-      "transmission": "automatic",
-      "color": "silver",
-      "location": "경기",
-      "photos": [],
-      "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28828350",
-      "details": {
-        "checked_at": "2026-10-09T18:37:20.917391+00:00",
-        "spec": {
-          "transmission": "automatic",
-          "engine_cc": 1995,
-          "color": "silver",
-          "seats": null,
-          "power_ps": null,
-          "body": null,
-          "drive": "2WD",
-          "registration": null
-        },
-        "photos": [],
-        "drive_basis": "listing badge",
-        "inspection": null,
-        "insurance": null,
-        "kb_history": {
-          "totalLoss": false,
-          "floodDamage": false,
-          "commercialUse": false,
-          "ownershipChanges": 4
-        }
-      }
-    },
-    {
       "id": "41415368",
       "source": "Encar",
       "manufacturer": "Infiniti",
@@ -2310,83 +2225,6 @@
           "regDate": "2026-10-08T16:00:41.499692"
         },
         "kb_history": null
-      }
-    },
-    {
-      "id": "kbc:28818651",
-      "source": "KB ChaChaCha",
-      "manufacturer": "Kia",
-      "model": "The New Sportage R",
-      "badge": "Diesel 2WD Trendy",
-      "year": 2016,
-      "mileage_km": 230000,
-      "price_krw": 3100000,
-      "fuel_type": "diesel",
-      "transmission": "automatic",
-      "color": "white",
-      "location": "경기",
-      "photos": [],
-      "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28818651",
-      "details": {
-        "checked_at": "2026-10-09T18:37:20.917391+00:00",
-        "spec": {
-          "transmission": "automatic",
-          "engine_cc": 1995,
-          "color": "white",
-          "seats": null,
-          "power_ps": null,
-          "body": null,
-          "drive": "2WD",
-          "registration": null
-        },
-        "photos": [],
-        "drive_basis": "listing badge",
-        "inspection": null,
-        "insurance": null,
-        "kb_history": {
-          "totalLoss": false,
-          "floodDamage": false,
-          "commercialUse": false,
-          "ownershipChanges": 1
-        }
-      }
-    },
-    {
-      "id": "kbc:28828191",
-      "source": "KB ChaChaCha",
-      "manufacturer": "Hyundai",
-      "model": "Grand Starex",
-      "badge": "12-Seater Wagon CVX Luxury",
-      "year": 2009,
-      "mileage_km": 152894,
-      "price_krw": 3200000,
-      "fuel_type": "diesel",
-      "transmission": "automatic",
-      "color": "silver",
-      "location": "경기",
-      "photos": [],
-      "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28828191",
-      "details": {
-        "checked_at": "2026-10-09T18:37:20.917391+00:00",
-        "spec": {
-          "transmission": "automatic",
-          "engine_cc": 2497,
-          "color": "silver",
-          "seats": null,
-          "power_ps": null,
-          "body": null,
-          "drive": null,
-          "registration": null
-        },
-        "photos": [],
-        "inspection": null,
-        "insurance": null,
-        "kb_history": {
-          "totalLoss": false,
-          "floodDamage": false,
-          "commercialUse": false,
-          "ownershipChanges": 2
-        }
       }
     },
     {
