@@ -331,7 +331,7 @@
 
   $('#searchBtn').onclick=renderCars;
   $('#resetBtn').onclick=()=>{
-    ['#makeFilter','#modelFilter','#preferenceFilter','#yearFrom','#yearTo','#maxPrice','#maxMileage','#fuelFilter','#driveFilter','#sourceFilter'].forEach(s=>$(s).value='');
+    ['#makeFilter','#modelFilter','#yearFrom','#yearTo','#maxPrice','#maxMileage','#fuelFilter','#driveFilter','#sourceFilter'].forEach(s=>$(s).value='');
     updateModels(); renderCars();
   };
   $('#makeFilter').onchange=()=>{ updateModels(); renderCars(); };
