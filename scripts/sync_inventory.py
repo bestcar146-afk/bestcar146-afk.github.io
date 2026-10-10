@@ -5,11 +5,44 @@ from pathlib import Path
 from urllib.parse import urlencode, urlparse
 
 def photo_url(value, source):
-    if isinstance(value, dict): value = value.get('location', '')
+    if isinstance(value, dict):
+        value = value.get('location') or value.get('path') or value.get('url') or value.get('src') or ''
     if not isinstance(value, str): return ''
-    if source == 'encar' and value.startswith('/carpicture'):
-        value = 'https://ci.encar.com' + value
-    return value if value.startswith('https://') else ''
+    value=value.strip().replace('\\/','/')
+    if not value: return ''
+    if value.startswith('//'): value='https:'+value
+    if value.startswith('http://'): value='https://'+value[7:]
+    if source == 'encar':
+        if value.startswith('/carpicture'): value='https://ci.encar.com'+value
+        elif value.startswith('carpicture/'): value='https://ci.encar.com/'+value
+    if source == 'kbc':
+        if value.startswith('/IMG/'): value='https://img.kbchachacha.com'+value
+        elif value.startswith('IMG/'): value='https://img.kbchachacha.com/'+value
+    if not value.startswith('https://'): return ''
+    low=value.lower()
+    # Keep known vehicle-image CDN URLs, or ordinary image-file URLs.
+    if ('encar.com' in low or 'kbchachacha.com' in low or
+        re.search(r'\.(?:jpe?g|png|webp)(?:\?|$)',low)):
+        return value
+    return ''
+
+def extract_photos(obj, source):
+    found=[]
+    def walk(value, key=''):
+        if isinstance(value, dict):
+            for k,v in value.items():
+                walk(v,str(k).lower())
+        elif isinstance(value, (list,tuple)):
+            for v in value: walk(v,key)
+        elif isinstance(value, str):
+            likely_key=any(x in key for x in ('photo','image','img','picture','thumb','path','url','src'))
+            likely_url=('encar.com' in value.lower() or 'kbchachacha.com' in value.lower() or
+                        re.search(r'\.(?:jpe?g|png|webp)(?:\?|$)',value.lower()))
+            if likely_key or likely_url:
+                u=photo_url(value,source)
+                if u and u not in found: found.append(u)
+    walk(obj)
+    return found
 
 def normalize(row):
     source = row.get('Source')
@@ -23,6 +56,8 @@ def normalize(row):
     if not 1950 <= year <= datetime.now().year+2: return None
     if not row.get('Manufacturer') or not row.get('Model'): return None
     photos = list(dict.fromkeys(filter(None, (photo_url(p,source) for p in row.get('Photos', [])))))
+    for u in extract_photos(row,source):
+        if u not in photos: photos.append(u)
     url = row.get('Url', '') if source == 'kbc' else 'https://fem.encar.com/cars/detail/'+ident
     if not url.startswith('https://'): url = ''
     return {'id':ident, 'source':'Encar' if source=='encar' else 'KB ChaChaCha',
@@ -312,10 +347,12 @@ def enrich(cars,key):
         if not d['spec']['drive']:
             match=re.search(r'\b(2WD|4WD|AWD|FWD|RWD)\b',car.get('badge',''),re.I)
             if match:d['spec']['drive']=match.group().upper();d['drive_basis']='listing badge'
+        raw_source='encar' if car['source']=='Encar' else 'kbc'
         for p in v.get('photos',v.get('Photos',[])) or []:
-            u=p.get('path',p.get('location','')) if isinstance(p,dict) else p
-            u=photo_url(u,'encar' if car['source']=='Encar' else 'kbc')
-            if u and u not in d['photos']:d['photos'].append(u)
+            u=photo_url(p,raw_source)
+            if u and u not in d['photos']: d['photos'].append(u)
+        for u in extract_photos(v,raw_source):
+            if u not in d['photos']: d['photos'].append(u)
         d['inspection']=None
         ins=inspections.get(ident)
         if isinstance(ins,dict) and isinstance(ins.get('master'),dict):
@@ -355,6 +392,20 @@ def main():
     if len(cars)<PUBLIC_TARGET:
         print('Demand-matched candidate pool produced',len(cars),'listings',flush=True)
     enrich(cars,key)
+    publishable=[]; recovered=0; removed_no_photo=0
+    for car in cars:
+        detail_photos=((car.get('details') or {}).get('photos') or [])
+        if not car.get('photos') and detail_photos:
+            car['photos']=detail_photos
+            recovered+=1
+        # A public vehicle card must have a real source photo. If the provider no longer
+        # supplies any photo after a fresh detail lookup, treat it as stale/unusable and omit it.
+        if not car.get('photos'):
+            removed_no_photo+=1
+            continue
+        publishable.append(car)
+    cars=publishable
+    print('Recovered photo sets:',recovered,'Removed photo-less/stale listings:',removed_no_photo,flush=True)
     counts={s:sum(c['source']==s for c in cars) for s in ('Encar','KB ChaChaCha')}
     output={'updated_at':datetime.now(timezone.utc).isoformat(),'provider':'EnCarAPI',
             'scope':'Sales-driven public selection based on BEST CAR STAR historical demand','source_counts':counts,'results':cars}
