@@ -246,7 +246,13 @@ TARGET_SEARCHES = [
 
 def demand_key(car):
     text=(' '.join(str(car.get(k) or '') for k in ('manufacturer','model','badge'))).lower()
-    text=re.sub(r'\s+',' ',text)
+    text=text.replace('_',' ').replace('-',' ')
+    text=re.sub(r'\bsorentor\b','sorento r',text)
+    text=re.sub(r'\bsportager\b','sportage r',text)
+    text=re.sub(r'\brextonw\b','rexton w',text)
+    text=re.sub(r'\bsantafe\b','santa fe',text)
+    text=re.sub(r'\bnewmorning\b','new morning',text)
+    text=re.sub(r'\s+',' ',text).strip()
     rules=[
         ('Kia All New Sorento', ('all new sorento',)),
         ('Kia New Sorento R', ('new sorento r',)),
