@@ -100,6 +100,30 @@
     if (s.includes('gasoline') || s.includes('petrol') || s.includes('휘발유') || s.includes('가솔린')) return 'Gasoline';
     return v || '—';
   }
+  function madagascarPreferenceScore(x){
+    const supplied=num(pick(x,['preference_2026','preferenceScore'],0));
+    if(supplied>0) return supplied;
+    const s=[pick(x,['manufacturer','Manufacturer','make','Make','brand','maker'],''),
+             pick(x,['model','Model','modelName','model_name'],''),
+             pick(x,['trim','badge','badgeDetail','badge_detail','grade','title','name'],'')]
+             .join(' ').toLowerCase().replace(/\s+/g,' ');
+    const rules=[
+      [49,['new sorento r']],[48,['all new sorento']],[31,['sorento r']],
+      [27,['santa fe dm']],[27,['santafe dm']],[23,['sportage r']],
+      [18,['grand starex']],[17,['all new carnival']],[14,['audi','q5']],
+      [13,['all new tucson']],[12,['maxcruz']],[11,['mighty']],
+      [10,['tiguan']],[10,['malibu']],[10,['rexton w']],[9,['bongo']],
+      [8,['qm3']],[8,['audi','q7']],[8,['captiva']],[8,['i30']],
+      [7,['bmw','x3']],[7,['tucson']],[7,['morning']],[7,['picanto']],
+      [6,['santa fe']],[6,['santafe']],[6,['pride']],[5,['cruze']],
+      [5,['wrangler','rubicon']],[4,['bmw','x5']],[4,['accent']],
+      [4,['starex']],[4,['sportage']],[3,['orlando']],[3,['mohave']],
+      [3,['kia','soul']],[3,['countryman','all4']],[3,['countryman']]
+    ];
+    for(const [score,tokens] of rules) if(tokens.every(t=>s.includes(t))) return score;
+    return 0;
+  }
+
   function normalizeCar(x) {
     const sourceId = String(pick(x,['id','Id','carId','car_id','vehicleId','vehicle_id','carid'],''));
     const rawPhotos = pick(x,['photos','images','photoUrls','imageUrls'],[]);
@@ -136,6 +160,7 @@
       price,
       photos,
       listingUrl:String(pick(x,['encar_url','url','listingUrl','listing_url','detailUrl','detail_url'],''))
+      ,preferenceScore:madagascarPreferenceScore(x)
     };
   }
   function extractCars(json) {
