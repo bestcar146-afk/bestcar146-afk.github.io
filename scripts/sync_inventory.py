@@ -309,6 +309,27 @@ def demand_key(car):
             return key
     return None
 
+SUV_FAMILIES={
+    'Kia New Sorento R','Kia All New Sorento','Kia Sorento R','Hyundai Santa Fe DM',
+    'Kia Sportage R','Audi Q5','Hyundai All New Tucson','Hyundai Maxcruz',
+    'Ssangyong Rexton W','VW Tiguan','Audi Q7','Chevrolet Captiva','BMW X3',
+    'Mini Countryman All4','Jeep Wrangler Rubicon','BMW X6','Kia Sportage',
+    'Kia Mohave','Hyundai Tucson','Hyundai Terracan','Mini Countryman','BMW X5',
+    'Hyundai Santa Fe','Jeep Wrangler','VW Touareg','Porsche Cayenne','Ssangyong Korando'
+}
+
+def suv_drive_rank(car,key):
+    if key not in SUV_FAMILIES:
+        return 1
+    text=(' '.join(str(car.get(k) or '') for k in ('model','badge'))).lower()
+    text=text.replace('_',' ').replace('-',' ')
+    # Only use drivetrain evidence that is explicitly present in the live listing text.
+    if any(token in text for token in ('4wd','awd','all4','quattro','xdrive','4motion')):
+        return 0
+    if any(token in text for token in ('2wd','fwd','rwd')):
+        return 2
+    return 1
+
 def select_public(cars):
     grouped={key:[] for key in DEMAND_PROFILE}
     rejected_expensive=0
@@ -339,7 +360,9 @@ def select_public(cars):
         if price <= priority: price_bucket=0
         elif price <= reference_upper: price_bucket=1
         else: price_bucket=2
-        return (price_bucket,price,-int(car.get('year') or 0),mileage)
+        # For SUV families, explicitly listed 4WD/AWD variants are preferred over
+        # unknown drivetrain, which in turn is preferred over explicitly listed 2WD.
+        return (suv_drive_rank(car,key),price_bucket,price,-int(car.get('year') or 0),mileage)
 
     for key,group in grouped.items():
         group.sort(key=lambda car: rank_for(key,car))
