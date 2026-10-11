@@ -57,6 +57,10 @@ def normalize(row):
     year = int(str(row.get('Year', '0'))[:4])
     if not 1950 <= year <= datetime.now().year+2: return None
     if not row.get('Manufacturer') or not row.get('Model'): return None
+    badge=' '.join(str(row.get(k) or '') for k in ('Badge','BadgeDetail')).strip()
+    fuel=str(row.get('FuelType') or '').strip()
+    # Public export inventory is diesel-only.
+    if 'diesel' not in fuel.lower() and 'diesel' not in badge.lower(): return None
     photos = list(dict.fromkeys(filter(None, (photo_url(p,source) for p in row.get('Photos', [])))))
     for u in extract_photos(row,source):
         if u not in photos: photos.append(u)
@@ -64,9 +68,9 @@ def normalize(row):
     if not url.startswith('https://'): url = ''
     return {'id':ident, 'source':'Encar' if source=='encar' else 'KB ChaChaCha',
             'manufacturer':row['Manufacturer'], 'model':row['Model'],
-            'badge':' '.join(str(row.get(k) or '') for k in ('Badge','BadgeDetail')).strip(),
+            'badge':badge,
             'year':year,'mileage_km':row.get('Mileage'), 'price_krw':round(price*10000),
-            'fuel_type':row.get('FuelType') or '—', 'transmission':row.get('Transmission') or '—',
+            'fuel_type':fuel or 'Diesel', 'transmission':row.get('Transmission') or '—',
             'color':row.get('Color') or '—','location':row.get('OfficeCityState') or '—',
             'photos':photos,'listing_url':url}
 
