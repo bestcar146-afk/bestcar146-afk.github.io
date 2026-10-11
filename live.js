@@ -137,6 +137,97 @@
     s=s.replace(/^Mercedes\s*Benz$/i,'Mercedes Benz');
     return s;
   }
+  const KOREAN_MAKE_ORDER=[
+    'Hyundai','Kia','Genesis','KG Mobility Ssangyong','Renault Korea Samsung','Chevrolet GM Daewoo'
+  ];
+  const MAKE_LOGOS={
+    'Hyundai':'https://cdn.simpleicons.org/hyundai/111827',
+    'Kia':'https://cdn.simpleicons.org/kia/111827',
+    'Genesis':'https://cdn.simpleicons.org/genesis/111827',
+    'KG Mobility Ssangyong':'https://commons.wikimedia.org/wiki/Special:Redirect/file/KG%20Mobility%20brand%20logo.svg',
+    'Renault Korea Samsung':'https://cdn.simpleicons.org/renault/111827',
+    'Chevrolet GM Daewoo':'https://cdn.simpleicons.org/chevrolet/111827',
+    'Chevrolet DM Daewoo':'https://cdn.simpleicons.org/chevrolet/111827',
+    'Audi':'https://cdn.simpleicons.org/audi/111827',
+    'BMW':'https://cdn.simpleicons.org/bmw/111827',
+    'Jeep':'https://cdn.simpleicons.org/jeep/111827',
+    'Mini':'https://cdn.simpleicons.org/mini/111827',
+    'Porsche':'https://cdn.simpleicons.org/porsche/111827',
+    'Volkswagen':'https://cdn.simpleicons.org/volkswagen/111827',
+    'Mercedes Benz':'https://cdn.simpleicons.org/mercedes/111827'
+  };
+  function orderedMakes(){
+    const makes=[...new Set(inventory.map(c=>c.make).filter(Boolean))];
+    const rank=m=>{const i=KOREAN_MAKE_ORDER.indexOf(m);return i<0?999:i;};
+    return makes.sort((a,b)=>{
+      const ra=rank(a),rb=rank(b);
+      if(ra!==rb) return ra-rb;
+      return a.localeCompare(b);
+    });
+  }
+  function makeLogoMarkup(make){
+    const url=MAKE_LOGOS[make]||'';
+    const initials=make.split(/\s+/).map(x=>x[0]||'').join('').slice(0,3).toUpperCase();
+    if(!url) return `<span class="bcs-make-fallback">${initials}</span>`;
+    return `<img class="bcs-make-logo" src="${url}" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="bcs-make-fallback" style="display:none">${initials}</span>`;
+  }
+  function renderMakePicker(){
+    const select=$('#makeFilter');
+    if(!select) return;
+    const current=select.value;
+    const makes=orderedMakes();
+
+    select.innerHTML=`<option value="">${t('all_makes')}</option>`+
+      makes.map(m=>`<option value="${escapeHTML(m)}">${escapeHTML(m)}</option>`).join('');
+    if(current&&makes.includes(current)) select.value=current;
+
+    let picker=select.parentElement.querySelector('.bcs-make-picker');
+    if(!picker){
+      picker=document.createElement('div');
+      picker.className='bcs-make-picker';
+      select.insertAdjacentElement('afterend',picker);
+      select.style.display='none';
+    }
+    const selected=select.value;
+    const selectedMarkup=selected
+      ? makeLogoMarkup(selected)+`<span class="bcs-make-text">${escapeHTML(selected)}</span>`
+      : `<span class="bcs-make-text">${escapeHTML(t('all_makes'))}</span>`;
+
+    const korean=makes.filter(m=>KOREAN_MAKE_ORDER.includes(m));
+    const international=makes.filter(m=>!KOREAN_MAKE_ORDER.includes(m));
+    const row=m=>`<button type="button" class="bcs-make-option${m===selected?' selected':''}" data-make="${escapeHTML(m)}">${makeLogoMarkup(m)}<span>${escapeHTML(m)}</span></button>`;
+    picker.innerHTML=`
+      <button type="button" class="bcs-make-button" aria-haspopup="listbox" aria-expanded="false">${selectedMarkup}<span class="bcs-make-chevron">⌄</span></button>
+      <div class="bcs-make-menu" role="listbox">
+        <button type="button" class="bcs-make-option bcs-make-all${selected?'':' selected'}" data-make=""><span class="bcs-make-fallback">ALL</span><span>${escapeHTML(t('all_makes'))}</span></button>
+        ${korean.map(row).join('')}
+        ${korean.length&&international.length?'<div class="bcs-make-separator"></div>':''}
+        ${international.map(row).join('')}
+      </div>`;
+
+    const btn=picker.querySelector('.bcs-make-button');
+    const menu=picker.querySelector('.bcs-make-menu');
+    btn.onclick=e=>{
+      e.stopPropagation();
+      const open=picker.classList.toggle('open');
+      btn.setAttribute('aria-expanded',open?'true':'false');
+    };
+    picker.querySelectorAll('.bcs-make-option').forEach(opt=>{
+      opt.onclick=e=>{
+        e.stopPropagation();
+        select.value=opt.dataset.make||'';
+        picker.classList.remove('open');
+        btn.setAttribute('aria-expanded','false');
+        select.dispatchEvent(new Event('change',{bubbles:true}));
+        renderMakePicker();
+      };
+    });
+  }
+  if(!window.__bcsMakePickerCloseBound){
+    document.addEventListener('click',()=>document.querySelectorAll('.bcs-make-picker.open').forEach(x=>x.classList.remove('open')));
+    window.__bcsMakePickerCloseBound=true;
+  }
+
   function simpleModelName(v){
     const raw=String(v||'').trim();
     const s=raw.toLowerCase().replace(/[_-]+/g,' ').replace(/\s+/g,' ');
@@ -359,11 +450,11 @@
       if(selectedMake && [...$('#makeFilter').options].some(o=>o.value===selectedMake)) $('#makeFilter').value=selectedMake;
       updateModels();
       if(selectedFuel && [...$('#fuelFilter').options].some(o=>o.value===selectedFuel)) $('#fuelFilter').value=selectedFuel;
-      refreshLabels(); renderCars(); updateMeta();
+      refreshLabels(); renderMakePicker(); renderCars(); updateMeta();
     } catch(e) {
       demoMode=true; liveLoadedAt=null;
       inventory=MOCK_CARS.map(c=>({...c,photos:[],source:'Demo'}));
-      populate(); refreshLabels(); renderCars(); updateMeta();
+      populate(); refreshLabels(); renderMakePicker(); renderCars(); updateMeta();
       console.error('BEST CAR STAR live Encar feed error',e);
     } finally { liveLoading=false; }
   }
@@ -406,14 +497,14 @@
   function sourceLabels(){$('#sourceLabel').textContent=lang==='fr'?'Plateforme':'Marketplace';$('#sourceFilter').options[0].textContent=lang==='fr'?'Toutes les plateformes':'All marketplaces';}
   sourceLabels();
   const originalSetI18n=setI18n;
-  setI18n=function(){originalSetI18n(); sourceLabels(); updateMeta();};
+  setI18n=function(){originalSetI18n(); sourceLabels(); renderMakePicker(); updateMeta();};
 
   $('#searchBtn').onclick=renderCars;
   $('#resetBtn').onclick=()=>{
     ['#makeFilter','#modelFilter','#yearFrom','#yearTo','#maxPrice','#maxMileage','#fuelFilter','#driveFilter','#sourceFilter'].forEach(s=>$(s).value='');
-    updateModels(); renderCars();
+    updateModels(); renderMakePicker(); renderCars();
   };
-  $('#makeFilter').onchange=()=>{ updateModels(); renderCars(); };
+  $('#makeFilter').onchange=()=>{ updateModels(); renderMakePicker(); renderCars(); };
 
   inventory=[];
   document.querySelector('.search-top p').textContent=t('sample_note');
