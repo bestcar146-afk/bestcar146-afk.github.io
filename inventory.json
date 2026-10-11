@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-10-11T10:24:46.318173+00:00",
+  "updated_at": "2026-10-11T12:41:15.858363+00:00",
   "provider": "EnCarAPI",
   "scope": "Sales-driven public selection based on BEST CAR STAR historical demand",
   "source_counts": {
-    "Encar": 40,
-    "KB ChaChaCha": 104
+    "Encar": 41,
+    "KB ChaChaCha": 103
   },
   "results": [
     {
@@ -4459,59 +4459,7 @@
         "https://ci.encar.com/carpicture07/pic4287/42870426_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42870426",
-      "preference_2026": 17,
-      "details": {
-        "checked_at": "2026-10-10T12:38:15.066555+00:00",
-        "spec": {
-          "transmission": "오토",
-          "engine_cc": 2199,
-          "color": "은색",
-          "seats": 9,
-          "power_ps": 202,
-          "body": "RV",
-          "drive": null,
-          "registration": "201503"
-        },
-        "photos": [
-          "https://ci.encar.com/carpicture07/pic4287/42870426_008.jpg",
-          "https://ci.encar.com/carpicture07/pic4287/42870426_001.jpg",
-          "https://ci.encar.com/carpicture07/pic4287/42870426_004.jpg",
-          "https://ci.encar.com/carpicture07/pic4287/42870426_018.jpg",
-          "https://ci.encar.com/carpicture07/pic4287/42870426_016.jpg",
-          "https://ci.encar.com/carpicture07/pic4287/42870426_021.jpg",
-          "https://ci.encar.com/carpicture07/pic4287/42870426_022.jpg",
-          "https://ci.encar.com/carpicture07/pic4287/42870426_020.jpg",
-          "https://ci.encar.com/carpicture07/pic4287/42870426_006.jpg",
-          "https://ci.encar.com/carpicture07/pic4287/42870426_007.jpg",
-          "https://ci.encar.com/carpicture07/pic4287/42870426_015.jpg",
-          "https://ci.encar.com/carpicture07/pic4287/42870426_017.jpg",
-          "https://ci.encar.com/carpicture07/pic4287/42870426_010.jpg",
-          "https://ci.encar.com/carpicture07/pic4287/42870426_019.jpg",
-          "https://ci.encar.com/carpicture07/pic4287/42870426_003.jpg",
-          "https://ci.encar.com/carpicture07/pic4287/42870426_009.jpg",
-          "https://ci.encar.com/carpicture07/pic4287/42870426_002.jpg",
-          "https://ci.encar.com/carpicture07/pic4287/42870426_005.jpg"
-        ],
-        "inspection": {
-          "accdient": false,
-          "simpleRepair": false,
-          "registrationDate": "2026-10-10T11:10:27"
-        },
-        "insurance": {
-          "accidentCnt": 1,
-          "myAccidentCnt": 0,
-          "otherAccidentCnt": 1,
-          "myAccidentCost": 0,
-          "otherAccidentCost": 456540,
-          "ownerChangeCnt": 4,
-          "totalLossCnt": 0,
-          "floodTotalLossCnt": 0,
-          "floodPartLossCnt": null,
-          "robberCnt": 0,
-          "regDate": "2026-09-23T14:26:43.554834"
-        },
-        "kb_history": null
-      }
+      "preference_2026": 17
     },
     {
       "id": "kbc:28318368",
@@ -4846,7 +4794,7 @@
       "badge": "Diesel 2WD TLX 최고급형",
       "year": 2012,
       "mileage_km": 114254,
-      "price_krw": 4200000,
+      "price_krw": 4100000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
@@ -5065,7 +5013,7 @@
       "badge": "Diesel 2WD TLX 최고급형",
       "year": 2012,
       "mileage_km": 114254,
-      "price_krw": 4200000,
+      "price_krw": 4100000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
@@ -7139,41 +7087,26 @@
       "preference_2026": 17
     },
     {
-      "id": "kbc:28652779",
-      "source": "KB ChaChaCha",
+      "id": "42152867",
+      "source": "Encar",
       "manufacturer": "Kia",
       "model": "All New Carnival",
-      "badge": "9-Seater 2.2 Diesel Luxury",
-      "year": 2016,
-      "mileage_km": 185467,
+      "badge": "9-Seater Prestige",
+      "year": 2015,
+      "mileage_km": 214570,
       "price_krw": 6400000,
       "fuel_type": "diesel",
-      "transmission": "automatic",
-      "color": "pearl",
-      "location": "대구",
+      "transmission": "—",
+      "color": "—",
+      "location": "충북",
       "photos": [
-        "https://img.kbchachacha.com/IMG/carimg/l/img05/img2865/28652779_5075612853191385.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img05/img2865/28652779_5075616964079245.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img05/img2865/28652779_5075621327487553.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img05/img2865/28652779_5075627054078722.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img05/img2865/28652779_5075663096718703.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img05/img2865/28652779_5075669503437662.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img05/img2865/28652779_5075740307557945.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img05/img2865/28652779_5075740547501041.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img05/img2865/28652779_5075740904775032.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img05/img2865/28652779_5075741237343518.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img05/img2865/28652779_5075741484141470.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img05/img2865/28652779_5075741679402971.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img05/img2865/28652779_5075741986933047.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img05/img2865/28652779_5075742181645971.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img05/img2865/28652779_5075742362314632.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img05/img2865/28652779_5075742547955654.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img05/img2865/28652779_5075742779395233.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img05/img2865/28652779_5075743061752577.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img05/img2865/28652779_5075743350749545.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img05/img2865/28652779_5075743649442769.jpg?width=720"
+        "https://ci.encar.com/carpicture05/pic4215/42152867_001.jpg",
+        "https://ci.encar.com/carpicture05/pic4215/42152867_003.jpg",
+        "https://ci.encar.com/carpicture05/pic4215/42152867_004.jpg",
+        "https://ci.encar.com/carpicture05/pic4215/42152867_007.jpg",
+        "https://ci.encar.com/carpicture05/pic4215/42152867_"
       ],
-      "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28652779",
+      "listing_url": "https://fem.encar.com/cars/detail/42152867",
       "preference_2026": 17
     },
     {
