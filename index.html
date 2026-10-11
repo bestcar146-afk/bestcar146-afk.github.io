@@ -150,10 +150,18 @@ function filtered(){
     return(!mk||c.make===mk)&&(!md||c.model===md)&&c.year>=yf&&c.year<=yt&&vehicleUsd<=maxUsd&&(c.mileage==null||c.mileage<=mm)&&(!fu||c.fuel===fu)&&(!trn||transmissionClass((c.details&&c.details.spec&&c.details.spec.transmission)||c.transmission)===trn);
   });
   const s=$('#sortFilter').value;
+  const drivePref=c=>{
+    const text=((c.details&&c.details.spec&&c.details.spec.drive)||c.badge||'').toString().toLowerCase();
+    if(/\b(4wd|awd)\b/.test(text)||text.includes('all4')||text.includes('quattro')||text.includes('xdrive')||text.includes('4motion')) return 2;
+    if(/\b(2wd|fwd|rwd)\b/.test(text)) return 0;
+    return 1;
+  };
   cars.sort((a,b)=>{
     if(s==='preference'){
       const d=(Number(b.preferenceScore)||0)-(Number(a.preferenceScore)||0);
       if(d) return d;
+      const dd=drivePref(b)-drivePref(a);
+      if(dd) return dd;
       return a.price-b.price;
     }
     return s==='priceDesc'?b.price-a.price:s==='yearDesc'?b.year-a.year:s==='mileageAsc'?(a.mileage??Infinity)-(b.mileage??Infinity):a.price-b.price;
@@ -167,7 +175,7 @@ function closeModal(){$('#vehicleModal').classList.remove('open');$('#vehicleMod
 $('#languageSelect').onchange=e=>{lang=e.target.value;safeStore.set('bcsLang',lang);setI18n()};$('#makeFilter').onchange=()=>{updateModels();renderCars()};['#modelFilter','#yearFrom','#yearTo','#maxPrice','#maxMileage','#fuelFilter','#driveFilter','#sortFilter'].forEach(s=>$(s).onchange=renderCars);$('#searchBtn').onclick=renderCars;$('#resetBtn').onclick=()=>{['#makeFilter','#modelFilter','#yearFrom','#yearTo','#maxPrice','#maxMileage','#fuelFilter','#driveFilter'].forEach(s=>$(s).value='');updateModels();renderCars()};$('#moreFilters').onclick=()=>{const shell=$('#searchShell');shell.classList.toggle('expanded');$('#moreFilters').textContent=shell.classList.contains('expanded')?t('less_filters'):t('more_filters')};$$('[data-close]').forEach(x=>x.onclick=closeModal);document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();}});
 (function init(){populate();refreshLabels();$('#sortFilter').value='preference';setI18n();renderCars();})();
 </script>
-<script src="live.js?v=export-priority-1"></script>
-<script src="stage3.js?v=6"></script>\n<script src="premium.js?v=17"></script>\n</body>
+<script src="live.js?v=4wd-priority-1"></script>
+<script src="stage3.js?v=6"></script>\n<script src="premium.js?v=floating-top-1"></script>\n</body>
 </html>
 
