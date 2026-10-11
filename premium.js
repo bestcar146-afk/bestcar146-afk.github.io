@@ -84,6 +84,20 @@
   .step{border:1px solid #e2e8f0;border-radius:18px;padding:24px;background:#fff;box-shadow:0 10px 28px rgba(15,23,42,.04);transition:.2s}.step:hover{transform:translateY(-2px);box-shadow:0 18px 32px rgba(15,23,42,.08)}
   .bcs-step-art{height:178px;border-radius:16px;background:#f5f9fc;display:grid;place-items:center;margin:-4px -4px 18px;padding:10px;overflow:hidden}
   .bcs-step-art img{display:block;width:100%;height:100%;object-fit:contain;object-position:center}
+  .bcs-make-picker{position:relative;width:100%}
+  .bcs-make-button{width:100%;min-height:46px;border:1px solid #d6dee6;border-radius:12px;padding:10px 12px;background:#fff;color:#14263a;display:flex;align-items:center;gap:10px;font:inherit;text-align:left;cursor:pointer}
+  .bcs-make-button:focus{border-color:#7aa8c1;box-shadow:0 0 0 3px rgba(107,168,201,.15);outline:none}
+  .bcs-make-chevron{margin-left:auto;color:#64748b;font-size:16px}
+  .bcs-make-logo{width:26px;height:26px;object-fit:contain;flex:0 0 26px}
+  .bcs-make-fallback{width:26px;height:26px;border-radius:7px;background:#eef3f8;color:#334155;display:grid;place-items:center;flex:0 0 26px;font-size:8px;font-weight:900;letter-spacing:-.2px}
+  .bcs-make-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .bcs-make-menu{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:90;display:none;max-height:330px;overflow:auto;padding:6px;background:#fff;border:1px solid #dbe3ea;border-radius:14px;box-shadow:0 18px 50px rgba(15,23,42,.18)}
+  .bcs-make-picker.open .bcs-make-menu{display:block}
+  .bcs-make-option{width:100%;border:0;background:#fff;color:#172033;border-radius:10px;padding:9px 10px;display:flex;align-items:center;gap:10px;text-align:left;font:inherit;font-size:13px;cursor:pointer}
+  .bcs-make-option:hover,.bcs-make-option.selected{background:#eef5ff}
+  .bcs-make-option.selected{font-weight:850;color:#1d4ed8}
+  .bcs-make-separator{height:1px;background:#e7edf3;margin:6px 5px}
+  .bcs-make-all .bcs-make-fallback{font-size:7px}
   .step-num{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:#dbeafe;color:#2563eb;font-weight:900}
   .bcs-quick-nav{position:fixed;right:18px;bottom:22px;z-index:70;opacity:0;transform:translateY(10px);pointer-events:none;transition:.2s}
   .bcs-quick-nav.show{opacity:1;transform:translateY(0);pointer-events:auto}
