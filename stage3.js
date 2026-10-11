@@ -12,8 +12,8 @@
       transport_est:'Estimated transport', documents_free:'Documents', handling_fee:'Handling',
       total_est:'Estimated total', request:'BOOK THIS CAR', details:'Vehicle details',
       inspection:'Inspection report', insurance:'Insurance history', condition:'Vehicle condition',
-      listed_sync:'Listed at last sync', fx_note:'Google Finance reference rate',
-      transport_basis:'Transport estimated from seller region using the upper end of the reference range.',
+      listed_sync:'Listed at last sync', fx_note:'rate',
+      transport_basis:'Transport estimated from seller region',
       free:'Free', not_provided:'Not provided', yes:'Yes', no:'No',
       accident:'Accident flagged by inspection', simple_repair:'Simple repairs reported',
       claims:'Recorded claims / accidents', my_claims:'Claims involving this car', my_payout:'Payouts for this car',
@@ -30,8 +30,8 @@
       transport_est:'Transport estimé', documents_free:'Documents', handling_fee:'Frais de service',
       total_est:'Total estimé', request:"RÉSERVER CE VÉHICULE", details:'Détails du véhicule',
       inspection:"Rapport d’inspection", insurance:"Historique d’assurance", condition:'État du véhicule',
-      listed_sync:'Annonce lors de la dernière synchronisation', fx_note:'Taux de référence Google Finance',
-      transport_basis:'Transport estimé selon la région du vendeur en utilisant la limite haute de la fourchette de référence.',
+      listed_sync:'Annonce lors de la dernière synchronisation', fx_note:'taux',
+      transport_basis:'Transport estimé selon la région du vendeur',
       free:'Gratuit', not_provided:'Non fourni', yes:'Oui', no:'Non',
       accident:"Accident signalé par l’inspection", simple_repair:'Réparations simples signalées',
       claims:'Sinistres / accidents enregistrés', my_claims:'Sinistres sur ce véhicule', my_payout:'Indemnités pour ce véhicule',
@@ -139,7 +139,7 @@
     const vehicleUsd=vehicleKrw/FX_KRW_PER_USD;
     const transportUsd=trn.krw/FX_KRW_PER_USD;
     const vehicleUsdRounded=roundUp5(vehicleUsd);
-    const transportUsdRounded=roundUp5(transportUsd);
+    const transportUsdRounded=roundUp5(transportUsd)+50;
     const handlingUsdRounded=roundUp5(HANDLING_USD);
     const totalUsdRounded=roundUp5(vehicleUsdRounded+transportUsdRounded+handlingUsdRounded);
     return {vehicleKrw,vehicleUsd:vehicleUsdRounded,transportKrw:trn.krw,transportUsd:transportUsdRounded,tier:trn.tier,documentsUsd:0,handlingUsd:handlingUsdRounded,totalUsd:totalUsdRounded};
@@ -214,11 +214,11 @@
           <div class="s3-cost">
             <div class="s3-cost-head">${t('purchase_cost')}</div>
             <div class="s3-cost-row"><span>${tt('vehicle_cost')}</span><b>${usd(cb.vehicleUsd)}</b></div>
-            <div class="s3-cost-row"><span>${tt('transport_est')} <small>(${esc(cb.tier)})</small></span><b>${usd(cb.transportUsd)}</b></div>
+            <div class="s3-cost-row"><span>${tt('transport_est')}</span><b>${usd(cb.transportUsd)}</b></div>
             <div class="s3-cost-row"><span>${tt('documents_free')}</span><b>${tt('free')}</b></div>
             <div class="s3-cost-row"><span>${tt('handling_fee')}</span><b>${usd(cb.handlingUsd)}</b></div>
             <div class="s3-cost-total"><span>${tt('total_est')}</span><b>${usd(cb.totalUsd)}</b></div>
-            <div class="s3-fx">${tt('fx_note')}: 1 USD = ₩${FX_KRW_PER_USD.toLocaleString('en-US',{maximumFractionDigits:2})}${fxDate?' · '+fxDate:''}. ${tt('transport_basis')}</div>
+            <div class="s3-fx">1 USD = ₩${FX_KRW_PER_USD.toLocaleString('en-US',{maximumFractionDigits:2})} ${tt('fx_note')}. ${tt('transport_basis')}.</div>
           </div>
 
           <button type="button" class="btn btn-primary s3-request-btn" id="s3RequestBtn">${tt('request')}</button>
