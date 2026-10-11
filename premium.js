@@ -173,29 +173,31 @@
 
   const quickNav=document.createElement('nav');
   quickNav.className='bcs-quick-nav';
-  quickNav.setAttribute('aria-label','Back to vehicle inventory');
-  quickNav.innerHTML=`<a href="#cars" class="bcs-qn-cars" title="Back to vehicles"><span class="bcs-qn-icon">↑</span><span class="bcs-qn-label">Vehicles</span></a>`;
+  quickNav.setAttribute('aria-label','Back to top');
+  quickNav.innerHTML=`<a href="#" class="bcs-qn-cars" title="Back to top"><span class="bcs-qn-icon">↑</span><span class="bcs-qn-label">Top</span></a>`;
   document.body.appendChild(quickNav);
 
   const updateQuickNavLabel=()=>{
     const fr=document.documentElement.lang==='fr' || (typeof lang!=='undefined' && lang==='fr');
     const label=quickNav.querySelector('.bcs-qn-label');
     const link=quickNav.querySelector('a');
-    if(label) label.textContent=fr?'Véhicules':'Vehicles';
-    if(link) link.title=fr?'Retour aux véhicules':'Back to vehicles';
+    if(label) label.textContent=fr?'Haut':'Top';
+    if(link) link.title=fr?'Retour en haut':'Back to top';
   };
   updateQuickNavLabel();
   const langSelect=document.querySelector('#languageSelect');
   if(langSelect) langSelect.addEventListener('change',()=>setTimeout(updateQuickNavLabel,0));
 
-  const howSection=document.querySelector('#how');
+  const topLink=quickNav.querySelector('a');
+  if(topLink) topLink.addEventListener('click',e=>{
+    e.preventDefault();
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+
   const toggleQuickNav=()=>{
-    if(!howSection) return;
-    const showAt=howSection.offsetTop-Math.min(180,window.innerHeight*.2);
-    quickNav.classList.toggle('show',window.scrollY>=showAt);
+    quickNav.classList.toggle('show',window.scrollY>260);
   };
   window.addEventListener('scroll',toggleQuickNav,{passive:true});
-  window.addEventListener('resize',toggleQuickNav,{passive:true});
   toggleQuickNav();
 
   const footer=document.querySelector('footer .container');
