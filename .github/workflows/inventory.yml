@@ -2,7 +2,7 @@ name: Sync marketplace inventory
 on:
   push:
     branches: [main]
-    paths: [index.html, live.js, scripts/sync_inventory.py, .github/workflows/inventory.yml]
+    paths: [index.html, live.js, scripts/sync_inventory.py, scripts/update_fx.py, .github/workflows/inventory.yml]
   schedule:
     - cron: '17 */6 * * *'
   workflow_dispatch:
@@ -19,7 +19,7 @@ jobs:
     environment:
       name: github-pages
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -29,21 +29,41 @@ jobs:
         env:
           ENCARAPI_KEY: ${{ secrets.ENCARAPI_KEY }}
         run: python scripts/sync_inventory.py
-      - name: Save successful snapshot
-        if: steps.fetch.outcome == 'success'
+
+      - name: Update USD-KRW rate
+        id: fx
+        continue-on-error: true
+        run: python scripts/update_fx.py
+
+      - name: Save successful updates
+        if: steps.fetch.outcome == 'success' || steps.fx.outcome == 'success'
+        env:
+          FETCH_OUTCOME: ${{ steps.fetch.outcome }}
+          FX_OUTCOME: ${{ steps.fx.outcome }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add inventory.json
+
+          if [ "$FETCH_OUTCOME" = "success" ]; then git add inventory.json; fi
+          if [ "$FX_OUTCOME" = "success" ]; then git add fx.json; fi
+
           if ! git diff --cached --quiet; then
-            git commit -m "Refresh Encar and KB inventory"
-            git push
+            git commit -m "Refresh marketplace data and USD-KRW rate"
+            if ! git push; then
+              echo "Push conflicted; rebasing once."
+              if git pull --rebase origin main && git push; then
+                echo "Updates pushed after rebase."
+              else
+                echo "Push skipped. Next scheduled sync will retry."
+              fi
+            fi
           fi
       - name: Prepare public website only
         run: |
           mkdir -p _site
           cp index.html live.js _site/
           if [ -f inventory.json ]; then cp inventory.json _site/; fi
+          if [ -f fx.json ]; then cp fx.json _site/; fi
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
