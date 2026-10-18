@@ -322,7 +322,7 @@
   function displayCar(c){return Object.fromEntries(Object.entries(c).map(([k,v])=>[k,typeof v==='string'?escapeHTML(v):k==='photos'?v.map(u=>/^https:\/\//.test(u)?escapeHTML(u):'').filter(Boolean):v]));}
   carCard = function(c) {
     c=displayCar(c);
-    return `<article class="card"><div class="car-photo"><span class="source-pill">${demoMode?'Demo':c.source}</span>${imageMarkup(c)}<button type="button" class="photo-open" data-car="${c.id}" aria-label="${t('view_vehicle')} — ${c.make} ${c.model}"></button></div><div class="card-body"><h3>${c.year || ''} ${c.make} ${c.model}</h3><div class="spec-row"><span class="spec">${c.mileage == null ? '—' : c.mileage.toLocaleString()+' km'}</span><span class="spec">${tr(c.fuel)}</span></div><div class="price-label">${t('vehicle_price')}</div><div class="price">${krw(c.price)}</div><button class="btn btn-primary" data-car="${c.id}">${t('view_vehicle')}</button></div></article>`;
+    return `<article class="card"><div class="car-photo">${imageMarkup(c)}<button type="button" class="photo-open" data-car="${c.id}" aria-label="${t('view_vehicle')} — ${c.make} ${c.model}"></button></div><div class="card-body"><h3>${c.year || ''} ${c.make} ${c.model}</h3><div class="spec-row"><span class="spec">${c.mileage == null ? '—' : c.mileage.toLocaleString()+' km'}</span><span class="spec">${tr(c.fuel)}</span></div><div class="price-label">${t('vehicle_price')}</div><div class="price">${krw(c.price)}</div><button class="btn btn-primary" data-car="${c.id}">${t('view_vehicle')}</button></div></article>`;
 
   };
 
@@ -488,20 +488,12 @@
     return cars;
   };
 
-  const field=document.createElement('div');field.className='field';
-  field.innerHTML='<label id="sourceLabel"></label><select id="sourceFilter"><option value=""></option><option>Encar</option><option>KB ChaChaCha</option></select>';
-  document.querySelector('.filters').appendChild(field);
-  const baseFiltered=filtered;
-  filtered=function(){return baseFiltered().filter(c=>!$('#sourceFilter').value||c.source===$('#sourceFilter').value);};
-  $('#sourceFilter').onchange=renderCars;
-  function sourceLabels(){$('#sourceLabel').textContent=lang==='fr'?'Plateforme':'Marketplace';$('#sourceFilter').options[0].textContent=lang==='fr'?'Toutes les plateformes':'All marketplaces';}
-  sourceLabels();
   const originalSetI18n=setI18n;
-  setI18n=function(){originalSetI18n(); sourceLabels(); renderMakePicker(); updateMeta();};
+  setI18n=function(){originalSetI18n(); renderMakePicker(); updateMeta();};
 
   $('#searchBtn').onclick=renderCars;
   $('#resetBtn').onclick=()=>{
-    ['#makeFilter','#modelFilter','#yearFrom','#yearTo','#maxPrice','#maxMileage','#fuelFilter','#driveFilter','#sourceFilter'].forEach(s=>$(s).value='');
+    ['#makeFilter','#modelFilter','#yearFrom','#yearTo','#maxPrice','#maxMileage','#fuelFilter','#driveFilter'].forEach(s=>$(s).value='');
     updateModels(); renderMakePicker(); renderCars();
   };
   $('#makeFilter').onchange=()=>{ updateModels(); renderMakePicker(); renderCars(); };
