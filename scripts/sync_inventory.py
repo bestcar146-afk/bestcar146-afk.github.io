@@ -75,11 +75,11 @@ def normalize(row):
             'photos':photos,'listing_url':url}
 
 
-PUBLIC_TARGET=150
+PUBLIC_TARGET=320
 
 # Historical demand + price profile derived directly from BEST CAR STAR sold/shipped Excel data (2024-Sep 2026).
 # The sold file is itself price-filtered, so these price levels represent accepted bargain/acquisition levels,
-# not the Korean market average. Slots total 150 as a target capacity; actual public count may be lower.
+# not the Korean market average. Priority families keep larger allocations; every other Excel-proven model targets 5 cheapest qualifying live cars.
 DEMAND_PROFILE = {
     'Kia New Sorento R': (16, 4702500, 6165000),
     'Kia All New Sorento': (16, 5965000, 7899040),
@@ -313,6 +313,13 @@ def demand_key(car):
             return key
     return None
 
+PRIORITY_MODELS = {
+    'Kia New Sorento R','Kia All New Sorento','Kia Sorento R','Hyundai Santa Fe DM',
+    'Kia Sportage R','Hyundai Grand Starex','Kia All New Carnival','Audi Q5',
+    'Hyundai All New Tucson','Hyundai Maxcruz'
+}
+NON_PRIORITY_TARGET=5
+
 SUV_FAMILIES={
     'Kia New Sorento R','Kia All New Sorento','Kia Sorento R','Hyundai Santa Fe DM',
     'Kia Sportage R','Audi Q5','Hyundai All New Tucson','Hyundai Maxcruz',
@@ -356,59 +363,62 @@ def select_public(cars):
             rejected_expensive += 1
 
     def rank_for(key,car):
-        priority=DEMAND_PROFILE[key][1]
+        priority_price=DEMAND_PROFILE[key][1]
         reference_upper=DEMAND_PROFILE[key][2]
         price=car.get('price_krw') or 0
         mileage=car.get('mileage_km')
         mileage=mileage if isinstance(mileage,(int,float)) else 9999999
-        if price <= priority: price_bucket=0
-        elif price <= reference_upper: price_bucket=1
-        else: price_bucket=2
-        # For SUV families, explicitly listed 4WD/AWD variants are preferred over
-        # unknown drivetrain, which in turn is preferred over explicitly listed 2WD.
-        return (suv_drive_rank(car,key),price_bucket,price,-int(car.get('year') or 0),mileage)
+
+        # Non-priority historical models: the business rule is simply the
+        # 5 cheapest qualifying diesel cars across Encar + KB ChaChaCha.
+        if key not in PRIORITY_MODELS:
+            return (price,-int(car.get('year') or 0),mileage)
+
+        # Priority SUV rule:
+        # good price + 4WD -> good price + unknown -> good price + 2WD
+        # -> expensive 4WD -> expensive unknown -> expensive 2WD.
+        good_price=0 if price <= reference_upper else 1
+        bargain=0 if price <= priority_price else 1
+        return (good_price,suv_drive_rank(car,key),bargain,price,-int(car.get('year') or 0),mileage)
 
     for key,group in grouped.items():
         group.sort(key=lambda car: rank_for(key,car))
 
     selected=[]; used=set(); selected_per_key={key:0 for key in DEMAND_PROFILE}
 
-    # First pass: guarantee variety. Every Excel-proven family with a qualifying live car gets one slot.
-    for key in DEMAND_PROFILE:
-        if grouped[key]:
-            car=grouped[key][0]
-            selected.append(car); used.add(car['id']); selected_per_key[key]=1
-            if len(selected)>=PUBLIC_TARGET: break
+    # 1) Priority models retain their larger historical-demand allocations.
+    priority_keys=sorted(PRIORITY_MODELS,key=lambda k:(-DEMAND_2026.get(k,0),list(DEMAND_PROFILE).index(k)))
+    for key in priority_keys:
+        target=DEMAND_PROFILE[key][0]
+        for car in grouped.get(key,[])[:target]:
+            if car['id'] in used: continue
+            selected.append(car); used.add(car['id']); selected_per_key[key]+=1
 
-    # Second pass: fill the remaining quota in 2026 purchase-priority order.
-    priority_keys=sorted(DEMAND_PROFILE, key=lambda k:(-DEMAND_2026.get(k,0), list(DEMAND_PROFILE).index(k)))
-    progress=True
-    while len(selected)<PUBLIC_TARGET and progress:
-        progress=False
-        for key in priority_keys:
-            target=DEMAND_PROFILE[key][0]
-            if selected_per_key[key] >= target: continue
-            next_car=next((x for x in grouped[key] if x['id'] not in used),None)
-            if next_car is None: continue
-            selected.append(next_car); used.add(next_car['id']); selected_per_key[key]+=1
-            progress=True
-            if len(selected)>=PUBLIC_TARGET: break
+    # 2) Every other model that appears in the Excel purchase history gets
+    # up to five cheapest qualifying live cars.
+    non_priority_keys=[k for k in DEMAND_PROFILE if k not in PRIORITY_MODELS]
+    non_priority_keys.sort(key=lambda k:(-DEMAND_2026.get(k,0),list(DEMAND_PROFILE).index(k)))
+    for key in non_priority_keys:
+        for car in grouped.get(key,[])[:NON_PRIORITY_TARGET]:
+            if car['id'] in used: continue
+            selected.append(car); used.add(car['id']); selected_per_key[key]+=1
 
-    # Third pass: use additional qualifying cars from proven families when another family is scarce.
+    # 3) If room remains, add more qualifying priority cars only.
+    # Non-priority families stay capped at five so the page remains varied.
     extras=[]
-    for key,group in grouped.items():
-        for car in group:
+    for key in priority_keys:
+        for car in grouped.get(key,[]):
             if car['id'] not in used:
                 extras.append((key,car))
     extras.sort(key=lambda kc:(-DEMAND_2026.get(kc[0],0),)+rank_for(kc[0],kc[1]))
     for key,car in extras:
         if len(selected)>=PUBLIC_TARGET: break
-        # A high-demand family may exceed its nominal quota slightly, but cannot monopolize the page.
-        if selected_per_key[key] >= DEMAND_PROFILE[key][0] + 4: continue
+        if selected_per_key[key] >= DEMAND_PROFILE[key][0] + 6: continue
         selected.append(car); used.add(car['id']); selected_per_key[key]+=1
 
     print('Price stretch limits rejected',rejected_expensive,'Excel-family candidates',flush=True)
     print('Selected model families:',sum(1 for k,v in selected_per_key.items() if v),flush=True)
+    print('Non-priority families with 5 cars:',sum(1 for k in non_priority_keys if selected_per_key[k]>=5),flush=True)
     for car in selected:
         key=car.get('_demand_key') or demand_key(car)
         car['preference_2026']=DEMAND_2026.get(key,0)
@@ -489,7 +499,7 @@ def main():
     key=os.environ.get('ENCARAPI_KEY','').strip()
     if not key: raise ValueError('ENCARAPI_KEY repository secret is missing')
     candidates=[]; seen=set()
-    common={'source':'encar,kbc','lang':'en','sort':'newest',
+    common={'source':'encar,kbc','lang':'en','sort':'price_asc','fuel':'diesel','has_photos':'true',
             'exclude_duplicates':'true','exclude_prices':'1111,9999'}
     for search_term,limit,pages in TARGET_SEARCHES:
         for page in range(1,pages+1):
