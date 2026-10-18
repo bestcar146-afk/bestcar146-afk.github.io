@@ -1,7 +1,7 @@
 {
   "pair": "USD/KRW",
-  "krw_per_usd": 774.5602,
+  "krw_per_usd": 500.317,
   "source": "Google Finance",
   "source_url": "https://www.google.com/finance/beta/quote/USD-KRW?hl=en",
-  "as_of": "2026-10-17T21:14:37.234135+00:00"
+  "as_of": "2026-10-18T01:00:05.039819+00:00"
 }
