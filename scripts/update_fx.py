@@ -1,9 +1,12 @@
 import json
-import re
+import statistics
 import urllib.request
-import html as html_lib
 from datetime import datetime, timezone
 from pathlib import Path
+
+MIN_RATE = 1000.0
+MAX_RATE = 1800.0
+MAX_PROVIDER_SPREAD = 0.03
 
 
 def valid_rate(value):
@@ -11,81 +14,76 @@ def valid_rate(value):
         value = float(value)
     except Exception:
         return None
-    return value if 500 < value < 3000 else None
+    return value if MIN_RATE <= value <= MAX_RATE else None
 
 
-def google_rate():
-    urls = [
-        "https://www.google.com/finance/beta/quote/USD-KRW?hl=en",
-        "https://www.google.com/finance/quote/USD-KRW?hl=en",
-    ]
-    headers = {
-        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/130 Safari/537.36",
-        "Accept-Language": "en-US,en;q=0.9",
-    }
-    for url in urls:
-        try:
-            req = urllib.request.Request(url, headers=headers)
-            page = urllib.request.urlopen(req, timeout=30).read().decode("utf-8", "ignore")
-
-            patterns = [
-                r'data-last-price=["\']([0-9,.]+)',
-                r'class=["\']YMlKec[^"\']*["\'][^>]*>\s*([^<]+)<',
-            ]
-            for pattern in patterns:
-                m = re.search(pattern, page, re.I)
-                if m:
-                    raw = re.sub(r"[^0-9.]", "", m.group(1).replace(",", ""))
-                    rate = valid_rate(raw)
-                    if rate:
-                        return rate, "Google Finance", url
-
-            text = html_lib.unescape(re.sub(r"<[^>]+>", " ", page))
-            text = re.sub(r"\s+", " ", text)
-            anchors = [
-                "United States Dollar / South Korean won",
-                "USD / KRW",
-                "USD/KRW",
-            ]
-            for anchor in anchors:
-                pos = text.lower().find(anchor.lower())
-                if pos < 0:
-                    continue
-                chunk = text[pos:pos + 900]
-                for raw in re.findall(
-                    r"(?<![0-9])([0-9]{3,4}(?:,[0-9]{3})*(?:\.[0-9]+)?)(?![0-9])",
-                    chunk,
-                ):
-                    rate = valid_rate(raw.replace(",", ""))
-                    if rate:
-                        return rate, "Google Finance", url
-        except Exception as exc:
-            print("Google Finance attempt failed:", type(exc).__name__)
-    return None
+def fetch_json(url):
+    req = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent": "Mozilla/5.0",
+            "Accept": "application/json",
+        },
+    )
+    with urllib.request.urlopen(req, timeout=30) as response:
+        return json.load(response)
 
 
-def fallback_rate():
-    url = "https://open.er-api.com/v6/latest/USD"
-    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-    data = json.load(urllib.request.urlopen(req, timeout=30))
+def frankfurter_rate():
+    url = "https://api.frankfurter.app/latest?from=USD&to=KRW"
+    data = fetch_json(url)
     rate = valid_rate((data.get("rates") or {}).get("KRW"))
     if not rate:
-        raise ValueError("Fallback returned no valid KRW rate")
-    return rate, "ExchangeRate-API fallback", url
+        raise ValueError("Frankfurter returned no valid KRW rate")
+    return rate, "Frankfurter", url
+
+
+def erapi_rate():
+    url = "https://open.er-api.com/v6/latest/USD"
+    data = fetch_json(url)
+    rate = valid_rate((data.get("rates") or {}).get("KRW"))
+    if not rate:
+        raise ValueError("ExchangeRate-API returned no valid KRW rate")
+    return rate, "ExchangeRate-API", url
+
+
+def previous_rate():
+    try:
+        data = json.loads(Path("fx.json").read_text(encoding="utf-8"))
+        return valid_rate(data.get("krw_per_usd"))
+    except Exception:
+        return None
 
 
 def main():
-    result = google_rate()
-    if result is None:
+    quotes = []
+    for fetcher in (frankfurter_rate, erapi_rate):
         try:
-            result = fallback_rate()
-            print("Google Finance parser unavailable; used fallback rate source.")
+            quotes.append(fetcher())
         except Exception as exc:
-            print("FX refresh unavailable:", exc)
-            print("Keeping the existing fx.json so the website continues using the last good rate.")
-            return 0
+            print(fetcher.__name__, "failed:", exc)
 
-    rate, source, source_url = result
+    if len(quotes) >= 2:
+        values = [q[0] for q in quotes]
+        low, high = min(values), max(values)
+        spread = (high - low) / statistics.mean(values)
+        if spread > MAX_PROVIDER_SPREAD:
+            print("FX providers disagree too much:", values)
+            print("Keeping the previous valid rate.")
+            return 0
+        rate = statistics.mean(values)
+        source = "FX provider consensus"
+        source_url = "Frankfurter + ExchangeRate-API"
+    elif len(quotes) == 1:
+        rate, source, source_url = quotes[0]
+        prev = previous_rate()
+        if prev and abs(rate - prev) / prev > 0.08:
+            print("Single-provider FX move exceeds 8%; keeping previous rate.", prev, rate)
+            return 0
+    else:
+        print("No reliable FX quote available; keeping previous rate.")
+        return 0
+
     out = {
         "pair": "USD/KRW",
         "krw_per_usd": round(rate, 4),
