@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-10-19T01:05:12.589496+00:00",
+  "updated_at": "2026-10-19T07:08:48.805496+00:00",
   "provider": "EnCarAPI",
   "scope": "Sales-driven public selection based on BEST CAR STAR historical demand",
   "source_counts": {
-    "Encar": 208,
-    "KB ChaChaCha": 60
+    "Encar": 210,
+    "KB ChaChaCha": 59
   },
   "results": [
     {
@@ -168,7 +168,7 @@
       "badge": "Diesel 2.0 2WD 프레스티지",
       "year": 2014,
       "mileage_km": 266000,
-      "price_krw": 3900000,
+      "price_krw": 3800000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
@@ -371,6 +371,29 @@
       "preference_2026": 49
     },
     {
+      "id": "42770655",
+      "source": "Encar",
+      "manufacturer": "Kia",
+      "model": "New Sorento R",
+      "badge": "Diesel 2.0 2WD TLX",
+      "year": 2013,
+      "mileage_km": 233830,
+      "price_krw": 4500000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "대구",
+      "photos": [
+        "https://ci.encar.com/carpicture07/pic4277/42770655_001.jpg",
+        "https://ci.encar.com/carpicture07/pic4277/42770655_003.jpg",
+        "https://ci.encar.com/carpicture07/pic4277/42770655_004.jpg",
+        "https://ci.encar.com/carpicture07/pic4277/42770655_007.jpg",
+        "https://ci.encar.com/carpicture07/pic4277/42770655_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42770655",
+      "preference_2026": 49
+    },
+    {
       "id": "kbc:28402131",
       "source": "KB ChaChaCha",
       "manufacturer": "Kia",
@@ -405,29 +428,6 @@
         "https://img.kbchachacha.com/IMG/carimg/l/img10/img2840/28402131_5932319490492494.jpeg?width=720"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28402131",
-      "preference_2026": 49
-    },
-    {
-      "id": "42518507",
-      "source": "Encar",
-      "manufacturer": "Kia",
-      "model": "New Sorento R",
-      "badge": "Diesel 2.0 2WD 럭셔리",
-      "year": 2014,
-      "mileage_km": 167183,
-      "price_krw": 4700000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경기",
-      "photos": [
-        "https://ci.encar.com/carpicture02/pic4192/41923275_001.jpg",
-        "https://ci.encar.com/carpicture02/pic4192/41923275_003.jpg",
-        "https://ci.encar.com/carpicture02/pic4192/41923275_004.jpg",
-        "https://ci.encar.com/carpicture02/pic4192/41923275_007.jpg",
-        "https://ci.encar.com/carpicture02/pic4192/41923275_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42518507",
       "preference_2026": 49
     },
     {
@@ -638,29 +638,6 @@
       "preference_2026": 48
     },
     {
-      "id": "42805651",
-      "source": "Encar",
-      "manufacturer": "Kia",
-      "model": "All New Sorento",
-      "badge": "Diesel 2.0 4WD 노블레스 스페셜",
-      "year": 2016,
-      "mileage_km": 195000,
-      "price_krw": 7800000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "전북",
-      "photos": [
-        "https://ci.encar.com/carpicture10/pic4280/42805651_001.jpg",
-        "https://ci.encar.com/carpicture10/pic4280/42805651_003.jpg",
-        "https://ci.encar.com/carpicture10/pic4280/42805651_004.jpg",
-        "https://ci.encar.com/carpicture10/pic4280/42805651_007.jpg",
-        "https://ci.encar.com/carpicture10/pic4280/42805651_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42805651",
-      "preference_2026": 48
-    },
-    {
       "id": "42167639",
       "source": "Encar",
       "manufacturer": "Kia",
@@ -796,6 +773,29 @@
         "https://ci.encar.com/carpicture08/pic4188/41883856_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/41883856",
+      "preference_2026": 48
+    },
+    {
+      "id": "42672469",
+      "source": "Encar",
+      "manufacturer": "Kia",
+      "model": "All New Sorento",
+      "badge": "Diesel 2.2 4WD 노블레스 스페셜",
+      "year": 2016,
+      "mileage_km": 219179,
+      "price_krw": 7890000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "대구",
+      "photos": [
+        "https://ci.encar.com/carpicture07/pic4267/42671965_001.jpg",
+        "https://ci.encar.com/carpicture07/pic4267/42671965_003.jpg",
+        "https://ci.encar.com/carpicture07/pic4267/42671965_004.jpg",
+        "https://ci.encar.com/carpicture07/pic4267/42671965_007.jpg",
+        "https://ci.encar.com/carpicture07/pic4267/42671965_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42672469",
       "preference_2026": 48
     },
     {
@@ -1874,26 +1874,26 @@
       "preference_2026": 13
     },
     {
-      "id": "42402314",
+      "id": "42844952",
       "source": "Encar",
       "manufacturer": "Hyundai",
       "model": "All New Tucson",
-      "badge": "Diesel 1.7 2WD 스타일",
-      "year": 2016,
-      "mileage_km": 111477,
+      "badge": "Diesel 1.7 2WD 스마트",
+      "year": 2018,
+      "mileage_km": 180972,
       "price_krw": 6700000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
-      "location": "경기",
+      "location": "인천",
       "photos": [
-        "https://ci.encar.com/carpicture10/pic4240/42402314_001.jpg",
-        "https://ci.encar.com/carpicture10/pic4240/42402314_003.jpg",
-        "https://ci.encar.com/carpicture10/pic4240/42402314_004.jpg",
-        "https://ci.encar.com/carpicture10/pic4240/42402314_007.jpg",
-        "https://ci.encar.com/carpicture10/pic4240/42402314_"
+        "https://ci.encar.com/carpicture04/pic4284/42844952_001.jpg",
+        "https://ci.encar.com/carpicture04/pic4284/42844952_003.jpg",
+        "https://ci.encar.com/carpicture04/pic4284/42844952_004.jpg",
+        "https://ci.encar.com/carpicture04/pic4284/42844952_007.jpg",
+        "https://ci.encar.com/carpicture04/pic4284/42844952_"
       ],
-      "listing_url": "https://fem.encar.com/cars/detail/42402314",
+      "listing_url": "https://fem.encar.com/cars/detail/42844952",
       "preference_2026": 13
     },
     {
@@ -2418,49 +2418,49 @@
       "preference_2026": 10
     },
     {
-      "id": "42151196",
+      "id": "42873425",
       "source": "Encar",
       "manufacturer": "Volkswagen",
       "model": "New Tiguan",
       "badge": "2.0 TDI Comfort 5N",
-      "year": 2012,
-      "mileage_km": 315630,
+      "year": 2014,
+      "mileage_km": 184661,
       "price_krw": 4500000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
       "location": "경기",
       "photos": [
-        "https://ci.encar.com/carpicture04/pic4214/42146176_001.jpg",
-        "https://ci.encar.com/carpicture04/pic4214/42146176_003.jpg",
-        "https://ci.encar.com/carpicture04/pic4214/42146176_004.jpg",
-        "https://ci.encar.com/carpicture04/pic4214/42146176_007.jpg",
-        "https://ci.encar.com/carpicture04/pic4214/42146176_"
+        "https://ci.encar.com/carpicture07/pic4287/42873425_001.jpg",
+        "https://ci.encar.com/carpicture07/pic4287/42873425_003.jpg",
+        "https://ci.encar.com/carpicture07/pic4287/42873425_004.jpg",
+        "https://ci.encar.com/carpicture07/pic4287/42873425_007.jpg",
+        "https://ci.encar.com/carpicture07/pic4287/42873425_"
       ],
-      "listing_url": "https://fem.encar.com/cars/detail/42151196",
+      "listing_url": "https://fem.encar.com/cars/detail/42873425",
       "preference_2026": 10
     },
     {
-      "id": "42146176",
+      "id": "42491415",
       "source": "Encar",
       "manufacturer": "Volkswagen",
       "model": "New Tiguan",
       "badge": "2.0 TDI Comfort 5N",
-      "year": 2012,
-      "mileage_km": 315630,
+      "year": 2014,
+      "mileage_km": 210674,
       "price_krw": 4500000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
-      "location": "경기",
+      "location": "서울",
       "photos": [
-        "https://ci.encar.com/carpicture04/pic4214/42146176_001.jpg",
-        "https://ci.encar.com/carpicture04/pic4214/42146176_003.jpg",
-        "https://ci.encar.com/carpicture04/pic4214/42146176_004.jpg",
-        "https://ci.encar.com/carpicture04/pic4214/42146176_007.jpg",
-        "https://ci.encar.com/carpicture04/pic4214/42146176_"
+        "https://ci.encar.com/carpicture09/pic4249/42491415_001.jpg",
+        "https://ci.encar.com/carpicture09/pic4249/42491415_003.jpg",
+        "https://ci.encar.com/carpicture09/pic4249/42491415_004.jpg",
+        "https://ci.encar.com/carpicture09/pic4249/42491415_007.jpg",
+        "https://ci.encar.com/carpicture09/pic4249/42491415_"
       ],
-      "listing_url": "https://fem.encar.com/cars/detail/42146176",
+      "listing_url": "https://fem.encar.com/cars/detail/42491415",
       "preference_2026": 10
     },
     {
@@ -2543,6 +2543,29 @@
       "preference_2026": 10
     },
     {
+      "id": "40711748",
+      "source": "Encar",
+      "manufacturer": "ChevroletGMDaewoo",
+      "model": "Malibu",
+      "badge": "2.0 Diesel LT Deluxe Pack",
+      "year": 2015,
+      "mileage_km": 211187,
+      "price_krw": 2490000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "부산",
+      "photos": [
+        "https://ci.encar.com/carpicture01/pic4071/40711748_001.jpg",
+        "https://ci.encar.com/carpicture01/pic4071/40711748_003.jpg",
+        "https://ci.encar.com/carpicture01/pic4071/40711748_004.jpg",
+        "https://ci.encar.com/carpicture01/pic4071/40711748_007.jpg",
+        "https://ci.encar.com/carpicture01/pic4071/40711748_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/40711748",
+      "preference_2026": 10
+    },
+    {
       "id": "41001290",
       "source": "Encar",
       "manufacturer": "ChevroletGMDaewoo",
@@ -2563,44 +2586,6 @@
         "https://ci.encar.com/carpicture10/pic4100/41001290_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/41001290",
-      "preference_2026": 10
-    },
-    {
-      "id": "kbc:28183324",
-      "source": "KB ChaChaCha",
-      "manufacturer": "ChevroletGMDaewoo",
-      "model": "Malibu",
-      "badge": "2.0 Diesel LT Premium Pack",
-      "year": 2015,
-      "mileage_km": 161380,
-      "price_krw": 2500000,
-      "fuel_type": "diesel",
-      "transmission": "automatic",
-      "color": "black",
-      "location": "인천",
-      "photos": [
-        "https://img.kbchachacha.com/IMG/carimg/l/img08/img2818/28183324_1072889462746383.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img08/img2818/28183324_1072889826782014.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img08/img2818/28183324_1072890097110610.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img08/img2818/28183324_1072890234458031.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img08/img2818/28183324_1072890362344481.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img08/img2818/28183324_1072890735356926.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img08/img2818/28183324_1072891173530007.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img08/img2818/28183324_1072891623652230.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img08/img2818/28183324_1072891983782403.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img08/img2818/28183324_1072892131391787.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img08/img2818/28183324_1072892318987105.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img08/img2818/28183324_1072892753100037.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img08/img2818/28183324_1072893173688356.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img08/img2818/28183324_1072893442046885.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img08/img2818/28183324_1072893648806008.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img08/img2818/28183324_1072894064368362.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img08/img2818/28183324_1072894428285740.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img08/img2818/28183324_1072894646987858.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img08/img2818/28183324_1072894958575267.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img08/img2818/28183324_1072895101410614.jpeg?width=720"
-      ],
-      "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28183324",
       "preference_2026": 10
     },
     {
@@ -3066,6 +3051,29 @@
       "preference_2026": 8
     },
     {
+      "id": "42712495",
+      "source": "Encar",
+      "manufacturer": "ChevroletGMDaewoo",
+      "model": "Captiva",
+      "badge": "2WD LT Premium",
+      "year": 2013,
+      "mileage_km": 201663,
+      "price_krw": 2290000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture01/pic4271/42712495_001.jpg",
+        "https://ci.encar.com/carpicture01/pic4271/42712495_003.jpg",
+        "https://ci.encar.com/carpicture01/pic4271/42712495_004.jpg",
+        "https://ci.encar.com/carpicture01/pic4271/42712495_007.jpg",
+        "https://ci.encar.com/carpicture01/pic4271/42712495_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42712495",
+      "preference_2026": 8
+    },
+    {
       "id": "42447747",
       "source": "Encar",
       "manufacturer": "ChevroletGMDaewoo",
@@ -3086,29 +3094,6 @@
         "https://ci.encar.com/carpicture04/pic4244/42447747_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42447747",
-      "preference_2026": 8
-    },
-    {
-      "id": "42774449",
-      "source": "Encar",
-      "manufacturer": "ChevroletGMDaewoo",
-      "model": "Captiva",
-      "badge": "2WD LT",
-      "year": 2014,
-      "mileage_km": 196062,
-      "price_krw": 2300000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "울산",
-      "photos": [
-        "https://ci.encar.com/carpicture07/pic4277/42774449_001.jpg",
-        "https://ci.encar.com/carpicture07/pic4277/42774449_003.jpg",
-        "https://ci.encar.com/carpicture07/pic4277/42774449_004.jpg",
-        "https://ci.encar.com/carpicture07/pic4277/42774449_007.jpg",
-        "https://ci.encar.com/carpicture07/pic4277/42774449_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42774449",
       "preference_2026": 8
     },
     {
@@ -3858,26 +3843,26 @@
       "preference_2026": 5
     },
     {
-      "id": "42788532",
+      "id": "42930694",
       "source": "Encar",
       "manufacturer": "Hyundai",
       "model": "Tucson ix",
-      "badge": "Diesel 2WD LX20 스마트팩",
-      "year": 2012,
-      "mileage_km": 157645,
-      "price_krw": 2500000,
+      "badge": "Diesel 2WD LX20 프리미어",
+      "year": 2010,
+      "mileage_km": 263488,
+      "price_krw": 2420000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
       "location": "경기",
       "photos": [
-        "https://ci.encar.com/carpicture08/pic4278/42788532_001.jpg",
-        "https://ci.encar.com/carpicture08/pic4278/42788532_003.jpg",
-        "https://ci.encar.com/carpicture08/pic4278/42788532_004.jpg",
-        "https://ci.encar.com/carpicture08/pic4278/42788532_007.jpg",
-        "https://ci.encar.com/carpicture08/pic4278/42788532_"
+        "https://ci.encar.com/carpicture03/pic4293/42930694_001.jpg",
+        "https://ci.encar.com/carpicture03/pic4293/42930694_003.jpg",
+        "https://ci.encar.com/carpicture03/pic4293/42930694_004.jpg",
+        "https://ci.encar.com/carpicture03/pic4293/42930694_007.jpg",
+        "https://ci.encar.com/carpicture03/pic4293/42930694_"
       ],
-      "listing_url": "https://fem.encar.com/cars/detail/42788532",
+      "listing_url": "https://fem.encar.com/cars/detail/42930694",
       "preference_2026": 5
     },
     {
@@ -4008,6 +3993,29 @@
       "preference_2026": 4
     },
     {
+      "id": "41139589",
+      "source": "Encar",
+      "manufacturer": "Hyundai",
+      "model": "Terracan",
+      "badge": "4WD JX290 기본형",
+      "year": 2006,
+      "mileage_km": 191416,
+      "price_krw": 2500000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "전남",
+      "photos": [
+        "https://ci.encar.com/carpicture03/pic4113/41139589_001.jpg",
+        "https://ci.encar.com/carpicture03/pic4113/41139589_003.jpg",
+        "https://ci.encar.com/carpicture03/pic4113/41139589_004.jpg",
+        "https://ci.encar.com/carpicture03/pic4113/41139589_007.jpg",
+        "https://ci.encar.com/carpicture03/pic4113/41139589_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/41139589",
+      "preference_2026": 4
+    },
+    {
       "id": "kbc:28812230",
       "source": "KB ChaChaCha",
       "manufacturer": "Hyundai",
@@ -4095,29 +4103,6 @@
         "https://ci.encar.com/carpicture04/pic4274/42745423_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42745423",
-      "preference_2026": 4
-    },
-    {
-      "id": "40943715",
-      "source": "Encar",
-      "manufacturer": "Hyundai",
-      "model": "Terracan",
-      "badge": "4WD JX290 Gold 고급형",
-      "year": 2004,
-      "mileage_km": 203189,
-      "price_krw": 3000000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경기",
-      "photos": [
-        "https://ci.encar.com/carpicture04/pic4094/40943715_001.jpg",
-        "https://ci.encar.com/carpicture04/pic4094/40943715_003.jpg",
-        "https://ci.encar.com/carpicture04/pic4094/40943715_004.jpg",
-        "https://ci.encar.com/carpicture04/pic4094/40943715_007.jpg",
-        "https://ci.encar.com/carpicture04/pic4094/40943715_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/40943715",
       "preference_2026": 4
     },
     {
@@ -4454,7 +4439,7 @@
       "badge": "Diesel 1.6 Luxury",
       "year": 2012,
       "mileage_km": 297346,
-      "price_krw": 2900000,
+      "price_krw": 2600000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
@@ -5336,6 +5321,29 @@
       "preference_2026": 2
     },
     {
+      "id": "42923841",
+      "source": "Encar",
+      "manufacturer": "KG_Mobility_Ssangyong",
+      "model": "KORANDO Sports",
+      "badge": "CX5 2WD 패션",
+      "year": 2013,
+      "mileage_km": 217292,
+      "price_krw": 2500000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "대구",
+      "photos": [
+        "https://ci.encar.com/carpicture02/pic4292/42923841_001.jpg",
+        "https://ci.encar.com/carpicture02/pic4292/42923841_003.jpg",
+        "https://ci.encar.com/carpicture02/pic4292/42923841_004.jpg",
+        "https://ci.encar.com/carpicture02/pic4292/42923841_007.jpg",
+        "https://ci.encar.com/carpicture02/pic4292/42923841_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42923841",
+      "preference_2026": 2
+    },
+    {
       "id": "kbc:28630863",
       "source": "KB ChaChaCha",
       "manufacturer": "KG_Mobility_Ssangyong",
@@ -5404,7 +5412,7 @@
       "badge": "2.8 Diesel Sahara 4Door",
       "year": 2014,
       "mileage_km": 174933,
-      "price_krw": 14590000,
+      "price_krw": 14290000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
@@ -5512,6 +5520,29 @@
       "preference_2026": 1
     },
     {
+      "id": "42518507",
+      "source": "Encar",
+      "manufacturer": "Kia",
+      "model": "New Sorento R",
+      "badge": "Diesel 2.0 2WD 럭셔리",
+      "year": 2014,
+      "mileage_km": 167183,
+      "price_krw": 4700000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture02/pic4192/41923275_001.jpg",
+        "https://ci.encar.com/carpicture02/pic4192/41923275_003.jpg",
+        "https://ci.encar.com/carpicture02/pic4192/41923275_004.jpg",
+        "https://ci.encar.com/carpicture02/pic4192/41923275_007.jpg",
+        "https://ci.encar.com/carpicture02/pic4192/41923275_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42518507",
+      "preference_2026": 49
+    },
+    {
       "id": "41923275",
       "source": "Encar",
       "manufacturer": "Kia",
@@ -5570,29 +5601,6 @@
         "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_10950060554324038.jpeg?width=720"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28729710",
-      "preference_2026": 49
-    },
-    {
-      "id": "42770655",
-      "source": "Encar",
-      "manufacturer": "Kia",
-      "model": "New Sorento R",
-      "badge": "Diesel 2.0 2WD TLX",
-      "year": 2013,
-      "mileage_km": 233830,
-      "price_krw": 4700000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "대구",
-      "photos": [
-        "https://ci.encar.com/carpicture07/pic4277/42770655_001.jpg",
-        "https://ci.encar.com/carpicture07/pic4277/42770655_003.jpg",
-        "https://ci.encar.com/carpicture07/pic4277/42770655_004.jpg",
-        "https://ci.encar.com/carpicture07/pic4277/42770655_007.jpg",
-        "https://ci.encar.com/carpicture07/pic4277/42770655_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42770655",
       "preference_2026": 49
     },
     {
@@ -5663,29 +5671,6 @@
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42521610",
       "preference_2026": 49
-    },
-    {
-      "id": "42672469",
-      "source": "Encar",
-      "manufacturer": "Kia",
-      "model": "All New Sorento",
-      "badge": "Diesel 2.2 4WD 노블레스 스페셜",
-      "year": 2016,
-      "mileage_km": 219179,
-      "price_krw": 7890000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "대구",
-      "photos": [
-        "https://ci.encar.com/carpicture07/pic4267/42671965_001.jpg",
-        "https://ci.encar.com/carpicture07/pic4267/42671965_003.jpg",
-        "https://ci.encar.com/carpicture07/pic4267/42671965_004.jpg",
-        "https://ci.encar.com/carpicture07/pic4267/42671965_007.jpg",
-        "https://ci.encar.com/carpicture07/pic4267/42671965_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42672469",
-      "preference_2026": 48
     },
     {
       "id": "42671965",
@@ -5800,6 +5785,43 @@
         "https://ci.encar.com/carpicture10/pic4290/42906482_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42906482",
+      "preference_2026": 48
+    },
+    {
+      "id": "kbc:28644023",
+      "source": "KB ChaChaCha",
+      "manufacturer": "Kia",
+      "model": "All New Sorento",
+      "badge": "Diesel 2WD Prestige",
+      "year": 2015,
+      "mileage_km": 323083,
+      "price_krw": 5500000,
+      "fuel_type": "diesel",
+      "transmission": "automatic",
+      "color": "white",
+      "location": "서울",
+      "photos": [
+        "https://img.kbchachacha.com/IMG/carimg/l/img04/img2864/28644023_4735231272848692.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img04/img2864/28644023_4735231351850292.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img04/img2864/28644023_4735231474809304.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img04/img2864/28644023_4735231549018570.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img04/img2864/28644023_4735231694205475.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img04/img2864/28644023_4735231791020868.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img04/img2864/28644023_4735231874911400.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img04/img2864/28644023_4735231979238888.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img04/img2864/28644023_4735232115718080.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img04/img2864/28644023_4735232223233195.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img04/img2864/28644023_4735232379958093.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img04/img2864/28644023_4735232505983008.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img04/img2864/28644023_4735232616594379.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img04/img2864/28644023_4735232724067298.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img04/img2864/28644023_4735232843338206.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img04/img2864/28644023_4735232961104937.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img04/img2864/28644023_4735233048613854.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img04/img2864/28644023_4735233197854851.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img04/img2864/28644023_4735233255792001.jpeg?width=720"
+      ],
+      "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28644023",
       "preference_2026": 48
     },
     {
@@ -6115,6 +6137,29 @@
       "preference_2026": 18
     },
     {
+      "id": "40672959",
+      "source": "Encar",
+      "manufacturer": "Hyundai",
+      "model": "Grand Starex",
+      "badge": "3-Seater VAN CVX 럭셔리",
+      "year": 2012,
+      "mileage_km": 316882,
+      "price_krw": 3250000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture07/pic4067/40672959_001.jpg",
+        "https://ci.encar.com/carpicture07/pic4067/40672959_003.jpg",
+        "https://ci.encar.com/carpicture07/pic4067/40672959_004.jpg",
+        "https://ci.encar.com/carpicture07/pic4067/40672959_007.jpg",
+        "https://ci.encar.com/carpicture07/pic4067/40672959_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/40672959",
+      "preference_2026": 18
+    },
+    {
       "id": "42822842",
       "source": "Encar",
       "manufacturer": "Hyundai",
@@ -6161,6 +6206,29 @@
       "preference_2026": 18
     },
     {
+      "id": "41872760",
+      "source": "Encar",
+      "manufacturer": "Hyundai",
+      "model": "Grand Starex",
+      "badge": "5-Seater VAN CVX 프리미엄",
+      "year": 2012,
+      "mileage_km": 279278,
+      "price_krw": 3490000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "부산",
+      "photos": [
+        "https://ci.encar.com/carpicture07/pic4187/41872760_001.jpg",
+        "https://ci.encar.com/carpicture07/pic4187/41872760_003.jpg",
+        "https://ci.encar.com/carpicture07/pic4187/41872760_004.jpg",
+        "https://ci.encar.com/carpicture07/pic4187/41872760_007.jpg",
+        "https://ci.encar.com/carpicture07/pic4187/41872760_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/41872760",
+      "preference_2026": 18
+    },
+    {
       "id": "41107822",
       "source": "Encar",
       "manufacturer": "Hyundai",
@@ -6181,52 +6249,6 @@
         "https://ci.encar.com/carpicture10/pic4110/41107822_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/41107822",
-      "preference_2026": 18
-    },
-    {
-      "id": "42205290",
-      "source": "Encar",
-      "manufacturer": "Hyundai",
-      "model": "Grand Starex",
-      "badge": "5-Seater VAN CVX 럭셔리",
-      "year": 2013,
-      "mileage_km": 239064,
-      "price_krw": 3500000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경기",
-      "photos": [
-        "https://ci.encar.com/carpicture10/pic4220/42205290_001.jpg",
-        "https://ci.encar.com/carpicture10/pic4220/42205290_003.jpg",
-        "https://ci.encar.com/carpicture10/pic4220/42205290_004.jpg",
-        "https://ci.encar.com/carpicture10/pic4220/42205290_007.jpg",
-        "https://ci.encar.com/carpicture10/pic4220/42205290_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42205290",
-      "preference_2026": 18
-    },
-    {
-      "id": "42675685",
-      "source": "Encar",
-      "manufacturer": "Hyundai",
-      "model": "Grand Starex",
-      "badge": "5-Seater VAN CVX 럭셔리",
-      "year": 2013,
-      "mileage_km": 250711,
-      "price_krw": 3500000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경기",
-      "photos": [
-        "https://ci.encar.com/carpicture07/pic4267/42675685_001.jpg",
-        "https://ci.encar.com/carpicture07/pic4267/42675685_003.jpg",
-        "https://ci.encar.com/carpicture07/pic4267/42675685_004.jpg",
-        "https://ci.encar.com/carpicture07/pic4267/42675685_007.jpg",
-        "https://ci.encar.com/carpicture07/pic4267/42675685_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42675685",
       "preference_2026": 18
     },
     {
@@ -6572,6 +6594,29 @@
       "preference_2026": 14
     },
     {
+      "id": "42402314",
+      "source": "Encar",
+      "manufacturer": "Hyundai",
+      "model": "All New Tucson",
+      "badge": "Diesel 1.7 2WD 스타일",
+      "year": 2016,
+      "mileage_km": 111477,
+      "price_krw": 6700000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture10/pic4240/42402314_001.jpg",
+        "https://ci.encar.com/carpicture10/pic4240/42402314_003.jpg",
+        "https://ci.encar.com/carpicture10/pic4240/42402314_004.jpg",
+        "https://ci.encar.com/carpicture10/pic4240/42402314_007.jpg",
+        "https://ci.encar.com/carpicture10/pic4240/42402314_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42402314",
+      "preference_2026": 13
+    },
+    {
       "id": "kbc:28841158",
       "source": "KB ChaChaCha",
       "manufacturer": "Hyundai",
@@ -6606,6 +6651,29 @@
         "https://img.kbchachacha.com/IMG/carimg/l/img04/img2884/28841158_10533740788052125.jpg?width=720"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28841158",
+      "preference_2026": 13
+    },
+    {
+      "id": "42713926",
+      "source": "Encar",
+      "manufacturer": "Hyundai",
+      "model": "All New Tucson",
+      "badge": "Diesel 1.7 2WD 스타일",
+      "year": 2016,
+      "mileage_km": 79742,
+      "price_krw": 6800000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture01/pic4271/42713926_001.jpg",
+        "https://ci.encar.com/carpicture01/pic4271/42713926_003.jpg",
+        "https://ci.encar.com/carpicture01/pic4271/42713926_004.jpg",
+        "https://ci.encar.com/carpicture01/pic4271/42713926_007.jpg",
+        "https://ci.encar.com/carpicture01/pic4271/42713926_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42713926",
       "preference_2026": 13
     },
     {
@@ -6675,67 +6743,6 @@
         "https://ci.encar.com/carpicture05/pic4265/42656075_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42656075",
-      "preference_2026": 13
-    },
-    {
-      "id": "42772537",
-      "source": "Encar",
-      "manufacturer": "Hyundai",
-      "model": "All New Tucson",
-      "badge": "Diesel 1.7 2WD 스타일",
-      "year": 2017,
-      "mileage_km": 192622,
-      "price_krw": 6900000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경기",
-      "photos": [
-        "https://ci.encar.com/carpicture07/pic4277/42772537_001.jpg",
-        "https://ci.encar.com/carpicture07/pic4277/42772537_003.jpg",
-        "https://ci.encar.com/carpicture07/pic4277/42772537_004.jpg",
-        "https://ci.encar.com/carpicture07/pic4277/42772537_007.jpg",
-        "https://ci.encar.com/carpicture07/pic4277/42772537_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42772537",
-      "preference_2026": 13
-    },
-    {
-      "id": "kbc:28424801",
-      "source": "KB ChaChaCha",
-      "manufacturer": "Hyundai",
-      "model": "All New Tucson",
-      "badge": "Diesel(e-VGT UⅡ)1.7 2WD Smart",
-      "year": 2018,
-      "mileage_km": 154475,
-      "price_krw": 7000000,
-      "fuel_type": "diesel",
-      "transmission": "automatic",
-      "color": "gray",
-      "location": "경기",
-      "photos": [
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2842/28424801_6543838721169225.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2842/28424801_6543871200714359.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2842/28424801_6543837229440042.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2842/28424801_6543837351421821.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2842/28424801_6543837486075994.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2842/28424801_6543837637995532.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2842/28424801_6543837924702874.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2842/28424801_6543838062159704.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2842/28424801_6543838478029977.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2842/28424801_6543838173926131.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2842/28424801_6543837092075627.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2842/28424801_6543838196097115.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2842/28424801_6543838866497955.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2842/28424801_6543839007633836.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2842/28424801_6543838310004266.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2842/28424801_6543871074336768.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2842/28424801_6543871338050314.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2842/28424801_6543871421643876.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2842/28424801_6543871586482848.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2842/28424801_6543871734743675.jpg?width=720"
-      ],
-      "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28424801",
       "preference_2026": 13
     },
     {
