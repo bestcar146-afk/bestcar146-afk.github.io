@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-19T18:56:54.110687+00:00",
+  "updated_at": "2026-10-20T07:10:35.974126+00:00",
   "provider": "EnCarAPI",
   "scope": "Sales-driven public selection based on BEST CAR STAR historical demand",
   "source_counts": {
@@ -77,6 +77,29 @@
       "preference_2026": 49
     },
     {
+      "id": "42846691",
+      "source": "Encar",
+      "manufacturer": "Kia",
+      "model": "New Sorento R",
+      "badge": "Diesel 2.0 4WD 프레스티지",
+      "year": 2014,
+      "mileage_km": 181459,
+      "price_krw": 5800000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture04/pic4284/42846691_001.jpg",
+        "https://ci.encar.com/carpicture04/pic4284/42846691_003.jpg",
+        "https://ci.encar.com/carpicture04/pic4284/42846691_004.jpg",
+        "https://ci.encar.com/carpicture04/pic4284/42846691_007.jpg",
+        "https://ci.encar.com/carpicture04/pic4284/42846691_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42846691",
+      "preference_2026": 49
+    },
+    {
       "id": "42928044",
       "source": "Encar",
       "manufacturer": "Kia",
@@ -135,29 +158,6 @@
         "https://img.kbchachacha.com/IMG/carimg/l/img01/img2871/28712821_8163221050829470.jpeg?width=720"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28712821",
-      "preference_2026": 49
-    },
-    {
-      "id": "42846691",
-      "source": "Encar",
-      "manufacturer": "Kia",
-      "model": "New Sorento R",
-      "badge": "Diesel 2.0 4WD 프레스티지",
-      "year": 2014,
-      "mileage_km": 181459,
-      "price_krw": 5990000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경기",
-      "photos": [
-        "https://ci.encar.com/carpicture04/pic4284/42846691_001.jpg",
-        "https://ci.encar.com/carpicture04/pic4284/42846691_003.jpg",
-        "https://ci.encar.com/carpicture04/pic4284/42846691_004.jpg",
-        "https://ci.encar.com/carpicture04/pic4284/42846691_007.jpg",
-        "https://ci.encar.com/carpicture04/pic4284/42846691_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42846691",
       "preference_2026": 49
     },
     {
@@ -332,7 +332,7 @@
       "badge": "Diesel 2.0 2WD 트렌디",
       "year": 2014,
       "mileage_km": 248116,
-      "price_krw": 4500000,
+      "price_krw": 4400000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
@@ -454,6 +454,29 @@
       "preference_2026": 48
     },
     {
+      "id": "42790990",
+      "source": "Encar",
+      "manufacturer": "Kia",
+      "model": "All New Sorento",
+      "badge": "Diesel 2.0 4WD 프레스티지",
+      "year": 2015,
+      "mileage_km": 177008,
+      "price_krw": 6990000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture09/pic4279/42790990_001.jpg",
+        "https://ci.encar.com/carpicture09/pic4279/42790990_003.jpg",
+        "https://ci.encar.com/carpicture09/pic4279/42790990_004.jpg",
+        "https://ci.encar.com/carpicture09/pic4279/42790990_007.jpg",
+        "https://ci.encar.com/carpicture09/pic4279/42790990_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42790990",
+      "preference_2026": 48
+    },
+    {
       "id": "42744425",
       "source": "Encar",
       "manufacturer": "Kia",
@@ -543,29 +566,6 @@
         "https://ci.encar.com/carpicture10/pic4290/42900440_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42900440",
-      "preference_2026": 48
-    },
-    {
-      "id": "42790990",
-      "source": "Encar",
-      "manufacturer": "Kia",
-      "model": "All New Sorento",
-      "badge": "Diesel 2.0 4WD 프레스티지",
-      "year": 2015,
-      "mileage_km": 177008,
-      "price_krw": 7490000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경기",
-      "photos": [
-        "https://ci.encar.com/carpicture09/pic4279/42790990_001.jpg",
-        "https://ci.encar.com/carpicture09/pic4279/42790990_003.jpg",
-        "https://ci.encar.com/carpicture09/pic4279/42790990_004.jpg",
-        "https://ci.encar.com/carpicture09/pic4279/42790990_007.jpg",
-        "https://ci.encar.com/carpicture09/pic4279/42790990_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42790990",
       "preference_2026": 48
     },
     {
@@ -1035,7 +1035,7 @@
       "badge": "Diesel 2.0 2WD TLX 최고급형",
       "year": 2010,
       "mileage_km": 325730,
-      "price_krw": 2900000,
+      "price_krw": 2800000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
@@ -1718,7 +1718,7 @@
       "badge": "2.0 TDI Quattro Dynamic 8R",
       "year": 2011,
       "mileage_km": 222902,
-      "price_krw": 6190000,
+      "price_krw": 5890000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
@@ -2398,6 +2398,52 @@
       "preference_2026": 10
     },
     {
+      "id": "42151196",
+      "source": "Encar",
+      "manufacturer": "Volkswagen",
+      "model": "New Tiguan",
+      "badge": "2.0 TDI Comfort 5N",
+      "year": 2012,
+      "mileage_km": 315630,
+      "price_krw": 4200000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture04/pic4214/42146176_001.jpg",
+        "https://ci.encar.com/carpicture04/pic4214/42146176_003.jpg",
+        "https://ci.encar.com/carpicture04/pic4214/42146176_004.jpg",
+        "https://ci.encar.com/carpicture04/pic4214/42146176_007.jpg",
+        "https://ci.encar.com/carpicture04/pic4214/42146176_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42151196",
+      "preference_2026": 10
+    },
+    {
+      "id": "42146176",
+      "source": "Encar",
+      "manufacturer": "Volkswagen",
+      "model": "New Tiguan",
+      "badge": "2.0 TDI Comfort 5N",
+      "year": 2012,
+      "mileage_km": 315630,
+      "price_krw": 4200000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture04/pic4214/42146176_001.jpg",
+        "https://ci.encar.com/carpicture04/pic4214/42146176_003.jpg",
+        "https://ci.encar.com/carpicture04/pic4214/42146176_004.jpg",
+        "https://ci.encar.com/carpicture04/pic4214/42146176_007.jpg",
+        "https://ci.encar.com/carpicture04/pic4214/42146176_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42146176",
+      "preference_2026": 10
+    },
+    {
       "id": "42642222",
       "source": "Encar",
       "manufacturer": "Volkswagen",
@@ -2454,52 +2500,6 @@
       "preference_2026": 10
     },
     {
-      "id": "42873425",
-      "source": "Encar",
-      "manufacturer": "Volkswagen",
-      "model": "New Tiguan",
-      "badge": "2.0 TDI Comfort 5N",
-      "year": 2014,
-      "mileage_km": 184661,
-      "price_krw": 4500000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경기",
-      "photos": [
-        "https://ci.encar.com/carpicture07/pic4287/42873425_001.jpg",
-        "https://ci.encar.com/carpicture07/pic4287/42873425_003.jpg",
-        "https://ci.encar.com/carpicture07/pic4287/42873425_004.jpg",
-        "https://ci.encar.com/carpicture07/pic4287/42873425_007.jpg",
-        "https://ci.encar.com/carpicture07/pic4287/42873425_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42873425",
-      "preference_2026": 10
-    },
-    {
-      "id": "42491415",
-      "source": "Encar",
-      "manufacturer": "Volkswagen",
-      "model": "New Tiguan",
-      "badge": "2.0 TDI Comfort 5N",
-      "year": 2014,
-      "mileage_km": 210674,
-      "price_krw": 4500000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "서울",
-      "photos": [
-        "https://ci.encar.com/carpicture09/pic4249/42491415_001.jpg",
-        "https://ci.encar.com/carpicture09/pic4249/42491415_003.jpg",
-        "https://ci.encar.com/carpicture09/pic4249/42491415_004.jpg",
-        "https://ci.encar.com/carpicture09/pic4249/42491415_007.jpg",
-        "https://ci.encar.com/carpicture09/pic4249/42491415_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42491415",
-      "preference_2026": 10
-    },
-    {
       "id": "kbc:28830077",
       "source": "KB ChaChaCha",
       "manufacturer": "ChevroletGMDaewoo",
@@ -2530,6 +2530,29 @@
         "https://img.kbchachacha.com/IMG/carimg/l/img03/img2883/28830077_10587054330790524.jpg?width=720"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28830077",
+      "preference_2026": 10
+    },
+    {
+      "id": "42939185",
+      "source": "Encar",
+      "manufacturer": "ChevroletGMDaewoo",
+      "model": "Malibu",
+      "badge": "2.0 Diesel LT Premium Pack",
+      "year": 2014,
+      "mileage_km": 180000,
+      "price_krw": 2000000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture03/pic4293/42939185_001.jpg",
+        "https://ci.encar.com/carpicture03/pic4293/42939185_003.jpg",
+        "https://ci.encar.com/carpicture03/pic4293/42939185_004.jpg",
+        "https://ci.encar.com/carpicture03/pic4293/42939185_007.jpg",
+        "https://ci.encar.com/carpicture03/pic4293/42939185_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42939185",
       "preference_2026": 10
     },
     {
@@ -2599,29 +2622,6 @@
         "https://ci.encar.com/carpicture01/pic4071/40711748_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/40711748",
-      "preference_2026": 10
-    },
-    {
-      "id": "41001290",
-      "source": "Encar",
-      "manufacturer": "ChevroletGMDaewoo",
-      "model": "Malibu",
-      "badge": "2.0 Diesel LT Deluxe Pack",
-      "year": 2014,
-      "mileage_km": 167990,
-      "price_krw": 2490000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경기",
-      "photos": [
-        "https://ci.encar.com/carpicture10/pic4100/41001290_001.jpg",
-        "https://ci.encar.com/carpicture10/pic4100/41001290_003.jpg",
-        "https://ci.encar.com/carpicture10/pic4100/41001290_004.jpg",
-        "https://ci.encar.com/carpicture10/pic4100/41001290_007.jpg",
-        "https://ci.encar.com/carpicture10/pic4100/41001290_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/41001290",
       "preference_2026": 10
     },
     {
@@ -3064,6 +3064,29 @@
       "preference_2026": 8
     },
     {
+      "id": "42447747",
+      "source": "Encar",
+      "manufacturer": "ChevroletGMDaewoo",
+      "model": "Captiva",
+      "badge": "2WD LT",
+      "year": 2014,
+      "mileage_km": 166740,
+      "price_krw": 1900000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "대전",
+      "photos": [
+        "https://ci.encar.com/carpicture04/pic4244/42447747_001.jpg",
+        "https://ci.encar.com/carpicture04/pic4244/42447747_003.jpg",
+        "https://ci.encar.com/carpicture04/pic4244/42447747_004.jpg",
+        "https://ci.encar.com/carpicture04/pic4244/42447747_007.jpg",
+        "https://ci.encar.com/carpicture04/pic4244/42447747_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42447747",
+      "preference_2026": 8
+    },
+    {
       "id": "42903146",
       "source": "Encar",
       "manufacturer": "ChevroletGMDaewoo",
@@ -3130,29 +3153,6 @@
         "https://ci.encar.com/carpicture01/pic4271/42712495_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42712495",
-      "preference_2026": 8
-    },
-    {
-      "id": "42447747",
-      "source": "Encar",
-      "manufacturer": "ChevroletGMDaewoo",
-      "model": "Captiva",
-      "badge": "2WD LT",
-      "year": 2014,
-      "mileage_km": 166740,
-      "price_krw": 2300000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "대전",
-      "photos": [
-        "https://ci.encar.com/carpicture04/pic4244/42447747_001.jpg",
-        "https://ci.encar.com/carpicture04/pic4244/42447747_003.jpg",
-        "https://ci.encar.com/carpicture04/pic4244/42447747_004.jpg",
-        "https://ci.encar.com/carpicture04/pic4244/42447747_007.jpg",
-        "https://ci.encar.com/carpicture04/pic4244/42447747_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42447747",
       "preference_2026": 8
     },
     {
@@ -4347,7 +4347,7 @@
       "badge": "4WD QV 300 고급형",
       "year": 2009,
       "mileage_km": 475620,
-      "price_krw": 3100000,
+      "price_krw": 3000000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
@@ -4583,6 +4583,52 @@
       "preference_2026": 3
     },
     {
+      "id": "42792344",
+      "source": "Encar",
+      "manufacturer": "Mini",
+      "model": "Cooper D Countryman",
+      "badge": "SE 1세대",
+      "year": 2012,
+      "mileage_km": 151513,
+      "price_krw": 2600000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture09/pic4279/42790995_027.jpg",
+        "https://ci.encar.com/carpicture09/pic4279/42790995_003.jpg",
+        "https://ci.encar.com/carpicture09/pic4279/42790995_004.jpg",
+        "https://ci.encar.com/carpicture09/pic4279/42790995_007.jpg",
+        "https://ci.encar.com/carpicture09/pic4279/42790995_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42792344",
+      "preference_2026": 3
+    },
+    {
+      "id": "42790995",
+      "source": "Encar",
+      "manufacturer": "Mini",
+      "model": "Cooper D Countryman",
+      "badge": "SE 1세대",
+      "year": 2012,
+      "mileage_km": 151513,
+      "price_krw": 2600000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture09/pic4279/42790995_027.jpg",
+        "https://ci.encar.com/carpicture09/pic4279/42790995_003.jpg",
+        "https://ci.encar.com/carpicture09/pic4279/42790995_004.jpg",
+        "https://ci.encar.com/carpicture09/pic4279/42790995_007.jpg",
+        "https://ci.encar.com/carpicture09/pic4279/42790995_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42790995",
+      "preference_2026": 3
+    },
+    {
       "id": "42558512",
       "source": "Encar",
       "manufacturer": "Mini",
@@ -4626,52 +4672,6 @@
         "https://ci.encar.com/carpicture10/pic4280/42801226_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42801226",
-      "preference_2026": 3
-    },
-    {
-      "id": "42792344",
-      "source": "Encar",
-      "manufacturer": "Mini",
-      "model": "Cooper D Countryman",
-      "badge": "SE 1세대",
-      "year": 2012,
-      "mileage_km": 151513,
-      "price_krw": 2800000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경기",
-      "photos": [
-        "https://ci.encar.com/carpicture09/pic4279/42790995_027.jpg",
-        "https://ci.encar.com/carpicture09/pic4279/42790995_003.jpg",
-        "https://ci.encar.com/carpicture09/pic4279/42790995_004.jpg",
-        "https://ci.encar.com/carpicture09/pic4279/42790995_007.jpg",
-        "https://ci.encar.com/carpicture09/pic4279/42790995_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42792344",
-      "preference_2026": 3
-    },
-    {
-      "id": "42790995",
-      "source": "Encar",
-      "manufacturer": "Mini",
-      "model": "Cooper D Countryman",
-      "badge": "SE 1세대",
-      "year": 2012,
-      "mileage_km": 151513,
-      "price_krw": 2800000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경기",
-      "photos": [
-        "https://ci.encar.com/carpicture09/pic4279/42790995_027.jpg",
-        "https://ci.encar.com/carpicture09/pic4279/42790995_003.jpg",
-        "https://ci.encar.com/carpicture09/pic4279/42790995_004.jpg",
-        "https://ci.encar.com/carpicture09/pic4279/42790995_007.jpg",
-        "https://ci.encar.com/carpicture09/pic4279/42790995_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42790995",
       "preference_2026": 3
     },
     {
@@ -5140,26 +5140,26 @@
       "preference_2026": 2
     },
     {
-      "id": "41757336",
+      "id": "42351340",
       "source": "Encar",
       "manufacturer": "Volkswagen",
       "model": "New Touareg",
-      "badge": "V6 3.0 TDI Bluemotion 7P5",
-      "year": 2013,
-      "mileage_km": 158882,
-      "price_krw": 8200000,
+      "badge": "V6 3.0 TDI Bluemotion Premium 7P5",
+      "year": 2015,
+      "mileage_km": 267268,
+      "price_krw": 8000000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
-      "location": "경기",
+      "location": "대구",
       "photos": [
-        "https://ci.encar.com/carpicture05/pic4175/41757336_001.jpg",
-        "https://ci.encar.com/carpicture05/pic4175/41757336_003.jpg",
-        "https://ci.encar.com/carpicture05/pic4175/41757336_004.jpg",
-        "https://ci.encar.com/carpicture05/pic4175/41757336_007.jpg",
-        "https://ci.encar.com/carpicture05/pic4175/41757336_"
+        "https://ci.encar.com/carpicture05/pic4235/42351340_001.jpg",
+        "https://ci.encar.com/carpicture05/pic4235/42351340_003.jpg",
+        "https://ci.encar.com/carpicture05/pic4235/42351340_004.jpg",
+        "https://ci.encar.com/carpicture05/pic4235/42351340_007.jpg",
+        "https://ci.encar.com/carpicture05/pic4235/42351340_"
       ],
-      "listing_url": "https://fem.encar.com/cars/detail/41757336",
+      "listing_url": "https://fem.encar.com/cars/detail/42351340",
       "preference_2026": 2
     },
     {
@@ -6503,7 +6503,7 @@
       "badge": "2.0 TDI Quattro Dynamic 8R",
       "year": 2011,
       "mileage_km": 121841,
-      "price_krw": 7500000,
+      "price_krw": 6900000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
@@ -6763,6 +6763,29 @@
       "preference_2026": 13
     },
     {
+      "id": "42831487",
+      "source": "Encar",
+      "manufacturer": "Hyundai",
+      "model": "Maxcruz",
+      "badge": "Diesel(e-VGT) 2.2 4WD Exclusive 스페셜",
+      "year": 2014,
+      "mileage_km": 145426,
+      "price_krw": 6300000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "전남광주",
+      "photos": [
+        "https://ci.encar.com/carpicture03/pic4283/42831487_001.jpg",
+        "https://ci.encar.com/carpicture03/pic4283/42831487_003.jpg",
+        "https://ci.encar.com/carpicture03/pic4283/42831487_004.jpg",
+        "https://ci.encar.com/carpicture03/pic4283/42831487_007.jpg",
+        "https://ci.encar.com/carpicture03/pic4283/42831487_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42831487",
+      "preference_2026": 12
+    },
+    {
       "id": "42810961",
       "source": "Encar",
       "manufacturer": "Hyundai",
@@ -6918,29 +6941,6 @@
         "https://ci.encar.com/carpicture10/pic4270/42701495_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42701495",
-      "preference_2026": 12
-    },
-    {
-      "id": "42831487",
-      "source": "Encar",
-      "manufacturer": "Hyundai",
-      "model": "Maxcruz",
-      "badge": "Diesel(e-VGT) 2.2 4WD Exclusive 스페셜",
-      "year": 2014,
-      "mileage_km": 145426,
-      "price_krw": 6800000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "전남광주",
-      "photos": [
-        "https://ci.encar.com/carpicture03/pic4283/42831487_001.jpg",
-        "https://ci.encar.com/carpicture03/pic4283/42831487_003.jpg",
-        "https://ci.encar.com/carpicture03/pic4283/42831487_004.jpg",
-        "https://ci.encar.com/carpicture03/pic4283/42831487_007.jpg",
-        "https://ci.encar.com/carpicture03/pic4283/42831487_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42831487",
       "preference_2026": 12
     }
   ]
