@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-10-21T19:09:20.868806+00:00",
+  "updated_at": "2026-10-22T07:09:42.742898+00:00",
   "provider": "EnCarAPI",
   "scope": "Sales-driven public selection based on BEST CAR STAR historical demand",
   "source_counts": {
-    "Encar": 204,
-    "KB ChaChaCha": 64
+    "Encar": 205,
+    "KB ChaChaCha": 63
   },
   "results": [
     {
@@ -15,7 +15,7 @@
       "badge": "Diesel 2.2 4WD 노블레스",
       "year": 2014,
       "mileage_km": 425779,
-      "price_krw": 5200000,
+      "price_krw": 4900000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
@@ -1802,44 +1802,6 @@
       "preference_2026": 14
     },
     {
-      "id": "kbc:28864719",
-      "source": "KB ChaChaCha",
-      "manufacturer": "Hyundai",
-      "model": "All New Tucson",
-      "badge": "Diesel(e-VGT UⅡ)1.7 2WD Modern",
-      "year": 2016,
-      "mileage_km": 197000,
-      "price_krw": 5490000,
-      "fuel_type": "diesel",
-      "transmission": "automatic",
-      "color": "gray",
-      "location": "인천",
-      "photos": [
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864719_11120302554631093.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864719_11120302650550436.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864719_11120302743926188.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864719_11120302843176027.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864719_11120302937858282.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864719_11120303064006827.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864719_11120303141278037.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864719_11120303228667012.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864719_11120303350599885.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864719_11120303445280546.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864719_11120303574325227.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864719_11120303681613490.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864719_11120303784274839.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864719_11120303873715190.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864719_11120303960377587.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864719_11120304031220739.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864719_11120304181522607.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864719_11120304297653768.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864719_11120304381030198.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864719_11120304486159528.jpeg?width=720"
-      ],
-      "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28864719",
-      "preference_2026": 13
-    },
-    {
       "id": "42684323",
       "source": "Encar",
       "manufacturer": "Hyundai",
@@ -1886,44 +1848,6 @@
       "preference_2026": 13
     },
     {
-      "id": "kbc:28415395",
-      "source": "KB ChaChaCha",
-      "manufacturer": "Hyundai",
-      "model": "All New Tucson",
-      "badge": "Diesel(e-VGT UⅡ)1.7 2WD Style",
-      "year": 2016,
-      "mileage_km": 149650,
-      "price_krw": 6300000,
-      "fuel_type": "diesel",
-      "transmission": "automatic",
-      "color": "silver",
-      "location": "경기",
-      "photos": [
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2841/28415395_6335385347201957.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2841/28415395_6335385649087686.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2841/28415395_6335385927039767.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2841/28415395_6335386256741153.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2841/28415395_6335386589996765.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2841/28415395_5528588500426342.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2841/28415395_6335387299160660.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2841/28415395_6335387632113564.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2841/28415395_6335387963585059.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2841/28415395_6335388392428318.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2841/28415395_6335388794378532.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2841/28415395_6335389070186060.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2841/28415395_6335389382285850.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2841/28415395_6335389746623781.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2841/28415395_6335390112382187.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2841/28415395_6335390456305333.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2841/28415395_6335390774952686.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2841/28415395_6335391128298378.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2841/28415395_6335391381257755.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2841/28415395_6335391635269951.jpeg?width=720"
-      ],
-      "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28415395",
-      "preference_2026": 13
-    },
-    {
       "id": "42864879",
       "source": "Encar",
       "manufacturer": "Hyundai",
@@ -1944,6 +1868,52 @@
         "https://ci.encar.com/carpicture06/pic4286/42864879_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42864879",
+      "preference_2026": 13
+    },
+    {
+      "id": "42902939",
+      "source": "Encar",
+      "manufacturer": "Hyundai",
+      "model": "All New Tucson",
+      "badge": "Diesel 1.7 2WD 모던",
+      "year": 2016,
+      "mileage_km": 211119,
+      "price_krw": 6500000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "전북",
+      "photos": [
+        "https://ci.encar.com/carpicture10/pic4290/42902939_001.jpg",
+        "https://ci.encar.com/carpicture10/pic4290/42902939_003.jpg",
+        "https://ci.encar.com/carpicture10/pic4290/42902939_004.jpg",
+        "https://ci.encar.com/carpicture10/pic4290/42902939_007.jpg",
+        "https://ci.encar.com/carpicture10/pic4290/42902939_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42902939",
+      "preference_2026": 13
+    },
+    {
+      "id": "42878052",
+      "source": "Encar",
+      "manufacturer": "Hyundai",
+      "model": "All New Tucson",
+      "badge": "Diesel 1.7 2WD 모던",
+      "year": 2016,
+      "mileage_km": 259017,
+      "price_krw": 6500000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture07/pic4287/42878052_001.jpg",
+        "https://ci.encar.com/carpicture07/pic4287/42878052_003.jpg",
+        "https://ci.encar.com/carpicture07/pic4287/42878052_004.jpg",
+        "https://ci.encar.com/carpicture07/pic4287/42878052_007.jpg",
+        "https://ci.encar.com/carpicture07/pic4287/42878052_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42878052",
       "preference_2026": 13
     },
     {
@@ -2547,44 +2517,6 @@
       "preference_2026": 10
     },
     {
-      "id": "kbc:28864299",
-      "source": "KB ChaChaCha",
-      "manufacturer": "ChevroletGMDaewoo",
-      "model": "Malibu",
-      "badge": "2.0 LT Standard",
-      "year": 2015,
-      "mileage_km": 180431,
-      "price_krw": 2000000,
-      "fuel_type": "diesel",
-      "transmission": "automatic",
-      "color": "black",
-      "location": "경기",
-      "photos": [
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864299_11113080978286418.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864299_11113081081193569.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864299_11113081186254066.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864299_11113081284820222.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864299_11113081385209611.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864299_11113081505525021.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864299_11113081640383479.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864299_11113081749145160.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864299_11113081863023402.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864299_11113081971312279.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864299_11113082070529928.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864299_11113082174521475.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864299_11113082259975433.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864299_11113082325818731.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864299_11113082414993372.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864299_11113082514426876.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864299_11113082666593073.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864299_11113082774866779.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864299_11113082850630532.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28864299_11113083034515091.jpeg?width=720"
-      ],
-      "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28864299",
-      "preference_2026": 10
-    },
-    {
       "id": "42939185",
       "source": "Encar",
       "manufacturer": "ChevroletGMDaewoo",
@@ -2651,6 +2583,29 @@
         "https://ci.encar.com/carpicture04/pic4284/42842894_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42842894",
+      "preference_2026": 10
+    },
+    {
+      "id": "40711748",
+      "source": "Encar",
+      "manufacturer": "ChevroletGMDaewoo",
+      "model": "Malibu",
+      "badge": "2.0 Diesel LT Deluxe Pack",
+      "year": 2015,
+      "mileage_km": 211187,
+      "price_krw": 2490000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "부산",
+      "photos": [
+        "https://ci.encar.com/carpicture01/pic4071/40711748_001.jpg",
+        "https://ci.encar.com/carpicture01/pic4071/40711748_003.jpg",
+        "https://ci.encar.com/carpicture01/pic4071/40711748_004.jpg",
+        "https://ci.encar.com/carpicture01/pic4071/40711748_007.jpg",
+        "https://ci.encar.com/carpicture01/pic4071/40711748_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/40711748",
       "preference_2026": 10
     },
     {
@@ -3077,7 +3032,7 @@
       "badge": "2WD LS",
       "year": 2015,
       "mileage_km": 159428,
-      "price_krw": 1900000,
+      "price_krw": 1800000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
@@ -3245,6 +3200,29 @@
       "preference_2026": 8
     },
     {
+      "id": "42690685",
+      "source": "Encar",
+      "manufacturer": "Mini",
+      "model": "Cooper D Countryman",
+      "badge": "ALL4 1세대",
+      "year": 2012,
+      "mileage_km": 126508,
+      "price_krw": 3900000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture09/pic4269/42690685_001.jpg",
+        "https://ci.encar.com/carpicture09/pic4269/42690685_003.jpg",
+        "https://ci.encar.com/carpicture09/pic4269/42690685_004.jpg",
+        "https://ci.encar.com/carpicture09/pic4269/42690685_007.jpg",
+        "https://ci.encar.com/carpicture09/pic4269/42690685_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42690685",
+      "preference_2026": 8
+    },
+    {
       "id": "42835098",
       "source": "Encar",
       "manufacturer": "Mini",
@@ -3265,29 +3243,6 @@
         "https://ci.encar.com/carpicture03/pic4283/42835098_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42835098",
-      "preference_2026": 8
-    },
-    {
-      "id": "42690685",
-      "source": "Encar",
-      "manufacturer": "Mini",
-      "model": "Cooper D Countryman",
-      "badge": "ALL4 1세대",
-      "year": 2012,
-      "mileage_km": 126508,
-      "price_krw": 4200000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경기",
-      "photos": [
-        "https://ci.encar.com/carpicture09/pic4269/42690685_001.jpg",
-        "https://ci.encar.com/carpicture09/pic4269/42690685_003.jpg",
-        "https://ci.encar.com/carpicture09/pic4269/42690685_004.jpg",
-        "https://ci.encar.com/carpicture09/pic4269/42690685_007.jpg",
-        "https://ci.encar.com/carpicture09/pic4269/42690685_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42690685",
       "preference_2026": 8
     },
     {
@@ -4983,6 +4938,29 @@
       "preference_2026": 3
     },
     {
+      "id": "42829785",
+      "source": "Encar",
+      "manufacturer": "Hyundai",
+      "model": "Santafe DM",
+      "badge": "Diesel(e-VGT) 2.0 4WD Exclusive 스페셜",
+      "year": 2014,
+      "mileage_km": 220000,
+      "price_krw": 1600000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "대전",
+      "photos": [
+        "https://ci.encar.com/carpicture02/pic4282/42829785_001.jpg",
+        "https://ci.encar.com/carpicture02/pic4282/42829785_003.jpg",
+        "https://ci.encar.com/carpicture02/pic4282/42829785_004.jpg",
+        "https://ci.encar.com/carpicture02/pic4282/42829785_007.jpg",
+        "https://ci.encar.com/carpicture02/pic4282/42829785_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42829785",
+      "preference_2026": 2
+    },
+    {
       "id": "42627569",
       "source": "Encar",
       "manufacturer": "Hyundai",
@@ -5085,29 +5063,6 @@
         "https://ci.encar.com/carpicture06/pic4276/42768489_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42768489",
-      "preference_2026": 2
-    },
-    {
-      "id": "42801544",
-      "source": "Encar",
-      "manufacturer": "Hyundai",
-      "model": "Santafe DM",
-      "badge": "Diesel(e-VGT) 2.0 2WD Premium",
-      "year": 2014,
-      "mileage_km": 311155,
-      "price_krw": 3590000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경북",
-      "photos": [
-        "https://ci.encar.com/carpicture10/pic4280/42801544_001.jpg",
-        "https://ci.encar.com/carpicture10/pic4280/42801544_003.jpg",
-        "https://ci.encar.com/carpicture10/pic4280/42801544_004.jpg",
-        "https://ci.encar.com/carpicture10/pic4280/42801544_007.jpg",
-        "https://ci.encar.com/carpicture10/pic4280/42801544_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42801544",
       "preference_2026": 2
     },
     {
@@ -5481,6 +5436,29 @@
       "preference_2026": 2
     },
     {
+      "id": "42473759",
+      "source": "Encar",
+      "manufacturer": "Jeep",
+      "model": "Wrangler (JK)",
+      "badge": "2.8 Diesel Sahara 4Door",
+      "year": 2014,
+      "mileage_km": 174933,
+      "price_krw": 13800000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture07/pic4247/42473759_001.jpg",
+        "https://ci.encar.com/carpicture07/pic4247/42473759_003.jpg",
+        "https://ci.encar.com/carpicture07/pic4247/42473759_004.jpg",
+        "https://ci.encar.com/carpicture07/pic4247/42473759_007.jpg",
+        "https://ci.encar.com/carpicture07/pic4247/42473759_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42473759",
+      "preference_2026": 1
+    },
+    {
       "id": "42881471",
       "source": "Encar",
       "manufacturer": "Jeep",
@@ -5524,29 +5502,6 @@
         "https://ci.encar.com/carpicture07/pic4287/42873625_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42873625",
-      "preference_2026": 1
-    },
-    {
-      "id": "42473759",
-      "source": "Encar",
-      "manufacturer": "Jeep",
-      "model": "Wrangler (JK)",
-      "badge": "2.8 Diesel Sahara 4Door",
-      "year": 2014,
-      "mileage_km": 174933,
-      "price_krw": 14090000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경기",
-      "photos": [
-        "https://ci.encar.com/carpicture07/pic4247/42473759_001.jpg",
-        "https://ci.encar.com/carpicture07/pic4247/42473759_003.jpg",
-        "https://ci.encar.com/carpicture07/pic4247/42473759_004.jpg",
-        "https://ci.encar.com/carpicture07/pic4247/42473759_007.jpg",
-        "https://ci.encar.com/carpicture07/pic4247/42473759_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42473759",
       "preference_2026": 1
     },
     {
@@ -6587,6 +6542,29 @@
       "preference_2026": 14
     },
     {
+      "id": "42991054",
+      "source": "Encar",
+      "manufacturer": "Audi",
+      "model": "Q5",
+      "badge": "45 TDI Quattro Dynamic 8R",
+      "year": 2014,
+      "mileage_km": 132356,
+      "price_krw": 7990000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture09/pic4299/42991054_001.jpg",
+        "https://ci.encar.com/carpicture09/pic4299/42991054_003.jpg",
+        "https://ci.encar.com/carpicture09/pic4299/42991054_004.jpg",
+        "https://ci.encar.com/carpicture09/pic4299/42991054_007.jpg",
+        "https://ci.encar.com/carpicture09/pic4299/42991054_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42991054",
+      "preference_2026": 14
+    },
+    {
       "id": "kbc:28587373",
       "source": "KB ChaChaCha",
       "manufacturer": "Audi",
@@ -6618,75 +6596,6 @@
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28587373",
       "preference_2026": 14
-    },
-    {
-      "id": "41913041",
-      "source": "Encar",
-      "manufacturer": "Audi",
-      "model": "Q5",
-      "badge": "2.0 TDI Quattro 8R",
-      "year": 2012,
-      "mileage_km": 98477,
-      "price_krw": 8200000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경기",
-      "photos": [
-        "https://ci.encar.com/carpicture01/pic4191/41913041_001.jpg",
-        "https://ci.encar.com/carpicture01/pic4191/41913041_003.jpg",
-        "https://ci.encar.com/carpicture01/pic4191/41913041_004.jpg",
-        "https://ci.encar.com/carpicture01/pic4191/41913041_007.jpg",
-        "https://ci.encar.com/carpicture01/pic4191/41913041_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/41913041",
-      "preference_2026": 14
-    },
-    {
-      "id": "42902939",
-      "source": "Encar",
-      "manufacturer": "Hyundai",
-      "model": "All New Tucson",
-      "badge": "Diesel 1.7 2WD 모던",
-      "year": 2016,
-      "mileage_km": 211119,
-      "price_krw": 6500000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "전북",
-      "photos": [
-        "https://ci.encar.com/carpicture10/pic4290/42902939_001.jpg",
-        "https://ci.encar.com/carpicture10/pic4290/42902939_003.jpg",
-        "https://ci.encar.com/carpicture10/pic4290/42902939_004.jpg",
-        "https://ci.encar.com/carpicture10/pic4290/42902939_007.jpg",
-        "https://ci.encar.com/carpicture10/pic4290/42902939_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42902939",
-      "preference_2026": 13
-    },
-    {
-      "id": "42878052",
-      "source": "Encar",
-      "manufacturer": "Hyundai",
-      "model": "All New Tucson",
-      "badge": "Diesel 1.7 2WD 모던",
-      "year": 2016,
-      "mileage_km": 259017,
-      "price_krw": 6500000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경기",
-      "photos": [
-        "https://ci.encar.com/carpicture07/pic4287/42878052_001.jpg",
-        "https://ci.encar.com/carpicture07/pic4287/42878052_003.jpg",
-        "https://ci.encar.com/carpicture07/pic4287/42878052_004.jpg",
-        "https://ci.encar.com/carpicture07/pic4287/42878052_007.jpg",
-        "https://ci.encar.com/carpicture07/pic4287/42878052_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42878052",
-      "preference_2026": 13
     },
     {
       "id": "42844952",
@@ -6749,29 +6658,6 @@
       "preference_2026": 13
     },
     {
-      "id": "42713926",
-      "source": "Encar",
-      "manufacturer": "Hyundai",
-      "model": "All New Tucson",
-      "badge": "Diesel 1.7 2WD 스타일",
-      "year": 2016,
-      "mileage_km": 79742,
-      "price_krw": 6800000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경기",
-      "photos": [
-        "https://ci.encar.com/carpicture01/pic4271/42713926_001.jpg",
-        "https://ci.encar.com/carpicture01/pic4271/42713926_003.jpg",
-        "https://ci.encar.com/carpicture01/pic4271/42713926_004.jpg",
-        "https://ci.encar.com/carpicture01/pic4271/42713926_007.jpg",
-        "https://ci.encar.com/carpicture01/pic4271/42713926_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42713926",
-      "preference_2026": 13
-    },
-    {
       "id": "kbc:28860045",
       "source": "KB ChaChaCha",
       "manufacturer": "Hyundai",
@@ -6804,6 +6690,89 @@
         "https://img.kbchachacha.com/IMG/carimg/l/img06/img2886/28860045_11034958134240671.jpeg?width=720"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28860045",
+      "preference_2026": 13
+    },
+    {
+      "id": "42894633",
+      "source": "Encar",
+      "manufacturer": "Hyundai",
+      "model": "All New Tucson",
+      "badge": "Diesel 1.7 2WD 스마트",
+      "year": 2017,
+      "mileage_km": 143000,
+      "price_krw": 6900000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture09/pic4289/42894633_001.jpg",
+        "https://ci.encar.com/carpicture09/pic4289/42894633_003.jpg",
+        "https://ci.encar.com/carpicture09/pic4289/42894633_004.jpg",
+        "https://ci.encar.com/carpicture09/pic4289/42894633_007.jpg",
+        "https://ci.encar.com/carpicture09/pic4289/42894633_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42894633",
+      "preference_2026": 13
+    },
+    {
+      "id": "42772537",
+      "source": "Encar",
+      "manufacturer": "Hyundai",
+      "model": "All New Tucson",
+      "badge": "Diesel 1.7 2WD 스타일",
+      "year": 2017,
+      "mileage_km": 192622,
+      "price_krw": 6900000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture07/pic4277/42772537_001.jpg",
+        "https://ci.encar.com/carpicture07/pic4277/42772537_003.jpg",
+        "https://ci.encar.com/carpicture07/pic4277/42772537_004.jpg",
+        "https://ci.encar.com/carpicture07/pic4277/42772537_007.jpg",
+        "https://ci.encar.com/carpicture07/pic4277/42772537_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42772537",
+      "preference_2026": 13
+    },
+    {
+      "id": "kbc:28812256",
+      "source": "KB ChaChaCha",
+      "manufacturer": "Hyundai",
+      "model": "All New Tucson",
+      "badge": "Diesel(e-VGT UⅡ)1.7 2WD Style Fever Package",
+      "year": 2017,
+      "mileage_km": 142680,
+      "price_krw": 7000000,
+      "fuel_type": "diesel",
+      "transmission": "automatic",
+      "color": "gray",
+      "location": "경기",
+      "photos": [
+        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554617963885881.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554618038545516.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554618106224521.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554618176343754.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554618250262703.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554618316255947.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554618462683379.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554618646913939.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554618776686563.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554618895927054.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554618985162048.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554619128176825.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554619239311897.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554619411636713.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554619562192027.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554619657566262.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554619794583346.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554619909392968.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554620051517560.jpeg?width=720"
+      ],
+      "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28812256",
       "preference_2026": 13
     },
     {
@@ -6891,6 +6860,44 @@
       "preference_2026": 12
     },
     {
+      "id": "kbc:28870832",
+      "source": "KB ChaChaCha",
+      "manufacturer": "Hyundai",
+      "model": "Maxcruz",
+      "badge": "Diesel(e-VGT)2.2 4WD Exclusive 7-Seater Special",
+      "year": 2014,
+      "mileage_km": 254402,
+      "price_krw": 6500000,
+      "fuel_type": "diesel",
+      "transmission": "automatic",
+      "color": "인기색상",
+      "location": "경기",
+      "photos": [
+        "https://img.kbchachacha.com/IMG/carimg/l/img07/img2887/28870832_11254146705376178.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img07/img2887/28870832_11254147057572854.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img07/img2887/28870832_11254147358298589.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img07/img2887/28870832_11254147677723720.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img07/img2887/28870832_11254148014578475.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img07/img2887/28870832_11254148358906250.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img07/img2887/28870832_11254148729416768.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img07/img2887/28870832_11254149090892807.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img07/img2887/28870832_11254149468592819.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img07/img2887/28870832_11254149797971234.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img07/img2887/28870832_11254150130499779.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img07/img2887/28870832_11254150505506723.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img07/img2887/28870832_11254150866608988.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img07/img2887/28870832_11254151227284611.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img07/img2887/28870832_11254151580583649.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img07/img2887/28870832_11254151906875816.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img07/img2887/28870832_11254152213782396.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img07/img2887/28870832_11254152554333641.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img07/img2887/28870832_11254152872829247.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img07/img2887/28870832_11254153179067643.jpeg?width=720"
+      ],
+      "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28870832",
+      "preference_2026": 12
+    },
+    {
       "id": "kbc:28663812",
       "source": "KB ChaChaCha",
       "manufacturer": "Hyundai",
@@ -6949,29 +6956,6 @@
         "https://ci.encar.com/carpicture10/pic4270/42701495_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42701495",
-      "preference_2026": 12
-    },
-    {
-      "id": "42921010",
-      "source": "Encar",
-      "manufacturer": "Hyundai",
-      "model": "Maxcruz",
-      "badge": "Diesel(e-VGT) 2.2 4WD Exclusive 스페셜",
-      "year": 2015,
-      "mileage_km": 193534,
-      "price_krw": 6800000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경기",
-      "photos": [
-        "https://ci.encar.com/carpicture02/pic4292/42921010_001.jpg",
-        "https://ci.encar.com/carpicture02/pic4292/42921010_003.jpg",
-        "https://ci.encar.com/carpicture02/pic4292/42921010_004.jpg",
-        "https://ci.encar.com/carpicture02/pic4292/42921010_007.jpg",
-        "https://ci.encar.com/carpicture02/pic4292/42921010_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42921010",
       "preference_2026": 12
     }
   ]
