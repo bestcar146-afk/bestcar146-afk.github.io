@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-10-22T07:09:42.742898+00:00",
+  "updated_at": "2026-10-22T13:05:07.896679+00:00",
   "provider": "EnCarAPI",
   "scope": "Sales-driven public selection based on BEST CAR STAR historical demand",
   "source_counts": {
-    "Encar": 205,
-    "KB ChaChaCha": 63
+    "Encar": 207,
+    "KB ChaChaCha": 62
   },
   "results": [
     {
@@ -1403,6 +1403,29 @@
       "preference_2026": 18
     },
     {
+      "id": "42739597",
+      "source": "Encar",
+      "manufacturer": "Hyundai",
+      "model": "Grand Starex",
+      "badge": "3-Seater VAN CVX 디럭스",
+      "year": 2010,
+      "mileage_km": 395518,
+      "price_krw": 2800000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture03/pic4273/42739597_001.jpg",
+        "https://ci.encar.com/carpicture03/pic4273/42739597_003.jpg",
+        "https://ci.encar.com/carpicture03/pic4273/42739597_004.jpg",
+        "https://ci.encar.com/carpicture03/pic4273/42739597_007.jpg",
+        "https://ci.encar.com/carpicture03/pic4273/42739597_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42739597",
+      "preference_2026": 18
+    },
+    {
       "id": "kbc:28869581",
       "source": "KB ChaChaCha",
       "manufacturer": "Hyundai",
@@ -1487,29 +1510,6 @@
         "https://ci.encar.com/carpicture03/pic4163/41634148_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/41634148",
-      "preference_2026": 18
-    },
-    {
-      "id": "42739597",
-      "source": "Encar",
-      "manufacturer": "Hyundai",
-      "model": "Grand Starex",
-      "badge": "3-Seater VAN CVX 디럭스",
-      "year": 2010,
-      "mileage_km": 395518,
-      "price_krw": 3000000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경기",
-      "photos": [
-        "https://ci.encar.com/carpicture03/pic4273/42739597_001.jpg",
-        "https://ci.encar.com/carpicture03/pic4273/42739597_003.jpg",
-        "https://ci.encar.com/carpicture03/pic4273/42739597_004.jpg",
-        "https://ci.encar.com/carpicture03/pic4273/42739597_007.jpg",
-        "https://ci.encar.com/carpicture03/pic4273/42739597_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42739597",
       "preference_2026": 18
     },
     {
@@ -1641,6 +1641,29 @@
       "preference_2026": 17
     },
     {
+      "id": "42983593",
+      "source": "Encar",
+      "manufacturer": "Kia",
+      "model": "All New Carnival",
+      "badge": "9-Seater Prestige",
+      "year": 2016,
+      "mileage_km": 279294,
+      "price_krw": 4000000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture08/pic4298/42983593_001.jpg",
+        "https://ci.encar.com/carpicture08/pic4298/42983593_003.jpg",
+        "https://ci.encar.com/carpicture08/pic4298/42983593_004.jpg",
+        "https://ci.encar.com/carpicture08/pic4298/42983593_007.jpg",
+        "https://ci.encar.com/carpicture08/pic4298/42983593_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42983593",
+      "preference_2026": 17
+    },
+    {
       "id": "42913123",
       "source": "Encar",
       "manufacturer": "Kia",
@@ -1661,29 +1684,6 @@
         "https://ci.encar.com/carpicture01/pic4291/42913123_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42913123",
-      "preference_2026": 17
-    },
-    {
-      "id": "42703136",
-      "source": "Encar",
-      "manufacturer": "Kia",
-      "model": "All New Carnival",
-      "badge": "9-seater Luxury",
-      "year": 2016,
-      "mileage_km": 251050,
-      "price_krw": 4300000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "부산",
-      "photos": [
-        "https://ci.encar.com/carpicture10/pic4270/42703136_001.jpg",
-        "https://ci.encar.com/carpicture10/pic4270/42703136_003.jpg",
-        "https://ci.encar.com/carpicture10/pic4270/42703136_004.jpg",
-        "https://ci.encar.com/carpicture10/pic4270/42703136_007.jpg",
-        "https://ci.encar.com/carpicture10/pic4270/42703136_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42703136",
       "preference_2026": 17
     },
     {
@@ -1825,49 +1825,49 @@
       "preference_2026": 13
     },
     {
-      "id": "42951996",
+      "id": "42990711",
       "source": "Encar",
       "manufacturer": "Hyundai",
       "model": "All New Tucson",
       "badge": "Diesel 1.7 2WD 모던",
       "year": 2016,
-      "mileage_km": 216903,
-      "price_krw": 5700000,
+      "mileage_km": 221948,
+      "price_krw": 5990000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
       "location": "경기",
       "photos": [
-        "https://ci.encar.com/carpicture05/pic4295/42951996_001.jpg",
-        "https://ci.encar.com/carpicture05/pic4295/42951996_003.jpg",
-        "https://ci.encar.com/carpicture05/pic4295/42951996_004.jpg",
-        "https://ci.encar.com/carpicture05/pic4295/42951996_007.jpg",
-        "https://ci.encar.com/carpicture05/pic4295/42951996_"
+        "https://ci.encar.com/carpicture09/pic4299/42990711_001.jpg",
+        "https://ci.encar.com/carpicture09/pic4299/42990711_003.jpg",
+        "https://ci.encar.com/carpicture09/pic4299/42990711_004.jpg",
+        "https://ci.encar.com/carpicture09/pic4299/42990711_007.jpg",
+        "https://ci.encar.com/carpicture09/pic4299/42990711_"
       ],
-      "listing_url": "https://fem.encar.com/cars/detail/42951996",
+      "listing_url": "https://fem.encar.com/cars/detail/42990711",
       "preference_2026": 13
     },
     {
-      "id": "42864879",
+      "id": "42994603",
       "source": "Encar",
       "manufacturer": "Hyundai",
       "model": "All New Tucson",
-      "badge": "Diesel 1.7 2WD 모던",
+      "badge": "Diesel 1.7 2WD 프리미엄",
       "year": 2016,
-      "mileage_km": 100948,
-      "price_krw": 6500000,
+      "mileage_km": 214269,
+      "price_krw": 6490000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
-      "location": "경기",
+      "location": "인천",
       "photos": [
-        "https://ci.encar.com/carpicture06/pic4286/42864879_001.jpg",
-        "https://ci.encar.com/carpicture06/pic4286/42864879_003.jpg",
-        "https://ci.encar.com/carpicture06/pic4286/42864879_004.jpg",
-        "https://ci.encar.com/carpicture06/pic4286/42864879_007.jpg",
-        "https://ci.encar.com/carpicture06/pic4286/42864879_"
+        "https://ci.encar.com/carpicture09/pic4299/42994603_001.jpg",
+        "https://ci.encar.com/carpicture09/pic4299/42994603_003.jpg",
+        "https://ci.encar.com/carpicture09/pic4299/42994603_004.jpg",
+        "https://ci.encar.com/carpicture09/pic4299/42994603_007.jpg",
+        "https://ci.encar.com/carpicture09/pic4299/42994603_"
       ],
-      "listing_url": "https://fem.encar.com/cars/detail/42864879",
+      "listing_url": "https://fem.encar.com/cars/detail/42994603",
       "preference_2026": 13
     },
     {
@@ -3292,6 +3292,29 @@
       "preference_2026": 7
     },
     {
+      "id": "42609576",
+      "source": "Encar",
+      "manufacturer": "BMW",
+      "model": "X3 (F25)",
+      "badge": "xDrive 20d High",
+      "year": 2012,
+      "mileage_km": 251800,
+      "price_krw": 3990000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "서울",
+      "photos": [
+        "https://ci.encar.com/carpicture10/pic4260/42609576_001.jpg",
+        "https://ci.encar.com/carpicture10/pic4260/42609576_003.jpg",
+        "https://ci.encar.com/carpicture10/pic4260/42609576_004.jpg",
+        "https://ci.encar.com/carpicture10/pic4260/42609576_007.jpg",
+        "https://ci.encar.com/carpicture10/pic4260/42609576_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42609576",
+      "preference_2026": 7
+    },
+    {
       "id": "41606537",
       "source": "Encar",
       "manufacturer": "KG_Mobility_Ssangyong",
@@ -3713,29 +3736,6 @@
       "preference_2026": 5
     },
     {
-      "id": "42736312",
-      "source": "Encar",
-      "manufacturer": "ChevroletGMDaewoo",
-      "model": "Cruze",
-      "badge": "2.0 LTZ+",
-      "year": 2012,
-      "mileage_km": 199984,
-      "price_krw": 1850000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "대구",
-      "photos": [
-        "https://ci.encar.com/carpicture03/pic4273/42736312_001.jpg",
-        "https://ci.encar.com/carpicture03/pic4273/42736312_003.jpg",
-        "https://ci.encar.com/carpicture03/pic4273/42736312_004.jpg",
-        "https://ci.encar.com/carpicture03/pic4273/42736312_007.jpg",
-        "https://ci.encar.com/carpicture03/pic4273/42736312_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42736312",
-      "preference_2026": 5
-    },
-    {
       "id": "42688813",
       "source": "Encar",
       "manufacturer": "ChevroletGMDaewoo",
@@ -3779,6 +3779,28 @@
         "https://ci.encar.com/carpicture06/pic4296/42967160_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42967160",
+      "preference_2026": 5
+    },
+    {
+      "id": "42892805",
+      "source": "Encar",
+      "manufacturer": "ChevroletGMDaewoo",
+      "model": "Cruze",
+      "badge": "2.0 LT+ Leather Package",
+      "year": 2014,
+      "mileage_km": 156235,
+      "price_krw": 1990000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture09/pic4289/42892805_001.jpg",
+        "https://ci.encar.com/carpicture09/pic4289/42892805_003.jpg",
+        "https://ci.encar.com/carpicture09/pic4289/42892805_004.jpg",
+        "https://ci.encar.com/carpicture09/pic4289/42892805_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42892805",
       "preference_2026": 5
     },
     {
@@ -4261,26 +4283,26 @@
       "preference_2026": 4
     },
     {
-      "id": "42945129",
+      "id": "41663818",
       "source": "Encar",
       "manufacturer": "Hyundai",
       "model": "Accent(New)",
-      "badge": "Diesel 1.6 VGT Premium",
+      "badge": "Diesel 1.6 VGT Premier",
       "year": 2012,
-      "mileage_km": 235000,
-      "price_krw": 2200000,
+      "mileage_km": 246337,
+      "price_krw": 2300000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
-      "location": "광주",
+      "location": "대전",
       "photos": [
-        "https://ci.encar.com/carpicture04/pic4294/42945129_001.jpg",
-        "https://ci.encar.com/carpicture04/pic4294/42945129_003.jpg",
-        "https://ci.encar.com/carpicture04/pic4294/42945129_004.jpg",
-        "https://ci.encar.com/carpicture04/pic4294/42945129_007.jpg",
-        "https://ci.encar.com/carpicture04/pic4294/42945129_"
+        "https://ci.encar.com/carpicture06/pic4166/41663818_001.jpg",
+        "https://ci.encar.com/carpicture06/pic4166/41663818_003.jpg",
+        "https://ci.encar.com/carpicture06/pic4166/41663818_004.jpg",
+        "https://ci.encar.com/carpicture06/pic4166/41663818_007.jpg",
+        "https://ci.encar.com/carpicture06/pic4166/41663818_"
       ],
-      "listing_url": "https://fem.encar.com/cars/detail/42945129",
+      "listing_url": "https://fem.encar.com/cars/detail/41663818",
       "preference_2026": 4
     },
     {
@@ -4572,7 +4594,7 @@
       "badge": "Diesel 1.6 2U 쿨",
       "year": 2010,
       "mileage_km": 88188,
-      "price_krw": 3200000,
+      "price_krw": 3100000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
@@ -4800,26 +4822,26 @@
       "preference_2026": 3
     },
     {
-      "id": "42527471",
+      "id": "42263494",
       "source": "Encar",
       "manufacturer": "Volkswagen",
       "model": "Golf 6 Gen",
-      "badge": "1.6 TDI Blue Motion StyleEdition",
+      "badge": "1.6 TDI Blue Motion",
       "year": 2012,
-      "mileage_km": 78345,
-      "price_krw": 3600000,
+      "mileage_km": 148413,
+      "price_krw": 3700000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
-      "location": "서울",
+      "location": "인천",
       "photos": [
-        "https://ci.encar.com/carpicture02/pic4252/42527471_001.jpg",
-        "https://ci.encar.com/carpicture02/pic4252/42527471_003.jpg",
-        "https://ci.encar.com/carpicture02/pic4252/42527471_004.jpg",
-        "https://ci.encar.com/carpicture02/pic4252/42527471_007.jpg",
-        "https://ci.encar.com/carpicture02/pic4252/42527471_"
+        "https://ci.encar.com/carpicture06/pic4226/42263494_001.jpg",
+        "https://ci.encar.com/carpicture06/pic4226/42263494_003.jpg",
+        "https://ci.encar.com/carpicture06/pic4226/42263494_004.jpg",
+        "https://ci.encar.com/carpicture06/pic4226/42263494_007.jpg",
+        "https://ci.encar.com/carpicture06/pic4226/42263494_"
       ],
-      "listing_url": "https://fem.encar.com/cars/detail/42527471",
+      "listing_url": "https://fem.encar.com/cars/detail/42263494",
       "preference_2026": 3
     },
     {
@@ -5528,26 +5550,26 @@
       "preference_2026": 1
     },
     {
-      "id": "42811972",
+      "id": "42993135",
       "source": "Encar",
       "manufacturer": "Jeep",
       "model": "Wrangler (JK)",
       "badge": "2.8 Diesel Sahara 4Door",
       "year": 2012,
-      "mileage_km": 187813,
-      "price_krw": 15500000,
+      "mileage_km": 132755,
+      "price_krw": 15000000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
       "location": "경기",
       "photos": [
-        "https://ci.encar.com/carpicture01/pic4281/42811972_001.jpg",
-        "https://ci.encar.com/carpicture01/pic4281/42811972_003.jpg",
-        "https://ci.encar.com/carpicture01/pic4281/42811972_004.jpg",
-        "https://ci.encar.com/carpicture01/pic4281/42811972_007.jpg",
-        "https://ci.encar.com/carpicture01/pic4281/42811972_"
+        "https://ci.encar.com/carpicture09/pic4299/42993135_001.jpg",
+        "https://ci.encar.com/carpicture09/pic4299/42993135_003.jpg",
+        "https://ci.encar.com/carpicture09/pic4299/42993135_004.jpg",
+        "https://ci.encar.com/carpicture09/pic4299/42993135_007.jpg",
+        "https://ci.encar.com/carpicture09/pic4299/42993135_"
       ],
-      "listing_url": "https://fem.encar.com/cars/detail/42811972",
+      "listing_url": "https://fem.encar.com/cars/detail/42993135",
       "preference_2026": 1
     },
     {
@@ -6184,29 +6206,6 @@
       "preference_2026": 18
     },
     {
-      "id": "42249861",
-      "source": "Encar",
-      "manufacturer": "Hyundai",
-      "model": "Grand Starex",
-      "badge": "5-Seater VAN CVX 럭셔리",
-      "year": 2010,
-      "mileage_km": 240000,
-      "price_krw": 3200000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경기",
-      "photos": [
-        "https://ci.encar.com/carpicture04/pic4224/42249861_001.jpg",
-        "https://ci.encar.com/carpicture04/pic4224/42249861_003.jpg",
-        "https://ci.encar.com/carpicture04/pic4224/42249861_004.jpg",
-        "https://ci.encar.com/carpicture04/pic4224/42249861_007.jpg",
-        "https://ci.encar.com/carpicture04/pic4224/42249861_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42249861",
-      "preference_2026": 18
-    },
-    {
       "id": "40672959",
       "source": "Encar",
       "manufacturer": "Hyundai",
@@ -6276,6 +6275,29 @@
       "preference_2026": 18
     },
     {
+      "id": "42952452",
+      "source": "Encar",
+      "manufacturer": "Hyundai",
+      "model": "Grand Starex",
+      "badge": "3-Seater VAN CVX 밸류",
+      "year": 2010,
+      "mileage_km": 296940,
+      "price_krw": 3300000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "인천",
+      "photos": [
+        "https://ci.encar.com/carpicture05/pic4295/42952452_001.jpg",
+        "https://ci.encar.com/carpicture05/pic4295/42952452_003.jpg",
+        "https://ci.encar.com/carpicture05/pic4295/42952452_004.jpg",
+        "https://ci.encar.com/carpicture05/pic4295/42952452_007.jpg",
+        "https://ci.encar.com/carpicture05/pic4295/42952452_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42952452",
+      "preference_2026": 18
+    },
+    {
       "id": "42822842",
       "source": "Encar",
       "manufacturer": "Hyundai",
@@ -6297,6 +6319,29 @@
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42822842",
       "preference_2026": 18
+    },
+    {
+      "id": "42703136",
+      "source": "Encar",
+      "manufacturer": "Kia",
+      "model": "All New Carnival",
+      "badge": "9-seater Luxury",
+      "year": 2016,
+      "mileage_km": 251050,
+      "price_krw": 4300000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "부산",
+      "photos": [
+        "https://ci.encar.com/carpicture10/pic4270/42703136_001.jpg",
+        "https://ci.encar.com/carpicture10/pic4270/42703136_003.jpg",
+        "https://ci.encar.com/carpicture10/pic4270/42703136_004.jpg",
+        "https://ci.encar.com/carpicture10/pic4270/42703136_007.jpg",
+        "https://ci.encar.com/carpicture10/pic4270/42703136_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42703136",
+      "preference_2026": 17
     },
     {
       "id": "42387352",
@@ -6342,29 +6387,6 @@
         "https://ci.encar.com/carpicture05/pic4295/42952165_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42952165",
-      "preference_2026": 17
-    },
-    {
-      "id": "42913354",
-      "source": "Encar",
-      "manufacturer": "Kia",
-      "model": "All New Carnival",
-      "badge": "9-seater Luxury",
-      "year": 2016,
-      "mileage_km": 209617,
-      "price_krw": 4490000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경기",
-      "photos": [
-        "https://ci.encar.com/carpicture01/pic4291/42913354_001.jpg",
-        "https://ci.encar.com/carpicture01/pic4291/42913354_003.jpg",
-        "https://ci.encar.com/carpicture01/pic4291/42913354_004.jpg",
-        "https://ci.encar.com/carpicture01/pic4291/42913354_007.jpg",
-        "https://ci.encar.com/carpicture01/pic4291/42913354_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42913354",
       "preference_2026": 17
     },
     {
@@ -6739,40 +6761,26 @@
       "preference_2026": 13
     },
     {
-      "id": "kbc:28812256",
-      "source": "KB ChaChaCha",
+      "id": "42991891",
+      "source": "Encar",
       "manufacturer": "Hyundai",
       "model": "All New Tucson",
-      "badge": "Diesel(e-VGT UⅡ)1.7 2WD Style Fever Package",
+      "badge": "Diesel 1.7 2WD 프리미엄",
       "year": 2017,
-      "mileage_km": 142680,
-      "price_krw": 7000000,
+      "mileage_km": 250301,
+      "price_krw": 6900000,
       "fuel_type": "diesel",
-      "transmission": "automatic",
-      "color": "gray",
-      "location": "경기",
+      "transmission": "—",
+      "color": "—",
+      "location": "부산",
       "photos": [
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554617963885881.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554618038545516.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554618106224521.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554618176343754.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554618250262703.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554618316255947.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554618462683379.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554618646913939.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554618776686563.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554618895927054.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554618985162048.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554619128176825.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554619239311897.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554619411636713.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554619562192027.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554619657566262.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554619794583346.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554619909392968.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img01/img2881/28812256_9554620051517560.jpeg?width=720"
+        "https://ci.encar.com/carpicture09/pic4299/42991891_001.jpg",
+        "https://ci.encar.com/carpicture09/pic4299/42991891_003.jpg",
+        "https://ci.encar.com/carpicture09/pic4299/42991891_004.jpg",
+        "https://ci.encar.com/carpicture09/pic4299/42991891_007.jpg",
+        "https://ci.encar.com/carpicture09/pic4299/42991891_"
       ],
-      "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28812256",
+      "listing_url": "https://fem.encar.com/cars/detail/42991891",
       "preference_2026": 13
     },
     {
