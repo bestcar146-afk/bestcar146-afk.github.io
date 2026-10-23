@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-10-23T01:16:14.150034+00:00",
+  "updated_at": "2026-10-23T07:07:11.063547+00:00",
   "provider": "EnCarAPI",
   "scope": "Sales-driven public selection based on BEST CAR STAR historical demand",
   "source_counts": {
-    "Encar": 203,
-    "KB ChaChaCha": 65
+    "Encar": 204,
+    "KB ChaChaCha": 64
   },
   "results": [
     {
@@ -84,7 +84,7 @@
       "badge": "Diesel 2.0 4WD 프레스티지",
       "year": 2014,
       "mileage_km": 181459,
-      "price_krw": 5800000,
+      "price_krw": 5700000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
@@ -302,6 +302,29 @@
       "preference_2026": 49
     },
     {
+      "id": "42302593",
+      "source": "Encar",
+      "manufacturer": "Kia",
+      "model": "New Sorento R",
+      "badge": "Diesel 2.0 2WD 트렌디",
+      "year": 2014,
+      "mileage_km": 248116,
+      "price_krw": 4400000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture10/pic4230/42302593_001.jpg",
+        "https://ci.encar.com/carpicture10/pic4230/42302593_003.jpg",
+        "https://ci.encar.com/carpicture10/pic4230/42302593_004.jpg",
+        "https://ci.encar.com/carpicture10/pic4230/42302593_007.jpg",
+        "https://ci.encar.com/carpicture10/pic4230/42302593_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42302593",
+      "preference_2026": 49
+    },
+    {
       "id": "41922864",
       "source": "Encar",
       "manufacturer": "Kia",
@@ -405,29 +428,6 @@
         "https://img.kbchachacha.com/IMG/carimg/l/img10/img2840/28402131_5932319490492494.jpeg?width=720"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28402131",
-      "preference_2026": 49
-    },
-    {
-      "id": "42518507",
-      "source": "Encar",
-      "manufacturer": "Kia",
-      "model": "New Sorento R",
-      "badge": "Diesel 2.0 2WD 럭셔리",
-      "year": 2014,
-      "mileage_km": 167183,
-      "price_krw": 4700000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경기",
-      "photos": [
-        "https://ci.encar.com/carpicture02/pic4192/41923275_001.jpg",
-        "https://ci.encar.com/carpicture02/pic4192/41923275_003.jpg",
-        "https://ci.encar.com/carpicture02/pic4192/41923275_004.jpg",
-        "https://ci.encar.com/carpicture02/pic4192/41923275_007.jpg",
-        "https://ci.encar.com/carpicture02/pic4192/41923275_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42518507",
       "preference_2026": 49
     },
     {
@@ -822,29 +822,6 @@
       "preference_2026": 31
     },
     {
-      "id": "41663372",
-      "source": "Encar",
-      "manufacturer": "Kia",
-      "model": "Sorento R",
-      "badge": "Diesel 2.2 4WD TLX 고급형",
-      "year": 2011,
-      "mileage_km": 182847,
-      "price_krw": 3500000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "대전",
-      "photos": [
-        "https://ci.encar.com/carpicture06/pic4166/41663372_001.jpg",
-        "https://ci.encar.com/carpicture06/pic4166/41663372_003.jpg",
-        "https://ci.encar.com/carpicture06/pic4166/41663372_004.jpg",
-        "https://ci.encar.com/carpicture06/pic4166/41663372_007.jpg",
-        "https://ci.encar.com/carpicture06/pic4166/41663372_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/41663372",
-      "preference_2026": 31
-    },
-    {
       "id": "42743982",
       "source": "Encar",
       "manufacturer": "Kia",
@@ -1031,6 +1008,29 @@
         "https://ci.encar.com/carpicture07/pic4277/42774573_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42774573",
+      "preference_2026": 31
+    },
+    {
+      "id": "42222458",
+      "source": "Encar",
+      "manufacturer": "Kia",
+      "model": "Sorento R",
+      "badge": "Diesel 2.0 2WD TLX 최고급형",
+      "year": 2010,
+      "mileage_km": 325730,
+      "price_krw": 2800000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture02/pic4222/42222458_001.jpg",
+        "https://ci.encar.com/carpicture02/pic4222/42222458_003.jpg",
+        "https://ci.encar.com/carpicture02/pic4222/42222458_004.jpg",
+        "https://ci.encar.com/carpicture02/pic4222/42222458_007.jpg",
+        "https://ci.encar.com/carpicture02/pic4222/42222458_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42222458",
       "preference_2026": 31
     },
     {
@@ -4889,7 +4889,7 @@
       "badge": "3.0 Diesel 958",
       "year": 2011,
       "mileage_km": 168300,
-      "price_krw": 10500000,
+      "price_krw": 10300000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
@@ -4981,7 +4981,7 @@
       "badge": "Diesel(e-VGT) 2.0 4WD Exclusive 스페셜",
       "year": 2014,
       "mileage_km": 220000,
-      "price_krw": 1600000,
+      "price_krw": 1650000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
@@ -5587,6 +5587,29 @@
       "preference_2026": 1
     },
     {
+      "id": "42518507",
+      "source": "Encar",
+      "manufacturer": "Kia",
+      "model": "New Sorento R",
+      "badge": "Diesel 2.0 2WD 럭셔리",
+      "year": 2014,
+      "mileage_km": 167183,
+      "price_krw": 4700000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture02/pic4192/41923275_001.jpg",
+        "https://ci.encar.com/carpicture02/pic4192/41923275_003.jpg",
+        "https://ci.encar.com/carpicture02/pic4192/41923275_004.jpg",
+        "https://ci.encar.com/carpicture02/pic4192/41923275_007.jpg",
+        "https://ci.encar.com/carpicture02/pic4192/41923275_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42518507",
+      "preference_2026": 49
+    },
+    {
       "id": "41923275",
       "source": "Encar",
       "manufacturer": "Kia",
@@ -5714,44 +5737,6 @@
         "https://ci.encar.com/carpicture02/pic4252/42521610_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42521610",
-      "preference_2026": 49
-    },
-    {
-      "id": "kbc:28825671",
-      "source": "KB ChaChaCha",
-      "manufacturer": "Kia",
-      "model": "New SorentoR",
-      "badge": "Diesel 2WD Prestige",
-      "year": 2014,
-      "mileage_km": 207682,
-      "price_krw": 4800000,
-      "fuel_type": "diesel",
-      "transmission": "automatic",
-      "color": "gray",
-      "location": "인천",
-      "photos": [
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2882/28825671_10036866686437235.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2882/28825671_10036866864836598.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2882/28825671_10036867029695118.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2882/28825671_10036867174081491.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2882/28825671_10036867327507298.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2882/28825671_10036867485397733.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2882/28825671_10036867641557773.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2882/28825671_10036867748811794.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2882/28825671_10036867930859950.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2882/28825671_10036868691352365.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2882/28825671_10036868940832420.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2882/28825671_10036869128673710.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2882/28825671_10036869327175396.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2882/28825671_10036869543868155.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2882/28825671_10036869727493910.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2882/28825671_10036869928281214.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2882/28825671_10036870091235522.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2882/28825671_10036870547804070.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2882/28825671_10036870729200189.jpg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2882/28825671_10036870932118512.jpg?width=720"
-      ],
-      "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28825671",
       "preference_2026": 49
     },
     {
@@ -6089,6 +6074,29 @@
       "preference_2026": 23
     },
     {
+      "id": "42937594",
+      "source": "Encar",
+      "manufacturer": "Kia",
+      "model": "Sportage R",
+      "badge": "Diesel 2WD TLX 고급형",
+      "year": 2011,
+      "mileage_km": 196520,
+      "price_krw": 2750000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "대구",
+      "photos": [
+        "https://ci.encar.com/carpicture03/pic4293/42937594_001.jpg",
+        "https://ci.encar.com/carpicture03/pic4293/42937594_003.jpg",
+        "https://ci.encar.com/carpicture03/pic4293/42937594_004.jpg",
+        "https://ci.encar.com/carpicture03/pic4293/42937594_007.jpg",
+        "https://ci.encar.com/carpicture03/pic4293/42937594_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42937594",
+      "preference_2026": 23
+    },
+    {
       "id": "42947765",
       "source": "Encar",
       "manufacturer": "Kia",
@@ -6155,29 +6163,6 @@
         "https://ci.encar.com/carpicture05/pic4205/42054411_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42054411",
-      "preference_2026": 23
-    },
-    {
-      "id": "42937594",
-      "source": "Encar",
-      "manufacturer": "Kia",
-      "model": "Sportage R",
-      "badge": "Diesel 2WD TLX 고급형",
-      "year": 2011,
-      "mileage_km": 196520,
-      "price_krw": 3250000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "대구",
-      "photos": [
-        "https://ci.encar.com/carpicture03/pic4293/42937594_001.jpg",
-        "https://ci.encar.com/carpicture03/pic4293/42937594_003.jpg",
-        "https://ci.encar.com/carpicture03/pic4293/42937594_004.jpg",
-        "https://ci.encar.com/carpicture03/pic4293/42937594_007.jpg",
-        "https://ci.encar.com/carpicture03/pic4293/42937594_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42937594",
       "preference_2026": 23
     },
     {
@@ -6443,49 +6428,49 @@
       "preference_2026": 17
     },
     {
-      "id": "41279564",
-      "source": "Encar",
-      "manufacturer": "Kia",
-      "model": "All New Carnival",
-      "badge": "9-seater Luxury",
-      "year": 2015,
-      "mileage_km": 252527,
-      "price_krw": 4500000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "대구",
-      "photos": [
-        "https://ci.encar.com/carpicture07/pic4127/41279564_001.jpg",
-        "https://ci.encar.com/carpicture07/pic4127/41279564_003.jpg",
-        "https://ci.encar.com/carpicture07/pic4127/41279564_004.jpg",
-        "https://ci.encar.com/carpicture07/pic4127/41279564_007.jpg",
-        "https://ci.encar.com/carpicture07/pic4127/41279564_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/41279564",
-      "preference_2026": 17
-    },
-    {
-      "id": "42982354",
+      "id": "42933120",
       "source": "Encar",
       "manufacturer": "Kia",
       "model": "All New Carnival",
       "badge": "9-Seater Prestige",
-      "year": 2015,
-      "mileage_km": 275170,
+      "year": 2016,
+      "mileage_km": 242532,
       "price_krw": 4500000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
       "location": "전남광주",
       "photos": [
-        "https://ci.encar.com/carpicture07/pic4297/42974017_001.jpg",
-        "https://ci.encar.com/carpicture07/pic4297/42974017_003.jpg",
-        "https://ci.encar.com/carpicture07/pic4297/42974017_004.jpg",
-        "https://ci.encar.com/carpicture07/pic4297/42974017_007.jpg",
-        "https://ci.encar.com/carpicture07/pic4297/42974017_"
+        "https://ci.encar.com/carpicture03/pic4293/42932605_001.jpg",
+        "https://ci.encar.com/carpicture03/pic4293/42932605_003.jpg",
+        "https://ci.encar.com/carpicture03/pic4293/42932605_004.jpg",
+        "https://ci.encar.com/carpicture03/pic4293/42932605_007.jpg",
+        "https://ci.encar.com/carpicture03/pic4293/42932605_"
       ],
-      "listing_url": "https://fem.encar.com/cars/detail/42982354",
+      "listing_url": "https://fem.encar.com/cars/detail/42933120",
+      "preference_2026": 17
+    },
+    {
+      "id": "42932605",
+      "source": "Encar",
+      "manufacturer": "Kia",
+      "model": "All New Carnival",
+      "badge": "9-Seater Prestige",
+      "year": 2016,
+      "mileage_km": 242532,
+      "price_krw": 4500000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "전남광주",
+      "photos": [
+        "https://ci.encar.com/carpicture03/pic4293/42932605_001.jpg",
+        "https://ci.encar.com/carpicture03/pic4293/42932605_003.jpg",
+        "https://ci.encar.com/carpicture03/pic4293/42932605_004.jpg",
+        "https://ci.encar.com/carpicture03/pic4293/42932605_007.jpg",
+        "https://ci.encar.com/carpicture03/pic4293/42932605_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42932605",
       "preference_2026": 17
     },
     {
