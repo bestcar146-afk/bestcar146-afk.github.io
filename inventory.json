@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-24T13:04:29.314711+00:00",
+  "updated_at": "2026-10-24T18:51:20.108826+00:00",
   "provider": "EnCarAPI",
   "scope": "Sales-driven public selection based on BEST CAR STAR historical demand",
   "source_counts": {
@@ -1738,29 +1738,6 @@
       "preference_2026": 14
     },
     {
-      "id": "42642098",
-      "source": "Encar",
-      "manufacturer": "Audi",
-      "model": "Q5",
-      "badge": "2.0 TDI Quattro 8R",
-      "year": 2011,
-      "mileage_km": 91693,
-      "price_krw": 6100000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경기",
-      "photos": [
-        "https://ci.encar.com/carpicture04/pic4264/42642098_001.jpg",
-        "https://ci.encar.com/carpicture04/pic4264/42642098_003.jpg",
-        "https://ci.encar.com/carpicture04/pic4264/42642098_004.jpg",
-        "https://ci.encar.com/carpicture04/pic4264/42642098_007.jpg",
-        "https://ci.encar.com/carpicture04/pic4264/42642098_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42642098",
-      "preference_2026": 14
-    },
-    {
       "id": "42312793",
       "source": "Encar",
       "manufacturer": "Audi",
@@ -1827,6 +1804,29 @@
         "https://ci.encar.com/carpicture01/pic4261/42617506_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42617506",
+      "preference_2026": 14
+    },
+    {
+      "id": "41721744",
+      "source": "Encar",
+      "manufacturer": "Audi",
+      "model": "Q5",
+      "badge": "2.0 TDI Quattro Dynamic 8R",
+      "year": 2012,
+      "mileage_km": 129289,
+      "price_krw": 6700000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture02/pic4172/41721744_001.jpg",
+        "https://ci.encar.com/carpicture02/pic4172/41721744_003.jpg",
+        "https://ci.encar.com/carpicture02/pic4172/41721744_004.jpg",
+        "https://ci.encar.com/carpicture02/pic4172/41721744_007.jpg",
+        "https://ci.encar.com/carpicture02/pic4172/41721744_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/41721744",
       "preference_2026": 14
     },
     {
@@ -3935,29 +3935,6 @@
       "preference_2026": 5
     },
     {
-      "id": "42829229",
-      "source": "Encar",
-      "manufacturer": "Hyundai",
-      "model": "Tucson ix",
-      "badge": "Diesel 2WD X20 스마트",
-      "year": 2013,
-      "mileage_km": 269975,
-      "price_krw": 2300000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "전남광주",
-      "photos": [
-        "https://ci.encar.com/carpicture02/pic4282/42829229_001.jpg",
-        "https://ci.encar.com/carpicture02/pic4282/42829229_003.jpg",
-        "https://ci.encar.com/carpicture02/pic4282/42829229_004.jpg",
-        "https://ci.encar.com/carpicture02/pic4282/42829229_007.jpg",
-        "https://ci.encar.com/carpicture02/pic4282/42829229_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42829229",
-      "preference_2026": 5
-    },
-    {
       "id": "42687793",
       "source": "Encar",
       "manufacturer": "Hyundai",
@@ -4001,6 +3978,29 @@
         "https://ci.encar.com/carpicture04/pic4264/42641798_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42645559",
+      "preference_2026": 5
+    },
+    {
+      "id": "42641798",
+      "source": "Encar",
+      "manufacturer": "Hyundai",
+      "model": "Tucson ix",
+      "badge": "Diesel 2WD LX20 럭셔리",
+      "year": 2012,
+      "mileage_km": 289194,
+      "price_krw": 2500000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture04/pic4264/42641798_001.jpg",
+        "https://ci.encar.com/carpicture04/pic4264/42641798_003.jpg",
+        "https://ci.encar.com/carpicture04/pic4264/42641798_004.jpg",
+        "https://ci.encar.com/carpicture04/pic4264/42641798_007.jpg",
+        "https://ci.encar.com/carpicture04/pic4264/42641798_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42641798",
       "preference_2026": 5
     },
     {
@@ -5697,26 +5697,26 @@
       "color": "gray",
       "location": "경기",
       "photos": [
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11135486396948829.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11135486476625594.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11135486547274045.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11135486611054898.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11135486677573549.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11135486779656444.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11135487120843191.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11135487213369877.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11135487277047884.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11135487388193914.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11135487490657023.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11135487593164643.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11135487678261672.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11135487790256502.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11135487893688932.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11135487983892798.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11135488074308098.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11135488158894803.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11135488252474397.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11135488338322279.jpeg?width=720"
+        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11493136833323130.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11493136904707818.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11493136978119025.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11493137046692234.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11493137114854936.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11493137210863064.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11493137333754629.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11493137428142409.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11493137493761213.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11493137606923570.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11493137707950947.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11493137811936090.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11493137896375025.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11493138010182988.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11493138114127094.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11493138205918832.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11493138293393911.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11493138388429615.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11493138480393883.jpeg?width=720",
+        "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_11493138555855908.jpeg?width=720"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28729710",
       "preference_2026": 49
@@ -6521,26 +6521,26 @@
       "preference_2026": 17
     },
     {
-      "id": "41721744",
+      "id": "42642098",
       "source": "Encar",
       "manufacturer": "Audi",
       "model": "Q5",
-      "badge": "2.0 TDI Quattro Dynamic 8R",
-      "year": 2012,
-      "mileage_km": 129289,
-      "price_krw": 6700000,
+      "badge": "2.0 TDI Quattro 8R",
+      "year": 2011,
+      "mileage_km": 91693,
+      "price_krw": 6900000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
       "location": "경기",
       "photos": [
-        "https://ci.encar.com/carpicture02/pic4172/41721744_001.jpg",
-        "https://ci.encar.com/carpicture02/pic4172/41721744_003.jpg",
-        "https://ci.encar.com/carpicture02/pic4172/41721744_004.jpg",
-        "https://ci.encar.com/carpicture02/pic4172/41721744_007.jpg",
-        "https://ci.encar.com/carpicture02/pic4172/41721744_"
+        "https://ci.encar.com/carpicture04/pic4264/42642098_001.jpg",
+        "https://ci.encar.com/carpicture04/pic4264/42642098_003.jpg",
+        "https://ci.encar.com/carpicture04/pic4264/42642098_004.jpg",
+        "https://ci.encar.com/carpicture04/pic4264/42642098_007.jpg",
+        "https://ci.encar.com/carpicture04/pic4264/42642098_"
       ],
-      "listing_url": "https://fem.encar.com/cars/detail/41721744",
+      "listing_url": "https://fem.encar.com/cars/detail/42642098",
       "preference_2026": 14
     },
     {
