@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-25T01:04:46.585045+00:00",
+  "updated_at": "2026-10-25T07:04:00.326215+00:00",
   "provider": "EnCarAPI",
   "scope": "Sales-driven public selection based on BEST CAR STAR historical demand",
   "source_counts": {
@@ -77,6 +77,29 @@
       "preference_2026": 49
     },
     {
+      "id": "42928044",
+      "source": "Encar",
+      "manufacturer": "Kia",
+      "model": "New Sorento R",
+      "badge": "Diesel 2.0 4WD 트렌디",
+      "year": 2013,
+      "mileage_km": 213189,
+      "price_krw": 5500000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "대구",
+      "photos": [
+        "https://ci.encar.com/carpicture02/pic4292/42928044_001.jpg",
+        "https://ci.encar.com/carpicture02/pic4292/42928044_003.jpg",
+        "https://ci.encar.com/carpicture02/pic4292/42928044_004.jpg",
+        "https://ci.encar.com/carpicture02/pic4292/42928044_007.jpg",
+        "https://ci.encar.com/carpicture02/pic4292/42928044_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42928044",
+      "preference_2026": 49
+    },
+    {
       "id": "42846691",
       "source": "Encar",
       "manufacturer": "Kia",
@@ -97,29 +120,6 @@
         "https://ci.encar.com/carpicture04/pic4284/42846691_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42846691",
-      "preference_2026": 49
-    },
-    {
-      "id": "42928044",
-      "source": "Encar",
-      "manufacturer": "Kia",
-      "model": "New Sorento R",
-      "badge": "Diesel 2.0 4WD 트렌디",
-      "year": 2013,
-      "mileage_km": 213189,
-      "price_krw": 5900000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "대구",
-      "photos": [
-        "https://ci.encar.com/carpicture02/pic4292/42928044_001.jpg",
-        "https://ci.encar.com/carpicture02/pic4292/42928044_003.jpg",
-        "https://ci.encar.com/carpicture02/pic4292/42928044_004.jpg",
-        "https://ci.encar.com/carpicture02/pic4292/42928044_007.jpg",
-        "https://ci.encar.com/carpicture02/pic4292/42928044_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42928044",
       "preference_2026": 49
     },
     {
@@ -1526,6 +1526,29 @@
       "preference_2026": 18
     },
     {
+      "id": "43015818",
+      "source": "Encar",
+      "manufacturer": "Kia",
+      "model": "All New Carnival",
+      "badge": "9-seater Luxury",
+      "year": 2016,
+      "mileage_km": 360000,
+      "price_krw": 2900000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "서울",
+      "photos": [
+        "https://ci.encar.com/carpicture01/pic4301/43015818_001.jpg",
+        "https://ci.encar.com/carpicture01/pic4301/43015818_003.jpg",
+        "https://ci.encar.com/carpicture01/pic4301/43015818_004.jpg",
+        "https://ci.encar.com/carpicture01/pic4301/43015818_007.jpg",
+        "https://ci.encar.com/carpicture01/pic4301/43015818_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/43015818",
+      "preference_2026": 17
+    },
+    {
       "id": "42866169",
       "source": "Encar",
       "manufacturer": "Kia",
@@ -1689,29 +1712,6 @@
         "https://img.kbchachacha.com/IMG/carimg/l/img07/img2887/28874887_11387866521882214.jpeg?width=720"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28874887",
-      "preference_2026": 17
-    },
-    {
-      "id": "42913123",
-      "source": "Encar",
-      "manufacturer": "Kia",
-      "model": "All New Carnival",
-      "badge": "9-seater Luxury",
-      "year": 2018,
-      "mileage_km": 285157,
-      "price_krw": 4290000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경기",
-      "photos": [
-        "https://ci.encar.com/carpicture01/pic4291/42913123_001.jpg",
-        "https://ci.encar.com/carpicture01/pic4291/42913123_003.jpg",
-        "https://ci.encar.com/carpicture01/pic4291/42913123_004.jpg",
-        "https://ci.encar.com/carpicture01/pic4291/42913123_007.jpg",
-        "https://ci.encar.com/carpicture01/pic4291/42913123_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42913123",
       "preference_2026": 17
     },
     {
@@ -6231,26 +6231,26 @@
       "preference_2026": 23
     },
     {
-      "id": "42054411",
+      "id": "42526196",
       "source": "Encar",
       "manufacturer": "Kia",
       "model": "Sportage R",
-      "badge": "Diesel 2WD TLX 고급형",
-      "year": 2011,
-      "mileage_km": 203070,
+      "badge": "Diesel 2WD TLX 최고급형",
+      "year": 2013,
+      "mileage_km": 219285,
       "price_krw": 3200000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
-      "location": "경남",
+      "location": "충남",
       "photos": [
-        "https://ci.encar.com/carpicture05/pic4205/42054411_001.jpg",
-        "https://ci.encar.com/carpicture05/pic4205/42054411_003.jpg",
-        "https://ci.encar.com/carpicture05/pic4205/42054411_004.jpg",
-        "https://ci.encar.com/carpicture05/pic4205/42054411_007.jpg",
-        "https://ci.encar.com/carpicture05/pic4205/42054411_"
+        "https://ci.encar.com/carpicture02/pic4252/42526196_001.jpg",
+        "https://ci.encar.com/carpicture02/pic4252/42526196_003.jpg",
+        "https://ci.encar.com/carpicture02/pic4252/42526196_004.jpg",
+        "https://ci.encar.com/carpicture02/pic4252/42526196_007.jpg",
+        "https://ci.encar.com/carpicture02/pic4252/42526196_"
       ],
-      "listing_url": "https://fem.encar.com/cars/detail/42054411",
+      "listing_url": "https://fem.encar.com/cars/detail/42526196",
       "preference_2026": 23
     },
     {
@@ -6401,6 +6401,29 @@
       "preference_2026": 18
     },
     {
+      "id": "42913123",
+      "source": "Encar",
+      "manufacturer": "Kia",
+      "model": "All New Carnival",
+      "badge": "9-seater Luxury",
+      "year": 2018,
+      "mileage_km": 285157,
+      "price_krw": 4290000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture01/pic4291/42913123_001.jpg",
+        "https://ci.encar.com/carpicture01/pic4291/42913123_003.jpg",
+        "https://ci.encar.com/carpicture01/pic4291/42913123_004.jpg",
+        "https://ci.encar.com/carpicture01/pic4291/42913123_007.jpg",
+        "https://ci.encar.com/carpicture01/pic4291/42913123_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42913123",
+      "preference_2026": 17
+    },
+    {
       "id": "42387352",
       "source": "Encar",
       "manufacturer": "Kia",
@@ -6510,29 +6533,6 @@
         "https://ci.encar.com/carpicture09/pic4289/42895126_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42895126",
-      "preference_2026": 17
-    },
-    {
-      "id": "42933120",
-      "source": "Encar",
-      "manufacturer": "Kia",
-      "model": "All New Carnival",
-      "badge": "9-Seater Prestige",
-      "year": 2016,
-      "mileage_km": 242532,
-      "price_krw": 4500000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "전남광주",
-      "photos": [
-        "https://ci.encar.com/carpicture03/pic4293/42932605_001.jpg",
-        "https://ci.encar.com/carpicture03/pic4293/42932605_003.jpg",
-        "https://ci.encar.com/carpicture03/pic4293/42932605_004.jpg",
-        "https://ci.encar.com/carpicture03/pic4293/42932605_007.jpg",
-        "https://ci.encar.com/carpicture03/pic4293/42932605_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42933120",
       "preference_2026": 17
     },
     {
