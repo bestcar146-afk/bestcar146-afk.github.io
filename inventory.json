@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-25T07:04:00.326215+00:00",
+  "updated_at": "2026-10-25T12:59:14.708642+00:00",
   "provider": "EnCarAPI",
   "scope": "Sales-driven public selection based on BEST CAR STAR historical demand",
   "source_counts": {
@@ -883,29 +883,6 @@
       "preference_2026": 31
     },
     {
-      "id": "42866500",
-      "source": "Encar",
-      "manufacturer": "Kia",
-      "model": "Sorento R",
-      "badge": "Diesel 2.0 2WD TLX 최고급형",
-      "year": 2010,
-      "mileage_km": 199000,
-      "price_krw": 2400000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경기",
-      "photos": [
-        "https://ci.encar.com/carpicture06/pic4286/42866500_001.jpg",
-        "https://ci.encar.com/carpicture06/pic4286/42866500_003.jpg",
-        "https://ci.encar.com/carpicture06/pic4286/42866500_004.jpg",
-        "https://ci.encar.com/carpicture06/pic4286/42866500_007.jpg",
-        "https://ci.encar.com/carpicture06/pic4286/42866500_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42866500",
-      "preference_2026": 31
-    },
-    {
       "id": "kbc:28785472",
       "source": "KB ChaChaCha",
       "manufacturer": "Kia",
@@ -1069,6 +1046,28 @@
         "https://ci.encar.com/carpicture02/pic4222/42222458_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42222458",
+      "preference_2026": 31
+    },
+    {
+      "id": "42557464",
+      "source": "Encar",
+      "manufacturer": "Kia",
+      "model": "Sorento R",
+      "badge": "Diesel 2.0 2WD TLX 최고급형",
+      "year": 2011,
+      "mileage_km": 213740,
+      "price_krw": 2990000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "대구",
+      "photos": [
+        "https://ci.encar.com/carpicture05/pic4255/42557464_001.jpg",
+        "https://ci.encar.com/carpicture05/pic4255/42557464_003.jpg",
+        "https://ci.encar.com/carpicture05/pic4255/42557464_004.jpg",
+        "https://ci.encar.com/carpicture05/pic4255/42557464_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42557464",
       "preference_2026": 31
     },
     {
@@ -1982,7 +1981,7 @@
       "badge": "Diesel(e-VGT) 2.2 4WD Exclusive 스페셜",
       "year": 2014,
       "mileage_km": 211000,
-      "price_krw": 5490000,
+      "price_krw": 5390000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
@@ -4802,7 +4801,7 @@
       "badge": "1.6 TDI Blue Motion",
       "year": 2012,
       "mileage_km": 249736,
-      "price_krw": 2500000,
+      "price_krw": 2400000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
@@ -5237,6 +5236,29 @@
       "preference_2026": 2
     },
     {
+      "id": "43015976",
+      "source": "Encar",
+      "manufacturer": "Volkswagen",
+      "model": "New Touareg",
+      "badge": "V6 3.0 TDI Bluemotion 7P5",
+      "year": 2014,
+      "mileage_km": 169878,
+      "price_krw": 6990000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture01/pic4301/43015976_001.jpg",
+        "https://ci.encar.com/carpicture01/pic4301/43015976_003.jpg",
+        "https://ci.encar.com/carpicture01/pic4301/43015976_004.jpg",
+        "https://ci.encar.com/carpicture01/pic4301/43015976_007.jpg",
+        "https://ci.encar.com/carpicture01/pic4301/43015976_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/43015976",
+      "preference_2026": 2
+    },
+    {
       "id": "42514683",
       "source": "Encar",
       "manufacturer": "Volkswagen",
@@ -5257,29 +5279,6 @@
         "https://ci.encar.com/carpicture01/pic4251/42514683_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42514683",
-      "preference_2026": 2
-    },
-    {
-      "id": "42351340",
-      "source": "Encar",
-      "manufacturer": "Volkswagen",
-      "model": "New Touareg",
-      "badge": "V6 3.0 TDI Bluemotion Premium 7P5",
-      "year": 2015,
-      "mileage_km": 267268,
-      "price_krw": 8000000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "대구",
-      "photos": [
-        "https://ci.encar.com/carpicture05/pic4235/42351340_001.jpg",
-        "https://ci.encar.com/carpicture05/pic4235/42351340_003.jpg",
-        "https://ci.encar.com/carpicture05/pic4235/42351340_004.jpg",
-        "https://ci.encar.com/carpicture05/pic4235/42351340_007.jpg",
-        "https://ci.encar.com/carpicture05/pic4235/42351340_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42351340",
       "preference_2026": 2
     },
     {
@@ -5979,28 +5978,6 @@
       "preference_2026": 48
     },
     {
-      "id": "42557464",
-      "source": "Encar",
-      "manufacturer": "Kia",
-      "model": "Sorento R",
-      "badge": "Diesel 2.0 2WD TLX 최고급형",
-      "year": 2011,
-      "mileage_km": 213740,
-      "price_krw": 2990000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "대구",
-      "photos": [
-        "https://ci.encar.com/carpicture05/pic4255/42557464_001.jpg",
-        "https://ci.encar.com/carpicture05/pic4255/42557464_003.jpg",
-        "https://ci.encar.com/carpicture05/pic4255/42557464_004.jpg",
-        "https://ci.encar.com/carpicture05/pic4255/42557464_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42557464",
-      "preference_2026": 31
-    },
-    {
       "id": "42753364",
       "source": "Encar",
       "manufacturer": "Kia",
@@ -6113,6 +6090,29 @@
         "https://ci.encar.com/carpicture09/pic4269/42695981_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42695981",
+      "preference_2026": 31
+    },
+    {
+      "id": "42695933",
+      "source": "Encar",
+      "manufacturer": "Kia",
+      "model": "Sorento R",
+      "badge": "Diesel 2.0 2WD TLX 고급형",
+      "year": 2011,
+      "mileage_km": 232428,
+      "price_krw": 3200000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "부산",
+      "photos": [
+        "https://ci.encar.com/carpicture09/pic4269/42695933_001.jpg",
+        "https://ci.encar.com/carpicture09/pic4269/42695933_003.jpg",
+        "https://ci.encar.com/carpicture09/pic4269/42695933_004.jpg",
+        "https://ci.encar.com/carpicture09/pic4269/42695933_007.jpg",
+        "https://ci.encar.com/carpicture09/pic4269/42695933_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42695933",
       "preference_2026": 31
     },
     {
@@ -6513,26 +6513,26 @@
       "preference_2026": 17
     },
     {
-      "id": "42895126",
+      "id": "42220420",
       "source": "Encar",
       "manufacturer": "Kia",
       "model": "All New Carnival",
-      "badge": "9-Seater Prestige",
+      "badge": "9-Seater Noblesse",
       "year": 2015,
-      "mileage_km": 321943,
+      "mileage_km": 239654,
       "price_krw": 4490000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
       "location": "경기",
       "photos": [
-        "https://ci.encar.com/carpicture09/pic4289/42895126_001.jpg",
-        "https://ci.encar.com/carpicture09/pic4289/42895126_003.jpg",
-        "https://ci.encar.com/carpicture09/pic4289/42895126_004.jpg",
-        "https://ci.encar.com/carpicture09/pic4289/42895126_007.jpg",
-        "https://ci.encar.com/carpicture09/pic4289/42895126_"
+        "https://ci.encar.com/carpicture02/pic4222/42220420_001.jpg",
+        "https://ci.encar.com/carpicture02/pic4222/42220420_003.jpg",
+        "https://ci.encar.com/carpicture02/pic4222/42220420_004.jpg",
+        "https://ci.encar.com/carpicture02/pic4222/42220420_007.jpg",
+        "https://ci.encar.com/carpicture02/pic4222/42220420_"
       ],
-      "listing_url": "https://fem.encar.com/cars/detail/42895126",
+      "listing_url": "https://fem.encar.com/cars/detail/42220420",
       "preference_2026": 17
     },
     {
@@ -6891,7 +6891,7 @@
       "badge": "Diesel(e-VGT) 2.2 4WD Exclusive 기본형",
       "year": 2014,
       "mileage_km": 166000,
-      "price_krw": 6490000,
+      "price_krw": 6390000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
