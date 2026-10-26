@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@supabase/supabase-js": "2.118.0",
+    "esbuild": "0.28.2"
+  },
+  "private": true,
+  "scripts": {
+    "build": "esbuild src/portal.js src/catalog.js --bundle --outdir=. --minify --target=es2020 --format=iife"
+  }
+}

@@ -1,0 +1,35 @@
+import {db,money,date,esc,message,friendly,currentUser,ensureProfile,saveBid,redirectURL} from './client.js';
+const view=document.body.dataset.view;
+const $=s=>document.querySelector(s);
+function setBusy(form,busy){form.querySelectorAll('button,input').forEach(el=>el.disabled=busy);}
+function afterLogin(){const id=sessionStorage.getItem('bcs-pending-vehicle');location.assign(id?'/auction/?vehicle='+encodeURIComponent(id):'/auction/account/');}
+if(view==='login'){
+ let mode='login',recovery=false;
+ const form=$('#authForm'),msg=$('#authMessage');
+ function setMode(next){mode=next;msg.hidden=true;form.reset();$('#authTitle').textContent={login:'Welcome back',signup:'Create your client account',forgot:'Reset your password',recover:'Choose a new password'}[mode];$('#authSubmit').textContent={login:'Log in',signup:'Create account',forgot:'Send reset email',recover:'Save new password'}[mode];document.querySelectorAll('[data-signup]').forEach(e=>e.hidden=mode!=='signup');$('#emailGroup').hidden=mode==='recover';$('#email').required=mode!=='recover';$('#passwordGroup').hidden=mode==='forgot';$('#password').required=mode!=='forgot';$('#password').minLength=mode==='login'?1:8;$('#password').autocomplete=mode==='login'?'current-password':'new-password';$('#name').required=mode==='signup';$('#authTabs').hidden=mode==='recover';$('#authHint').textContent=mode==='forgot'?'We will send a link to your email address.':mode==='recover'?'Use at least 8 characters.':mode==='signup'?'Confirm your email before placing a pre-bid.':'Log in to save your maximum bids and follow them here.';document.querySelectorAll('[data-mode]').forEach(e=>e.setAttribute('aria-pressed',String(e.dataset.mode===mode)));}
+ document.querySelectorAll('[data-mode]').forEach(el=>el.onclick=()=>setMode(el.dataset.mode));
+ db.auth.onAuthStateChange((event)=>{if(event==='PASSWORD_RECOVERY'){recovery=true;setMode('recover');}});
+ form.onsubmit=async e=>{e.preventDefault();if(!form.reportValidity())return;setBusy(form,true);try{const email=$('#email').value.trim(),password=$('#password').value;
+ if(mode==='login'){const {error}=await db.auth.signInWithPassword({email,password});if(error)throw error;afterLogin();}
+ else if(mode==='signup'){const {data,error}=await db.auth.signUp({email,password,options:{emailRedirectTo:redirectURL,data:{full_name:$('#name').value.trim(),company:$('#company').value.trim(),phone:$('#phone').value.trim()}}});if(error)throw error;$('#password').value='';if(data.session)afterLogin();else message(msg,'Check your inbox for the confirmation email. If an account already exists, log in or reset your password.');}
+ else if(mode==='forgot'){const {error}=await db.auth.resetPasswordForEmail(email,{redirectTo:redirectURL+'?mode=recovery'});if(error)throw error;message(msg,'If this address has an account, a password-reset email will arrive shortly.');}
+ else if(mode==='recover'){if(!recovery)throw new Error('Please open a valid password-reset link first.');const {error}=await db.auth.updateUser({password});if(error)throw error;await db.auth.signOut({scope:'local'});recovery=false;setMode('login');message(msg,'Password updated. Log in with your new password.');}
+ }catch(err){message(msg,friendly(err),true);}finally{setBusy(form,false);}};
+ const hash=new URLSearchParams(location.hash.slice(1));const callbackError=hash.get('error_description')||new URLSearchParams(location.search).get('error_description');
+ currentUser().then(user=>{if(callbackError){message(msg,callbackError,true);history.replaceState(null,'',location.pathname);return;}if(user&&!recovery){$('#signedIn').hidden=false;$('#signedInEmail').textContent=user.email;}});
+ $('#continueAccount').onclick=afterLogin;
+ $('#switchAccount').onclick=async()=>{const {error}=await db.auth.signOut({scope:'local'});if(error){message(msg,friendly(error),true);return;}$('#signedIn').hidden=true;setMode('login');};
+}
+if(view==='account'){
+ window.addEventListener('pageshow',event=>{if(event.persisted)location.reload();});
+ let user=null,loadVersion=0,navigating=false;
+ function goLogin(){if(!navigating){navigating=true;location.replace('/auction/login/');}}
+ const msg=$('#accountMessage'),list=$('#bidList');
+ db.auth.onAuthStateChange((event)=>{if(event==='SIGNED_OUT'){loadVersion++;user=null;list.replaceChildren();goLogin();}});
+ async function load(){const version=++loadVersion;list.textContent='Loading your bids…';try{const u=await currentUser();if(!u){goLogin();return;}user=u;$('#accountEmail').textContent=u.email;await ensureProfile(u);const {data,error}=await db.from('bids').select('id,vehicle_id,maximum_bid_usd,updated_at,vehicles(title,auction_house,starting_bid_usd,bidding_closes_at,status,is_demo)').eq('user_id',u.id).order('updated_at',{ascending:false});if(error)throw error;if(version!==loadVersion)return;$('#bidCount').textContent=data.length;list.innerHTML=data.length?data.map(b=>{const v=b.vehicles,open=v&&v.status==='open'&&new Date(v.bidding_closes_at)>new Date();return `<article class="bid-card"><div class="bid-top"><span class="tag">${v?.is_demo?'Demo bid':'Pre-bid'}</span><span class="status-pill">${open?'Open for updates':'Closed'}</span></div><h2>${esc(v?.title||b.vehicle_id)}</h2><p class="muted">${esc(v?.auction_house||'Vehicle unavailable')}</p><div class="bid-amount"><span>Your maximum vehicle bid</span><strong>${money(b.maximum_bid_usd)}</strong></div><p class="small muted">Last saved: ${date(b.updated_at)}<br>${v?'Closes: '+date(v.bidding_closes_at):'This vehicle is no longer publicly available.'}</p>${v?.is_demo?'<p class="demo-note">Practice only. No purchase or auction instruction is created.</p>':''}<form class="edit-bid" data-vehicle="${esc(b.vehicle_id)}"><label for="amount-${esc(b.id)}">Update maximum bid (USD)</label><div class="edit-row"><input id="amount-${esc(b.id)}" type="number" step="0.01" min="${Number(v?.starting_bid_usd||0)}" value="${Number(b.maximum_bid_usd)}" required ${open?'':'disabled'}><button class="button primary" ${open?'':'disabled'}>Save bid</button></div><p class="form-message" hidden></p></form></article>`;}).join(''):'<div class="empty-state"><h2>No bids yet</h2><p>Your saved maximum bids will appear here.</p><a class="button primary" href="/auction/">Browse auction vehicles</a></div>';
+ list.querySelectorAll('form').forEach(f=>f.onsubmit=async e=>{e.preventDefault();const m=f.querySelector('.form-message');setBusy(f,true);try{const saved=await saveBid(f.dataset.vehicle,Number(f.querySelector('input').value));message(msg,(saved.is_demo?'Demo bid':'Pre-bid')+' saved: '+money(saved.maximum_bid_usd)+'.');await load();}catch(err){message(m,friendly(err),true);}finally{setBusy(f,false);}});
+ }catch(err){if(version===loadVersion){list.replaceChildren();message(msg,friendly(err),true);}}}
+ $('#refreshBids').onclick=load;
+ $('#logout').onclick=async()=>{const {error}=await db.auth.signOut({scope:'local'});if(error)message(msg,friendly(error),true);else{sessionStorage.removeItem('bcs-pending-vehicle');sessionStorage.removeItem('bcs-pending-amount');goLogin();}};
+ load();
+}
