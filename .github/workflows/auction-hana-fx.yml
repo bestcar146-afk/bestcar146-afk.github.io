@@ -1,0 +1,53 @@
+name: Daily auction Hana exchange rate
+on:
+  schedule:
+    - cron: '17 1 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['auction/scripts/update_hana_fx.py', '.github/workflows/auction-hana-fx.yml']
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: inventory-pages
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check Hana Bank USD receiving-transfer rate
+        id: hana
+        continue-on-error: true
+        run: python auction/scripts/update_hana_fx.py
+      - name: Save quote or failure status
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add auction/fx.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Update auction Hana USD transfer quote"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Package existing public website
+        run: |
+          mkdir -p _site
+          rsync -a --exclude='.git/' --exclude='.github/' --exclude='_site/' --exclude='node_modules/' --exclude='scripts/' --exclude='src/' --exclude='sql/' --exclude='qa/' --exclude='__pycache__/' ./ _site/
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - uses: actions/deploy-pages@v4
+      - name: Report failed bank check
+        if: steps.hana.outcome == 'failure'
+        run: exit 1

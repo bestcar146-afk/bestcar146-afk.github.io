@@ -52,7 +52,23 @@ const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 let vehicleDataReady=false, activeCarId=null;
 let sourceFilter='',FX_KRW_PER_USD=1343.36;const HANDLING_USD=250;
 let fxLabel='Demo rate: 1 USD = ₩1,343.36 · Hana transfer-receiving quote pending (not live)';
-fetch('./fx.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(x=>{if(x&&x.bank==='Hana Bank'&&x.rate_type==='TT_BUY'&&Number(x.krw_per_usd)>0&&Number.isFinite(Date.parse(x.quoted_at))){FX_KRW_PER_USD=Number(x.krw_per_usd);fxLabel='Hana Bank · receiving USD transfer (TT buying): 1 USD = ₩'+FX_KRW_PER_USD.toLocaleString('en-US')+' · quoted '+new Date(x.quoted_at).toLocaleString('en-GB',{timeZone:'Asia/Seoul'})+' KST · reference quote, not live';if(document.querySelector('#maxbid'))document.querySelector('#maxbid').dispatchEvent(new Event('input'));if(document.querySelector('#fxNote'))document.querySelector('#fxNote').textContent=fxLabel;}}).catch(()=>{});
+async function refreshHanaRate(){
+ try{
+ const response=await fetch('./fx.json',{cache:'no-store'});
+ if(!response.ok)throw Error('Quote unavailable');
+ const x=await response.json();
+ if(!x||x.bank!=='Hana Bank'||x.rate_type!=='TT_BUY'||!(Number(x.krw_per_usd)>0)||!Number.isFinite(Date.parse(x.quoted_at)))throw Error('Quote unavailable');
+ FX_KRW_PER_USD=Number(x.krw_per_usd);
+ const stamp=t=>new Date(t).toLocaleString('en-GB',{timeZone:'Asia/Seoul'});
+ const overdue=!Number.isFinite(Date.parse(x.checked_at))||Date.now()-Date.parse(x.checked_at)>26*3600000;
+ fxLabel='Hana Bank · USD receiving transfer: 1 USD = ₩'+FX_KRW_PER_USD.toLocaleString('en-US')+' · Bank quote: '+stamp(x.quoted_at)+' KST'+(x.checked_at?' · Last checked: '+stamp(x.checked_at)+' KST':'')+' · Daily update, 10:17 AM KST'+(x.status==='update_failed'||overdue?' · Update overdue/unavailable; using last valid quote':'')+(Date.now()-Date.parse(x.quoted_at)>48*3600000?' · Older bank quote (weekend/holiday or no new publication)':'');
+ }catch(e){fxLabel=fxLabel.replace(/ · Refresh unavailable.*$/,'')+' · Refresh unavailable; displayed rate retained';}
+ if(document.querySelector('#maxbid'))document.querySelector('#maxbid').dispatchEvent(new Event('input'));
+ if(document.querySelector('#fxNote'))document.querySelector('#fxNote').textContent=fxLabel;
+}
+refreshHanaRate();
+setInterval(refreshHanaRate,5*60*1000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshHanaRate()});
 const money=n=>'$'+Math.round(Number(n)||0).toLocaleString('en-US'),krw=n=>'₩'+Math.round(Number(n)||0).toLocaleString('en-US'),roundUp5=n=>Math.ceil((Number(n)||0)/5)*5;
 function transportFor(region){const s=String(region||'').toLowerCase();if(s.includes('seoul'))return{krw:20000,tier:'0–20 km'};if(s.includes('incheon')||s.includes('gyeonggi'))return{krw:30000,tier:'20–50 km'};if(s.includes('daejeon')||s.includes('sejong')||s.includes('chungnam')||s.includes('chungbuk'))return{krw:50000,tier:'50–100 km'};if(s.includes('daegu')||s.includes('gyeongbuk')||s.includes('gangwon'))return{krw:80000,tier:'100–200 km'};if(s.includes('gwangju')||s.includes('jeonnam')||s.includes('jeonbuk'))return{krw:110000,tier:'200–300 km'};if(s.includes('busan')||s.includes('gyeongnam')||s.includes('ulsan')||s.includes('jeju'))return{krw:150000,tier:'300+ km'};return{krw:80000,tier:'Estimated'}}
 function auctionFeeKrw(c,bidUsd){
