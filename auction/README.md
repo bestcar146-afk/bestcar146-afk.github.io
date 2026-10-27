@@ -32,3 +32,11 @@ Nine explicitly marked demo vehicle records have a fixed testing deadline of Nov
 Profiles are initialized from registration metadata after login. Metadata is never used to grant admin access. Clients can select only their own bids (administrators may read all); insert/update access remains ownership- and deadline-limited by RLS. No public admin enrollment exists. No admin client account has been designated yet.
 
 Registration does not auto-submit pending bids: the client returns to the selected vehicle, reviews their restored amount, and clicks Save Demo Pre-Bid.
+
+### Bidding access and external payments
+
+`bidding_access` is separate from client-editable profiles. Missing rows mean inactive. Only members of `auction_admins` can insert/update access. Restrictive bid policies require enabled access on INSERT and active UPDATE; withdrawal stays available under the existing deadline/ownership rules. Real bidding remains blocked by the demo-launch policies.
+
+Admin → Clients & bidding access provides Activate/Deactivate controls. Activation is manual after external verification; it does not record or process a payment. Deactivation leaves existing bids in place. Admin → Admin WhatsApp stores the public contact in `auction_contact` (international digits, no `+`). Clients can only read that contact. An empty number displays an honest unavailable-contact message rather than routing to an unverified recipient.
+
+Client bidding controls recheck access before review/save; database RLS enforces it independently. `qa/admin-test.cjs` verifies admin rendering and the non-admin gate. Live rollback tests verified self-activation/inactive insert rejection, admin activation, permitted active bids, revocation, preserved withdrawal and protected contact settings.
