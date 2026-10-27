@@ -1,0 +1,1 @@
+{"bank":"Hana Bank","rate_type":"TT_BUY","krw_per_usd":null,"quoted_at":null,"source_url":"https://biz.kebhana.com/foex/ez/index.do?type=submain","note":"Set only a verified USD receiving-transfer quote and its actual timestamp. Null means demo fallback, not a Hana quote."}
