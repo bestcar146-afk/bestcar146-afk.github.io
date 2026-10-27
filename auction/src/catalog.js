@@ -1,4 +1,4 @@
-import {db,currentUser,saveBid,message,friendly,money} from './client.js';
+import {db,currentUser,saveBid,message,friendly,money,reviewBid} from './client.js';
 let user=null;
 const login=document.getElementById('clientLogin');
 currentUser().then(u=>{user=u;login.textContent=u?'My account':'Client login';login.href=u?'/auction/account/':'/auction/login/';});
@@ -9,6 +9,7 @@ window.BCSAccounts={
  try{
  user=await currentUser();
  if(!user){sessionStorage.setItem('bcs-pending-vehicle',vehicle.id);sessionStorage.setItem('bcs-pending-amount',String(amount));location.assign('/auction/login/');return;}
+ if(!await reviewBid(vehicle.id,amount))return;
  const saved=await saveBid(vehicle.id,amount);
  message(status,(saved.is_demo?'Demo bid saved':'Pre-bid saved')+': '+money(saved.maximum_bid_usd)+'. View or update it in My Bids.');
  sessionStorage.removeItem('bcs-pending-vehicle');sessionStorage.removeItem('bcs-pending-amount');
