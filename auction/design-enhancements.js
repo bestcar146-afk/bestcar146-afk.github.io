@@ -5,6 +5,7 @@
  window.BCSDesign={imageFor};
  const decorate=()=>{
   decorateMarks(document);
+  document.querySelectorAll('#auctionFees h3').forEach(h=>{const house=h.textContent.trim();if(!h.querySelector('.auction-mark')){const mark=document.createElement('span');mark.className='auction-mark';mark.dataset.auction=house;h.prepend(mark);decorateMarks(h)}});
   document.querySelectorAll('#sourceTabs .source-tab').forEach(btn=>{const house=btn.dataset.source;if(!house||btn.querySelector('.auction-mark'))return;const mark=document.createElement('span');mark.className='auction-mark';mark.dataset.auction=house;btn.prepend(mark)});
   document.querySelectorAll('.vehicle-facts').forEach(dl=>{const terms=[...dl.querySelectorAll('dt')];const t=terms.find(x=>x.textContent.trim().toLowerCase()==='auction');if(!t)return;const dd=t.nextElementSibling;if(dd&&!dd.querySelector('.auction-mark')){const mark=document.createElement('span');mark.className='auction-mark';mark.dataset.auction=dd.textContent.trim();dd.prepend(mark);decorateMarks(dd)}});
   document.querySelectorAll('.condition-row').forEach(row=>{const label=row.querySelector('span')?.textContent||'';const value=row.querySelector('b');if(!value||value.querySelector('.status-sticker'))return;const ok=/available|no major/i.test(value.textContent);value.innerHTML='<span class="status-sticker '+(ok?'ok':'pending')+'">'+(ok?'✓':'!')+'</span> '+value.textContent});
