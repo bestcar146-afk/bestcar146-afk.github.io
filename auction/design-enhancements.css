@@ -18,3 +18,5 @@ header .account-link{color:#fff!important;background:transparent!important;borde
 header .brand,header .brand:visited{color:#fff!important}header .brand small{color:#c5d1dc!important}
 
 .auction-mark[data-auction="Others"]{color:#56616d;font-size:8px;font-weight:850;letter-spacing:.02em;box-shadow:none}
+
+.badge.source{max-width:none;padding:2px;background:transparent;border:0;box-shadow:none}.badge.source .auction-mark{min-width:0;height:25px;padding:3px 6px}.badge.source .auction-logo{max-width:78px;max-height:19px}.panel .eyebrow .auction-mark{min-width:0;height:30px;padding:3px 7px}.panel .eyebrow .auction-logo{max-width:100px;max-height:24px}.auction-mark-generic{color:#637182;font-size:13px;font-weight:700;box-shadow:none}
