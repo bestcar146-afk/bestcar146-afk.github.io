@@ -1,6 +1,6 @@
 (()=>{
  const names={'K Car Auction':'K CAR','Autobell Smart Auction':'AUTO','Kolon Auto Auction':'KOLON','Lotte Auto Auction':'LOTTE','Others':'OTHER'};
- const imageFor=c=>{const key=(c.make+' '+c.model).toLowerCase();if(key.includes('mini')||key.includes('cooper'))return'mini.webp';if(key.includes('santa fe'))return'santafe.webp';if(key.includes('palisade'))return'palisade.webp';return'sorento.webp'};
+ const imageFor=c=>{const key=(c.make+' '+c.model).toLowerCase();if(key.includes('mini')||key.includes('cooper'))return'mini.webp';if(key.includes('santa fe'))return'santafe.webp';if(key.includes('palisade')||key.includes('tiguan'))return'palisade.webp';if(key.includes('avante')||key.includes('k8'))return'sedan.webp';return'sorento.webp'};
  const decorateMarks=root=>root.querySelectorAll('.auction-mark:not([data-ready])').forEach(mark=>{mark.textContent=names[mark.dataset.auction]||'AUCTION';mark.setAttribute('aria-hidden','true');mark.dataset.ready='1'});
  window.BCSDesign={imageFor};
  const decorate=()=>{
