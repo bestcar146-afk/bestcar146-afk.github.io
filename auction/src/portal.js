@@ -1,4 +1,5 @@
-import {db,money,date,esc,message,friendly,currentUser,ensureProfile,saveBid,redirectURL,reviewBid,withdrawBid,biddingEnabled,requestAccess,accessWarning} from './client.js';
+import {db,date,esc,message,friendly,currentUser,ensureProfile,saveBid,redirectURL,reviewBid,withdrawBid,biddingEnabled,requestAccess,accessWarning} from './client.js';
+const money=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:0,maximumFractionDigits:2}).format(Number(n));
 const view=document.body.dataset.view;
 const $=s=>document.querySelector(s);
 function setBusy(form,busy){form.querySelectorAll('button,input').forEach(el=>el.disabled=busy);}
