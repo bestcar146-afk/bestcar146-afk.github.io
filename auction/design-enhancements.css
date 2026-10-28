@@ -16,3 +16,5 @@ body:has(main>h1) main{max-width:1000px!important;margin:34px auto!important}bod
 .status-sticker{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;font-size:11px;font-weight:900;vertical-align:middle}.status-sticker.ok{color:#1e6849;background:#e2f2e8}.status-sticker.pending{color:#86621d;background:#fbf0d5}
 header .account-link{color:#fff!important;background:transparent!important;border-color:#ffffff45!important;border-radius:8px!important}header .account-link:hover{background:#ffffff15!important}.bidding-countdown{background:#eaf0f4!important;color:#29455d!important;border:0!important;border-radius:0!important;font-size:10px!important;letter-spacing:.015em}.bidding-countdown:before{content:'●';font-size:8px;color:#c29a52;margin-right:7px}.badge.open{z-index:2}.image-caption{z-index:1}
 header .brand,header .brand:visited{color:#fff!important}header .brand small{color:#c5d1dc!important}
+
+.auction-mark[data-auction="Others"]{color:#56616d;font-size:8px;font-weight:850;letter-spacing:.02em;box-shadow:none}
