@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-01T01:35:16.235893+00:00",
+  "updated_at": "2026-11-01T07:22:59.003190+00:00",
   "provider": "EnCarAPI",
   "scope": "Sales-driven public selection based on BEST CAR STAR historical demand",
   "source_counts": {
@@ -981,7 +981,7 @@
       "badge": "Diesel 2.2 2WD TLX 최고급형",
       "year": 2010,
       "mileage_km": 205748,
-      "price_krw": 2600000,
+      "price_krw": 2500000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
@@ -1639,6 +1639,29 @@
       "preference_2026": 17
     },
     {
+      "id": "42601067",
+      "source": "Encar",
+      "manufacturer": "Kia",
+      "model": "All New Carnival",
+      "badge": "6-seater Wheelchair lift",
+      "year": 2015,
+      "mileage_km": 314441,
+      "price_krw": 3990000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "광주",
+      "photos": [
+        "https://ci.encar.com/carpicture10/pic4260/42601067_001.jpg",
+        "https://ci.encar.com/carpicture10/pic4260/42601067_003.jpg",
+        "https://ci.encar.com/carpicture10/pic4260/42601067_004.jpg",
+        "https://ci.encar.com/carpicture10/pic4260/42601067_007.jpg",
+        "https://ci.encar.com/carpicture10/pic4260/42601067_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42601067",
+      "preference_2026": 17
+    },
+    {
       "id": "43040286",
       "source": "Encar",
       "manufacturer": "Kia",
@@ -1659,29 +1682,6 @@
         "https://ci.encar.com/carpicture03/pic4303/43039319_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/43040286",
-      "preference_2026": 17
-    },
-    {
-      "id": "43039319",
-      "source": "Encar",
-      "manufacturer": "Kia",
-      "model": "All New Carnival",
-      "badge": "9-Seater Prestige",
-      "year": 2015,
-      "mileage_km": 317638,
-      "price_krw": 3990000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "전남광주",
-      "photos": [
-        "https://ci.encar.com/carpicture03/pic4303/43039319_001.jpg",
-        "https://ci.encar.com/carpicture03/pic4303/43039319_003.jpg",
-        "https://ci.encar.com/carpicture03/pic4303/43039319_004.jpg",
-        "https://ci.encar.com/carpicture03/pic4303/43039319_007.jpg",
-        "https://ci.encar.com/carpicture03/pic4303/43039319_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/43039319",
       "preference_2026": 17
     },
     {
@@ -1754,6 +1754,29 @@
       "preference_2026": 14
     },
     {
+      "id": "41721744",
+      "source": "Encar",
+      "manufacturer": "Audi",
+      "model": "Q5",
+      "badge": "2.0 TDI Quattro Dynamic 8R",
+      "year": 2012,
+      "mileage_km": 129289,
+      "price_krw": 6500000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture02/pic4172/41721744_001.jpg",
+        "https://ci.encar.com/carpicture02/pic4172/41721744_003.jpg",
+        "https://ci.encar.com/carpicture02/pic4172/41721744_004.jpg",
+        "https://ci.encar.com/carpicture02/pic4172/41721744_007.jpg",
+        "https://ci.encar.com/carpicture02/pic4172/41721744_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/41721744",
+      "preference_2026": 14
+    },
+    {
       "id": "42617506",
       "source": "Encar",
       "manufacturer": "Audi",
@@ -1774,29 +1797,6 @@
         "https://ci.encar.com/carpicture01/pic4261/42617506_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42617506",
-      "preference_2026": 14
-    },
-    {
-      "id": "41721744",
-      "source": "Encar",
-      "manufacturer": "Audi",
-      "model": "Q5",
-      "badge": "2.0 TDI Quattro Dynamic 8R",
-      "year": 2012,
-      "mileage_km": 129289,
-      "price_krw": 6700000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경기",
-      "photos": [
-        "https://ci.encar.com/carpicture02/pic4172/41721744_001.jpg",
-        "https://ci.encar.com/carpicture02/pic4172/41721744_003.jpg",
-        "https://ci.encar.com/carpicture02/pic4172/41721744_004.jpg",
-        "https://ci.encar.com/carpicture02/pic4172/41721744_007.jpg",
-        "https://ci.encar.com/carpicture02/pic4172/41721744_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/41721744",
       "preference_2026": 14
     },
     {
@@ -4203,6 +4203,29 @@
       "preference_2026": 4
     },
     {
+      "id": "42451914",
+      "source": "Encar",
+      "manufacturer": "Hyundai",
+      "model": "Accent(New)",
+      "badge": "Diesel WIT 1.6 VGT Modern (세부등급 없음)",
+      "year": 2014,
+      "mileage_km": 280497,
+      "price_krw": 1900000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture05/pic4245/42451914_001.jpg",
+        "https://ci.encar.com/carpicture05/pic4245/42451914_003.jpg",
+        "https://ci.encar.com/carpicture05/pic4245/42451914_004.jpg",
+        "https://ci.encar.com/carpicture05/pic4245/42451914_007.jpg",
+        "https://ci.encar.com/carpicture05/pic4245/42451914_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42451914",
+      "preference_2026": 4
+    },
+    {
       "id": "42463130",
       "source": "Encar",
       "manufacturer": "Hyundai",
@@ -4269,29 +4292,6 @@
         "https://ci.encar.com/carpicture01/pic4281/42819815_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42819815",
-      "preference_2026": 4
-    },
-    {
-      "id": "42451914",
-      "source": "Encar",
-      "manufacturer": "Hyundai",
-      "model": "Accent(New)",
-      "badge": "Diesel WIT 1.6 VGT Modern (세부등급 없음)",
-      "year": 2014,
-      "mileage_km": 280497,
-      "price_krw": 2300000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경기",
-      "photos": [
-        "https://ci.encar.com/carpicture05/pic4245/42451914_001.jpg",
-        "https://ci.encar.com/carpicture05/pic4245/42451914_003.jpg",
-        "https://ci.encar.com/carpicture05/pic4245/42451914_004.jpg",
-        "https://ci.encar.com/carpicture05/pic4245/42451914_007.jpg",
-        "https://ci.encar.com/carpicture05/pic4245/42451914_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42451914",
       "preference_2026": 4
     },
     {
@@ -5980,6 +5980,29 @@
       "preference_2026": 31
     },
     {
+      "id": "43006462",
+      "source": "Encar",
+      "manufacturer": "Kia",
+      "model": "Sorento R",
+      "badge": "Diesel 2.0 2WD TLX 최고급형",
+      "year": 2010,
+      "mileage_km": 259177,
+      "price_krw": 2950000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "대구",
+      "photos": [
+        "https://ci.encar.com/carpicture10/pic4300/43006462_001.jpg",
+        "https://ci.encar.com/carpicture10/pic4300/43006462_003.jpg",
+        "https://ci.encar.com/carpicture10/pic4300/43006462_004.jpg",
+        "https://ci.encar.com/carpicture10/pic4300/43006462_007.jpg",
+        "https://ci.encar.com/carpicture10/pic4300/43006462_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/43006462",
+      "preference_2026": 31
+    },
+    {
       "id": "kbc:28781003",
       "source": "KB ChaChaCha",
       "manufacturer": "Kia",
@@ -6037,29 +6060,6 @@
         "https://ci.encar.com/carpicture05/pic4255/42557464_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42557464",
-      "preference_2026": 31
-    },
-    {
-      "id": "42753364",
-      "source": "Encar",
-      "manufacturer": "Kia",
-      "model": "Sorento R",
-      "badge": "Diesel 2.0 2WD TLX 최고급형",
-      "year": 2011,
-      "mileage_km": 224000,
-      "price_krw": 2990000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "전남광주",
-      "photos": [
-        "https://ci.encar.com/carpicture05/pic4275/42753364_001.jpg",
-        "https://ci.encar.com/carpicture05/pic4275/42753364_003.jpg",
-        "https://ci.encar.com/carpicture05/pic4275/42753364_004.jpg",
-        "https://ci.encar.com/carpicture05/pic4275/42753364_007.jpg",
-        "https://ci.encar.com/carpicture05/pic4275/42753364_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42753364",
       "preference_2026": 31
     },
     {
@@ -6348,6 +6348,29 @@
       "preference_2026": 18
     },
     {
+      "id": "43039319",
+      "source": "Encar",
+      "manufacturer": "Kia",
+      "model": "All New Carnival",
+      "badge": "9-Seater Prestige",
+      "year": 2015,
+      "mileage_km": 317638,
+      "price_krw": 3990000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "전남광주",
+      "photos": [
+        "https://ci.encar.com/carpicture03/pic4303/43039319_001.jpg",
+        "https://ci.encar.com/carpicture03/pic4303/43039319_003.jpg",
+        "https://ci.encar.com/carpicture03/pic4303/43039319_004.jpg",
+        "https://ci.encar.com/carpicture03/pic4303/43039319_007.jpg",
+        "https://ci.encar.com/carpicture03/pic4303/43039319_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/43039319",
+      "preference_2026": 17
+    },
+    {
       "id": "43043646",
       "source": "Encar",
       "manufacturer": "Kia",
@@ -6473,29 +6496,6 @@
         "https://ci.encar.com/carpicture01/pic4291/42913123_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42913123",
-      "preference_2026": 17
-    },
-    {
-      "id": "41279564",
-      "source": "Encar",
-      "manufacturer": "Kia",
-      "model": "All New Carnival",
-      "badge": "9-seater Luxury",
-      "year": 2015,
-      "mileage_km": 252527,
-      "price_krw": 4300000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "대구",
-      "photos": [
-        "https://ci.encar.com/carpicture07/pic4127/41279564_001.jpg",
-        "https://ci.encar.com/carpicture07/pic4127/41279564_003.jpg",
-        "https://ci.encar.com/carpicture07/pic4127/41279564_004.jpg",
-        "https://ci.encar.com/carpicture07/pic4127/41279564_007.jpg",
-        "https://ci.encar.com/carpicture07/pic4127/41279564_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/41279564",
       "preference_2026": 17
     },
     {
