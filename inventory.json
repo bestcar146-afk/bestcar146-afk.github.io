@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-11-01T13:07:59.924845+00:00",
+  "updated_at": "2026-11-01T19:05:47.756223+00:00",
   "provider": "EnCarAPI",
   "scope": "Sales-driven public selection based on BEST CAR STAR historical demand",
   "source_counts": {
-    "Encar": 213,
-    "KB ChaChaCha": 57
+    "Encar": 214,
+    "KB ChaChaCha": 56
   },
   "results": [
     {
@@ -379,26 +379,26 @@
       "preference_2026": 49
     },
     {
-      "id": "41922864",
+      "id": "42518507",
       "source": "Encar",
       "manufacturer": "Kia",
       "model": "New Sorento R",
-      "badge": "Diesel 2.0 2WD 트렌디",
+      "badge": "Diesel 2.0 2WD 럭셔리",
       "year": 2014,
-      "mileage_km": 252900,
-      "price_krw": 4300000,
+      "mileage_km": 167183,
+      "price_krw": 4200000,
       "fuel_type": "diesel",
       "transmission": "—",
       "color": "—",
-      "location": "대구",
+      "location": "경기",
       "photos": [
-        "https://ci.encar.com/carpicture02/pic4192/41922864_001.jpg",
-        "https://ci.encar.com/carpicture02/pic4192/41922864_003.jpg",
-        "https://ci.encar.com/carpicture02/pic4192/41922864_004.jpg",
-        "https://ci.encar.com/carpicture02/pic4192/41922864_007.jpg",
-        "https://ci.encar.com/carpicture02/pic4192/41922864_"
+        "https://ci.encar.com/carpicture02/pic4192/41923275_001.jpg",
+        "https://ci.encar.com/carpicture02/pic4192/41923275_003.jpg",
+        "https://ci.encar.com/carpicture02/pic4192/41923275_004.jpg",
+        "https://ci.encar.com/carpicture02/pic4192/41923275_007.jpg",
+        "https://ci.encar.com/carpicture02/pic4192/41923275_"
       ],
-      "listing_url": "https://fem.encar.com/cars/detail/41922864",
+      "listing_url": "https://fem.encar.com/cars/detail/42518507",
       "preference_2026": 49
     },
     {
@@ -3747,6 +3747,29 @@
       "preference_2026": 5
     },
     {
+      "id": "42967160",
+      "source": "Encar",
+      "manufacturer": "ChevroletGMDaewoo",
+      "model": "Cruze",
+      "badge": "2.0 LTZ",
+      "year": 2011,
+      "mileage_km": 296449,
+      "price_krw": 1800000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "대전",
+      "photos": [
+        "https://ci.encar.com/carpicture06/pic4296/42967160_001.jpg",
+        "https://ci.encar.com/carpicture06/pic4296/42967160_003.jpg",
+        "https://ci.encar.com/carpicture06/pic4296/42967160_004.jpg",
+        "https://ci.encar.com/carpicture06/pic4296/42967160_007.jpg",
+        "https://ci.encar.com/carpicture06/pic4296/42967160_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/42967160",
+      "preference_2026": 5
+    },
+    {
       "id": "42736312",
       "source": "Encar",
       "manufacturer": "ChevroletGMDaewoo",
@@ -3790,29 +3813,6 @@
         "https://ci.encar.com/carpicture01/pic4261/42611528_"
       ],
       "listing_url": "https://fem.encar.com/cars/detail/42612546",
-      "preference_2026": 5
-    },
-    {
-      "id": "42611528",
-      "source": "Encar",
-      "manufacturer": "ChevroletGMDaewoo",
-      "model": "Amazing New Cruze",
-      "badge": "2.0 Diesel LTZ",
-      "year": 2015,
-      "mileage_km": 290328,
-      "price_krw": 1900000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "경기",
-      "photos": [
-        "https://ci.encar.com/carpicture01/pic4261/42611528_001.jpg",
-        "https://ci.encar.com/carpicture01/pic4261/42611528_003.jpg",
-        "https://ci.encar.com/carpicture01/pic4261/42611528_004.jpg",
-        "https://ci.encar.com/carpicture01/pic4261/42611528_007.jpg",
-        "https://ci.encar.com/carpicture01/pic4261/42611528_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/42611528",
       "preference_2026": 5
     },
     {
@@ -5600,6 +5600,52 @@
       "preference_2026": 1
     },
     {
+      "id": "41923275",
+      "source": "Encar",
+      "manufacturer": "Kia",
+      "model": "New Sorento R",
+      "badge": "Diesel 2.0 2WD 럭셔리",
+      "year": 2014,
+      "mileage_km": 167183,
+      "price_krw": 4200000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "경기",
+      "photos": [
+        "https://ci.encar.com/carpicture02/pic4192/41923275_001.jpg",
+        "https://ci.encar.com/carpicture02/pic4192/41923275_003.jpg",
+        "https://ci.encar.com/carpicture02/pic4192/41923275_004.jpg",
+        "https://ci.encar.com/carpicture02/pic4192/41923275_007.jpg",
+        "https://ci.encar.com/carpicture02/pic4192/41923275_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/41923275",
+      "preference_2026": 49
+    },
+    {
+      "id": "41922864",
+      "source": "Encar",
+      "manufacturer": "Kia",
+      "model": "New Sorento R",
+      "badge": "Diesel 2.0 2WD 트렌디",
+      "year": 2014,
+      "mileage_km": 252900,
+      "price_krw": 4300000,
+      "fuel_type": "diesel",
+      "transmission": "—",
+      "color": "—",
+      "location": "대구",
+      "photos": [
+        "https://ci.encar.com/carpicture02/pic4192/41922864_001.jpg",
+        "https://ci.encar.com/carpicture02/pic4192/41922864_003.jpg",
+        "https://ci.encar.com/carpicture02/pic4192/41922864_004.jpg",
+        "https://ci.encar.com/carpicture02/pic4192/41922864_007.jpg",
+        "https://ci.encar.com/carpicture02/pic4192/41922864_"
+      ],
+      "listing_url": "https://fem.encar.com/cars/detail/41922864",
+      "preference_2026": 49
+    },
+    {
       "id": "43045485",
       "source": "Encar",
       "manufacturer": "Kia",
@@ -5704,66 +5750,6 @@
         "https://img.kbchachacha.com/IMG/carimg/l/img02/img2872/28729710_12065999037509887.jpeg?width=720"
       ],
       "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28729710",
-      "preference_2026": 49
-    },
-    {
-      "id": "kbc:28402131",
-      "source": "KB ChaChaCha",
-      "manufacturer": "Kia",
-      "model": "New SorentoR",
-      "badge": "Diesel 2.0 2WD TLX Special",
-      "year": 2013,
-      "mileage_km": 275461,
-      "price_krw": 4500000,
-      "fuel_type": "diesel",
-      "transmission": "automatic",
-      "color": "gray",
-      "location": "경기",
-      "photos": [
-        "https://img.kbchachacha.com/IMG/carimg/l/img10/img2840/28402131_5932316958378611.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img10/img2840/28402131_5932317050452055.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img10/img2840/28402131_5932317123941037.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img10/img2840/28402131_5932317199641197.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img10/img2840/28402131_5932317298916593.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img10/img2840/28402131_5932317681957455.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img10/img2840/28402131_5932317765467069.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img10/img2840/28402131_5932317917525765.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img10/img2840/28402131_5932318071840547.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img10/img2840/28402131_5932318249174191.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img10/img2840/28402131_5932318365213304.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img10/img2840/28402131_5932318485220040.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img10/img2840/28402131_5932318599371403.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img10/img2840/28402131_5932318741473159.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img10/img2840/28402131_5932318827547892.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img10/img2840/28402131_5932318912970027.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img10/img2840/28402131_5932319114833297.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img10/img2840/28402131_5932319311419176.jpeg?width=720",
-        "https://img.kbchachacha.com/IMG/carimg/l/img10/img2840/28402131_5932319490492494.jpeg?width=720"
-      ],
-      "listing_url": "https://m.kbchachacha.com/public/web/car/detail.kbc?carSeq=28402131",
-      "preference_2026": 49
-    },
-    {
-      "id": "43007882",
-      "source": "Encar",
-      "manufacturer": "Kia",
-      "model": "New Sorento R",
-      "badge": "Diesel 2.0 2WD TLX",
-      "year": 2014,
-      "mileage_km": 190000,
-      "price_krw": 4600000,
-      "fuel_type": "diesel",
-      "transmission": "—",
-      "color": "—",
-      "location": "대구",
-      "photos": [
-        "https://ci.encar.com/carpicture10/pic4300/43007882_001.jpg",
-        "https://ci.encar.com/carpicture10/pic4300/43007882_003.jpg",
-        "https://ci.encar.com/carpicture10/pic4300/43007882_004.jpg",
-        "https://ci.encar.com/carpicture10/pic4300/43007882_007.jpg",
-        "https://ci.encar.com/carpicture10/pic4300/43007882_"
-      ],
-      "listing_url": "https://fem.encar.com/cars/detail/43007882",
       "preference_2026": 49
     },
     {
