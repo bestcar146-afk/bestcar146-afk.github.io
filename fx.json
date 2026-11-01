@@ -1,7 +1,7 @@
 {
   "pair": "USD/KRW",
-  "krw_per_usd": 1334.8884,
+  "krw_per_usd": 1335.0327,
   "source": "FX provider consensus",
   "source_url": "Frankfurter + ExchangeRate-API",
-  "as_of": "2026-10-31T19:04:37.119277+00:00"
+  "as_of": "2026-11-01T01:35:16.660216+00:00"
 }
