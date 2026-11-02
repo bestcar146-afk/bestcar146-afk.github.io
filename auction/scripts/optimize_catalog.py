@@ -1,9 +1,34 @@
 import json,re,hashlib
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
+def exterior_first(images):
+ """Move Kolon's consecutive seven-image exterior sequence ahead of inspections."""
+ images=list(dict.fromkeys(images))
+ numbers=[int(re.search(r'-(\d+)\.[^.]+$',u)[1]) if re.search(r'-(\d+)\.[^.]+$',u) else -100 for u in images]
+ runs=[];start=0
+ for i in range(1,len(numbers)+1):
+  if i==len(numbers) or numbers[i]!=numbers[i-1]+1:
+   if i-start==7:runs.append((start,i))
+   start=i
+ if not runs:return images
+ start,end=runs[0] if runs[0][0]==0 else runs[-1]
+ return images[start:end]+images[:start]+images[end:]
+
+def repair_photo_order():
+ summary=ROOT/'data/kolon-summary.json'
+ marker=ROOT/'data/kolon-photo-order-v2.json'
+ if not summary.exists() or marker.exists():return
+ cars=[]
+ for c in json.loads(summary.read_text()):
+  car=json.loads((ROOT.parent/c['detailUrl'].lstrip('/')).read_text())
+  cars.append(car)
+ write_catalog(cars)
+ marker.write_text(json.dumps({'version':2,'vehicles':len(cars)}))
+
 def write_catalog(cars):
  folder=ROOT/'data/kolon';folder.mkdir(parents=True,exist_ok=True);summaries=[]
  for car in cars:
+  car=dict(car);car['images']=exterior_first(car['images'])
   payload=json.dumps(car,ensure_ascii=False,separators=(',',':'));name=car['id']+'-'+hashlib.sha256(payload.encode()).hexdigest()[:12]+'.json'
   (folder/name).write_text(payload)
   summary={k:v for k,v in car.items() if k not in ['overview','inspection','images']};summary['images']=car['images'][:4];summary['detailUrl']='/auction/data/kolon/'+name;summaries.append(summary)
@@ -30,4 +55,6 @@ def migrate():
  s=s.replace('Five-vehicle import test.','Imported catalogue preview.')
  pos=s.rfind('</script>');s=s[:pos]+'''\n(async()=>{try{const response=await fetch('/auction/data/kolon-summary.json');if(!response.ok)throw Error();const cars=await response.json();CARS.push(...cars);$('#quickMake').replaceChildren(new Option('All brands',''));$('#quickYear').replaceChildren(new Option('All years',''));init();updateModels();const id=new URLSearchParams(location.search).get('vehicle');if(id&&cars.some(c=>c.id===id))openCar(id);}catch{const note=document.createElement('p');note.textContent='Kolon catalogue could not load. Please refresh to retry.';$('#grid').before(note);}})();\n'''+s[pos:]
  p.write_text(s)
-if __name__=='__main__':migrate()
+if __name__=='__main__':
+ migrate()
+ repair_photo_order()

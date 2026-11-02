@@ -29,12 +29,8 @@ def main():
  def convert(item):
   id=item['car_goods_unique_id'];r=api('getAuctionCarInfo',{'car_goods_unique_id':id});o=r['car_overview'];b=r['bidding_info'];imgs=r['car_images']['car_imgs']
   if not imgs or not b.get('auction_bid_end_date'):raise ValueError('Missing photos/deadline: '+id)
-  # Preserve approved photo order for existing vehicles. New vehicles use source cover first.
-  prior=old.get(id,{}).get('images',[]);cover=item.get('car_images');key=cover.rsplit('/',1)[-1] if cover else ''
-  order=[u for u in prior if u in imgs];order += [u for u in imgs if u not in order]
-  if not prior:
-   hero=next((u for u in imgs if u.rsplit('/',1)[-1]==key),None)
-   if hero:order=[hero]+[u for u in order if u!=hero]
+  # The catalogue writer normalizes the source exterior sequence on every refresh.
+  order=imgs
   return dict(id=id,source='Kolon Auto Auction',sample=True,make=o['brand'],model=o['model'],trim=r.get('car_sub_name',''),year=o['year'],mileage=o['mileage'],fuel=o['fuel'],transmission='Automatic' if o['transmission']=='A/T' else o['transmission'],drive=o.get('drive') or 'N:A',start=None if r.get('price_show_yn')=='N' or not r.get('car_start_price') else float(r['car_start_price']),close=b['auction_bid_end_date'].replace(' ','T')+'+09:00',opens=b.get('auction_bid_start_date','N:A'),images=order,overview=o,inspection={k:r[k] for k in ['car_options_info','car_electronic_system','information','condition','frame_condition','history','detail','additional'] if r.get(k)},inspected=bool(r.get('condition')),bidStatus='open')
  old={}
  summary=ROOT/'data/kolon-summary.json'
