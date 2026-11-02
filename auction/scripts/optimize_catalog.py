@@ -5,25 +5,32 @@ def exterior_first(images):
  """Move Kolon's consecutive seven-image exterior sequence ahead of inspections."""
  images=list(dict.fromkeys(images))
  numbers=[int(re.search(r'-(\d+)\.[^.]+$',u)[1]) if re.search(r'-(\d+)\.[^.]+$',u) else -100 for u in images]
+ # Visually verified exceptions whose source gallery is entirely filename-sorted.
+ overrides={'PA261028-0004659': 16, 'PA261028-0004341': 15, 'PA261028-0002600': 17, 'PA261028-0004477': 16, 'PA261028-0006845': 20, 'PA261028-0002692': 16, 'PA261028-0006859': 10, 'PA261029-0001183': 10, 'PA261028-0004338': 13, 'PA261029-0001135': 14, 'PA261028-0009366': 11, 'PA261029-0001121': 17, 'PA261030-0002694': 13}
+ for car_id,first in overrides.items():
+  if images and car_id in images[0]:
+   exterior=[u for n,u in sorted(zip(numbers,images)) if first<=n<first+7]
+   return exterior+[u for u in images if u not in exterior]
  runs=[];start=0
  for i in range(1,len(numbers)+1):
   if i==len(numbers) or numbers[i]!=numbers[i-1]+1:
-   if i-start==7:runs.append((start,i))
+   if i-start>=7:runs.append((start,i))
    start=i
  if not runs:return images
  start,end=runs[0] if runs[0][0]==0 else runs[-1]
+ if start>0:start=end-7
  return images[start:end]+images[:start]+images[end:]
 
 def repair_photo_order():
  summary=ROOT/'data/kolon-summary.json'
- marker=ROOT/'data/kolon-photo-order-v2.json'
+ marker=ROOT/'data/kolon-photo-order-v3.json'
  if not summary.exists() or marker.exists():return
  cars=[]
  for c in json.loads(summary.read_text()):
   car=json.loads((ROOT.parent/c['detailUrl'].lstrip('/')).read_text())
   cars.append(car)
  write_catalog(cars)
- marker.write_text(json.dumps({'version':2,'vehicles':len(cars)}))
+ marker.write_text(json.dumps({'version':3,'vehicles':len(cars)}))
 
 def write_catalog(cars):
  folder=ROOT/'data/kolon';folder.mkdir(parents=True,exist_ok=True);summaries=[]
