@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ['auction/scripts/update_kolon.py', '.github/workflows/auction-kolon.yml']
+    paths: ['auction/scripts/update_kolon.py', 'auction/scripts/optimize_catalog.py', '.github/workflows/auction-kolon.yml']
 permissions:
   contents: write
   pages: write
@@ -29,12 +29,14 @@ jobs:
       - name: Refresh Kolon API inventory
         id: kolon
         continue-on-error: false
-        run: python auction/scripts/update_kolon.py
+        run: |
+          python auction/scripts/optimize_catalog.py
+          python auction/scripts/update_kolon.py
       - name: Save complete Kolon snapshot
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add auction/index.html auction/kolon-refresh.json
+          git add auction/index.html auction/kolon-refresh.json auction/data
           if ! git diff --cached --quiet; then
             git commit -m "Refresh Kolon auction inventory"
             git pull --rebase origin main

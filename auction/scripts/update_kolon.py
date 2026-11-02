@@ -1,4 +1,5 @@
 """Refresh Kolon at deadline-relative checkpoints; publish only a complete fetch."""
+from optimize_catalog import write_catalog
 import concurrent.futures,json,re,time,urllib.request
 from pathlib import Path
 from datetime import datetime,timezone,timedelta
@@ -35,10 +36,14 @@ def main():
    hero=next((u for u in imgs if u.rsplit('/',1)[-1]==key),None)
    if hero:order=[hero]+[u for u in order if u!=hero]
   return dict(id=id,source='Kolon Auto Auction',sample=True,make=o['brand'],model=o['model'],trim=r.get('car_sub_name',''),year=o['year'],mileage=o['mileage'],fuel=o['fuel'],transmission='Automatic' if o['transmission']=='A/T' else o['transmission'],drive=o.get('drive') or 'N:A',start=None if r.get('price_show_yn')=='N' or not r.get('car_start_price') else float(r['car_start_price']),close=b['auction_bid_end_date'].replace(' ','T')+'+09:00',opens=b.get('auction_bid_start_date','N:A'),images=order,overview=o,inspection={k:r[k] for k in ['car_options_info','car_electronic_system','information','condition','frame_condition','history','detail','additional'] if r.get(k)},inspected=bool(r.get('condition')),bidStatus='open')
- htmlfile=ROOT/'index.html';html=htmlfile.read_text();match=re.search(r'CARS.splice\(0,CARS.length,.*?,\.\.\.(\[.*?\])\);',html);old={c['id']:c for c in json.loads(match[1])}
+ old={}
+ summary=ROOT/'data/kolon-summary.json'
+ if summary.exists():
+  for c in json.loads(summary.read_text()):
+   detail=ROOT.parent/c['detailUrl'].lstrip('/')
+   old[c['id']]=json.loads(detail.read_text()) if detail.exists() else c
  with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:cars=list(pool.map(convert,entries))
- html=html[:match.start(1)]+json.dumps(cars,ensure_ascii=False).replace('</','<\\/')+html[match.end(1):]
  completed=state.get('completed',[]) if state.get('deadline')==deadline else []
  state={'deadline':deadline,'completed':completed+[checkpoint],'updated_at':now.isoformat(),'vehicle_count':len(cars)}
- htmlfile.write_text(html);statefile.write_text(json.dumps(state,indent=2)+'\n');print('Updated',len(cars),'Kolon vehicles at',checkpoint)
+ write_catalog(cars);statefile.write_text(json.dumps(state,indent=2)+'\n');print('Updated',len(cars),'Kolon vehicles at',checkpoint)
 if __name__=='__main__':main()
