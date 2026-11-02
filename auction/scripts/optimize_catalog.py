@@ -11,7 +11,7 @@ def write_catalog(cars):
 def migrate():
  p=ROOT/'index.html';s=p.read_text();m=re.search(r'CARS.splice\(0,CARS.length,.*?,\.\.\.(\[.*?\])\);',s)
  if not m:return
- write_catalog(json.loads(m[1]));s=s[:m.start()]+s[m.end():]
+ write_catalog(json.loads(m[1]));s=s[:m.start()]+"CARS.splice(0,CARS.length,...CARS.filter(c=>c.source!=='Kolon Auto Auction'));"+s[m.end():]
  s=s.replace('function render(){const a=filtered();','let catalogPage=1,lastCatalogFilter="";\nfunction render(){const key=JSON.stringify([sourceFilter,...Array.from(document.querySelectorAll(".filters input,.filters select,.marketbar select,#sort")).map(e=>[e.id,e.value,e.checked])]);if(key!==lastCatalogFilter){catalogPage=1;lastCatalogFilter=key;}const all=filtered(),pages=Math.max(1,Math.ceil(all.length/24));catalogPage=Math.min(catalogPage,pages);const a=all.slice((catalogPage-1)*24,catalogPage*24);')
  s=s.replace("$('#count').textContent=a.length;","$('#count').textContent=all.length;")
  s=s.replace('bindKolonPreviews()}','bindKolonPreviews();let nav=document.getElementById("catalogPagination");if(!nav){nav=document.createElement("nav");nav.id="catalogPagination";nav.setAttribute("aria-label","Vehicle pages");$("#grid").after(nav);}nav.style.cssText="display:flex;align-items:center;justify-content:center;gap:16px;padding:24px";nav.innerHTML=`<button class="btn btn-secondary" id="previousPage" ${catalogPage===1?"disabled":""}>Previous</button><span>Page ${catalogPage} of ${pages}</span><button class="btn btn-secondary" id="nextPage" ${catalogPage===pages?"disabled":""}>Next</button>`;$("#previousPage").onclick=()=>{catalogPage--;render();$("#grid").scrollIntoView({block:"start"})};$("#nextPage").onclick=()=>{catalogPage++;render();$("#grid").scrollIntoView({block:"start"})};}')
