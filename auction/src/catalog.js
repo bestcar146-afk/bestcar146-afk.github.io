@@ -1,3 +1,4 @@
+import {decorateSaved} from './saved.js';
 import {db,currentUser,saveBid,message,friendly,money,reviewBid,biddingEnabled,requestAccess,ensureProfile} from './client.js';
 let user=null;
 const login=document.getElementById('clientLogin');
@@ -22,3 +23,6 @@ window.BCSAccounts={
  async vehicles(){const {data,error}=await db.from('vehicles').select('id,starting_bid_usd,bidding_closes_at,status,is_demo');if(error)throw error;return data;}
 };
 window.dispatchEvent(new Event('bcs-accounts-ready'));
+
+window.BCSSaved={decorate:decorateSaved};
+window.dispatchEvent(new Event('bcs-saved-ready'));
