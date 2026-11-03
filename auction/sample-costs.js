@@ -1,0 +1,13 @@
+/* Estimates remain available independently of bidding approval. */
+window.BCSSampleCosts={mount(c){
+ const section=document.querySelector('#detail .auction-price-info');if(!section)return;
+ const start=c.provider==='autobell'?(c.currentBidKRW==null?null:c.currentBidKRW/FX_KRW_PER_USD):c.start;
+ const known=start!=null&&Number.isFinite(Number(start)),initial=known?Number(start).toFixed(2):'';
+ const panel=document.createElement('div');
+ panel.innerHTML=`<div class="auction-bid-entry"><label for="sampleMaxBid">Your maximum vehicle bid (USD)</label><div class="auction-bid-input"><span>USD</span><input id="sampleMaxBid" type="number" min="${known?initial:0.01}" step="0.01" value="${initial}" placeholder="Enter an amount to estimate"></div></div><div class="total-card"><div class="total-kicker">Expected purchase cost</div><div class="total-head"><div class="total-title">Estimated subtotal including charges</div><div class="total-value" data-total>N:A</div></div></div><div class="auction-cost-group">${[['Vehicle bid','vehicle'],['Auction-house fee','fee'],['Inland transport (estimate)','transport'],['BEST CAR STAR handling','handling']].map(([label,key])=>`<div class="auction-cost-row"><span>${label}</span><b data-cost="${key}">N:A</b></div>`).join('')}</div><p class="auction-note">Export shipping and unconfirmed charges are not included. Inland transport uses the existing location estimate. ${esc(fxLabel)}</p><p class="auction-note">You can calculate costs before admin approval. These imported sample records do not accept bids yet.</p><button type="button" class="auction-submit" data-submit>Submit bid / request approval</button><p role="status" data-status></p>`;
+ section.querySelector('button[disabled]')?.remove();section.append(panel);
+ const input=panel.querySelector('input');
+ const update=()=>{const amount=Number(input.value),valid=input.value!==''&&Number.isFinite(amount)&&amount>0,costs=valid?bidCosts(c,amount):null;panel.querySelector('[data-total]').textContent=costs?money(costs.total):'N:A';for(const [key,value] of Object.entries({vehicle:amount,fee:costs?.auctionFeeUsd,transport:costs?.transportUsd,handling:costs?.handlingUsd}))panel.querySelector('[data-cost="'+key+'"]').textContent=valid?money(value):'N:A';};
+ input.addEventListener('input',update);update();
+ panel.querySelector('[data-submit]').onclick=async()=>{const status=panel.querySelector('[data-status]');if(!input.reportValidity()||!input.value||Number(input.value)<=0){status.textContent='Enter a valid vehicle bid amount to continue.';return;}if(!window.BCSAccounts){status.textContent='Account service unavailable. Please refresh and try again.';return;}await window.BCSAccounts.sampleRequest(status);};
+}};

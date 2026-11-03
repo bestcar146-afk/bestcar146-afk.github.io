@@ -29,7 +29,7 @@ header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.96);backdro
 
 .filters .check input[type="checkbox"]{width:16px;height:16px;flex:0 0 16px;margin:0;padding:0;appearance:auto;accent-color:#10243b}.filters .check{display:flex;justify-content:flex-start;align-items:center;gap:10px;min-height:26px;line-height:1.4}.filters .filter-title{display:block}.marketbar select:disabled{background:#edf1f4;color:#7b8794;cursor:not-allowed}
 </style>
-<script defer src="catalog.js?v=9"></script>
+<script defer src="catalog.js?v=10"></script>
 <link rel="stylesheet" href="countdown.css?v=1"><script defer src="countdown.js?v=1"></script><link rel="stylesheet" href="/auction/design-enhancements.css?v=6"><link rel="stylesheet" href="/auction/whatsapp.css?v=1"><style>
 .photo.kolon-preview{background:#e9eef2;touch-action:pan-y;aspect-ratio:auto!important;height:auto!important;min-height:0!important;padding:0!important}.photo.kolon-preview .vehicle-photo{position:relative!important;inset:auto!important;display:block;width:100%!important;height:auto!important;max-height:none!important;object-fit:contain!important}.kolon-prev,.kolon-next{position:absolute;top:45%;z-index:3;border:0;border-radius:50%;width:36px;height:36px;background:#10283fe6;color:white;font-size:28px;line-height:30px;cursor:pointer}.kolon-prev{left:7px}.kolon-next{right:7px}.kolon-count{position:absolute;bottom:9px;left:9px;background:#10283fe6;color:white;border-radius:5px;padding:4px 8px;font-size:12px}.kolon-gallery{min-width:0}.kolon-gallery .mainphoto{min-height:0!important;aspect-ratio:4/3;width:100%}.kolon-gallery .mainphoto .vehicle-photo{object-fit:contain!important}.kolon-gallery .thumb{padding:0;overflow:hidden}.kolon-gallery .thumb img{object-fit:contain!important}
 </style></head>
@@ -112,6 +112,7 @@ async function openKolon(c){
  }
 
  $('#detail').innerHTML='<div class="detail"><div class="gallery kolon-gallery"><div class="mainphoto"><img id="kolonMain" class="vehicle-photo" src="'+esc(c.images[0])+'" alt="'+esc(c.make+' '+c.model)+'"></div><div class="thumbs">'+c.images.map((url,i)=>'<button class="thumb" data-photo="'+i+'" aria-label="View photo '+(i+1)+'"><img loading="lazy" src="'+esc(previewUrl(url))+'" style="width:100%;height:100%;object-fit:contain" alt="Vehicle photo '+(i+1)+'"></button>').join('')+'</div></div><div class="panel"><div class="eyebrow">Kolon Auto Auction · sample preview</div><h2>'+esc(c.year+' '+c.make+' '+c.model)+'</h2><p>'+esc(c.trim)+'</p>'+kolonDeadline(c)+'<section class="auction-price-info"><h3>Bid & Cost</h3><p>Starting price: <strong>'+kolonPrice(c)+'</strong></p><p>Imported catalogue preview. Bid submission is not enabled for these sample records.</p><button class="auction-submit" disabled>Sample preview · bidding unavailable</button></section><p>Vehicle ID: '+esc(c.id)+'</p><p>Bidding opens: '+esc(c.opens)+' KST</p><div class="detail-specs">'+Object.entries(c.overview).filter(([k])=>!['ref_no','name','brand','model'].includes(k)).map(([k,v])=>'<div class="d-spec"><span>'+esc(k.replaceAll('_',' '))+'</span><b>'+esc(v)+'</b></div>').join('')+'</div><details class="condition"><summary>Inspection and equipment details</summary>'+inspectionRows(c.inspection)+'</details><p><a target="_blank" rel="noopener" href="https://www.kolonautointernational.com/auction-now/'+encodeURIComponent(c.id)+'">Original vehicle listing ↗</a></p></div></div>';
+ window.BCSSampleCosts.mount(c);
  $$('#detail [data-photo]').forEach(b=>b.onclick=()=>{$('#kolonMain').src=c.images[Number(b.dataset.photo)];});
  $('#modal').classList.add('open');$('#modal').setAttribute('aria-hidden','false');$('#modal .dialog').scrollTop=0;
 }
@@ -149,6 +150,7 @@ window.addEventListener('bcs-accounts-ready',async()=>{
 
 (async()=>{try{const response=await fetch('/auction/data/kolon-summary.json');if(!response.ok)throw Error();const cars=await response.json();CARS.push(...cars);$('#quickMake').replaceChildren(new Option('All brands',''));$('#quickYear').replaceChildren(new Option('All years',''));init();updateModels();const id=new URLSearchParams(location.search).get('vehicle');if(id&&cars.some(c=>c.id===id))openCar(id);}catch{const note=document.createElement('p');note.textContent='Kolon catalogue could not load. Please refresh to retry.';$('#grid').before(note);}})();
 </script>
-<script src="/auction/autobell.js"></script>
+<script src="/auction/sample-costs.js"></script>
+<script src="/auction/autobell.js?v=2"></script>
 </body>
 </html>

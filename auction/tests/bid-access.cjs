@@ -1,0 +1,11 @@
+const {strict:a}=require('node:assert'),fs=require('node:fs'),vm=require('node:vm');
+function el(){return {style:{},attrs:{},setAttribute(k,v){this.attrs[k]=v},removeAttribute(k){delete this.attrs[k]},addEventListener(){},remove(){},close(){},showModal(){},replaceChildren(x){this.child=x}}}
+(async()=>{
+ const consent=el(),contact=el(),close=el(),dialog=el();dialog.querySelector=s=>({'[data-consent]':consent,'[data-contact]':contact,'[data-close]':close}[s]);
+ const ctx={document:{createElement:t=>t==='dialog'?dialog:el(),body:{append(){}}},db:{from(){return {select(){return this},eq(){return this},async single(){return {data:{whatsapp_number:'821012345678'}}}}}},esc:String,accessWarning:'Approval required',encodeURIComponent};
+ vm.createContext(ctx);const client=fs.readFileSync('auction/src/client.js','utf8');vm.runInContext(client.slice(client.indexOf('export function accessRequestText')).replaceAll('export ',''),ctx);
+ await ctx.requestAccess({email:'test@example.com'});const link=contact.child;a.equal(link.href,undefined);let prevented=false;link.onclick({preventDefault(){prevented=true}});a.equal(prevented,true);consent.checked=true;consent.onchange();a.ok(link.href.startsWith('https://wa.me/821012345678?text='));a.ok(decodeURIComponent(link.href).includes('test@example.com'));consent.checked=false;consent.onchange();a.equal(link.attrs.href,undefined);
+ const nodes={};for(const k of ['input','[data-total]','[data-submit]','[data-status]',...['vehicle','fee','transport','handling'].map(k=>'[data-cost="'+k+'"]')])nodes[k]=el();nodes.input.value='10000';
+ const panel=el();panel.querySelector=k=>nodes[k];const section={querySelector:()=>null,append(){}};ctx.window={};ctx.document={querySelector:()=>section,createElement:()=>panel};ctx.FX_KRW_PER_USD=1400;ctx.fxLabel='test FX';ctx.money=x=>String(x);vm.runInContext(fs.readFileSync('auction/costs.js','utf8'),ctx);ctx.bidCosts=(c,v)=>ctx.window.BCSCosts.costs(c,v,1400);vm.runInContext(fs.readFileSync('auction/sample-costs.js','utf8'),ctx);ctx.window.BCSSampleCosts.mount({start:10000,source:'Kolon Auto Auction'});a.ok(Number(nodes['[data-total]'].textContent)>10000);a.equal(nodes['[data-cost="handling"]'].textContent,'250');
+ console.log('PASS: consent required, cancellation removes WhatsApp target, calculator available without account, charges included.');
+})();
