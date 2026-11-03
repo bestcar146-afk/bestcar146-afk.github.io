@@ -2,8 +2,9 @@
   "deadline": "2026-11-04 11:00:00",
   "completed": [
     "initial",
-    "24h"
+    "24h",
+    "12h"
   ],
-  "updated_at": "2026-11-03T11:24:19.866356+09:00",
-  "vehicle_count": 2349
+  "updated_at": "2026-11-03T23:39:07.644321+09:00",
+  "vehicle_count": 2340
 }
