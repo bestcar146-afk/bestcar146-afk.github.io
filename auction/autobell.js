@@ -18,7 +18,7 @@ window.BCSAutobell=(()=>{
  return {card,open};
 })();
 (async()=>{try{
- const response=await fetch('/auction/data/autobell-summary.json');if(!response.ok)throw Error();const cars=await response.json();if(cars.length!==5)throw Error('Invalid sample count');
+ const response=await fetch('/auction/data/autobell-summary.json',{cache:'no-store'});if(!response.ok)throw Error();const cars=await response.json();if(!Array.isArray(cars))throw Error('Invalid catalogue');
  cars.forEach(c=>{c.start=c.currentBidKRW==null?null:c.currentBidKRW/FX_KRW_PER_USD;});
  CARS.splice(0,CARS.length,...CARS.filter(c=>c.source!=='Autobell Smart Auction'),...cars);
  const make=$('#quickMake').value,year=$('#quickYear').value,model=$('#quickModel').value;

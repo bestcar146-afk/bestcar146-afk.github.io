@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ['auction/scripts/update_kolon.py', 'auction/scripts/optimize_catalog.py', '.github/workflows/auction-kolon.yml']
+    paths: ['auction/scripts/update_kolon.py', 'auction/scripts/optimize_catalog.py', 'auction/scripts/prune_catalog.py', '.github/workflows/auction-kolon.yml']
 permissions:
   contents: write
   pages: write
@@ -26,13 +26,19 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Test catalogue lifecycle
+        run: python auction/scripts/test_catalog_lifecycle.py
       - name: Refresh Kolon API inventory
         id: kolon
         continue-on-error: false
         run: |
           python auction/scripts/optimize_catalog.py
           python auction/scripts/update_kolon.py
+      - name: Remove expired public catalogue records
+        if: always()
+        run: python auction/scripts/prune_catalog.py
       - name: Save complete Kolon snapshot
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -43,13 +49,16 @@ jobs:
             git push origin HEAD:main
           fi
       - name: Package existing public website
+        if: always()
         run: |
           mkdir -p _site
           rsync -a --exclude='.git/' --exclude='.github/' --exclude='_site/' --exclude='node_modules/' --exclude='scripts/' --exclude='src/' --exclude='sql/' --exclude='qa/' --exclude='__pycache__/' ./ _site/
       - uses: actions/upload-pages-artifact@v3
+        if: always()
         with:
           path: _site
       - uses: actions/deploy-pages@v4
+        if: always()
       - name: Report failed Kolon check
         if: steps.kolon.outcome == 'failure'
         run: exit 1

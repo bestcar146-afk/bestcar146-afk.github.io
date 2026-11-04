@@ -149,7 +149,7 @@ window.addEventListener('bcs-accounts-ready',async()=>{
  catch(e){const p=document.createElement('p');p.textContent='Bidding is temporarily unavailable. You can still browse the demo vehicles.';p.setAttribute('role','status');document.querySelector('main .container').prepend(p);}
 });
 
-(async()=>{try{const response=await fetch('/auction/data/kolon-summary.json');if(!response.ok)throw Error();const cars=await response.json();CARS.push(...cars);$('#quickMake').replaceChildren(new Option('All brands',''));$('#quickYear').replaceChildren(new Option('All years',''));init();updateModels();const id=new URLSearchParams(location.search).get('vehicle');if(id&&cars.some(c=>c.id===id))openCar(id);}catch{const note=document.createElement('p');note.textContent='Kolon catalogue could not load. Please refresh to retry.';$('#grid').before(note);}})();
+(async()=>{try{const response=await fetch('/auction/data/kolon-summary.json',{cache:'no-store'});if(!response.ok)throw Error();const cars=await response.json();CARS.push(...cars);$('#quickMake').replaceChildren(new Option('All brands',''));$('#quickYear').replaceChildren(new Option('All years',''));init();updateModels();const id=new URLSearchParams(location.search).get('vehicle');if(id&&cars.some(c=>c.id===id))openCar(id);}catch{const note=document.createElement('p');note.textContent='Kolon catalogue could not load. Please refresh to retry.';$('#grid').before(note);}})();
 </script>
 <script src="/auction/sample-costs.js"></script>
 <script src="/auction/autobell.js?v=3"></script>
