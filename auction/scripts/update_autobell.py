@@ -2,6 +2,7 @@
 import json, urllib.request, urllib.parse, hashlib
 from pathlib import Path
 from datetime import datetime, timezone
+from prune_catalog import active, prune
 ROOT = Path(__file__).resolve().parents[1]
 BASE = 'https://www.autobellglobal.com/api/glovis/'
 def get(endpoint, **params):
@@ -10,6 +11,7 @@ def get(endpoint, **params):
     if data.get('success') is False: raise ValueError('Unsuccessful Autobell response')
     return data['data']
 def publish(entries, details):
+    if len(entries)!=len(details):raise ValueError('Incomplete Autobell details')
     summaries=[]; outputs={}; now=datetime.now(timezone.utc).isoformat()
     for item, raw in zip(entries, details):
         info=raw['info']; photos=raw['thumbnailResource']; key=item['carKey']
@@ -45,11 +47,17 @@ def publish(entries, details):
         filename=key+'-'+hashlib.sha256(payload.encode()).hexdigest()[:12]+'.json'
         summary['detailUrl']='/auction/data/autobell/'+filename
         outputs[ROOT/'data/autobell'/filename]=payload;summaries.append(summary)
-    assert len(summaries)==5 and len({c['id'] for c in summaries})==5
+    assert len(summaries)<=5 and len({c['id'] for c in summaries})==len(summaries)
     for path,payload in outputs.items():path.parent.mkdir(parents=True,exist_ok=True);path.write_text(payload)
     (ROOT/'data/autobell-summary.json').write_text(json.dumps(summaries,ensure_ascii=False,separators=(',',':')))
-    print('Published five Autobell samples;',sum(len(x['thumbnailResource']['LARGE']) for x in details),'photos')
-if __name__=='__main__':
+    prune()
+    print('Published',len(summaries),'Autobell samples;',sum(len(x['thumbnailResource']['LARGE']) for x in details),'photos')
+def main():
     entries=get('buyerAuctionCar/proAuctionCarFilterList',page=1,size=5,countryCode='en',isExcludeClosed='true')
+    if not isinstance(entries,list):raise ValueError('Invalid Autobell catalogue response')
+    now=datetime.now(timezone.utc)
+    entries=[c for c in entries if active({'close':c.get('auctionBidEndDate','')+'+09:00','bidStatus':'open' if c.get('auctStatus')=='PROCEEDING_AUCTION' else 'closed'},now)]
     details=[get('buyerAuctionCar/info',carKey=c['carKey'],roundId=c['roundId'],historyPopup='true') for c in entries]
     publish(entries,details)
+
+if __name__=='__main__':main()

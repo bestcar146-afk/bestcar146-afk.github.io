@@ -1,11 +1,11 @@
-name: Refresh Kolon auction inventory
+name: Refresh auction inventory
 on:
   schedule:
     - cron: '7,22,37,52 * * * *'
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ['auction/scripts/update_kolon.py', 'auction/scripts/optimize_catalog.py', 'auction/scripts/prune_catalog.py', '.github/workflows/auction-kolon.yml']
+    paths: ['auction/scripts/update_kolon.py', 'auction/scripts/update_autobell.py', 'auction/scripts/optimize_catalog.py', 'auction/scripts/prune_catalog.py', '.github/workflows/auction-kolon.yml']
 permissions:
   contents: write
   pages: write
@@ -34,6 +34,10 @@ jobs:
         run: |
           python auction/scripts/optimize_catalog.py
           python auction/scripts/update_kolon.py
+      - name: Refresh Autobell five-vehicle catalogue
+        id: autobell
+        if: always()
+        run: python auction/scripts/update_autobell.py
       - name: Remove expired public catalogue records
         if: always()
         run: python auction/scripts/prune_catalog.py
@@ -59,6 +63,6 @@ jobs:
           path: _site
       - uses: actions/deploy-pages@v4
         if: always()
-      - name: Report failed Kolon check
-        if: steps.kolon.outcome == 'failure'
+      - name: Report failed auction check
+        if: steps.kolon.outcome == 'failure' || steps.autobell.outcome == 'failure'
         run: exit 1
