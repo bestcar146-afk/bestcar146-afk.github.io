@@ -3,6 +3,7 @@ import json, os, re, sys, urllib.request, urllib.error
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlencode, urlparse
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 def photo_url(value, source):
     if isinstance(value, dict):
@@ -552,10 +553,17 @@ def enrich(cars,key):
 
     # Encar gets the full documented per-vehicle payload so all gallery photos are retained.
     encar_needed=[c for c in needed if c['source']=='Encar']
-    for car in encar_needed:
-        detail=full_vehicle(car['id'])
-        if detail is not None:
-            vehicles[car['id']]=detail
+    if encar_needed:
+        with ThreadPoolExecutor(max_workers=8) as pool:
+            futures={pool.submit(full_vehicle,car['id']):car['id'] for car in encar_needed}
+            for future in as_completed(futures):
+                ident=futures[future]
+                try:
+                    detail=future.result()
+                except Exception:
+                    detail=None
+                if detail is not None:
+                    vehicles[ident]=detail
     print('Full Encar vehicle details received',sum(1 for c in encar_needed if c['id'] in vehicles),
           'of',len(encar_needed),flush=True)
 
