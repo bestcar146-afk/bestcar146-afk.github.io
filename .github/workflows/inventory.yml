@@ -4,7 +4,7 @@ on:
     branches: [main]
     paths: [index.html, live.js, scripts/sync_inventory.py, scripts/update_fx.py, .github/workflows/inventory.yml]
   schedule:
-    - cron: '17 */6 * * *'
+    - cron: '17 */2 * * *'
   workflow_dispatch:
 permissions:
   contents: write
