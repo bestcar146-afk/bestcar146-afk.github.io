@@ -434,66 +434,173 @@ def select_fields(obj, fields):
 
 def enrich(cars,key):
     now=datetime.now(timezone.utc)
-    try: old={x['id']:x for x in json.loads(Path('inventory.json').read_text())['results']}
-    except (OSError,ValueError,KeyError): old={}
+    try:
+        old={x['id']:x for x in json.loads(Path('inventory.json').read_text())['results']}
+    except (OSError,ValueError,KeyError):
+        old={}
+
     needed=[]
     for car in cars:
         prior=old.get(car['id'],{})
-        try: fresh=(now-datetime.fromisoformat(prior['details']['checked_at'])).total_seconds()<86400
-        except (KeyError,ValueError,TypeError): fresh=False
-        if fresh:
-            car['details']=prior['details']
-        else: needed.append(car)
-    def bulk(kind,ids):
-        if not ids:return {}
-        req=urllib.request.Request('https://api.encarapi.com/api/'+kind+'/bulk?lang=en',
-            data=json.dumps({'ids':ids}).encode(),headers={'x-api-key':key,'Content-Type':'application/json','Accept':'application/json'})
         try:
-            with urllib.request.urlopen(req,timeout=180) as r: data=json.load(r)
+            prior_details=prior['details']
+            fresh=(now-datetime.fromisoformat(prior_details['checked_at'])).total_seconds()<86400
+            # Encar cars must have been refreshed with the full single-vehicle endpoint,
+            # otherwise old cached records may contain only the small catalog preview set.
+            if car['source']=='Encar' and prior_details.get('photo_complete') is not True:
+                fresh=False
+        except (KeyError,ValueError,TypeError):
+            fresh=False
+        if fresh:
+            car['details']=prior_details
+            # Keep all cached detail photos on the public car record too.
+            merged=[]
+            for u in (car.get('photos') or []) + (prior_details.get('photos') or []):
+                if u and u not in merged:
+                    merged.append(u)
+            car['photos']=merged
+        else:
+            needed.append(car)
+
+    def bulk(kind,ids):
+        if not ids:
+            return {}
+        req=urllib.request.Request(
+            'https://api.encarapi.com/api/'+kind+'/bulk?lang=en',
+            data=json.dumps({'ids':ids}).encode(),
+            headers={
+                'x-api-key':key,
+                'Content-Type':'application/json',
+                'Accept':'application/json'
+            }
+        )
+        try:
+            with urllib.request.urlopen(req,timeout=180) as r:
+                data=json.load(r)
             results=data.get('results')
-            if not isinstance(results,dict): raise ValueError('Unexpected bulk response')
+            if not isinstance(results,dict):
+                raise ValueError('Unexpected bulk response')
             print(kind,'details received',len(results),flush=True)
             return results
         except (urllib.error.URLError,TimeoutError,ValueError):
             print(kind,'details unavailable; fields remain explicitly unknown',flush=True)
             return {}
-    ids=[c['id'] for c in needed]
-    vehicles=bulk('vehicle',ids)
+
+    def full_vehicle(ident):
+        # The documented single-vehicle endpoint returns the full detail payload,
+        # including the complete photo gallery for an Encar listing.
+        url='https://api.encarapi.com/api/vehicle/'+str(ident)+'?lang=en'
+        req=urllib.request.Request(
+            url,
+            headers={'x-api-key':key,'Accept':'application/json'}
+        )
+        try:
+            with urllib.request.urlopen(req,timeout=90) as r:
+                data=json.load(r)
+            return data if isinstance(data,dict) else None
+        except urllib.error.HTTPError as e:
+            print('Full vehicle detail unavailable:',ident,'HTTP',e.code,flush=True)
+            return None
+        except (urllib.error.URLError,TimeoutError,ValueError):
+            print('Full vehicle detail unavailable:',ident,flush=True)
+            return None
+
+    # KB detail can continue through the bulk endpoint.
+    kb_ids=[c['id'] for c in needed if c['source']!='Encar']
+    vehicles=bulk('vehicle',kb_ids)
+
+    # Encar gets the full documented per-vehicle payload so all gallery photos are retained.
+    encar_needed=[c for c in needed if c['source']=='Encar']
+    for car in encar_needed:
+        detail=full_vehicle(car['id'])
+        if detail is not None:
+            vehicles[car['id']]=detail
+    print('Full Encar vehicle details received',sum(1 for c in encar_needed if c['id'] in vehicles),
+          'of',len(encar_needed),flush=True)
+
     eids=[c['id'] for c in needed if c['source']=='Encar']
     inspections=bulk('inspection',eids)
     records=bulk('record',eids)
+
     for car in needed:
-        ident=car['id'];v=vehicles.get(ident)
-        if not isinstance(v,dict):continue
-        spec=v.get('spec') or {}; cat=v.get('category') or {}; hist=v.get('History') or {}
-        d={'checked_at':now.isoformat(),'spec':{},'photos':[]}
-        mapping={'transmission':spec.get('transmissionName') or v.get('Transmission'),
-                 'engine_cc':spec.get('displacement') or hist.get('displacementCc'),
-                 'color':spec.get('colorName') or v.get('Color'),
-                 'seats':spec.get('seatCount') or v.get('SeatCount'),
-                 'power_ps':spec.get('powerPs'),'body':spec.get('bodyName'),
-                 'drive':spec.get('drivetrain') or spec.get('driveType'),
-                 'registration':cat.get('yearMonth')}
+        ident=car['id']
+        v=vehicles.get(ident)
+        if not isinstance(v,dict):
+            continue
+
+        spec=v.get('spec') or {}
+        cat=v.get('category') or {}
+        hist=v.get('History') or {}
+        raw_source='encar' if car['source']=='Encar' else 'kbc'
+
+        d={
+            'checked_at':now.isoformat(),
+            'photo_complete':car['source']=='Encar',
+            'spec':{},
+            'photos':[]
+        }
+        mapping={
+            'transmission':spec.get('transmissionName') or v.get('Transmission'),
+            'engine_cc':spec.get('displacement') or hist.get('displacementCc'),
+            'color':spec.get('colorName') or v.get('Color'),
+            'seats':spec.get('seatCount') or v.get('SeatCount'),
+            'power_ps':spec.get('powerPs'),
+            'body':spec.get('bodyName'),
+            'drive':spec.get('drivetrain') or spec.get('driveType'),
+            'registration':cat.get('yearMonth')
+        }
         d['spec']={k:scalar(val) for k,val in mapping.items()}
-        # Drivetrain may be stated explicitly in the translated badge, never inferred from model.
+
         if not d['spec']['drive']:
             match=re.search(r'\b(2WD|4WD|AWD|FWD|RWD)\b',car.get('badge',''),re.I)
-            if match:d['spec']['drive']=match.group().upper();d['drive_basis']='listing badge'
-        raw_source='encar' if car['source']=='Encar' else 'kbc'
+            if match:
+                d['spec']['drive']=match.group().upper()
+                d['drive_basis']='listing badge'
+
+        # Preserve every valid photo URL returned anywhere in the full vehicle payload.
         for p in v.get('photos',v.get('Photos',[])) or []:
             u=photo_url(p,raw_source)
-            if u and u not in d['photos']: d['photos'].append(u)
+            if u and u not in d['photos']:
+                d['photos'].append(u)
         for u in extract_photos(v,raw_source):
-            if u not in d['photos']: d['photos'].append(u)
+            if u not in d['photos']:
+                d['photos'].append(u)
+
+        # Merge catalog preview photos + full detail photos into the public record.
+        merged=[]
+        for u in (car.get('photos') or []) + d['photos']:
+            if u and u not in merged:
+                merged.append(u)
+        car['photos']=merged
+        d['photos']=merged
+
         d['inspection']=None
         ins=inspections.get(ident)
         if isinstance(ins,dict) and isinstance(ins.get('master'),dict):
             master=ins['master']
             d['inspection']=select_fields(master,['accdient','simpleRepair','registrationDate'])
-        d['insurance']=select_fields(records.get(ident),['accidentCnt','myAccidentCnt','otherAccidentCnt','myAccidentCost','otherAccidentCost','ownerChangeCnt','totalLossCnt','floodTotalLossCnt','floodPartLossCnt','robberCnt','regDate'])
-        d['kb_history']=select_fields(hist,['totalLoss','floodDamage','commercialUse','ownershipChanges']) if hist else None
+
+        d['insurance']=select_fields(
+            records.get(ident),
+            ['accidentCnt','myAccidentCnt','otherAccidentCnt','myAccidentCost',
+             'otherAccidentCost','ownerChangeCnt','totalLossCnt','floodTotalLossCnt',
+             'floodPartLossCnt','robberCnt','regDate']
+        )
+        d['kb_history']=select_fields(
+            hist,
+            ['totalLoss','floodDamage','commercialUse','ownershipChanges']
+        ) if hist else None
         car['details']=d
+
     print('Vehicles with cached detail:',sum('details' in c for c in cars),flush=True)
+    if encar_needed:
+        counts=[
+            len((c.get('details') or {}).get('photos') or [])
+            for c in cars if c['source']=='Encar' and c.get('details')
+        ]
+        if counts:
+            print('Encar photo galleries: min',min(counts),'max',max(counts),
+                  'average',round(sum(counts)/len(counts),1),flush=True)
 
 def main():
     key=os.environ.get('ENCARAPI_KEY','').strip()
