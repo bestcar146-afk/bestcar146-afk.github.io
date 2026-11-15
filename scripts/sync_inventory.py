@@ -529,8 +529,7 @@ def enrich(cars,key):
             return {}
 
     def full_vehicle(ident):
-        # The documented single-vehicle endpoint returns the full detail payload,
-        # including the complete photo gallery for an Encar listing.
+        # EncarAPI documents HTTP 404 here as "listing not found (sold or removed)".
         url='https://api.encarapi.com/api/vehicle/'+str(ident)+'?lang=en'
         req=urllib.request.Request(
             url,
@@ -541,10 +540,13 @@ def enrich(cars,key):
                 data=json.load(r)
             return data if isinstance(data,dict) else None
         except urllib.error.HTTPError as e:
+            if e.code == 404:
+                print('Encar listing sold/removed:',ident,flush=True)
+                return {'_listing_not_found': True}
             print('Full vehicle detail unavailable:',ident,'HTTP',e.code,flush=True)
             return None
         except (urllib.error.URLError,TimeoutError,ValueError):
-            print('Full vehicle detail unavailable:',ident,flush=True)
+            print('Full vehicle detail temporarily unavailable:',ident,flush=True)
             return None
 
     # KB detail can continue through the bulk endpoint.
@@ -574,6 +576,9 @@ def enrich(cars,key):
     for car in needed:
         ident=car['id']
         v=vehicles.get(ident)
+        if isinstance(v,dict) and v.get('_listing_not_found'):
+            car['_unavailable']=True
+            continue
         if not isinstance(v,dict):
             continue
 
@@ -702,6 +707,9 @@ def main():
     enrich(cars,key)
     publishable=[]; recovered=0; removed_no_photo=0
     for car in cars:
+        if car.pop('_unavailable',False):
+            print('Removed sold/unavailable listing from public inventory:',car.get('id'),flush=True)
+            continue
         detail_photos=((car.get('details') or {}).get('photos') or [])
         if not car.get('photos') and detail_photos:
             car['photos']=detail_photos
