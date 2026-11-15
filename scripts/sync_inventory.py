@@ -24,7 +24,9 @@ def photo_url(value, source):
         if 'img.kbchachacha.com/' in low: return value
         return value if re.search(r'\.(?:jpe?g|png|webp)(?:\?|$)',low) else ''
     if source == 'encar':
-        if 'ci.encar.com/' in low or '/carpicture/' in low: return value
+        # Encar gallery URLs must point to an actual image file. Some payloads also
+        # contain incomplete filename templates such as ".../43066295_", which
+        # render as broken thumbnails if accepted.
         return value if re.search(r'\.(?:jpe?g|png|webp)(?:\?|$)',low) else ''
     return value if re.search(r'\.(?:jpe?g|png|webp)(?:\?|$)',low) else ''
 
@@ -432,6 +434,45 @@ def select_fields(obj, fields):
     if not isinstance(obj,dict): return None
     return {k:scalar(obj.get(k)) for k in fields}
 
+def encar_page_photos(ident):
+    """Extract every Encar CDN gallery image embedded in the public vehicle page."""
+    url='https://fem.encar.com/cars/detail/'+str(ident)
+    req=urllib.request.Request(
+        url,
+        headers={
+            'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/130 Safari/537.36',
+            'Accept-Language':'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7'
+        }
+    )
+    try:
+        with urllib.request.urlopen(req,timeout=45) as r:
+            html=r.read().decode('utf-8','ignore')
+    except (urllib.error.URLError,TimeoutError):
+        return []
+
+    # Normalize common JSON/HTML escaping before looking for Encar CDN images.
+    html=html.replace('\\/','/').replace('\\u002F','/').replace('&amp;','&')
+    found=[]
+    patterns=[
+        r'https?://ci\.encar\.com/[^"\'<>\\\s]+?\.(?:jpe?g|png|webp)(?:\?[^"\'<>\\\s]*)?',
+        r'(?<!:)//ci\.encar\.com/[^"\'<>\\\s]+?\.(?:jpe?g|png|webp)(?:\?[^"\'<>\\\s]*)?',
+        r'["\'](/carpicture[^"\']+?\.(?:jpe?g|png|webp)(?:\?[^"\']*)?)["\']'
+    ]
+    for pattern in patterns:
+        for match in re.findall(pattern,html,re.I):
+            raw=match if isinstance(match,str) else match[0]
+            u=photo_url(raw,'encar')
+            if u and u not in found:
+                found.append(u)
+
+    # Keep the dealer's gallery order when numbered filenames are present.
+    def order_key(u):
+        m=re.search(r'_(\d{3,4})\.(?:jpe?g|png|webp)',u,re.I)
+        return (0,int(m.group(1))) if m else (1,u)
+    found.sort(key=order_key)
+    return found
+
+
 def enrich(cars,key):
     now=datetime.now(timezone.utc)
     try:
@@ -535,7 +576,7 @@ def enrich(cars,key):
 
         d={
             'checked_at':now.isoformat(),
-            'photo_complete':car['source']=='Encar',
+            'photo_complete':False,
             'spec':{},
             'photos':[]
         }
@@ -566,13 +607,27 @@ def enrich(cars,key):
             if u not in d['photos']:
                 d['photos'].append(u)
 
-        # Merge catalog preview photos + full detail photos into the public record.
+        # If the API detail still exposes only the small catalog preview gallery,
+        # read the public Encar detail page and merge every embedded Encar CDN image.
+        if car['source']=='Encar' and len(d['photos']) <= 5:
+            page_photos=encar_page_photos(ident)
+            if page_photos:
+                print('Encar page gallery',ident,'photos',len(page_photos),flush=True)
+                for u in page_photos:
+                    if u not in d['photos']:
+                        d['photos'].append(u)
+
+        # Merge catalog preview photos + full detail/page photos into the public record.
+        # Run every URL through photo_url again so malformed template URLs are removed.
         merged=[]
-        for u in (car.get('photos') or []) + d['photos']:
+        for raw in (car.get('photos') or []) + d['photos']:
+            u=photo_url(raw,raw_source)
             if u and u not in merged:
                 merged.append(u)
         car['photos']=merged
         d['photos']=merged
+        if car['source']=='Encar':
+            d['photo_complete']=len(merged) > 5
 
         d['inspection']=None
         ins=inspections.get(ident)
