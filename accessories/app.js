@@ -143,11 +143,11 @@ function render() {
     for (const [selector,value] of Object.entries({'.area':item.area,'.code':item.code,'.fit':item.vehicle+' · '+formatYear(item.years),h3:item.name,'.location':item.location,'.price':usd.format(item.price)})) {
       card.querySelector(selector).textContent = value;
     }
-    const source=item.vehicle==='Sorento' && window.partImages[item.code];
+    const source=window.accessoryPhotos?.[item.vehicle]?.[item.code];
     if(source) {
       const image=document.createElement('img');
       image.src=source;
-      image.alt=item.name+' installed on Sorento';
+      image.alt=item.name+' — '+item.vehicle+' ('+item.code+')';
       image.loading='lazy';
       card.querySelector('.part-photo').append(image);
     }
