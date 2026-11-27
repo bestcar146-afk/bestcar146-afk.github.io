@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Browse Best Car Star accessories by vehicle, model year and installation area.">
+<title>Car Accessories | Best Car Star</title>
+<link rel="stylesheet" href="style.css">
+<script defer src="catalog.js"></script>
+<script defer src="app.js"></script>
+</head>
+<body>
+<header class="top"><div class="wrap head"><a class="brand" href="../"><span class="mark" aria-hidden="true">✦</span> BEST CAR STAR</a><nav><a class="jump" href="../">Cars</a> <a class="jump" href="#catalog">Accessories ↓</a></nav></div></header>
+<main>
+<section class="hero"><div class="wrap hero-inner"><div><div class="eyebrow">BEST CAR STAR / PARTS CATALOG</div><h1>Car accessories<br>by vehicle.</h1><p>Find the right fit by model, year and where the accessory goes on your car.</p><a class="primary" href="#catalog">Find your vehicle <span aria-hidden="true">↘</span></a></div><div class="hero-visual"><img id="hero-photo" alt="Sorento supplier installation illustration"><span>Sorento · Supplier fitting guide</span></div></div></section>
+<section class="wrap vehicle-section" aria-labelledby="vehicles-title"><h2 id="vehicles-title">Shop by vehicle</h2><div id="vehicles" class="vehicles"></div></section>
+<section id="catalog" class="wrap catalog">
+<div class="section-title"><h2>Browse accessories</h2><span class="currency">Prices in USD</span></div>
+<form id="filters" class="filters" role="search">
+<label>Vehicle<select id="vehicle"><option value="">All vehicles</option></select></label>
+<label>Model year<select id="year"><option value="">Any year</option></select></label>
+<label>Car area<select id="area"><option value="">All areas</option></select></label>
+<label class="search">Search<input type="search" id="query" placeholder="Part name or code"></label>
+<button type="reset" class="reset">Reset</button>
+</form>
+<div id="vehicle-guide"></div>
+<div class="results-line"><p id="count" role="status"></p><label class="sort">Sort by <select id="sort"><option value="">Vehicle &amp; part</option><option value="low">Lowest price</option><option value="high">Highest price</option></select></label></div>
+<div id="grid" class="grid"></div>
+<div id="pages" class="pages"></div>
+<noscript>Enable JavaScript to browse and filter the accessory catalog.</noscript>
+</section>
+</main>
+<footer><div class="wrap head"><span>BEST CAR STAR</span><a href="#catalog">Back to catalog ↑</a></div></footer>
+<dialog id="details" aria-labelledby="detail-title"><div class="dialog-head"><h2 id="detail-title"></h2><form method="dialog"><button class="close" aria-label="Close details">×</button></form></div><div id="detail-content"></div></dialog>
+<template id="card"><article class="card"><div class="card-top"><span class="area"></span><span class="code"></span></div><div class="part-photo"></div><div class="fit"></div><h3></h3><p class="location"></p><div class="card-bottom"><div class="price"></div><button class="detail">View fit details <span aria-hidden="true">↗</span></button></div></article></template>
+</body></html>
