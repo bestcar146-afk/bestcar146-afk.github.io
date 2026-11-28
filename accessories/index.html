@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Browse Best Car Star accessories by vehicle, model year and installation area.">
 <title>Car Accessories | Best Car Star</title>
-<link rel="stylesheet" href="style.css?v=2">
+<link rel="stylesheet" href="style.css?v=3">
 <script defer src="catalog.js"></script>
 <script defer src="part-photos.js"></script>
-<script defer src="app.js?v=2"></script>
+<script defer src="app.js?v=3"></script>
 </head>
 <body>
 <header class="top"><div class="wrap head"><a class="brand" href="../"><span class="mark" aria-hidden="true">✦</span> BEST CAR STAR</a><nav><a class="jump" href="../">Cars</a> <a class="jump" href="#catalog">Accessories ↓</a></nav></div></header>
@@ -17,6 +17,7 @@
 <section class="wrap vehicle-section" aria-labelledby="vehicles-title"><h2 id="vehicles-title">Shop by vehicle</h2><div id="vehicles" class="vehicles"></div></section>
 <section id="catalog" class="wrap catalog">
 <div class="section-title"><h2>Browse accessories</h2><span class="currency">Prices in USD</span></div>
+<div class="quick-filters" aria-label="Quick vehicle filters"><div id="vehicle-chips" class="chip-row" role="group" aria-label="Vehicle"></div><div id="year-chips" class="chip-row" role="group" aria-label="Model year"></div><button id="view-inquiry" class="inquiry-toggle" type="button">Inquiry (0)</button></div>
 <form id="filters" class="filters" role="search">
 <label>Vehicle<select id="vehicle"><option value="">All vehicles</option></select></label>
 <label>Model year<select id="year"><option value="">Any year</option></select></label>
@@ -25,7 +26,7 @@
 <button type="reset" class="reset">Reset</button>
 </form>
 <div id="vehicle-guide"></div>
-<div class="results-line"><p id="count" role="status"></p><label class="sort">Sort by <select id="sort"><option value="">Vehicle &amp; part</option><option value="low">Lowest price</option><option value="high">Highest price</option></select></label></div>
+<div class="results-line"><p id="count" role="status"></p><label class="sort">Sort: <select id="sort"><option value="">Vehicle</option><option value="low">Lowest price</option><option value="high">Highest price</option></select></label></div>
 <div id="grid" class="grid"></div>
 <div id="pages" class="pages"></div>
 <noscript>Enable JavaScript to browse and filter the accessory catalog.</noscript>
@@ -33,5 +34,40 @@
 </main>
 <footer><div class="wrap head"><span>BEST CAR STAR</span><a href="#catalog">Back to catalog ↑</a></div></footer>
 <dialog id="details" aria-labelledby="detail-title"><div class="dialog-head"><h2 id="detail-title"></h2><form method="dialog"><button class="close" aria-label="Close details">×</button></form></div><div id="detail-content"></div></dialog>
-<template id="card"><article class="card"><div class="card-top"><span class="area"></span><span class="code"></span></div><div class="fit"></div><h3></h3><p class="location"></p><div class="card-bottom"><div class="price-and-photo"><div class="price"></div><div class="part-photo"></div></div><button class="detail">View fit details <span aria-hidden="true">↗</span></button></div></article></template>
+<dialog id="inquiry" aria-labelledby="inquiry-title">
+  <div class="dialog-head"><h2 id="inquiry-title">Your quote inquiry</h2><form method="dialog"><button class="close" aria-label="Close inquiry">×</button></form></div>
+  <ul id="inquiry-items" class="inquiry-items"></ul>
+  <p id="inquiry-empty">Add an accessory to start an inquiry.</p>
+  <div id="inquiry-draft" hidden>
+    <label for="destination">Delivery city and country (optional)</label>
+    <input id="destination" type="text" maxlength="120" autocomplete="off">
+    <label for="quote-message">Message for Best Car Star</label>
+    <textarea id="quote-message" rows="6" readonly></textarea>
+    <div class="inquiry-actions">
+      <button type="button" class="quote-button" id="copy-inquiry">Copy inquiry</button>
+      <button type="button" class="secondary-button" id="share-inquiry" hidden>Share inquiry</button>
+    </div>
+    <p class="inquiry-hint">Share the draft with Best Car Star through your usual contact channel.</p>
+    <p id="inquiry-status" role="status"></p>
+  </div>
+</dialog>
+<template id="card">
+  <article class="card">
+    <div class="part-photo"></div>
+    <div class="card-content">
+      <h3></h3>
+      <span class="fit"></span>
+      <span class="code"></span>
+      <p class="location"></p>
+      <p class="fulfillment">Stock and delivery confirmed by quote</p>
+      <div class="card-bottom">
+        <div class="price"></div>
+        <div class="card-actions">
+          <button type="button" class="detail">View fit details</button>
+          <button type="button" class="quote-button add-inquiry">Add to inquiry</button>
+        </div>
+      </div>
+    </div>
+  </article>
+</template>
 </body></html>
