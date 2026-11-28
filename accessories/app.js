@@ -39,6 +39,7 @@ function updateYears() {
   year.replaceChildren(new Option('Any year', ''));
   options(year, [...years].sort((a,b)=>b-a));
   if (years.has(Number(previous))) year.value = previous;
+  buildChips("year-chips", year);
 }
 function node(tag, value, className) {
   const el = document.createElement(tag);
@@ -116,7 +117,100 @@ for(const name of Object.keys(guides).sort()) {
   get('vehicles').append(button);
 }
 get('hero-photo').src=window.vehicleImages.Sorento;
+const inquiry = get('inquiry');
+const selectedParts = new Map();
+const quoteMessage = get('quote-message');
+const destination = get('destination');
+const inquiryStatus = get('inquiry-status');
+function updateMessage() {
+  const lines = [...selectedParts.values()].map(({item, quantity}) =>
+    quantity + ' × ' + item.name + ' (' + item.code + ') — ' + item.vehicle + ' ' + formatYear(item.years));
+  quoteMessage.value = ['Hello Best Car Star, could you quote the following accessories?',
+    '', ...lines, '', destination.value.trim() && 'Delivery to: ' + destination.value.trim(),
+    'Please confirm fitment, availability, shipping cost and estimated delivery.'].join('\n');
+}
+function updateInquiry() {
+  const list = get('inquiry-items');
+  list.replaceChildren();
+  for (const [item, entry] of selectedParts) {
+    const title = item.name + ' · ' + item.vehicle + ' · ' + item.code;
+    const row = node('li', '', 'inquiry-item');
+    const label = node('label', 'Quantity');
+    const quantity = document.createElement('input');
+    quantity.type = 'number';
+    quantity.min = '1';
+    quantity.max = '999';
+    quantity.value = entry.quantity;
+    quantity.setAttribute('aria-label', 'Quantity for ' + title);
+    quantity.addEventListener('change', () => {
+      entry.quantity = Math.max(1, Math.min(999, Math.round(Number(quantity.value) || 1)));
+      quantity.value = entry.quantity;
+      updateMessage();
+    });
+    label.append(quantity);
+    const remove = node('button', 'Remove', 'secondary-button');
+    remove.type = 'button';
+    remove.setAttribute('aria-label', 'Remove ' + title);
+    remove.addEventListener('click', () => {
+      selectedParts.delete(item);
+      updateInquiry();
+      render();
+      inquiry.querySelector('.close').focus();
+    });
+    row.append(node('strong', title), label, remove);
+    list.append(row);
+  }
+  get('view-inquiry').textContent = 'Inquiry (' + selectedParts.size + ')';
+  get('inquiry-empty').hidden = selectedParts.size > 0;
+  get('inquiry-draft').hidden = selectedParts.size === 0;
+  inquiryStatus.textContent = '';
+  updateMessage();
+}
+get('view-inquiry').addEventListener('click', () => { updateInquiry(); inquiry.showModal(); });
+destination.addEventListener('input', updateMessage);
+get('copy-inquiry').addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText(quoteMessage.value);
+    inquiryStatus.textContent = 'Inquiry copied.';
+  } catch {
+    quoteMessage.focus();
+    quoteMessage.select();
+    inquiryStatus.textContent = 'The message is selected. Copy it to share.';
+  }
+});
+if (navigator.share) {
+  const share = get('share-inquiry');
+  share.hidden = false;
+  share.addEventListener('click', async () => {
+    try { await navigator.share({title:'Best Car Star accessory inquiry', text:quoteMessage.value}); }
+    catch (error) {
+      if (error.name !== 'AbortError') inquiryStatus.textContent = 'Use Copy inquiry to share this message.';
+    }
+  });
+}
+function buildChips(id, select) {
+  const row = get(id);
+  const scrollLeft = row.scrollLeft;
+  row.replaceChildren();
+  for (const option of select.options) {
+    const button = node('button', option.text, 'filter-chip');
+    button.type = 'button';
+    button.dataset.value = option.value;
+    button.addEventListener('click', () => {
+      select.value = option.value;
+      select.dispatchEvent(new Event(select === vehicle ? 'change' : 'input', {bubbles:true}));
+      button.focus({preventScroll:true});
+    });
+    row.append(button);
+  }
+  row.scrollLeft = scrollLeft;
+}
+function syncChips(id, value) {
+  for (const button of get(id).children) button.setAttribute('aria-pressed', String(button.dataset.value === value));
+}
 function render() {
+  syncChips('vehicle-chips', vehicle.value);
+  syncChips('year-chips', year.value);
   for(const [name,button] of vehicleButtons) button.setAttribute('aria-pressed',name===vehicle.value);
   const guidePanel=get('vehicle-guide');
   guidePanel.replaceChildren();
@@ -140,7 +234,7 @@ function render() {
   grid.replaceChildren();
   for (const item of results.slice(first,first+pageSize)) {
     const card = get('card').content.cloneNode(true);
-    for (const [selector,value] of Object.entries({'.area':item.area,'.code':item.code,'.fit':item.vehicle+' · '+formatYear(item.years),h3:item.name,'.location':item.location,'.price':usd.format(item.price)})) {
+    for (const [selector,value] of Object.entries({'.code':'Part '+item.code,'.fit':bounds(item.years) && !/current/i.test(item.years) ? '✓ Fits '+item.vehicle+' '+formatYear(item.years) : item.vehicle+' · '+formatYear(item.years)+' · Check fit',h3:item.name,'.location':item.location,'.price':usd.format(item.price)})) {
       card.querySelector(selector).textContent = value;
     }
     const source=window.accessoryPhotos?.[item.vehicle]?.[item.code];
@@ -150,7 +244,18 @@ function render() {
       image.alt=item.name+' — '+item.vehicle+' ('+item.code+')';
       image.loading='lazy';
       card.querySelector('.part-photo').append(image);
+    } else {
+      card.querySelector('.part-photo').append(node('span', 'Photo unavailable'));
     }
+    if (!bounds(item.years) || /current/i.test(item.years)) card.querySelector('.fit').classList.add('fit-unconfirmed');
+    const add = card.querySelector('.add-inquiry');
+    add.textContent = selectedParts.has(item) ? 'View inquiry' : 'Add to inquiry';
+    add.addEventListener('click', () => {
+      if (!selectedParts.has(item)) selectedParts.set(item, {item, quantity:1});
+      add.textContent = 'View inquiry';
+      updateInquiry();
+      inquiry.showModal();
+    });
     const button = card.querySelector('.detail');
     button.setAttribute('aria-label','View fit details for '+item.name+' '+item.code);
     button.addEventListener('click',()=>showDetails(item));
@@ -174,6 +279,7 @@ function render() {
   }
 }
 options(vehicle,Object.keys(guides).sort());
+buildChips('vehicle-chips', vehicle);
 options(area,[...new Set(catalog.map(item=>item.area))]);
 updateYears();
 vehicle.addEventListener('change',updateYears);
