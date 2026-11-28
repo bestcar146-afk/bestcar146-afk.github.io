@@ -8,7 +8,7 @@
 <script defer src="catalog.js"></script>
 <script defer src="part-photos.js"></script>
 <script defer src="bill-prices.js"></script>
-<script defer src="shop.js"></script>
+<script defer src="shop.js?v=2"></script>
 <style>
 .catalog{padding-top:22px}
 .shop-nav{display:flex;align-items:center;gap:8px}
@@ -25,6 +25,8 @@
 .cart-status{color:#4b5563;min-height:1.3em}
 .cart-line-price{display:block;font-size:.87rem;margin-top:3px}
 @media(max-width:380px){.shop-nav{gap:4px}#language,#cart-open{font-size:.78rem}.brand{gap:6px}.brand small{display:none}}
+.reference-photo{display:block;padding:6px 10px;background:var(--ice);color:var(--navy);font-size:.75rem}
+.reference-photo[hidden]{display:none}
 </style>
 </head>
 <body id="top">
