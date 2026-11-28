@@ -467,21 +467,66 @@ function updateYears() {
   }
   assignOptions(year,[['',t('anyYear')], ...[...years].sort((a,b)=>b-a).map(y=>[String(y),String(y)])]);
 }
+const photoName = item => item.name.toLowerCase()
+  .split(/[(\/_]/,1)[0].trim().replace(/\.$/,'').replace('molidng','molding');
+function photoFamily(item) {
+  const name = photoName(item);
+  if (name.endsWith('door visor')) return 'door visor';
+  if (name.endsWith('hood guard')) return 'hood guard';
+  if (name === 'step side mirror garnish') return 'side mirror garnish';
+  return name;
+}
+function supplierPhoto(part) {
+  return /^[A-Z][0-9]{3}$/.test(part.code)
+    ? 'https://www.autoclover.com/autoclover/upload/itemcard/' + part.code + '_std_0.jpg'
+    : '';
+}
+const localPhoto = part => window.accessoryPhotos?.[part.vehicle]?.[part.code];
 function showPhoto(container, item) {
-  const fallback = window.accessoryPhotos?.[item.vehicle]?.[item.code];
+  const sources = new Set();
+  const candidates = [];
+  const add = (src, part, similar = false) => {
+    if (src && !sources.has(src)) {
+      sources.add(src);
+      candidates.push({src,part,similar});
+    }
+  };
+  add(supplierPhoto(item),item);
+  add(localPhoto(item),item);
+  const family = photoFamily(item);
+  const rank = part => Number(part.vehicle === item.vehicle) + 2 * Number(photoName(part) === photoName(item))
+    + 4 * Number(part.name.toLowerCase() === item.name.toLowerCase());
+  const related = catalog.filter(part => part.code !== item.code && family === photoFamily(part))
+    .sort((a,b) => rank(b)-rank(a));
+  for (const part of related) add(localPhoto(part),part,true);
+  const exactCount = candidates.length;
+  for (const part of related) {
+    add(supplierPhoto(part),part,true);
+    if (candidates.length >= exactCount + 4) break;
+  }
   const image = document.createElement('img');
   image.loading = 'lazy';
   image.referrerPolicy = 'no-referrer';
-  image.alt = partName(item) + ' — ' + item.vehicle + ' (' + item.code + ')';
-  image.addEventListener('error', () => {
-    if (fallback && image.getAttribute('src') !== fallback) image.src = fallback;
-    else container.replaceChildren(node('span',t('photo')));
+  const caption = node('small','','reference-photo');
+  const reference = lang === 'fr' ? 'Photo d’un accessoire similaire' : 'Photo of a similar accessory';
+  let index = 0;
+  let current;
+  function tryNext() {
+    current = candidates[index++];
+    if (!current) { container.replaceChildren(node('span',t('photo'))); return; }
+    const {src,part,similar} = current;
+    image.alt = (similar ? reference + ' — ' : '') + partName(part) + ' — ' + part.vehicle + ' (' + part.code + ')';
+    caption.hidden = true;
+    image.src = src;
+  }
+  image.addEventListener('error',tryNext);
+  image.addEventListener('load',()=>{
+    if (!current.similar) return;
+    caption.textContent = reference + ' · ' + current.part.vehicle;
+    caption.hidden = false;
   });
-  if (/^[A-Z][0-9]{3}$/.test(item.code)) {
-    image.src = 'https://www.autoclover.com/autoclover/upload/itemcard/' + item.code + '_std_0.jpg';
-  } else if (fallback) image.src = fallback;
-  else { container.replaceChildren(node('span',t('photo'))); return; }
-  container.append(image);
+  container.append(image,caption);
+  tryNext();
 }
 const normalize = value => value.normalize('NFD').replace(/\p{Diacritic}/gu,'').toLowerCase();
 function render() {
