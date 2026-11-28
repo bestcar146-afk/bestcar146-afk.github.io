@@ -47,6 +47,25 @@ function node(tag, value, className) {
   if (className) el.className = className;
   return el;
 }
+function showPartPhoto(container, item, lazy = true) {
+  const fallback = window.accessoryPhotos?.[item.vehicle]?.[item.code];
+  const code = String(item.code).trim().toUpperCase();
+  const supplierPhoto = /^[A-Z][0-9]{3}$/.test(code)
+    ? 'https://www.autoclover.com/autoclover/upload/itemcard/' + code + '_std_0.jpg'
+    : '';
+  const empty = () => container.replaceChildren(node('span', 'Photo unavailable'));
+  if (!supplierPhoto && !fallback) { empty(); return; }
+  const image = document.createElement('img');
+  image.alt = item.name + ' — ' + item.vehicle + ' (' + item.code + ')';
+  image.loading = lazy ? 'lazy' : 'eager';
+  image.referrerPolicy = 'no-referrer';
+  image.addEventListener('error', () => {
+    if (fallback && image.getAttribute('src') !== fallback) image.src = fallback;
+    else empty();
+  });
+  image.src = supplierPhoto || fallback;
+  container.replaceChildren(image);
+}
 function showDetails(item) {
   get('detail-title').textContent = item.name;
   const metadata = node('div', '', 'metadata');
@@ -56,6 +75,9 @@ function showDetails(item) {
   const content = get('detail-content');
   content.replaceChildren(metadata, node('p',item.location), node('p','Catalog fit: '+item.model),
     node('h3','Supplier fitting guide','guide-label'),node('p','Match the item code on the guide when shown. Select a guide to download it.','guide-note'));
+  const photo = node('div', '', 'part-photo detail-photo');
+  showPartPhoto(photo, item, false);
+  content.prepend(photo);
   appendGuides(content,item.vehicle);
   details.showModal();
 }
@@ -237,16 +259,7 @@ function render() {
     for (const [selector,value] of Object.entries({'.code':'Part '+item.code,'.fit':bounds(item.years) && !/current/i.test(item.years) ? '✓ Fits '+item.vehicle+' '+formatYear(item.years) : item.vehicle+' · '+formatYear(item.years)+' · Check fit',h3:item.name,'.location':item.location,'.price':usd.format(item.price)})) {
       card.querySelector(selector).textContent = value;
     }
-    const source=window.accessoryPhotos?.[item.vehicle]?.[item.code];
-    if(source) {
-      const image=document.createElement('img');
-      image.src=source;
-      image.alt=item.name+' — '+item.vehicle+' ('+item.code+')';
-      image.loading='lazy';
-      card.querySelector('.part-photo').append(image);
-    } else {
-      card.querySelector('.part-photo').append(node('span', 'Photo unavailable'));
-    }
+    showPartPhoto(card.querySelector('.part-photo'), item);
     if (!bounds(item.years) || /current/i.test(item.years)) card.querySelector('.fit').classList.add('fit-unconfirmed');
     const add = card.querySelector('.add-inquiry');
     add.textContent = selectedParts.has(item) ? 'View inquiry' : 'Add to inquiry';
