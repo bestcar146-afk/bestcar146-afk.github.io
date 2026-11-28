@@ -3,76 +3,63 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Browse Best Car Star accessories by vehicle, model year and installation area.">
 <title>Car Accessories | Best Car Star</title>
 <link rel="stylesheet" href="style.css?v=4">
 <script defer src="catalog.js"></script>
 <script defer src="part-photos.js"></script>
 <script defer src="bill-prices.js"></script>
-<script defer src="app-krw.js?v=2"></script>
-<style>.price-estimate{display:block;margin-top:4px;font-size:.75rem;font-weight:600;color:#4b5563}</style>
+<script defer src="shop.js"></script>
+<style>
+.catalog{padding-top:22px}
+.shop-nav{display:flex;align-items:center;gap:8px}
+.shop-nav select,#cart-open button{min-height:44px}
+#cart-open,#language{min-height:44px;padding:6px 9px;font:inherit;border:1px solid var(--line);border-radius:9px;background:white;color:var(--navy)}
+#cart-open{font-weight:750}
+#top-button{position:fixed;right:max(12px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));z-index:10;display:grid;place-items:center;min-width:44px;min-height:44px;border-radius:9px;background:var(--navy);color:white;text-decoration:none;box-shadow:var(--shadow)}
+#top-button[hidden]{display:none}
+.cart-note,.price-estimate{color:#4b5563;font-size:.8rem}
+.price-estimate{display:block;margin-top:4px;font-weight:600}
+.cart-total{font-weight:800}
+.cart-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.cart-actions a{display:inline-flex;align-items:center;text-decoration:none}
+.cart-status{color:#4b5563;min-height:1.3em}
+.cart-line-price{display:block;font-size:.87rem;margin-top:3px}
+@media(max-width:380px){.shop-nav{gap:4px}#language,#cart-open{font-size:.78rem}.brand{gap:6px}.brand small{display:none}}
+</style>
 </head>
-<body>
-<header class="top"><div class="wrap head"><a class="brand" href="../"><span class="mark" aria-hidden="true">BCS</span><span>BEST CAR STAR<small>Accessories Catalog</small></span></a><nav><a class="jump" href="../">Cars</a> <a class="jump" href="#catalog">Accessories ↓</a></nav></div></header>
-<main>
-<section class="hero"><div class="wrap hero-inner"><div><div class="eyebrow">BEST CAR STAR / PARTS CATALOG</div><h1>Car accessories<br>by vehicle.</h1><p>Find the right fit by model, year and where the accessory goes on your car.</p><a class="primary" href="#catalog">Find your vehicle <span aria-hidden="true">↘</span></a></div><div class="hero-visual"><img id="hero-photo" alt="Sorento supplier installation illustration"><span>Sorento · Supplier fitting guide</span></div></div></section>
-<section class="wrap vehicle-section" aria-labelledby="vehicles-title"><h2 id="vehicles-title">Shop by vehicle</h2><div id="vehicles" class="vehicles"></div></section>
-<section id="catalog" class="wrap catalog">
-<div class="section-title"><h2>Browse accessories</h2><span class="currency">Prices in KRW</span></div>
-<div class="quick-filters" aria-label="Quick vehicle filters"><div id="vehicle-chips" class="chip-row" role="group" aria-label="Vehicle"></div><div id="year-chips" class="chip-row" role="group" aria-label="Model year"></div><button id="view-inquiry" class="inquiry-toggle" type="button">Inquiry (0)</button></div>
+<body id="top">
+<header class="top"><div class="wrap head">
+<a class="brand" href="../"><span class="mark" aria-hidden="true">BCS</span><span>BEST CAR STAR<small data-text="subtitle">Accessories Catalog</small></span></a>
+<nav class="shop-nav"><select id="language" aria-label="Language / Langue"><option value="en">EN</option><option value="fr">FR</option></select><button id="cart-open" type="button">Cart (0)</button></nav>
+</div></header>
+<main id="catalog" class="wrap catalog">
+<div class="section-title"><h1 style="font-size:clamp(1.6rem,4vw,2.45rem);letter-spacing:-.04em;margin:0 0 12px" data-text="heading">Search by vehicle</h1><span class="currency" data-text="currency">Prices in MGA</span></div>
 <form id="filters" class="filters" role="search">
-<label>Vehicle<select id="vehicle"><option value="">All vehicles</option></select></label>
-<label>Model year<select id="year"><option value="">Any year</option></select></label>
-<label>Car area<select id="area"><option value="">All areas</option></select></label>
-<label class="search">Search<input type="search" id="query" placeholder="Part name or code"></label>
-<button type="reset" class="reset">Reset</button>
+<label><span data-text="vehicle">Vehicle</span><select id="vehicle"></select></label>
+<label><span data-text="year">Model year</span><select id="year"></select></label>
+<label><span data-text="area">Car area</span><select id="area"></select></label>
+<label class="search"><span data-text="search">Search</span><input id="query" type="search" placeholder="Part name or code"></label>
+<button type="reset" class="reset" data-text="reset">Reset</button>
 </form>
-<div id="vehicle-guide"></div>
-<div class="results-line"><p id="count" role="status"></p><label class="sort">Sort: <select id="sort"><option value="">Vehicle</option><option value="low">Lowest price</option><option value="high">Highest price</option></select></label></div>
-<div id="grid" class="grid"></div>
-<div id="pages" class="pages"></div>
-<details style="margin-top:2rem"><summary>Workbook price history (86 rows)</summary>
-<p class="guide-note">Unit prices transcribed from the workbook. Older quotes and installation-inclusive prices are shown with their original date and description.</p>
-<div style="overflow-x:auto"><table style="width:100%;text-align:left" aria-label="Workbook unit prices in KRW"><thead><tr><th scope="col">Vehicle</th><th scope="col">Bill date</th><th scope="col">Accessory</th><th scope="col">Unit price</th></tr></thead><tbody id="bill-price-rows"></tbody></table></div></details>
-<noscript>Enable JavaScript to browse and filter the accessory catalog.</noscript>
-</section>
+<div class="results-line"><p id="count" role="status"></p><label class="sort"><span data-text="sort">Sort</span> <select id="sort"><option value="" data-text="vehicle">Vehicle</option><option value="low" data-text="low">Lowest price</option><option value="high" data-text="high">Highest price</option></select></label></div>
+<div id="grid" class="grid"></div><div id="pages" class="pages"></div>
 </main>
-<footer><div class="wrap head"><span>BEST CAR STAR</span><a href="#catalog">Back to catalog ↑</a></div></footer>
-<dialog id="details" aria-labelledby="detail-title"><div class="dialog-head"><h2 id="detail-title"></h2><form method="dialog"><button class="close" aria-label="Close details">×</button></form></div><div id="detail-content"></div></dialog>
-<dialog id="inquiry" aria-labelledby="inquiry-title">
-  <div class="dialog-head"><h2 id="inquiry-title">Your quote inquiry</h2><form method="dialog"><button class="close" aria-label="Close inquiry">×</button></form></div>
-  <ul id="inquiry-items" class="inquiry-items"></ul>
-  <p id="inquiry-empty">Add an accessory to start an inquiry.</p>
-  <div id="inquiry-draft" hidden>
-    <label for="destination">Delivery city and country (optional)</label>
-    <input id="destination" type="text" maxlength="120" autocomplete="off">
-    <label for="quote-message">Message for Best Car Star</label>
-    <textarea id="quote-message" rows="6" readonly></textarea>
-    <div class="inquiry-actions">
-      <button type="button" class="quote-button" id="copy-inquiry">Copy inquiry</button>
-      <button type="button" class="secondary-button" id="share-inquiry" hidden>Share inquiry</button>
-    </div>
-    <p class="inquiry-hint">Share the draft with Best Car Star through your usual contact channel.</p>
-    <p id="inquiry-status" role="status"></p>
-  </div>
+<a href="#top" id="top-button" aria-label="Back to top" title="Back to top" hidden>↑</a>
+<footer><div class="wrap head"><span>BEST CAR STAR</span></div></footer>
+<dialog id="cart" aria-labelledby="cart-title">
+<div class="dialog-head"><h2 id="cart-title" data-text="cartTitle">Shopping cart</h2><form method="dialog"><button class="close" id="cart-close" aria-label="Close cart">×</button></form></div>
+<ul id="cart-items" class="inquiry-items"></ul><p id="cart-empty" data-text="emptyCart">Your cart is empty.</p>
+<div id="cart-summary" hidden>
+<p id="cart-total" class="cart-total"></p>
+<p class="cart-note" data-text="shipping">Availability and delivery are confirmed separately.</p>
+<div class="cart-actions"><a id="whatsapp" class="quote-button" target="_blank" rel="noopener noreferrer" data-text="whatsapp">Send cart to WhatsApp</a></div>
+<p class="cart-note" data-text="chooseContact">Choose your Best Car Star contact in WhatsApp.</p>
+</div>
 </dialog>
-<template id="card">
-  <article class="card">
-    <div class="part-photo"></div>
-    <div class="card-content">
-      <h3></h3>
-      <span class="fit"></span>
-      <span class="code"></span>
-      <p class="location"></p>
-      <p class="fulfillment">Stock and delivery confirmed by quote</p>
-      <div class="card-bottom">
-        <div class="price"></div>
-        <div class="card-actions">
-          <button type="button" class="detail">View fit details</button>
-          <button type="button" class="quote-button add-inquiry">Add to inquiry</button>
-        </div>
-      </div>
-    </div>
-  </article>
-</template>
-</body></html>
+<p id="cart-status" role="status" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)"></p>
+<template id="card"><article class="card"><div class="part-photo"></div><div class="card-content">
+<h3></h3><span class="fit"></span><span class="code"></span><p class="location"></p>
+<div class="card-bottom"><div class="price"></div><div class="card-actions"><button type="button" class="quote-button add-cart"></button></div></div>
+</div></article></template>
+</body>
+</html>
